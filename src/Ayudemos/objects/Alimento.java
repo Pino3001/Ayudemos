@@ -6,8 +6,8 @@ public class Alimento extends Donacion {
     //Agregar dependencias
 
     //Constructor
-    public Alimento(int id, DateTime fechaIngresada, String descripcionProductos, int cantElementos) {
-        super(id, fechaIngresada);
+    public Alimento(int id, String descripcionProductos, int cantElementos) {
+        super(id);
         this.descripcionProductos = descripcionProductos;
         this.cantElementos = cantElementos;
     }

@@ -1,14 +1,17 @@
 package Ayudemos.objects;
 
+
+import Ayudemos.types.DateTime;
+
 public abstract class Donacion {
     private int id;
     private DateTime fechaIngresada;
     //Agregar Dependencias
 
     //Constructor
-    public Donacion(int id, DateTime fechaIngresada) {
+    public Donacion(int id) {
         this.id = id;
-        this.fechaIngresada = fechaIngresada;
+        this.fechaIngresada = new DateTime();
     }
 
     // Getters Y Setters

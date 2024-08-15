@@ -1,12 +1,14 @@
 package Ayudemos.datatypes;
 
+import Ayudemos.types.DTFechaHora;
+
 public class DTArticulo extends DTDonacion{
     private String descripcion;
     private float peso;
     private String dimenciones;
 
     //Constructor
-    public DTArticulo(int id, DateTime fechaIngresada, String descripcion, float peso, String dimenciones) {
+    public DTArticulo(int id, DTFechaHora fechaIngresada, String descripcion, float peso, String dimenciones) {
         super(id, fechaIngresada);
         this.descripcion = descripcion;
         this.peso = peso;

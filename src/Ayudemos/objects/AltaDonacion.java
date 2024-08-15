@@ -1,6 +1,6 @@
 package Ayudemos.objects;
 
-import Ayudemos.datatypes.IAltaDonacion;
+import Ayudemos.interfaces.IAltaDonacion;
 import Ayudemos.datatypes.DTDonacion;
 import Ayudemos.datatypes.DTArticulo;
 import Ayudemos.datatypes.DTAlimento;
@@ -12,13 +12,16 @@ public class AltaDonacion implements IAltaDonacion {
     }
 
     //Crea una nueva donacion
+    @Override
     public boolean crearDonacion(DTDonacion dtDonacion){
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        Donacion nuevaDonacion = null;
         if(dtDonacion instanceof DTArticulo){
-            nuevaDonacion = new Articulo(dtDonacion.ge);
+           nuevaDonacion = new Articulo(dtDonacion.getId(), ((DTArticulo) dtDonacion).getDescripcion(), ((DTArticulo) dtDonacion).getPeso(), ((DTArticulo) dtDonacion).getDimenciones());
         } else {
-            nuevaDonacion = new Alimento();
+           nuevaDonacion = new Alimento(dtDonacion.getId(), ((DTAlimento) dtDonacion).getDescripcionProductos(), ((DTAlimento) dtDonacion).getCantElementos());
         }
-
+            manejadorDonacion.agregarDonacion(nuevaDonacion);
+            return true;
     }
-
 }
