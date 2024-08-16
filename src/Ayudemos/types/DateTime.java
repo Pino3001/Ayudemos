@@ -12,6 +12,26 @@ public class DateTime {
         this.dateTime = LocalDateTime.now();
     }
 
+    //Tranforma un tipo DateTime en un DTFechaHora
+    public DTFechaHora convertir() {
+        LocalDateTime ldt = this.dateTime;
+
+        // Extraer los valores de fecha
+        int dia = ldt.getDayOfMonth();
+        int mes = ldt.getMonthValue();
+        int anio = ldt.getYear();
+
+        // Crear el objeto DTFecha
+        DTFecha dtFecha = new DTFecha(dia, mes, anio);
+
+        // Extraer la hora y los minutos
+        int hora = ldt.getHour();
+        int minuto = ldt.getMinute();
+
+        // Crear y retornar el objeto DTFechaHora
+        return new DTFechaHora(dtFecha, hora, minuto);
+    }
+
     // Método para obtener la fecha y hora en formato string
     public String getFormattedDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

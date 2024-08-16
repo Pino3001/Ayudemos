@@ -24,4 +24,17 @@ public class AltaDonacion implements IAltaDonacion {
             manejadorDonacion.agregarDonacion(nuevaDonacion);
             return true;
     }
+
+    @Override
+    public DTDonacion BuscatDonacionID(DTDonacion dtDonacion){
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        return manejadorDonacion.buscarDoncionID(dtDonacion.getId());
+    }
+
+    @Override
+    public void editarDonacion(DTDonacion dtDonacion, Integer id){
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        manejadorDonacion.modificarDonacion(dtDonacion, id);
+    }
+
 }

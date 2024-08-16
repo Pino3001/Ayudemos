@@ -7,7 +7,7 @@ public class Articulo extends Donacion {
     //Agregar dependencias
 
     //Constructor
-    public Articulo(int id, String descripcion, float peso, String dimenciones) {
+    public Articulo(Integer id, String descripcion, float peso, String dimenciones) {
         super(id);
         this.descripcion = descripcion;
         this.peso = peso;
