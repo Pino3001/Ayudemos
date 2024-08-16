@@ -1,9 +1,9 @@
 package Ayudemos.types;
 
 public enum Barrio {
-    CIUDAD VIEJA,
+    CIUDAD_VIEJA,
     CORDON,
-    PARQUE RODO,
+    PARQUE_RODO,
     CENTRO,
     PALERMO
 }

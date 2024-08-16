@@ -1,18 +1,22 @@
 package Ayudemos.objects;
 
+
+import Ayudemos.types.DTFechaHora;
+import Ayudemos.types.DateTime;
+
 public abstract class Donacion {
-    private int id;
+    private Integer id;
     private DateTime fechaIngresada;
     //Agregar Dependencias
 
     //Constructor
-    public Donacion(int id, DateTime fechaIngresada) {
+    public Donacion(Integer id) {
         this.id = id;
-        this.fechaIngresada = fechaIngresada;
+        this.fechaIngresada = new DateTime();
     }
 
     // Getters Y Setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -20,8 +24,9 @@ public abstract class Donacion {
         this.id = id;
     }
 
-    public DateTime getFechaIngresada() {
-        return fechaIngresada;
+    public DTFechaHora getFechaIngresada() {
+
+        return fechaIngresada.convertir();
     }
 
     public void setFechaIngresada(DateTime fechaIngresada) {

@@ -1,21 +1,24 @@
 package Ayudemos.datatypes;
 
+import Ayudemos.types.DTFechaHora;
+import Ayudemos.types.DateTime;
+
 public class DTDonacion {
-    private int id;
-    private DateTime fechaIngresada;
+    private final Integer id;
+    private final DTFechaHora fechaIngresada;
 
     //Consutructor
-    public DTDonacion(int id, DateTime fechaIngresada) {
+    public DTDonacion(Integer id, DTFechaHora fechaIngresada) {
         this.id = id;
         this.fechaIngresada = fechaIngresada;
     }
 
     //Getters Y Setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public DateTime getFechaIngresada() {
+    public DTFechaHora getFechaIngresada() {
         return fechaIngresada;
     }
 }

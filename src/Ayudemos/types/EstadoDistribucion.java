@@ -2,6 +2,6 @@ package Ayudemos.types;
 
 public enum EstadoDistribucion {
     PENDIENTE,
-    EN CAMINO,
+    EN_CAMINO,
     ENTREGADO
 }
