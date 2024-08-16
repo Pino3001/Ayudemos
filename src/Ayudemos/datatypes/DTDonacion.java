@@ -4,8 +4,8 @@ import Ayudemos.types.DTFechaHora;
 import Ayudemos.types.DateTime;
 
 public class DTDonacion {
-    private Integer id;
-    private DTFechaHora fechaIngresada;
+    private final Integer id;
+    private final DTFechaHora fechaIngresada;
 
     //Consutructor
     public DTDonacion(Integer id, DTFechaHora fechaIngresada) {

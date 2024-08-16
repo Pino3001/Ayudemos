@@ -25,8 +25,8 @@ public class ManejadorDonacion {
         donaciones.add(donacion);
     }
 
-    //Busca una donacion por id en la lista de donaciones y retorna la informacion en un dt
-    public DTDonacion buscarDoncionID(Integer id){
+    //Busca una donación por ID en la lista de donaciones y retorna la información en un dt
+    public DTDonacion buscarDonacionID(Integer id){
         DTDonacion dt = null;
         Donacion donacion = null;
         boolean encontrado = false;
@@ -41,7 +41,7 @@ public class ManejadorDonacion {
         }
         if (encontrado) {
             if (donacion instanceof Articulo) {
-                dt = new DTArticulo(donacion.getId(), donacion.getFechaIngresada(), ((Articulo) donacion).getDescripcion(), ((Articulo) donacion).getPeso(), ((Articulo) donacion).getDimenciones());
+                dt = new DTArticulo(donacion.getId(), donacion.getFechaIngresada(), ((Articulo) donacion).getDescripcion(), ((Articulo) donacion).getPeso(), ((Articulo) donacion).getDimensiones());
             }else {
                 dt = new DTAlimento(donacion.getId(), donacion.getFechaIngresada(), ((Alimento)donacion).getDescripcionProductos(), ((Alimento) donacion).getCantElementos());
             }
@@ -50,7 +50,7 @@ public class ManejadorDonacion {
         return  dt;
     }
 
-    //Modifica una donacion
+    //Modifica una donación
     public void modificarDonacion(DTDonacion dtDonacion, Integer id) {
         Donacion donacion = null;
         boolean encontrado = false;
@@ -69,7 +69,7 @@ public class ManejadorDonacion {
                     donacion.setId(dtDonacion.getId());
                     ((Articulo) donacion).setDescripcion(((DTArticulo) dtDonacion).getDescripcion());
                     ((Articulo) donacion).setPeso(((DTArticulo) dtDonacion).getPeso());
-                    ((Articulo) donacion).setDimenciones(((DTArticulo) dtDonacion).getDimenciones());
+                    ((Articulo) donacion).setDimensiones(((DTArticulo) dtDonacion).getDimensiones());
                 }
                 //Retornar un error si no se cumple las condiciones
             }else {

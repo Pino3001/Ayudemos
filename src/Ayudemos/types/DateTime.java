@@ -12,7 +12,7 @@ public class DateTime {
         this.dateTime = LocalDateTime.now();
     }
 
-    //Tranforma un tipo DateTime en un DTFechaHora
+    //transforma un tipo DateTime en un DTFechaHora
     public DTFechaHora convertir() {
         LocalDateTime ldt = this.dateTime;
 
@@ -32,13 +32,12 @@ public class DateTime {
         return new DTFechaHora(dtFecha, hora, minuto);
     }
 
-    // Método para obtener la fecha y hora en formato string
+    //metodo para obtener la fecha y hora en formato String
     public String getFormattedDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(formatter);
     }
 
-    // Getter
     public LocalDateTime getDateTime() {
         return dateTime;
     }

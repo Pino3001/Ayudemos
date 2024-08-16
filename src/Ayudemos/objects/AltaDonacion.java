@@ -11,13 +11,13 @@ public class AltaDonacion implements IAltaDonacion {
         super();
     }
 
-    //Crea una nueva donacion
+    //Crea una nueva Donación
     @Override
     public boolean crearDonacion(DTDonacion dtDonacion){
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         Donacion nuevaDonacion = null;
         if(dtDonacion instanceof DTArticulo){
-           nuevaDonacion = new Articulo(dtDonacion.getId(), ((DTArticulo) dtDonacion).getDescripcion(), ((DTArticulo) dtDonacion).getPeso(), ((DTArticulo) dtDonacion).getDimenciones());
+           nuevaDonacion = new Articulo(dtDonacion.getId(), ((DTArticulo) dtDonacion).getDescripcion(), ((DTArticulo) dtDonacion).getPeso(), ((DTArticulo) dtDonacion).getDimensiones());
         } else {
            nuevaDonacion = new Alimento(dtDonacion.getId(), ((DTAlimento) dtDonacion).getDescripcionProductos(), ((DTAlimento) dtDonacion).getCantElementos());
         }
@@ -26,9 +26,9 @@ public class AltaDonacion implements IAltaDonacion {
     }
 
     @Override
-    public DTDonacion BuscatDonacionID(DTDonacion dtDonacion){
+    public DTDonacion buscarDonacionID(DTDonacion dtDonacion){
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
-        return manejadorDonacion.buscarDoncionID(dtDonacion.getId());
+        return manejadorDonacion.buscarDonacionID(dtDonacion.getId());
     }
 
     @Override
