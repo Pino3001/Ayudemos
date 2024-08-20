@@ -4,10 +4,16 @@ package Ayudemos.objects;
 import Ayudemos.types.DTFechaHora;
 import Ayudemos.types.DateTime;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Donacion {
     private Integer id;
     private DateTime fechaIngresada;
+
     //Agregar Dependencias
+    // Una donación puede tener mas de una distribución según el diagrama de clases dado por letra.
+    private List<Distribucion> distribuciones;
 
     //Constructor
     public Donacion(Integer id) {
@@ -25,11 +31,16 @@ public abstract class Donacion {
     }
 
     public DTFechaHora getFechaIngresada() {
-
         return fechaIngresada.convertir();
     }
 
     public void setFechaIngresada(DateTime fechaIngresada) {
         this.fechaIngresada = fechaIngresada;
     }
+
+    // Añadir una distribución a la colección List<Distribucion> de distribuciones de la clase.
+    public void addDistribucion(Distribucion distribucion) {
+        distribuciones.add(distribucion);
+    }
+
 }

@@ -3,7 +3,6 @@ package Ayudemos.objects;
 import Ayudemos.types.DTFechaHora;
 import Ayudemos.types.EstadoDistribucion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Distribucion {
@@ -12,17 +11,21 @@ public class Distribucion {
     private EstadoDistribucion estado;
 
     // Dependencias
-    // Una distribución puede involucrar una o más donaciones,
-    private List<Donacion> donaciones = new ArrayList<>();
+    // Lista de donaciones de una distribución.
+    private List<Donacion> donaciones;
     // Una distribución está destinada a un beneficiario específico.
     private Beneficiario beneficiario;
 
     //Constructor
-    public Distribucion(DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado, List<Donacion> donaciones, Beneficiario beneficiario) {
+    public Distribucion(DTFechaHora fechaPreparacion,
+                        DTFechaHora fechaEntrega,
+                        EstadoDistribucion estado,
+                        // List<Donacion> donaciones,
+                        Beneficiario beneficiario) {
         this.fechaPreparacion = fechaPreparacion;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
-        this.donaciones = donaciones;
+        // this.donaciones = donaciones;
         this.beneficiario = beneficiario;
     }
 
