@@ -14,7 +14,6 @@ import Ayudemos.types.EstadoDistribucion;
 
 import java.util.List;
 
-
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
     public void crearDistribucion(Beneficiario beneficiario, List<Donacion> donaciones, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);

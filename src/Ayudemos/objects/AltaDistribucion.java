@@ -35,7 +35,8 @@ public class AltaDistribucion implements IAltaDistribucion {
     @Override
     public List<DtBeneficiario> obtenerListaDtBeneficiarios() {
         List<DtBeneficiario> beneficiarios = new ArrayList<DtBeneficiario>();
-        // incompleto!!
+        ManejadorBeneficiario mb = ManejadorBeneficiario.getInstance();
+        beneficiarios = mb.obtenerBeneficiarios();
         return beneficiarios;
     }
 

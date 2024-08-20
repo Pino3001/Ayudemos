@@ -23,7 +23,7 @@ public class ManejadorBeneficiario {
     }
 
     // Retorna una lista datatypes de todas los beneficiarios del sistema.
-    public List<DtBeneficiario> obtenerBeneficiario() {
+    public List<DtBeneficiario> obtenerBeneficiarios() {
         List<DtBeneficiario> lista = new ArrayList<DtBeneficiario>();
         for (Beneficiario b : beneficiarios) {
             // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
