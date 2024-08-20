@@ -13,7 +13,6 @@ public class DTFecha {
     }
 
     // Getters y Setters
-
     public int getDia() {
         return dia;
     }
@@ -36,5 +35,26 @@ public class DTFecha {
 
     public void setAnio(int anio) {
         this.anio = anio;
+    }
+
+    // Método para validar la fecha
+    public boolean esFechaValida() {
+        if (anio < 0 || mes < 1 || mes > 12 || dia < 1 || dia > 31) {
+            return false;
+        }
+
+        switch (mes) {
+            case 4: case 6: case 9: case 11:
+                return dia <= 30;
+            case 2:
+                return dia <= (esAnioBisiesto() ? 29 : 28);
+            default:
+                return true;
+        }
+    }
+
+    // Método para verificar si es un año bisiesto
+    private boolean esAnioBisiesto() {
+        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
     }
 }

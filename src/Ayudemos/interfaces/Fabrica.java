@@ -2,6 +2,9 @@ package Ayudemos.interfaces;
 
 import Ayudemos.objects.AltaDistribucion;
 
+import Ayudemos.objects.AltaUsuario;
+import Ayudemos.interfaces.IAltaUsuario;
+
 public class Fabrica {
     private static Fabrica instancia = null;
 
@@ -17,5 +20,9 @@ public class Fabrica {
     // Alta distribución.
     public IAltaDistribucion getIAltaDistribucion() {
         return new AltaDistribucion();
+    }
+
+    public IAltaUsuario getAltaUsuario() {
+        return new AltaUsuario();
     }
 }

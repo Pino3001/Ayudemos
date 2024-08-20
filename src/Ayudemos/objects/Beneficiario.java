@@ -9,23 +9,31 @@ public class Beneficiario extends Usuario {
     private DTFecha fechaNacimiento;
     private EstadoBeneficiario estado;
     private Barrio barrio;
-    // Crear dependencias
 
     // Constructor
-    public Beneficiario(String nombre, String mail, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio){
+    public Beneficiario(String nombre, String mail, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
         super(nombre, mail);
-        this.direccion=direccion;
-        this.fechaNacimiento= fechaNacimiento;
-        this.estado= estado;
-        this.barrio= barrio;
+        if (direccion == null || direccion.trim().isEmpty()) {
+            throw new IllegalArgumentException("La dirección no puede estar vacía.");
+        }
+        if (fechaNacimiento == null) {
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser nula.");
+        }
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estado = estado;
+        this.barrio = barrio;
     }
 
-    // Getters Y Setters
+    // Getters y Setters
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(String direccion) {
+        if (direccion == null || direccion.trim().isEmpty()) {
+            throw new IllegalArgumentException("La dirección no puede estar vacía.");
+        }
         this.direccion = direccion;
     }
 
@@ -34,6 +42,9 @@ public class Beneficiario extends Usuario {
     }
 
     public void setFechaNacimiento(DTFecha fechaNacimiento) {
+        if (fechaNacimiento == null) {
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser nula.");
+        }
         this.fechaNacimiento = fechaNacimiento;
     }
 
