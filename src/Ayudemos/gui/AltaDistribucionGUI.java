@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class AltaDistribucionGUI {
+public class AltaDistribucionGUI extends JFrame {
 
     public static void main(String[] args) {
         // Crear el frame

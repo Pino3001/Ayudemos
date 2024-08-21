@@ -4,11 +4,14 @@ import Ayudemos.types.DTFecha;
 import Ayudemos.types.EstadoBeneficiario;
 import Ayudemos.types.Barrio;
 
+import java.util.List;
+
 public class Beneficiario extends Usuario {
     private String direccion;
     private DTFecha fechaNacimiento;
     private EstadoBeneficiario estado;
     private Barrio barrio;
+    private List<Distribucion> distribuciones;
 
     // Constructor
     public Beneficiario(String nombre, String mail, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
@@ -62,5 +65,11 @@ public class Beneficiario extends Usuario {
 
     public void setBarrio(Barrio barrio) {
         this.barrio = barrio;
+    }
+
+    // Metodos de clase:
+    // Inserta una distribucion a la lista de ditribuciones asociadas
+    public void addDistribucion(Distribucion distribucion) {
+        distribuciones.add(distribucion);
     }
 }

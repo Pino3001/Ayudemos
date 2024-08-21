@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import Ayudemos.interfaces.IAltaUsuario;
 import Ayudemos.objects.Beneficiario;
 import Ayudemos.objects.Repartidor;
@@ -245,11 +246,11 @@ public class RegistroUsuarioGUI extends JFrame {
                     throw new Exception("La dirección es obligatoria para el tipo Beneficiario.");
                 }
                 String fechaNacimientoStr = txtFechaNacimiento.getText().trim();
-                DTFecha fechaNacimiento = altaUsuario.parseFecha(fechaNacimientoStr);
+                DTFecha fechaNacimiento = this.altaUsuario.parseFecha(fechaNacimientoStr);
                 EstadoBeneficiario estado = EstadoBeneficiario.valueOf((String) comboEstado.getSelectedItem());
                 Barrio barrio = Barrio.valueOf(((String) comboBarrio.getSelectedItem()).toUpperCase().replace(" ", "_"));
 
-                usuario = altaUsuario.crearBeneficiario(nombre, email, direccion, fechaNacimiento, estado, barrio);
+                usuario = this.altaUsuario.crearBeneficiario(nombre, email, direccion, fechaNacimiento, estado, barrio);
 
             } else if (radioRepartidor.isSelected()) {
                 String numeroLicencia = txtNumeroLicencia.getText().trim();

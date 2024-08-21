@@ -12,7 +12,7 @@ public class Distribucion {
 
     // Dependencias
     // Lista de donaciones de una distribución.
-    private List<Donacion> donaciones;
+    private Donacion donacion;
     // Una distribución está destinada a un beneficiario específico.
     private Beneficiario beneficiario;
 
@@ -20,12 +20,12 @@ public class Distribucion {
     public Distribucion(DTFechaHora fechaPreparacion,
                         DTFechaHora fechaEntrega,
                         EstadoDistribucion estado,
-                        // List<Donacion> donaciones,
+                        Donacion donacion,
                         Beneficiario beneficiario) {
         this.fechaPreparacion = fechaPreparacion;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
-        // this.donaciones = donaciones;
+        this.donacion = donacion;
         this.beneficiario = beneficiario;
     }
 
