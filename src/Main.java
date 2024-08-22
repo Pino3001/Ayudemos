@@ -1,8 +1,9 @@
+import Ayudemos.gui.AltaDonacionGUI;
+import Ayudemos.gui.PrincipalGUI;
 import Ayudemos.interfaces.Fabrica;
-import Ayudemos.interfaces.IAltaDistribucion;
 import Ayudemos.interfaces.IAltaUsuario;
-import Ayudemos.gui.RegistroUsuarioGUI;
 //import Ayudemos.gui.AltaDistribucionGUI;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -14,8 +15,12 @@ public class Main {
 
 
         // GUI
-        RegistroUsuarioGUI registroGUI = new RegistroUsuarioGUI(iAltaUsuario);
+       // RegistroUsuarioGUI registroGUI = new RegistroUsuarioGUI(iAltaUsuario);
 //        AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaDistribucion);
-        registroGUI.setVisible(true);
+        //registroGUI.setVisible(true);
+
+
+       PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario);
+       principalGUI.setVisible(true);
     }
 }
