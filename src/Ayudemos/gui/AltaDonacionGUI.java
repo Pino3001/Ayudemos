@@ -3,9 +3,7 @@ package Ayudemos.gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+import java.awt.event.*;
 
 public class AltaDonacionGUI extends JFrame {
     private JPanel panelAltaDonacion;
@@ -14,8 +12,6 @@ public class AltaDonacionGUI extends JFrame {
     private JButton botonAlimento;
     private JPanel cardAlimentoArticulo;
     private JButton aceptarAlimento;
-    private JLabel descripciontitle;
-    private JLabel cantidadTxt;
     private JSpinner spinnerCantidad;
     private JButton botonCancelarAlimento;
     private JLabel titulo;
@@ -40,10 +36,12 @@ public class AltaDonacionGUI extends JFrame {
         cardAlimentoArticulo.add(panelArticulo, "articulo");
 
         //Color del estilo de la vista
-        Color customColor = new Color(27, 69, 26);
+        Color customColor = new Color(9, 35, 48);
         // Asignar el borde al JTextField
-        Border border = BorderFactory.createLineBorder(customColor, 1); // Color y grosor del borde
+        Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, customColor);
         txtDescrAlimento.setBorder(border);
+        textfieldDescArticulo.setBorder(border);
+        textFieldDimensiones.setBorder(border);
 
         botonAlimento.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +55,57 @@ public class AltaDonacionGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardAlimentoArticulo, "articulo");
+            }
+        });
+
+        // Quitar el texto al hacer click
+        textfieldDescArticulo.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textfieldDescArticulo.getText().equals("Ingrese la descripcion aquí...")) {
+                    textfieldDescArticulo.setText("");
+                }
+            }
+        });
+        txtDescrAlimento.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtDescrAlimento.getText().equals("Ingrese la descripcion aquí...")) {
+                    txtDescrAlimento.setText("");
+                }
+            }
+        });
+        textFieldDimensiones.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textFieldDimensiones.getText().equals("Ingrese la dimension aquí..")) {
+                    textFieldDimensiones.setText("");
+                }
+            }
+        });
+        // Volver al colocarlo si esta vacion el textfield
+        textfieldDescArticulo.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textfieldDescArticulo.getText().isEmpty()) {
+                    textfieldDescArticulo.setText("Ingrese la descripcion aquí...");
+                }
+            }
+        });
+        textFieldDimensiones.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textFieldDimensiones.getText().isEmpty()) {
+                    textFieldDimensiones.setText("Ingrese la dimension aquí..");
+                }
+            }
+        });
+        txtDescrAlimento.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtDescrAlimento.getText().isEmpty()) {
+                    txtDescrAlimento.setText("Ingrese la descripcion aquí...");
+                }
             }
         });
     }

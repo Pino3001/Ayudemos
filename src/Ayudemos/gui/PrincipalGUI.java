@@ -1,7 +1,6 @@
 package Ayudemos.gui;
 
 import Ayudemos.interfaces.IAltaUsuario;
-import Ayudemos.objects.AltaUsuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -45,6 +44,13 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 RegistroUsuarioGUI registroUsuarioGUI = new RegistroUsuarioGUI(altaUsuario);
                 registroUsuarioGUI.setVisible(true);
+            }
+        });
+        modificarDonacion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModificarDonacionGUI modificarDonacionGUI = new ModificarDonacionGUI();
+                modificarDonacionGUI.setVisible(true);
             }
         });
     }

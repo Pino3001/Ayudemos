@@ -6,7 +6,7 @@
       <xy x="20" y="20" width="708" height="590"/>
     </constraints>
     <properties>
-      <background color="-985634"/>
+      <background color="-330502"/>
       <focusable value="true"/>
       <inheritsPopupMenu value="false"/>
       <minimumSize width="600" height="400"/>
@@ -27,7 +27,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-16039906"/>
+          <background color="-16178384"/>
           <font name="Roboto Light" size="16" style="0"/>
           <foreground color="-985634"/>
         </properties>
@@ -39,7 +39,7 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="28" style="1"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <text value="Alta Donacion"/>
             </properties>
           </component>
@@ -53,10 +53,10 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-985634"/>
+          <background color="-330502"/>
           <borderPainted value="false"/>
           <font name="Roboto Light" size="18" style="0"/>
-          <foreground color="-16039906"/>
+          <foreground color="-16178384"/>
           <icon value="Ayudemos/gui/Resources/cesta-de-la-compra.png"/>
           <label value="Nuevo Alimento"/>
           <text value="Nuevo Alimento"/>
@@ -70,10 +70,10 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-985634"/>
+          <background color="-330502"/>
           <borderPainted value="false"/>
           <font name="Roboto Light" size="18" style="0"/>
-          <foreground color="-16039906"/>
+          <foreground color="-16178384"/>
           <icon value="Ayudemos/gui/Resources/moda.png"/>
           <label value="Nuevo Articulo"/>
           <text value="Nuevo Articulo"/>
@@ -91,128 +91,137 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="27ba6" binding="panelAlimento" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="27ba6" binding="panelAlimento" layout-manager="GridLayoutManager" row-count="6" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card1"/>
             </constraints>
             <properties>
               <autoscrolls value="true"/>
-              <background color="-985634"/>
+              <background color="-330502"/>
               <doubleBuffered value="false"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="30732" class="javax.swing.JTextField" binding="txtDescrAlimento">
+              <component id="14c34" class="javax.swing.JButton" binding="aceptarAlimento">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="4" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="110" height="40"/>
+                    <preferred-size width="110" height="40"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="16" style="0"/>
+                  <foreground color="-1537"/>
+                  <label value="Aceptar"/>
+                  <text value="Aceptar"/>
+                </properties>
+              </component>
+              <vspacer id="1c307">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="10" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="70c92">
+                <constraints>
+                  <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="a4bd3" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="2" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="18" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value="Descripcion :"/>
+                </properties>
+              </component>
+              <component id="6ed67" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="18" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value="Cantidad :"/>
+                </properties>
+              </component>
+              <hspacer id="425b">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="c7fb4">
+                <constraints>
+                  <grid row="4" column="10" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="53f44">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="1ec9b" class="javax.swing.JTextField" binding="txtDescrAlimento">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="300" height="40"/>
                     <preferred-size width="300" height="40"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-985634"/>
-                  <caretColor color="-16039906"/>
+                  <background color="-330502"/>
+                  <caretColor color="-16178384"/>
                   <columns value="40"/>
                   <disabledTextColor color="-14394062"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-16039906"/>
-                  <selectedTextColor color="-14394062"/>
-                  <selectionColor color="-543889"/>
-                  <text value="Ingrese una descripcion del Producto"/>
-                </properties>
-              </component>
-              <component id="14c34" class="javax.swing.JButton" binding="aceptarAlimento">
-                <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="110" height="40"/>
-                    <preferred-size width="110" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-14990054"/>
-                  <borderPainted value="false"/>
-                  <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-985634"/>
-                  <label value="Aceptar"/>
-                  <text value="Aceptar"/>
-                </properties>
-              </component>
-              <component id="5ba4b" class="javax.swing.JLabel" binding="descripciontitle">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="15" use-parent-layout="false">
-                    <minimum-size width="-1" height="40"/>
-                    <preferred-size width="-1" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-985634"/>
-                  <font name="Roboto Light" size="18" style="1"/>
-                  <foreground color="-16039906"/>
-                  <text value="Descripcion :"/>
-                </properties>
-              </component>
-              <vspacer id="1c307">
-                <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <component id="24472" class="javax.swing.JLabel" binding="cantidadTxt">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="15" use-parent-layout="false">
-                    <minimum-size width="-1" height="40"/>
-                    <preferred-size width="-1" height="40"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-985634"/>
-                  <font name="Roboto Light" size="18" style="1"/>
-                  <foreground color="-16039906"/>
-                  <text value="Cantidad de Elementos :"/>
+                  <foreground color="-16178384"/>
+                  <selectedTextColor color="-16289670"/>
+                  <selectionColor color="-985634"/>
+                  <text value="Ingrese la descripcion aquí..."/>
                 </properties>
               </component>
               <component id="bb4e5" class="javax.swing.JSpinner" binding="spinnerCantidad">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="2" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="90" height="30"/>
                     <preferred-size width="90" height="30"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-985634"/>
+                  <background color="-1646362"/>
                   <font name="Roboto Light" size="18" style="0"/>
-                  <foreground color="-14990054"/>
+                  <foreground color="-16178384"/>
                 </properties>
               </component>
-              <vspacer id="a13ab">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
               <component id="d83d8" class="javax.swing.JButton" binding="botonCancelarAlimento">
                 <constraints>
-                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                  <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="110" height="40"/>
                     <preferred-size width="110" height="40"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-14990054"/>
+                  <background color="-16178384"/>
                   <borderPainted value="false"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-985634"/>
+                  <foreground color="-1537"/>
                   <label value="Cancelar"/>
                   <text value="Cancelar"/>
                 </properties>
               </component>
-              <hspacer id="5db9">
+              <hspacer id="fa736">
                 <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="60" height="-1"/>
-                    <preferred-size width="60" height="-1"/>
-                  </grid>
+                  <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
+              <vspacer id="d620e">
+                <constraints>
+                  <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
             </children>
           </grid>
           <grid id="3683e" binding="panelArticulo" layout-manager="GridLayoutManager" row-count="7" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -221,7 +230,7 @@
               <card name="Card2"/>
             </constraints>
             <properties>
-              <background color="-985634"/>
+              <background color="-330502"/>
             </properties>
             <border type="none"/>
             <children>
@@ -233,13 +242,13 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-985634"/>
-                  <caretColor color="-16039906"/>
+                  <background color="-330502"/>
+                  <caretColor color="-16178384"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-16039906"/>
-                  <selectedTextColor color="-14394062"/>
-                  <selectionColor color="-543889"/>
-                  <text value="Descripcion del Articulo"/>
+                  <foreground color="-16178384"/>
+                  <selectedTextColor color="-985634"/>
+                  <selectionColor color="-14932113"/>
+                  <text value="Ingrese la descripcion aquí..."/>
                 </properties>
               </component>
               <component id="673d" class="javax.swing.JSpinner" binding="spinerPesoArticulo">
@@ -250,8 +259,9 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <background color="-1646362"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-16039906"/>
+                  <foreground color="-16178384"/>
                 </properties>
               </component>
               <component id="f4ed1" class="javax.swing.JTextField" binding="textFieldDimensiones">
@@ -262,13 +272,13 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-985634"/>
-                  <caretColor color="-16039906"/>
+                  <background color="-330502"/>
+                  <caretColor color="-16178384"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-16039906"/>
-                  <selectedTextColor color="-14394062"/>
-                  <selectionColor color="-543889"/>
-                  <text value="Dimensiones del Articulo"/>
+                  <foreground color="-16178384"/>
+                  <selectedTextColor color="-14932113"/>
+                  <selectionColor color="-985634"/>
+                  <text value="Ingrese la dimension aquí.."/>
                 </properties>
               </component>
               <component id="1b467" class="javax.swing.JButton" binding="botonAceptarArticulo">
@@ -279,10 +289,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-14990054"/>
+                  <background color="-16178384"/>
                   <borderPainted value="false"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-985634"/>
+                  <foreground color="-1537"/>
                   <text value="Aceptar"/>
                 </properties>
               </component>
@@ -294,10 +304,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-14990054"/>
+                  <background color="-16178384"/>
                   <borderPainted value="false"/>
                   <font name="Roboto Light" size="16" style="0"/>
-                  <foreground color="-985634"/>
+                  <foreground color="-1537"/>
                   <label value="Cancelar"/>
                   <text value="Cancelar"/>
                 </properties>
@@ -324,7 +334,7 @@
                 </constraints>
                 <properties>
                   <font name="Roboto Light" size="18" style="1"/>
-                  <foreground color="-14990054"/>
+                  <foreground color="-16178384"/>
                   <text value=" Descripcion :"/>
                 </properties>
               </component>
@@ -337,7 +347,7 @@
                 </constraints>
                 <properties>
                   <font name="Roboto Light" size="18" style="1"/>
-                  <foreground color="-14990054"/>
+                  <foreground color="-16178384"/>
                   <text value=" Peso :"/>
                 </properties>
               </component>
@@ -350,7 +360,7 @@
                 </constraints>
                 <properties>
                   <font name="Roboto Light" size="18" style="1"/>
-                  <foreground color="-14990054"/>
+                  <foreground color="-16178384"/>
                   <text value="Dimensiones :"/>
                 </properties>
               </component>

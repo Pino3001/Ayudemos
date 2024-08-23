@@ -9,7 +9,7 @@ import Ayudemos.datatypes.DTDonacion;
 import Ayudemos.objects.Beneficiario;
 import Ayudemos.objects.Donacion;
 import Ayudemos.types.DTFechaHora;
-import Ayudemos.types.DtBeneficiario;
+import Ayudemos.datatypes.DtBeneficiario;
 import Ayudemos.types.EstadoDistribucion;
 
 import java.util.List;

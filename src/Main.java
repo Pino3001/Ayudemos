@@ -1,4 +1,5 @@
-import Ayudemos.gui.AltaDonacionGUI;
+import Ayudemos.gui.ListarBeneficiariosGUI;
+import Ayudemos.gui.ModificarDonacionGUI;
 import Ayudemos.gui.PrincipalGUI;
 import Ayudemos.interfaces.Fabrica;
 import Ayudemos.interfaces.IAltaUsuario;
@@ -18,9 +19,9 @@ public class Main {
        // RegistroUsuarioGUI registroGUI = new RegistroUsuarioGUI(iAltaUsuario);
 //        AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaDistribucion);
         //registroGUI.setVisible(true);
-
-
-       PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario);
-       principalGUI.setVisible(true);
+        //ListarBeneficiariosGUI listarBeneficiariosGUI  = new ListarBeneficiariosGUI();
+       // listarBeneficiariosGUI.setVisible(true);
+      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario);
+      principalGUI.setVisible(true);
     }
 }
