@@ -5,7 +5,7 @@
       <xy x="20" y="20" width="1100" height="900"/>
     </constraints>
     <properties>
-      <background color="-985634"/>
+      <background color="-330502"/>
       <doubleBuffered value="false"/>
       <minimumSize width="1100" height="700"/>
       <opaque value="true"/>
@@ -18,7 +18,7 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="North"/>
         <properties>
-          <background color="-16039906"/>
+          <background color="-16178384"/>
           <minimumSize width="-1" height="90"/>
           <preferredSize width="-1" height="90"/>
         </properties>
@@ -36,8 +36,8 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="28" style="1"/>
-              <foreground color="-985634"/>
-              <text value="Ayudando.uy"/>
+              <foreground color="-1537"/>
+              <text value="Ayudemos.uy"/>
             </properties>
           </component>
         </children>
@@ -46,7 +46,7 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="West"/>
         <properties>
-          <background color="-16039906"/>
+          <background color="-16178384"/>
           <minimumSize width="210" height="-1"/>
           <preferredSize width="210" height="-1"/>
         </properties>
@@ -61,7 +61,7 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="18" style="1"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <requestFocusEnabled value="false"/>
               <text value="Usuarios :"/>
             </properties>
@@ -87,13 +87,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Alta Usuario"/>
               <opaque value="true"/>
@@ -108,12 +108,12 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Modificar Usuario"/>
               <text value="- Modificar Usuario"/>
@@ -127,12 +127,12 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Listar Beneficiarios"/>
               <text value="- Listar Beneficiarios"/>
@@ -147,12 +147,12 @@
             </constraints>
             <properties>
               <actionCommand value=""/>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <font name="Roboto Light" size="13" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="&lt;Html&gt;- Listar Beneficiarios&lt;br&gt;  por Estado&lt;/Html&gt;"/>
               <text value="&lt;Html&gt;- Listar Beneficiarios&lt;br&gt;  por Estado&lt;/Html&gt;"/>
@@ -167,12 +167,12 @@
             </constraints>
             <properties>
               <actionCommand value=""/>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <font name="Roboto Light" size="13" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="&lt;Html&gt;- Listar Beneficiarios&lt;br&gt;  por Zona&lt;/Html&gt;"/>
               <text value="&lt;Html&gt;- Listar Beneficiarios&lt;br&gt;  por Zona&lt;/Html&gt;"/>
@@ -195,7 +195,7 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="18" style="1"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <requestFocusEnabled value="false"/>
               <text value="Distribuciones :"/>
             </properties>
@@ -208,13 +208,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Alta Distribucion"/>
               <opaque value="true"/>
@@ -229,13 +229,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Modificar Distribucion"/>
               <opaque value="true"/>
@@ -250,13 +250,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Listar por Estado"/>
               <opaque value="true"/>
@@ -271,13 +271,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Listar por Estado"/>
               <opaque value="true"/>
@@ -301,7 +301,7 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="18" style="1"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <requestFocusEnabled value="false"/>
               <text value="Donaciones :"/>
             </properties>
@@ -314,13 +314,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Alta Donacion"/>
               <opaque value="true"/>
@@ -335,13 +335,13 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <focusable value="true"/>
               <font name="Roboto Light" size="14" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="- Modificar Donacion"/>
               <opaque value="true"/>
@@ -365,7 +365,7 @@
             </constraints>
             <properties>
               <font name="Roboto Light" size="18" style="1"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <requestFocusEnabled value="false"/>
               <text value="Reportes :"/>
             </properties>
@@ -379,12 +379,12 @@
             </constraints>
             <properties>
               <actionCommand value=""/>
-              <background color="-16039906"/>
+              <background color="-16178384"/>
               <borderPainted value="false"/>
               <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
               <font name="Roboto Light" size="13" style="0"/>
-              <foreground color="-985634"/>
+              <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
               <label value="&lt;Html&gt;- Zonas con mayores&lt;br&gt; Distribuciones&lt;/Html&gt;"/>
               <text value="&lt;Html&gt;- Zonas con mayores&lt;br&gt; Distribuciones&lt;/Html&gt;"/>

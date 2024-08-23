@@ -1,7 +1,7 @@
 package Ayudemos.objects;
 
+import Ayudemos.datatypes.DtBeneficiario;
 import Ayudemos.interfaces.IAltaUsuario;
-import Ayudemos.objects.Usuario;
 import Ayudemos.types.DTFecha;
 import Ayudemos.types.EstadoBeneficiario;
 import Ayudemos.types.Barrio;
@@ -54,8 +54,11 @@ public class AltaUsuario implements IAltaUsuario {
         return usuarios.values().stream().collect(Collectors.toList());
     }
 
-    public Usuario crearBeneficiario(String nombre, String email, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        return new Beneficiario(nombre, email, direccion, fechaNacimiento, estado, barrio);
+    public Beneficiario crearBeneficiario(String nombre, String email, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
+        Beneficiario beneficiario = new Beneficiario(nombre, email, direccion, fechaNacimiento, estado, barrio);
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        manejadorUsuario.agregarUsuario(beneficiario);
+        return beneficiario;
     }
 
     public Usuario crearRepartidor(String nombre, String email, String numeroLicencia) {
@@ -76,5 +79,11 @@ public class AltaUsuario implements IAltaUsuario {
         int mes = Integer.parseInt(partes[1]);
         int anio = Integer.parseInt(partes[2]);
         return new DTFecha(dia, mes, anio);
+    }
+
+    public List<DtBeneficiario> listarBeneficiarios(){
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        List<DtBeneficiario> beneficiarios = manejadorUsuario.obtenerBeneficiarios();
+        return beneficiarios;
     }
 }
