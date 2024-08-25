@@ -2,6 +2,7 @@ package Ayudemos.interfaces;
 
 import Ayudemos.objects.AltaDistribucion;
 
+import Ayudemos.objects.AltaDonacion;
 import Ayudemos.objects.AltaUsuario;
 import Ayudemos.interfaces.IAltaUsuario;
 
@@ -25,4 +26,6 @@ public class Fabrica {
     public IAltaUsuario getAltaUsuario() {
         return new AltaUsuario();
     }
+
+    public IAltaDonacion getAltaDonacion() {return new AltaDonacion();}
 }

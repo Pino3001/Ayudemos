@@ -5,7 +5,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 
-public class ListarDistribucionesGUI {
+public class ListarDistribucionesGUI extends javax.swing.JFrame {
     private JPanel ListarDistribuciones;
 
 

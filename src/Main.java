@@ -1,8 +1,15 @@
-import Ayudemos.gui.ListarBeneficiariosGUI;
-import Ayudemos.gui.ModificarDonacionGUI;
-import Ayudemos.gui.PrincipalGUI;
+import Ayudemos.DatosPorDefecto;
+import Ayudemos.datatypes.DTAlimento;
+import Ayudemos.datatypes.DTDonacion;
+import Ayudemos.gui.*;
 import Ayudemos.interfaces.Fabrica;
+import Ayudemos.interfaces.IAltaDonacion;
 import Ayudemos.interfaces.IAltaUsuario;
+import Ayudemos.types.DTFecha;
+import Ayudemos.types.DTFechaHora;
+
+import java.io.Console;
+import java.util.List;
 //import Ayudemos.gui.AltaDistribucionGUI;
 
 
@@ -12,16 +19,19 @@ public class Main {
         Fabrica fabrica = Fabrica.getInstancia();
         // Interfaces
         IAltaUsuario iAltaUsuario = fabrica.getAltaUsuario();
-//        IAltaDistribucion iAltaDistribucion = fabrica.getIAltaDistribucion();
+        IAltaDonacion iAltaDonacion =fabrica.getAltaDonacion();
 
+        DatosPorDefecto dpf = new DatosPorDefecto();
+        List<DTDonacion> dt = dpf.getAlimentosDT();
+        for(DTDonacion d : dt){
+            if(iAltaDonacion.crearDonacion(d)){
+                System.out.println("Al parecer fue creado!");
+            }
+        }
 
         // GUI
-       // RegistroUsuarioGUI registroGUI = new RegistroUsuarioGUI(iAltaUsuario);
-//        AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaDistribucion);
-        //registroGUI.setVisible(true);
-        //ListarBeneficiariosGUI listarBeneficiariosGUI  = new ListarBeneficiariosGUI();
-       // listarBeneficiariosGUI.setVisible(true);
-      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario);
+
+      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion);
       principalGUI.setVisible(true);
     }
 }

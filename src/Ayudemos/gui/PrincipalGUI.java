@@ -1,5 +1,6 @@
 package Ayudemos.gui;
 
+import Ayudemos.interfaces.IAltaDonacion;
 import Ayudemos.interfaces.IAltaUsuario;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class PrincipalGUI extends JFrame {
     private IAltaUsuario altaUsuario;
+    private IAltaDonacion iAltaDonacion;
     private JPanel principalPanel;
     private JPanel tituloPanel;
     private JPanel botoneraPanel;
@@ -29,12 +31,13 @@ public class PrincipalGUI extends JFrame {
     private JLabel tituloDonaciones;
     private JButton mayoresDistribuciones;
 
-    public PrincipalGUI(IAltaUsuario altaUsuario) {
+    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion) {
         this.altaUsuario = altaUsuario;
+        this.iAltaDonacion = iAltaDonacion;
         altaDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AltaDonacionGUI altaDonacionGUI = new AltaDonacionGUI();
+                AltaDonacionGUI altaDonacionGUI = new AltaDonacionGUI(iAltaDonacion);
                 altaDonacionGUI.setVisible(true);
             }
 
@@ -49,8 +52,22 @@ public class PrincipalGUI extends JFrame {
         modificarDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ModificarDonacionGUI modificarDonacionGUI = new ModificarDonacionGUI();
+                ModificarDonacionGUI modificarDonacionGUI = new ModificarDonacionGUI(iAltaDonacion);
                 modificarDonacionGUI.setVisible(true);
+            }
+        });
+        modificarUsr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModificarUsuarioGUI modificarUsuarioGUI = new ModificarUsuarioGUI(altaUsuario);
+                modificarUsuarioGUI.setVisible(true);
+            }
+        });
+        listarBeneficiarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ListarBeneficiariosGUI listarBeneficiariosGUI = new ListarBeneficiariosGUI(altaUsuario);
+                listarBeneficiariosGUI.setVisible(true);
             }
         });
     }

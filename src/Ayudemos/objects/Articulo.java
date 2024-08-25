@@ -1,5 +1,8 @@
 package Ayudemos.objects;
 
+import Ayudemos.datatypes.DTAlimento;
+import Ayudemos.datatypes.DTArticulo;
+
 public class Articulo extends Donacion {
     private String descripcion;
     private float peso;
@@ -37,5 +40,10 @@ public class Articulo extends Donacion {
 
     public void setDimensiones(String dimensiones) {
         this.dimensiones = dimensiones;
+    }
+
+    public DTArticulo getDTArticulo(){
+        DTArticulo dtArticulo = new DTArticulo(this.getId(), this.getFechaIngresada(), this.descripcion, this.peso, this.dimensiones);
+        return dtArticulo;
     }
 }

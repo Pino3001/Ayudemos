@@ -26,7 +26,6 @@ public class ModificarUsuarioGUI extends JPanel {
 
     private void initComponents() {
         setLayout(new GridLayout(5, 2));
-
         JLabel userLabel = new JLabel("Seleccionar Usuario:");
         JLabel nombreLabel = new JLabel("Nombre:");
         JLabel emailLabel = new JLabel("Email:");

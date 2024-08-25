@@ -1,120 +1,159 @@
 package Ayudemos.gui;
 
+import Ayudemos.datatypes.DTAlimento;
+import Ayudemos.datatypes.DTArticulo;
+import Ayudemos.excepciones.CamposIncompletosExeption;
+import Ayudemos.gui.AlertasGUI.AlertaIngresoGUI;
+import Ayudemos.gui.componentes.ComponenteComboBox;
+import Ayudemos.gui.componentes.ComponenteSpinner;
+import Ayudemos.gui.componentes.ComponenteTextField;
+import Ayudemos.interfaces.IAltaDonacion;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
 public class AltaDonacionGUI extends JFrame {
-    private JPanel panelAltaDonacion;
-    private JButton botonArticulo;
-    private JPanel panelAlimento;
-    private JButton botonAlimento;
-    private JPanel cardAlimentoArticulo;
-    private JButton aceptarAlimento;
+    private IAltaDonacion altaDonacion;
+    private JPanel background;
+    private JButton buttonNuevoAlimento;
+    private JButton buttonNuevoArticulo;
+    private JTextField textDescripcionAlimento;
     private JSpinner spinnerCantidad;
-    private JButton botonCancelarAlimento;
-    private JLabel titulo;
-    private JPanel paneltitulo;
-    private JTextField txtDescrAlimento;
+    private JButton buttonCancelarAlimento;
+    private JButton buttonAceptarAlimento;
+    private JTextField textDescripcionArticulo;
+    private JSpinner spinnerPeso;
+    private JTextField textDimensiones;
+    private JButton buttonCancelarArticulo;
+    private JButton buttonAceptarArticulo;
+    private JPanel cardAlimentoArticulo;
+    private JPanel panelAlimento;
     private JPanel panelArticulo;
-    private JTextField textfieldDescArticulo;
-    private JSpinner spinerPesoArticulo;
-    private JTextField textFieldDimensiones;
-    private JButton botonAceptarArticulo;
-    private JButton botonCancelarArticulo;
-    private JLabel descripcionArticulotitle;
-    private JLabel txtPeso;
-    private JLabel txtdimensiones;
     private CardLayout cardLayout;
+    private final String textoPorDefectoDescAlimento = "Ingrese la descripcion del Alimento...";
+    private final String textoPorDefectoDescArticulo = "Ingrese la descripcion Articulo...";
+    private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones del Articulo...";
+    private AlertaIngresoGUI alerta;
 
-
-    public AltaDonacionGUI() {
+    public AltaDonacionGUI(IAltaDonacion altaDonacion) {
         cardLayout = new CardLayout();
+        this.altaDonacion = altaDonacion;
         cardAlimentoArticulo.setLayout(cardLayout);
         cardAlimentoArticulo.add(panelAlimento, "alimento");
         cardAlimentoArticulo.add(panelArticulo, "articulo");
+        aplicarEstilos();
+    }
 
-        //Color del estilo de la vista
-        Color customColor = new Color(9, 35, 48);
-        // Asignar el borde al JTextField
-        Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, customColor);
-        txtDescrAlimento.setBorder(border);
-        textfieldDescArticulo.setBorder(border);
-        textFieldDimensiones.setBorder(border);
+    // Aplica estilos personalizados que no están en él .form
+    private void aplicarEstilos() {
+        // Crear un modelo de SpinnerNumberModel con valores flotantes -- Ver de mejorar -
+        SpinnerNumberModel modelFloat = new SpinnerNumberModel(0.0f, 0.0f, 100.0f, 0.1f);
+        // Configurar el formato del JSpinner para mostrar valores flotantes
+        JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinnerPeso, "0.00");
+        spinnerPeso.setEditor(editor);
 
-        botonAlimento.addActionListener(new ActionListener() {
+        // TODO: Los componentes creados en el .Form los edito con estas clases.
+        new ComponenteTextField(textDescripcionAlimento, textoPorDefectoDescAlimento);
+        new ComponenteTextField(textDescripcionArticulo, textoPorDefectoDescArticulo);
+        new ComponenteTextField(textDimensiones, textoPorDefectoDimensiArticulos);
+        new ComponenteSpinner(spinnerCantidad);
+        new ComponenteSpinner(spinnerPeso);
+        actionBotonesNavDonaciones();
+        actionBotonesAceptarCancelar();
+    }
+
+    // Comportamiento de navegacion de los botones: Nuevo Artículo y Nuevo Alimento
+    private void actionBotonesNavDonaciones() {
+        // Inflar panel de nuevo alimento
+        buttonNuevoAlimento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardAlimentoArticulo, "alimento");
             }
         });
-        botonAlimento.addMouseListener(new MouseAdapter() {
-        });
-        botonArticulo.addActionListener(new ActionListener() {
+        // Inflar panel de nuevo articulo
+        buttonNuevoArticulo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardAlimentoArticulo, "articulo");
             }
         });
+    }
 
-        // Quitar el texto al hacer click
-        textfieldDescArticulo.addFocusListener(new FocusAdapter() {
+    // Comportamiento de los botones aceptar y cancelar
+    private void actionBotonesAceptarCancelar() {
+        // Aceptar articulo
+        buttonAceptarArticulo.addActionListener(new ActionListener() {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (textfieldDescArticulo.getText().equals("Ingrese la descripcion aquí...")) {
-                    textfieldDescArticulo.setText("");
+            public void actionPerformed(ActionEvent e) {
+                Float peso = ((Number) spinnerPeso.getValue()).floatValue();// Ver de manejar esto mejor
+                try {//Manejo las exepciones -- Mejorar los dialogMessage y crear Alertas personalizadas.
+                    if (peso <= 0) {
+                        throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
+                    } else if (textDescripcionArticulo.getText().equals(textoPorDefectoDescArticulo) || textDescripcionArticulo.getText().length() <= 0) {
+                        throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
+                    } else if (textDimensiones.getText().equals(textoPorDefectoDimensiArticulos) || textDimensiones.getText().length() <= 0) {
+                        throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
+                    } else {
+                        DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
+                        if (altaDonacion.crearDonacion(dtArticulo)) {
+                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            throw new CamposIncompletosExeption("Ocurrio un problema!");
+                        }
+                    }
+                } catch (CamposIncompletosExeption ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        txtDescrAlimento.addFocusListener(new FocusAdapter() {
+        // Cancelar Articulo
+        buttonCancelarArticulo.addActionListener(new ActionListener() {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (txtDescrAlimento.getText().equals("Ingrese la descripcion aquí...")) {
-                    txtDescrAlimento.setText("");
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+        // Aceptar Alimento
+        buttonAceptarAlimento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object valor = spinnerCantidad.getValue();
+                Integer cantidad = (Integer) valor;
+                try {//Manejo las exepciones -- Mejorar los dialogMessage y crear Alertas personalizadas.
+                    if (cantidad <= 0) {
+                        throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
+                    } else if (textDescripcionAlimento.getText().equals(textoPorDefectoDescAlimento) || textDescripcionAlimento.getText().length() <= 0) {
+                        throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
+                    } else {
+                        DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripcionAlimento.getText(), cantidad);
+                        if (altaDonacion.crearDonacion(dtAlimento)) {
+                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            throw new CamposIncompletosExeption("Ocurrio un problema!");
+                        }
+                    }
+                } catch (CamposIncompletosExeption ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        textFieldDimensiones.addFocusListener(new FocusAdapter() {
+        // Cancelar Alimento
+        buttonCancelarAlimento.addActionListener(new ActionListener() {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (textFieldDimensiones.getText().equals("Ingrese la dimension aquí..")) {
-                    textFieldDimensiones.setText("");
-                }
-            }
-        });
-        // Volver al colocarlo si esta vacion el textfield
-        textfieldDescArticulo.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textfieldDescArticulo.getText().isEmpty()) {
-                    textfieldDescArticulo.setText("Ingrese la descripcion aquí...");
-                }
-            }
-        });
-        textFieldDimensiones.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textFieldDimensiones.getText().isEmpty()) {
-                    textFieldDimensiones.setText("Ingrese la dimension aquí..");
-                }
-            }
-        });
-        txtDescrAlimento.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (txtDescrAlimento.getText().isEmpty()) {
-                    txtDescrAlimento.setText("Ingrese la descripcion aquí...");
-                }
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
             }
         });
     }
 
+    // Infla el panel principal.
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        this.panelAltaDonacion = new JPanel();
-        setContentPane(panelAltaDonacion);
-        setSize(700,500);
-
+        this.background = new JPanel();
+        setContentPane(background);
+        setSize(600, 400);
     }
 }

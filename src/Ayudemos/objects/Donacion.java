@@ -6,6 +6,7 @@ import Ayudemos.types.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Donacion {
     private Integer id;
@@ -39,5 +40,18 @@ public abstract class Donacion {
     //Inserta una distribucion a la lista de ditribuciones asociadas
     public void addDistribucion(Distribucion distribucion) {
         distribuciones.add(distribucion);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Donacion donacion = (Donacion) o;
+        return id != null && id.equals(donacion.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

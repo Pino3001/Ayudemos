@@ -22,6 +22,8 @@ public class AltaUsuario implements IAltaUsuario {
         if (!usuarios.containsKey(usuario.getMail())) {
             if (validarEmail(usuario.getMail())) {
                 usuarios.put(usuario.getMail(), usuario);
+                ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+                manejadorUsuario.agregarUsuario(usuario);
             } else {
                 throw new IllegalArgumentException("Formato de correo electrónico incorrecto");
             }
