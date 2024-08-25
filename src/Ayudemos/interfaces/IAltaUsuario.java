@@ -1,5 +1,7 @@
 package Ayudemos.interfaces;
 
+import Ayudemos.datatypes.DtBeneficiario;
+import Ayudemos.objects.Beneficiario;
 import Ayudemos.objects.Usuario;
 import Ayudemos.types.Barrio;
 import Ayudemos.types.DTFecha;
@@ -24,7 +26,7 @@ public interface IAltaUsuario  {
     // Operación para listar todos los usuarios
     List<Usuario> listarUsuarios();
 
-    Usuario crearBeneficiario(String nombre, String email, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio);
+    Beneficiario crearBeneficiario(String nombre, String email, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio);
 
     Usuario crearRepartidor(String nombre, String email, String numeroLicencia);
 
@@ -32,4 +34,5 @@ public interface IAltaUsuario  {
 
     DTFecha parseFecha(String fechaStr) throws Exception;
 
+    List<DtBeneficiario> listarBeneficiarios();
 }

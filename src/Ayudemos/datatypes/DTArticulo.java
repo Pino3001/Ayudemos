@@ -28,4 +28,8 @@ public class DTArticulo extends DTDonacion{
         return dimensiones;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + this.getId() + " - " + descripcion;
+    }
 }

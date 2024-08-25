@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Ayudemos.interfaces.IAltaUsuario;
-import Ayudemos.objects.Beneficiario;
-import Ayudemos.objects.Repartidor;
-import Ayudemos.objects.Usuario;
+import Ayudemos.objects.Beneficiario;//TODO: esto no puede estar aca
+import Ayudemos.objects.Repartidor;//TODO: esto no puede estar aca
+import Ayudemos.objects.Usuario;// TODO: esto no puede estar aca
 import Ayudemos.types.DTFecha;
 import Ayudemos.types.EstadoBeneficiario;
 import Ayudemos.types.Barrio;
@@ -68,7 +68,6 @@ public class RegistroUsuarioGUI extends JFrame {
 
         // Añadir componentes al panel principal
 
-        // Mover botones hacia arriba (fila 0)
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelPrincipal.add(radioBeneficiario, gbc);
@@ -135,12 +134,12 @@ public class RegistroUsuarioGUI extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 1;  // Configura el ancho de la celda
+        gbc.gridwidth = 1;
         panel.add(new JLabel("Dirección:"), gbc);
 
         gbc.gridx = 1;
-        gbc.weightx = 1.0;  // Permitir que el campo de texto se expanda
-        gbc.gridwidth = GridBagConstraints.REMAINDER;  // Ocupa el resto de la celda
+        gbc.weightx = 1.0;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         panel.add(txtDireccion, gbc);
 
         gbc.gridx = 0;

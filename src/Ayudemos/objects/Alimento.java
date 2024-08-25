@@ -1,9 +1,10 @@
 package Ayudemos.objects;
 
+import Ayudemos.datatypes.DTAlimento;
+
 public class Alimento extends Donacion {
     private String descripcionProductos;
     private int cantElementos;
-    //Agregar dependencias
 
     //Constructor
     public Alimento(Integer id, String descripcionProductos, int cantElementos) {
@@ -27,5 +28,11 @@ public class Alimento extends Donacion {
 
     public void setCantElementos(int cantElementos) {
         this.cantElementos = cantElementos;
+    }
+
+    // Devuelvo un DTAlimento con mis datos.
+    public DTAlimento getDTAlimento(){
+        DTAlimento dtAlimento = new DTAlimento(this.getId(), this.getFechaIngresada(), this.descripcionProductos, this.cantElementos);
+        return dtAlimento;
     }
 }

@@ -1,59 +1,75 @@
 package Ayudemos.objects;
 
-import Ayudemos.datatypes.DTAlimento;
-import Ayudemos.datatypes.DTArticulo;
-import Ayudemos.datatypes.DTDonacion;
-import Ayudemos.types.DtBeneficiario;
+import Ayudemos.datatypes.DtBeneficiario;
+import Ayudemos.datatypes.DtRepartidor;
+import Ayudemos.datatypes.DtUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManejadorBeneficiario {
-    private static ManejadorBeneficiario instance = null;
-    private List<Beneficiario> beneficiarios = new ArrayList<>();
+public class ManejadorUsuario {
+    private static ManejadorUsuario instance = null;
+    private List<Usuario> usuarios = new ArrayList<>();
 
-    private ManejadorBeneficiario() {
+    private ManejadorUsuario() {
     }
 
-    public static ManejadorBeneficiario getInstance() {
+    public static ManejadorUsuario getInstance() {
         if (instance == null) {
-            instance = new ManejadorBeneficiario();
+            instance = new ManejadorUsuario();
         }
         return instance;
     }
 
-    // Retorna una lista datatypes de todas los beneficiarios del sistema.
-    public List<DtBeneficiario> obtenerBeneficiarios() {
-        List<DtBeneficiario> lista = new ArrayList<DtBeneficiario>();
-        for (Beneficiario b : beneficiarios) {
+    // Retorna una lista datatypes de todas los usuarios del sistema.
+    public List<DtUsuario> obtenerUsuarios() {
+        List<DtUsuario> lista = new ArrayList<DtUsuario>();
+        DtUsuario dt = null;
+        for (Usuario u : usuarios) {
             // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            DtBeneficiario dt = new DtBeneficiario(b.getDireccion(), b.getFechaNacimiento(), b.getEstado(), b.getBarrio());
-            lista.add(dt);
+            if (u instanceof Beneficiario ){
+                dt = new DtBeneficiario(u.getNombre(), u.getMail(), ((Beneficiario) u).getDireccion(), ((Beneficiario) u).getFechaNacimiento(), ((Beneficiario) u).getEstado(), ((Beneficiario) u).getBarrio());
+                lista.add(dt);
+            } else {
+                dt = new DtRepartidor(u.getNombre(), u.getMail(), ((Repartidor) u).getNumeroLicencia());
+                lista.add(dt);
+            }
         }
         return lista;
     }
 
-    // Agrega donacion a la lista de beneficiarios existentes.
-    public void agregarBeneficiario(Beneficiario beneficiario) {
-        beneficiarios.add(beneficiario);
+    public List<DtBeneficiario> obtenerBeneficiarios() {
+        List<DtBeneficiario> list = new ArrayList<DtBeneficiario>();
+        for (Usuario u : usuarios) {
+            if (u instanceof Beneficiario ){
+                DtBeneficiario dtBeneficiario = new DtBeneficiario(u.getNombre(), u.getMail(), ((Beneficiario) u).getDireccion(), ((Beneficiario) u).getFechaNacimiento(), ((Beneficiario) u).getEstado(), ((Beneficiario) u).getBarrio());
+                list.add(dtBeneficiario);
+            }
+        }
+        return list;
     }
 
-    // Busca una donación por ID en la lista de beneficiarios y retorna la información en un dt.
+    // Agrega donacion a la lista de usuarios existentes.
+    public void agregarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+    }
+
+    // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
 //        DtBeneficiario dt = null;
 //        Beneficiario beneficiario = null;
 //        boolean encontrado = false;
 //        int i = 0;
 //
-//        while (i < beneficiarios.size() && !encontrado) {
-//            if (beneficiarios.get(i).getId().equals(id)) {
-//                beneficiario = beneficiarios.get(i);
+//        while (i < usuarios.size() && !encontrado) {
+//            if (usuarios.get(i).getId().equals(id)) {
+//                beneficiario = usuarios.get(i);
 //                encontrado = true;
 //            }
 //            i++;
 //        }
 //        if (encontrado) {
-//            if (beneficiarios instanceof Articulo) {
+//            if (usuarios instanceof Articulo) {
 //                dt = new DTArticulo(donacion.getId(), donacion.getFechaIngresada(), ((Articulo) donacion).getDescripcion(), ((Articulo) donacion).getPeso(), ((Articulo) donacion).getDimensiones());
 //            } else {
 //                dt = new DTAlimento(donacion.getId(), donacion.getFechaIngresada(), ((Alimento) donacion).getDescripcionProductos(), ((Alimento) donacion).getCantElementos());

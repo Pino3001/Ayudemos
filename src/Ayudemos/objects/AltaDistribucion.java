@@ -3,7 +3,7 @@ package Ayudemos.objects;
 import Ayudemos.datatypes.DTDonacion;
 import Ayudemos.interfaces.IAltaDistribucion;
 import Ayudemos.types.DTFechaHora;
-import Ayudemos.types.DtBeneficiario;
+import Ayudemos.datatypes.DtBeneficiario;
 import Ayudemos.types.EstadoDistribucion;
 
 import java.util.ArrayList;
@@ -33,16 +33,16 @@ public class AltaDistribucion implements IAltaDistribucion {
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
     @Override
     public List<DtBeneficiario> obtenerListaDtBeneficiarios() {
-        List<DtBeneficiario> beneficiarios = new ArrayList<DtBeneficiario>();
-        ManejadorBeneficiario mb = ManejadorBeneficiario.getInstance();
-        beneficiarios = mb.obtenerBeneficiarios();
+        List<DtBeneficiario> beneficiarios;
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        beneficiarios = mu.obtenerBeneficiarios();
         return beneficiarios;
     }
 
     // Retornar lista de todas las donaciones del sistema para cargar el combobox.
     @Override
     public List<DTDonacion> obtenerListaDtDonaciones() {
-        List<DTDonacion> donaciones = new ArrayList<DTDonacion>();
+        List<DTDonacion> donaciones;
         // Obtenemos los datatypes de todas las donaciones del sistema.
         ManejadorDonacion md = ManejadorDonacion.getInstance();
         donaciones = md.obtenerDonaciones();
