@@ -73,7 +73,7 @@ public class ModificarDonacionGUI extends JFrame {
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinnerPeso, "0.00");
         spinnerPeso.setEditor(editor);
 
-        // TODO: Los componentes creados en el .Form los edito con estas clases.
+        //Los componentes creados en el .Form los edito con estas clases.
         new ComponenteTextField(textDescripAlimento, "");
         new ComponenteTextField(textDescripcionArticulo, "");
         new ComponenteTextField(textDimensiones, "");

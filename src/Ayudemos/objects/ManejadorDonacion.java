@@ -31,7 +31,6 @@ public class ManejadorDonacion {
             DTDonacion dt = new DTDonacion(d.getId(), d.getFechaIngresada());
             lista.add(dt);
         }
-
         return lista;
     }
 
@@ -41,6 +40,7 @@ public class ManejadorDonacion {
     }
 
     // Busca una donación por ID en la lista de donaciones y retorna la información en un dt.
+    // TODO: Imlpementar Exepciones y ver si se puede mejorar
     public DTDonacion buscarDonacionID(Integer id) {
         DTDonacion dt = null;
 
@@ -65,6 +65,7 @@ public class ManejadorDonacion {
     }
 
     // Modifica una donación.
+    // TODO: Implementar Exepciones.
     public void modificarDonacion(DTDonacion dtDonacion, Integer id) {
         for(Donacion d : donaciones) {
             if (d.getId().equals(id)) {
@@ -89,6 +90,7 @@ public class ManejadorDonacion {
     }
 
     // Obtiene una lista de DTAlimentos
+    //TODO: Implementar Exepciones.
     public List<DTAlimento> listarAlimentosManejador(){
         List<DTAlimento> dtAlimentos = new ArrayList<>();
         for (Donacion d : donaciones) {

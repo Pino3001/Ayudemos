@@ -7,7 +7,6 @@ public class Articulo extends Donacion {
     private String descripcion;
     private float peso;
     private String dimensiones;
-    //Agregar dependencias
 
     //Constructor
     public Articulo(Integer id, String descripcion, float peso, String dimensiones) {
@@ -42,6 +41,7 @@ public class Articulo extends Donacion {
         this.dimensiones = dimensiones;
     }
 
+    //Devuelvo un DTArticulo con mis datos.
     public DTArticulo getDTArticulo(){
         DTArticulo dtArticulo = new DTArticulo(this.getId(), this.getFechaIngresada(), this.descripcion, this.peso, this.dimensiones);
         return dtArticulo;

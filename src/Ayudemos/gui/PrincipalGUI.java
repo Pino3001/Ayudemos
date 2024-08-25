@@ -73,7 +73,6 @@ public class PrincipalGUI extends JFrame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         this.principalPanel = new JPanel();
         setContentPane(principalPanel);
         setSize(1100,700);

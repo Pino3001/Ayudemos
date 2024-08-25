@@ -27,13 +27,12 @@ public class ListarBeneficiariosGUI extends JFrame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         this.background = new JPanel();
         setContentPane(background);
         setSize(700,500);
     }
 
-    // Método para cargar los elementos en la lista
+    // Funcion para cargar los elementos en la lista
     private void cargarElementos() {
         List<DtBeneficiario> beneficiarios = altaUsuario.listarBeneficiarios();
         if(beneficiarios != null) {

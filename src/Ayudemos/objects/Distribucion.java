@@ -9,6 +9,7 @@ public class Distribucion {
     private DTFechaHora fechaPreparacion;
     private DTFechaHora fechaEntrega;
     private EstadoDistribucion estado;
+    //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
 
     // Dependencias
     // Lista de donaciones de una distribución.
