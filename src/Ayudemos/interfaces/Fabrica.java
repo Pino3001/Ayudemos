@@ -4,6 +4,7 @@ import Ayudemos.objects.AltaDistribucion;
 
 import Ayudemos.objects.AltaDonacion;
 import Ayudemos.objects.AltaUsuario;
+import Ayudemos.objects.ModificarDistribucion;
 import Ayudemos.interfaces.IAltaUsuario;
 
 public class Fabrica {
@@ -27,5 +28,11 @@ public class Fabrica {
         return new AltaUsuario();
     }
 
-    public IAltaDonacion getAltaDonacion() {return new AltaDonacion();}
+    public IAltaDonacion getAltaDonacion() {
+        return new AltaDonacion();
+    }
+
+    public IModificarDistribucion getModificarDistribucion() {
+        return new ModificarDistribucion();
+    }
 }

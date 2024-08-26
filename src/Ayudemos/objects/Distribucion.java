@@ -1,13 +1,13 @@
 package Ayudemos.objects;
 
 import Ayudemos.types.DTFechaHora;
+import Ayudemos.types.DateTime;
 import Ayudemos.types.EstadoDistribucion;
 
 public class Distribucion {
-    private DTFechaHora fechaPreparacion;
-    private DTFechaHora fechaEntrega;
+    private DateTime fechaPreparacion;
+    private DateTime fechaEntrega;
     private EstadoDistribucion estado;
-    //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
 
     // Dependencias
     // Lista de donaciones de una distribución.
@@ -16,8 +16,8 @@ public class Distribucion {
     private Beneficiario beneficiario;
 
     //Constructor
-    public Distribucion(DTFechaHora fechaPreparacion,
-                        DTFechaHora fechaEntrega,
+    public Distribucion(DateTime fechaPreparacion,
+                        DateTime fechaEntrega,
                         EstadoDistribucion estado,
                         Donacion donacion,
                         Beneficiario beneficiario) {
@@ -29,19 +29,19 @@ public class Distribucion {
     }
 
     //Getters y Setters
-    public DTFechaHora getFechaPreparacion() {
+    public DateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
 
-    public void setFechaPreparacion(DTFechaHora fechaPreparacion) {
+    public void setFechaPreparacion(DateTime fechaPreparacion) {
         this.fechaPreparacion = fechaPreparacion;
     }
 
-    public DTFechaHora getFechaEntrega() {
+    public DateTime getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(DTFechaHora fechaEntrega) {
+    public void setFechaEntrega(DateTime fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
@@ -57,7 +57,15 @@ public class Distribucion {
         return donacion;
     }
 
+    public void setDonacion(Donacion donacion) {
+        this.donacion = donacion;
+    }
+
     public Beneficiario getBeneficiario() {
         return beneficiario;
+    }
+
+    public void setBeneficiario(Beneficiario beneficiario) {
+        this.beneficiario = beneficiario;
     }
 }

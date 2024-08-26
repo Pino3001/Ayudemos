@@ -3,6 +3,7 @@ package Ayudemos.objects;
 import Ayudemos.datatypes.DTDonacion;
 import Ayudemos.interfaces.IAltaDistribucion;
 import Ayudemos.types.DTFechaHora;
+import Ayudemos.types.DateTime;
 import Ayudemos.datatypes.DtBeneficiario;
 import Ayudemos.types.EstadoDistribucion;
 
@@ -19,9 +20,10 @@ public class AltaDistribucion implements IAltaDistribucion {
     @Override
     public void crearDistribucion(Beneficiario beneficiario,
                                   Donacion donacion,
-                                  DTFechaHora fechaPreparacion,
-                                  DTFechaHora fechaEntrega,
+                                  DateTime fechaPreparacion,
+                                  DateTime fechaEntrega,
                                   EstadoDistribucion estado) {
+        // ** con el cambio de DTFecha a DateTime acá crearíamos un DateTime a partir de un dia mes y año que llega desde el front por parámetro.
         // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
         Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
         // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
@@ -33,16 +35,16 @@ public class AltaDistribucion implements IAltaDistribucion {
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
     @Override
     public List<DtBeneficiario> obtenerListaDtBeneficiarios() {
-        List<DtBeneficiario> beneficiarios;
-        ManejadorUsuario mu = ManejadorUsuario.getInstance();
-        beneficiarios = mu.obtenerBeneficiarios();
+        List<DtBeneficiario> beneficiarios = new ArrayList<DtBeneficiario>();
+        ManejadorBeneficiario mb = ManejadorBeneficiario.getInstance();
+        beneficiarios = mb.obtenerBeneficiarios();
         return beneficiarios;
     }
 
     // Retornar lista de todas las donaciones del sistema para cargar el combobox.
     @Override
     public List<DTDonacion> obtenerListaDtDonaciones() {
-        List<DTDonacion> donaciones;
+        List<DTDonacion> donaciones = new ArrayList<DTDonacion>();
         // Obtenemos los datatypes de todas las donaciones del sistema.
         ManejadorDonacion md = ManejadorDonacion.getInstance();
         donaciones = md.obtenerDonaciones();

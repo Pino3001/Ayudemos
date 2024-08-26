@@ -2,6 +2,7 @@ package Ayudemos.gui;
 
 import Ayudemos.interfaces.IAltaDonacion;
 import Ayudemos.interfaces.IAltaUsuario;
+import Ayudemos.interfaces.IModificarDistribucion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ public class PrincipalGUI extends JFrame {
     private JLabel tituloDonaciones;
     private JButton mayoresDistribuciones;
 
-    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion) {
+    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IModificarDistribucion iModificarDistribucion) {
         this.altaUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         altaDonacion.addActionListener(new ActionListener() {
@@ -68,6 +69,13 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ListarBeneficiariosGUI listarBeneficiariosGUI = new ListarBeneficiariosGUI(altaUsuario);
                 listarBeneficiariosGUI.setVisible(true);
+            }
+        });
+        modificarDistribucion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iModificarDistribucion);
+                modificarDistribucionGUI.setVisible(true);
             }
         });
     }

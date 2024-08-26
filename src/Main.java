@@ -5,6 +5,7 @@ import Ayudemos.gui.*;
 import Ayudemos.interfaces.Fabrica;
 import Ayudemos.interfaces.IAltaDonacion;
 import Ayudemos.interfaces.IAltaUsuario;
+import Ayudemos.interfaces.IModificarDistribucion;
 import Ayudemos.types.DTFecha;
 import Ayudemos.types.DTFechaHora;
 
@@ -20,6 +21,7 @@ public class Main {
         // Interfaces
         IAltaUsuario iAltaUsuario = fabrica.getAltaUsuario();
         IAltaDonacion iAltaDonacion =fabrica.getAltaDonacion();
+        IModificarDistribucion iModificarDistribucion = fabrica.getModificarDistribucion();
 
         DatosPorDefecto dpf = new DatosPorDefecto();
         List<DTDonacion> dt = dpf.getAlimentosDT();
@@ -31,7 +33,7 @@ public class Main {
 
         // GUI
 
-      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion);
+      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion, iModificarDistribucion);
       principalGUI.setVisible(true);
     }
 }

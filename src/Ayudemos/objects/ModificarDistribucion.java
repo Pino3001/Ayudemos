@@ -1,14 +1,20 @@
-package Ayudemos.casosdeuso;
+package Ayudemos.objects;
 
 import Ayudemos.datatypes.DTDistribucion;
+import Ayudemos.interfaces.IModificarDistribucion;
 import Ayudemos.objects.ManejadorDistribucion;
 
-public class ModificarDistribucion {
+public class ModificarDistribucion implements IModificarDistribucion {
 
     private ManejadorDistribucion manejadorDistribucion;
 
     public ModificarDistribucion() {
         this.manejadorDistribucion = ManejadorDistribucion.getInstance();
+    }
+
+    @Override
+    public DTDistribucion buscarDistribucion(String emailBeneficiario, int idDonacion) {
+        return null;
     }
 
     public void modificarDistribucion(DTDistribucion dtDistribucion) {
@@ -23,5 +29,15 @@ public class ModificarDistribucion {
         } else {
             throw new IllegalArgumentException("La distribución no existe en el sistema");
         }
+    }
+
+    @Override
+    public Beneficiario[] obtenerBeneficiarios() {
+        return new Beneficiario[0];
+    }
+
+    @Override
+    public Donacion[] obtenerDonaciones() {
+        return new Donacion[0];
     }
 }

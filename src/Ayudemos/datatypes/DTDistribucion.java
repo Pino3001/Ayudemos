@@ -1,20 +1,21 @@
 package Ayudemos.datatypes;
 
 import Ayudemos.types.DTFechaHora;
+import Ayudemos.types.DateTime;
 import Ayudemos.types.EstadoDistribucion;
 
 import java.util.List;
 
 public class DTDistribucion {
-    private DTFechaHora fechaPreparacion;
-    private DTFechaHora fechaEntrega;
+    private DateTime fechaPreparacion;
+    private DateTime fechaEntrega;
     private EstadoDistribucion estado;
     private int idDonacion;
     private String emailBeneficiario;
 
     // Constructor
-    public DTDistribucion(DTFechaHora fechaPreparacion,
-                          DTFechaHora fechaEntrega,
+    public DTDistribucion(DateTime fechaPreparacion,
+                          DateTime fechaEntrega,
                           EstadoDistribucion estado,
                           int idDonacion,
                           String nombreBeneficiario,
@@ -27,11 +28,11 @@ public class DTDistribucion {
     }
 
     // Getters
-    public DTFechaHora getFechaPreparacion() {
+    public DateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
 
-    public DTFechaHora getFechaEntrega() {
+    public DateTime getFechaEntrega() {
         return fechaEntrega;
     }
 

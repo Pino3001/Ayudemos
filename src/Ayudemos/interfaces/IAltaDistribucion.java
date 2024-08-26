@@ -10,13 +10,14 @@ import Ayudemos.objects.Beneficiario;
 import Ayudemos.objects.Donacion;
 import Ayudemos.types.DTFechaHora;
 import Ayudemos.datatypes.DtBeneficiario;
+import Ayudemos.types.DateTime;
 import Ayudemos.types.EstadoDistribucion;
 
 import java.util.List;
 
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
-    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
+    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DateTime fechaPreparacion, DateTime fechaEntrega, EstadoDistribucion estado);
 
     // Retornar lista de beneficiarios para cargar el combobox.
     public List<DtBeneficiario> obtenerListaDtBeneficiarios();
