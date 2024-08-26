@@ -3,8 +3,6 @@ package Ayudemos.objects;
 import Ayudemos.types.DTFechaHora;
 import Ayudemos.types.EstadoDistribucion;
 
-import java.util.List;
-
 public class Distribucion {
     private DTFechaHora fechaPreparacion;
     private DTFechaHora fechaEntrega;
@@ -52,5 +50,13 @@ public class Distribucion {
 
     public void setEstado(EstadoDistribucion estado) {
         this.estado = estado;
+    }
+
+    public Donacion getDonacion() {
+        return donacion;
+    }
+
+    public Beneficiario getBeneficiario() {
+        return beneficiario;
     }
 }

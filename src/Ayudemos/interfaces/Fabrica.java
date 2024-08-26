@@ -1,5 +1,6 @@
 package Ayudemos.interfaces;
 
+import Ayudemos.Logica.ControladorDistribucion;
 import Ayudemos.objects.AltaDistribucion;
 
 import Ayudemos.objects.AltaUsuario;
@@ -25,4 +26,6 @@ public class Fabrica {
     public IAltaUsuario getAltaUsuario() {
         return new AltaUsuario();
     }
+
+   public IDistribucion getIDistribucion() {return new ControladorDistribucion();}
 }
