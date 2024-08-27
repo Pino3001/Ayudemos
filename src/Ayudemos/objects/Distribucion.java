@@ -54,4 +54,12 @@ public class Distribucion {
     public void setEstado(EstadoDistribucion estado) {
         this.estado = estado;
     }
+
+    public Donacion getDonacion() {
+        return donacion;
+    }
+
+    public Beneficiario getBeneficiario() {
+        return beneficiario;
+    }
 }
