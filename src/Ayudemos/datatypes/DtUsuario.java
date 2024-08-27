@@ -5,7 +5,7 @@ public class DtUsuario {
     private final String mail;
 
     public DtUsuario(String nombre, String mail) {
-        this.nombre = nombre;
+        this.nombre = nombre;//
         this.mail = mail;
     }
 

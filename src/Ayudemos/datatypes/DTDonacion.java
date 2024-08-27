@@ -9,7 +9,7 @@ public class DTDonacion {
 
     //Consutructor
     public DTDonacion(Integer id, DTFechaHora fechaIngresada) {
-        this.id = id;
+        this.id = id;//
         this.fechaIngresada = fechaIngresada;
     }
 

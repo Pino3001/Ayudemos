@@ -9,7 +9,7 @@ public class DTArticulo extends DTDonacion{
 
     //Constructor
     public DTArticulo(Integer id, DTFechaHora fechaIngresada, String descripcion, float peso, String dimensiones) {
-        super(id, fechaIngresada);
+        super(id, fechaIngresada);//
         this.descripcion = descripcion;
         this.peso = peso;
         this.dimensiones = dimensiones;

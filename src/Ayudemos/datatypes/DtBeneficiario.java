@@ -12,7 +12,7 @@ public class DtBeneficiario extends DtUsuario{
 
     // Constructor.
     public DtBeneficiario(String nombre, String mail, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        super(nombre, mail);
+        super(nombre, mail);//
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;

@@ -8,7 +8,7 @@ public class DTAlimento extends DTDonacion{
 
     //Constructor
     public DTAlimento(int id, DTFechaHora fechaIngresada, String descripcionProductos, int cantElementos) {
-        super(id, fechaIngresada);
+        super(id, fechaIngresada);//
         this.descripcionProductos = descripcionProductos;
         this.cantElementos = cantElementos;
     }
