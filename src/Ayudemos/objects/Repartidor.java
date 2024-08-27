@@ -12,7 +12,7 @@ public class Repartidor extends Usuario {
 
     //Getters Y Setters
     public String getNumeroLicencia() {
-        return numeroLicencia;
+        return numeroLicencia;//
     }
 
     public void setNumeroLicencia(String numeroLicencia) {

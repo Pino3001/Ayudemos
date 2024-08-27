@@ -11,7 +11,7 @@ public class Articulo extends Donacion {
     //Constructor
     public Articulo(Integer id, String descripcion, float peso, String dimensiones) {
         super(id);
-        this.descripcion = descripcion;
+        this.descripcion = descripcion;//
         this.peso = peso;
         this.dimensiones = dimensiones;
     }

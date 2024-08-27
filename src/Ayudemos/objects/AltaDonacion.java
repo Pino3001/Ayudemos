@@ -12,7 +12,7 @@ import java.util.UUID;
 public class AltaDonacion implements IAltaDonacion {
 
     public AltaDonacion() {
-        super();
+        super();//
     }
 
     //Crea una nueva Donación

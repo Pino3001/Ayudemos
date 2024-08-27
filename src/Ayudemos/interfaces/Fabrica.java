@@ -17,6 +17,7 @@ public class Fabrica {
             instancia = new Fabrica();
         return instancia;
     }
+    //
 
     // Alta distribución.
     public IAltaDistribucion getIAltaDistribucion() {

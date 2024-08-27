@@ -12,7 +12,7 @@ import java.util.List;
 // Controlador Alta Distribución.
 public class AltaDistribucion implements IAltaDistribucion {
     public AltaDistribucion() {
-        super();
+        super();//
     }
 
     // Crea una nueva distribución.

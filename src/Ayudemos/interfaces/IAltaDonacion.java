@@ -7,7 +7,7 @@ import Ayudemos.datatypes.DTDonacion;
 import java.util.List;
 
 public interface IAltaDonacion {
-    boolean crearDonacion(DTDonacion dtDonacion);
+    boolean crearDonacion(DTDonacion dtDonacion);//
 
     DTDonacion buscarDonacionID(DTDonacion dtDonacion);
 

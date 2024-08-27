@@ -17,7 +17,7 @@ import java.util.List;
 public interface IAltaUsuario {
 
     // Operación para agregar un usuario
-    void agregarUsuario(DtUsuario dtusuario) throws IngresoIncorrectoExeption;
+    void agregarUsuario(DtUsuario dtusuario) throws IngresoIncorrectoExeption;//
 
     //Operacion para modificar un usuario.
     public void modificarUsuario(DtUsuario dtUsuario, String eMail);

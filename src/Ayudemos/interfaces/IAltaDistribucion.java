@@ -17,7 +17,7 @@ import java.util.List;
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
     public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
-
+    //
     // Retornar lista de beneficiarios para cargar el combobox.
     public List<DtBeneficiario> obtenerListaDtBeneficiarios();
 

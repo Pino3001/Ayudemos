@@ -13,7 +13,7 @@ public class Distribucion {
 
     // Dependencias
     // Lista de donaciones de una distribución.
-    private Donacion donacion;
+    private Donacion donacion;//
     // Una distribución está destinada a un beneficiario específico.
     private Beneficiario beneficiario;
 

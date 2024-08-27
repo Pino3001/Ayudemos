@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class ManejadorDonacion {
     private static ManejadorDonacion instance = null;
-    private Set<Donacion> donaciones = new HashSet<Donacion>();
+    private Set<Donacion> donaciones = new HashSet<Donacion>();//
 
     private ManejadorDonacion() {
     }

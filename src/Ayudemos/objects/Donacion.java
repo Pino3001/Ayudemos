@@ -15,7 +15,7 @@ public abstract class Donacion {
 
     //Constructor
     public Donacion(Integer id) {
-        this.id = id;
+        this.id = id;//
         this.fechaIngresada = new DateTime();
     }
 

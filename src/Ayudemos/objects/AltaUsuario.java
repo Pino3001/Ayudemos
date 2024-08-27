@@ -25,7 +25,7 @@ public class AltaUsuario implements IAltaUsuario {
     @Override
     public void agregarUsuario(DtUsuario dtUsuario) throws IngresoIncorrectoExeption {
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-        Usuario usuario = null;
+        Usuario usuario = null;//
         if (!manejadorUsuario.verificarMail(dtUsuario.getMail())) {
             if (dtUsuario instanceof DtBeneficiario) {
                 usuario = new Beneficiario(dtUsuario.getNombre(),

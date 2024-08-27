@@ -3,13 +3,13 @@ package Ayudemos.objects;
 import Ayudemos.datatypes.DTAlimento;
 
 public class Alimento extends Donacion {
-    private String descripcionProductos;
+    private String descripcionProductos;//
     private int cantElementos;
 
     //Constructor
     public Alimento(Integer id, String descripcionProductos, int cantElementos) {
         super(id);
-        this.descripcionProductos = descripcionProductos;
+        this.descripcionProductos = descripcionProductos;//
         this.cantElementos = cantElementos;
     }
 

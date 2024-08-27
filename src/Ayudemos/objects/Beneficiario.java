@@ -15,7 +15,7 @@ public class Beneficiario extends Usuario {
 
     // Constructor
     public Beneficiario(String nombre, String mail, String direccion, DTFecha fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        super(nombre, mail);
+        super(nombre, mail);//
         if (direccion == null || direccion.trim().isEmpty()) {
             throw new IllegalArgumentException("La dirección no puede estar vacía.");
         }

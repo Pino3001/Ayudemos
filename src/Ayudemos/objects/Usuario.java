@@ -12,7 +12,7 @@ public abstract class Usuario {
 
     // Getters y Setters
     public String getNombre(){
-        return nombre;
+        return nombre;//
     }
 
     public void setNombre(String nombre) {
