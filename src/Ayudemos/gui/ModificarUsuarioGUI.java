@@ -75,7 +75,7 @@ public class ModificarUsuarioGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(600, 600);
+        setSize(450, 600);
     }
 
     //Aplica estilos predeterminados a los componentes

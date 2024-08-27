@@ -60,7 +60,7 @@ public class ModificarDonacionGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(600, 600);
+        setSize(450, 600);
     }
 
     // Aplica estilos personalizados que no están en él .form
@@ -175,6 +175,7 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripAlimento.getText(), cantidad);
                         altaDonacion.editarDonacion(dtAlimento, aEditarAlimento.getId());
+                        JOptionPane.showMessageDialog(null, "Modificacion Realizada exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
                         cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption ex) {
@@ -203,6 +204,7 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
                         altaDonacion.editarDonacion(dtArticulo, aEditarArticulo.getId());
+                        JOptionPane.showMessageDialog(null, "Modificacion Realizada exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
                         cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption ex) {

@@ -29,7 +29,7 @@ public class ListarBeneficiariosGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(700,500);
+        setSize(450,500);
     }
 
     // Funcion para cargar los elementos en la lista

@@ -68,7 +68,7 @@ public class AltaUsuarioUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(600, 500);
+        setSize(450, 500);
     }
 
     //Aplica Estilos a los componentes
