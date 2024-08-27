@@ -49,7 +49,7 @@ public class ModificarDonacionGUI extends JFrame {
         cardAlimentoArticulo.add(panelAlimento, "alimento");
         cardAlimentoArticulo.add(panelArticulo, "articulo");
         aplicarEstilos();
-        botonesActionListener(cardLayout);
+        cambiarTipoDonacion(cardLayout);
         cargarComboBox();
         actionListenerComboBox();
         actionListenerbotonesConfirmacion();
@@ -58,10 +58,9 @@ public class ModificarDonacionGUI extends JFrame {
 
     // Infla el panel principal
     private void createUIComponents() {
-        // TODO: inicializa los componentes del panel
         this.background = new JPanel();
         setContentPane(background);
-        setSize(700, 600);
+        setSize(600, 600);
     }
 
     // Aplica estilos personalizados que no están en él .form
@@ -84,7 +83,7 @@ public class ModificarDonacionGUI extends JFrame {
     }
 
     // ActionListener de los botones que cambian entre modificar Alimento y Articulo
-    private void botonesActionListener(CardLayout cardLayout) {
+    private void cambiarTipoDonacion(CardLayout cardLayout) {
         // Muestra el cardLayaut correspondiente a la edicion del Alimento
         buttonModificarAlimento.addActionListener(new ActionListener() {
             @Override

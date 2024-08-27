@@ -49,11 +49,32 @@ public class ManejadorUsuario {
         return list;
     }
 
+    public List<DtRepartidor> obtenerRepartidores() {
+        List<DtRepartidor> list = new ArrayList<DtRepartidor>();
+        for (Usuario u : usuarios) {
+            if (u instanceof Repartidor ){
+                DtRepartidor dtRepartidor = new DtRepartidor(u.getNombre(), u.getMail(), ((Repartidor) u).getNumeroLicencia());
+                list.add(dtRepartidor);
+            }
+        }
+        return list;
+    }
+
     // Agrega donacion a la lista de usuarios existentes.
     public void agregarUsuario(Usuario usuario) {
         usuarios.add(usuario);
     }
 
+    public boolean verificarMail(String mail) {
+        boolean existe = false;
+        for(Usuario u : usuarios) {
+            if(u.getMail().equals(mail)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
 //        DtBeneficiario dt = null;

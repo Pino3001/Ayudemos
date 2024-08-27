@@ -11,7 +11,7 @@ public class ComponenteSpinner {
     private final Color colorBotones = new Color(9, 35, 48);
     private final Color colorFlecha = new Color(249, 243, 249);
     private final Color colorFondo = new Color(230, 224, 230);
-    private final Border border = new LineBorder(colorBorde, 2);
+    private final Border border = new LineBorder(colorBorde, 1);
 
 
         // Constructor que toma un JTextField existente y lo modifica

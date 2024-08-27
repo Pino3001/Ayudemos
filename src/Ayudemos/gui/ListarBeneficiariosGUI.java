@@ -35,7 +35,7 @@ public class ListarBeneficiariosGUI extends JFrame {
     // Funcion para cargar los elementos en la lista
     private void cargarElementos() {
         List<DtBeneficiario> beneficiarios = altaUsuario.listarBeneficiarios();
-        if(beneficiarios != null) {
+        if(beneficiarios == null) {
             modeloLista.addElement("Muestro esto");
         }else {
             modeloLista.clear(); // Limpiar elementos existentes

@@ -262,7 +262,7 @@ public class RegistroUsuarioGUI extends JFrame {
                 throw new Exception("Debe seleccionar el tipo de usuario.");
             }
 
-            altaUsuario.agregarUsuario(usuario);
+            //altaUsuario.agregarUsuario(usuario);
             JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
             limpiarCamposGenerales();
 

@@ -1,6 +1,11 @@
 package Ayudemos.objects;
 
 import Ayudemos.datatypes.DtBeneficiario;
+import Ayudemos.datatypes.DtRepartidor;
+import Ayudemos.datatypes.DtUsuario;
+import Ayudemos.excepciones.EmailIncorrectoExeption;
+import Ayudemos.excepciones.FormatoFechaIExeption;
+import Ayudemos.excepciones.IngresoIncorrectoExeption;
 import Ayudemos.interfaces.IAltaUsuario;
 import Ayudemos.types.DTFecha;
 import Ayudemos.types.EstadoBeneficiario;
@@ -18,18 +23,32 @@ public class AltaUsuario implements IAltaUsuario {
     private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
     @Override
-    public void agregarUsuario(Usuario usuario) {
-        if (!usuarios.containsKey(usuario.getMail())) {
-            if (validarEmail(usuario.getMail())) {
-                usuarios.put(usuario.getMail(), usuario);
-                ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+    public void agregarUsuario(DtUsuario dtUsuario) throws IngresoIncorrectoExeption {
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        Usuario usuario = null;
+        if (!manejadorUsuario.verificarMail(dtUsuario.getMail())) {
+            if (dtUsuario instanceof DtBeneficiario) {
+                usuario = new Beneficiario(dtUsuario.getNombre(),
+                        dtUsuario.getMail(),
+                        ((DtBeneficiario) dtUsuario).getDireccion(),
+                        ((DtBeneficiario) dtUsuario).getFechaNacimiento(),
+                        EstadoBeneficiario.ACTIVO,
+                        ((DtBeneficiario) dtUsuario).getBarrio());
                 manejadorUsuario.agregarUsuario(usuario);
             } else {
-                throw new IllegalArgumentException("Formato de correo electrónico incorrecto");
+                usuario = new Repartidor(dtUsuario.getNombre(),
+                        dtUsuario.getMail(),
+                        ((DtRepartidor) dtUsuario).getNumeroLicencia());
+                manejadorUsuario.agregarUsuario(usuario);
             }
         } else {
-            throw new IllegalArgumentException("Ya existe un usuario con el email " + usuario.getMail());
+            throw new IngresoIncorrectoExeption("Formato de correo electrónico incorrecto");
         }
+    }
+
+    @Override
+    public void modificarUsuario(DtUsuario dtUsuario, String eMail){
+
     }
 
     @Override
@@ -67,15 +86,17 @@ public class AltaUsuario implements IAltaUsuario {
         return new Repartidor(nombre, email, numeroLicencia);
     }
 
-    public boolean validarEmail(String email) {
+    public void validarEmail(String email) throws EmailIncorrectoExeption {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
-        return pattern.matcher(email).matches();
+        if (!pattern.matcher(email).matches()) {
+            throw new EmailIncorrectoExeption("Formato de correo electrónico incorrecto");
+        }
     }
 
-    public DTFecha parseFecha(String fechaStr) throws Exception {
+    public DTFecha parseFecha(String fechaStr) throws FormatoFechaIExeption {
         String[] partes = fechaStr.split("/");
         if (partes.length != 3) {
-            throw new Exception("Formato de fecha inválido");
+            throw new FormatoFechaIExeption("Formato de fecha inválido");
         }
         int dia = Integer.parseInt(partes[0]);
         int mes = Integer.parseInt(partes[1]);
@@ -83,9 +104,19 @@ public class AltaUsuario implements IAltaUsuario {
         return new DTFecha(dia, mes, anio);
     }
 
-    public List<DtBeneficiario> listarBeneficiarios(){
+    //Lista los beneficiarios alojados en el sistema
+    @Override
+    public List<DtBeneficiario> listarBeneficiarios() {
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
         List<DtBeneficiario> beneficiarios = manejadorUsuario.obtenerBeneficiarios();
         return beneficiarios;
+    }
+
+    //Lista los beneficiarios alojados en el sistema
+    @Override
+    public List<DtRepartidor> listarRepartidores() {
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        List<DtRepartidor> repartidores = manejadorUsuario.obtenerRepartidores();
+        return repartidores;
     }
 }

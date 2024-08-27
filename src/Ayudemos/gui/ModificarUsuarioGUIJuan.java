@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import Ayudemos.interfaces.IAltaUsuario;
-import Ayudemos.objects.Beneficiario;
-import Ayudemos.objects.Repartidor;
 import Ayudemos.objects.Usuario;
 
-public class ModificarUsuarioGUI extends JPanel {
+public class ModificarUsuarioGUIJuan extends JPanel {
 
     private JComboBox<String> userComboBox;
     private JTextField nombreField;
@@ -19,7 +17,7 @@ public class ModificarUsuarioGUI extends JPanel {
 
     private IAltaUsuario altaUsuario;
 
-    public ModificarUsuarioGUI(IAltaUsuario altaUsuario) {
+    public ModificarUsuarioGUIJuan(IAltaUsuario altaUsuario) {
         this.altaUsuario = altaUsuario;
         initComponents();
     }

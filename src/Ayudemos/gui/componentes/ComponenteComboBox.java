@@ -13,12 +13,12 @@ public class ComponenteComboBox {
     private final Color colorBorde = new Color(9, 35, 48);
     private final Color colorFondo = new Color(230, 224, 230);
     private final Color colorSelected = new Color(110, 126, 227);
-    private final Border border = new LineBorder(colorBorde, 2);
+    private final Border border = new LineBorder(colorBorde, 1);
     private final Color colorFlecha = new Color(232, 225, 232);
+    private final Font font = new Font("Roboto light", Font.PLAIN, 15);
 
     public ComponenteComboBox(JComboBox comboBox) {
         this.comboBox = comboBox;
-        Font currentFont = comboBox.getFont();
         // Cambiamos la flecha del combo
         comboBox.setUI(new MyArrow());
 
@@ -27,7 +27,7 @@ public class ComponenteComboBox {
         comboBox.setBorder(border);
         comboBox.setBackground(colorFondo);
         comboBox.setForeground(colorBorde);
-        comboBox.setFont(currentFont);
+        comboBox.setFont(font);
     }
         // Renderiza estilos del combo.
         public class MyComboBoxRender extends BasicComboBoxRenderer {

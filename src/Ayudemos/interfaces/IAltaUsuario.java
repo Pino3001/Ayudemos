@@ -1,6 +1,11 @@
 package Ayudemos.interfaces;
 
 import Ayudemos.datatypes.DtBeneficiario;
+import Ayudemos.datatypes.DtRepartidor;
+import Ayudemos.datatypes.DtUsuario;
+import Ayudemos.excepciones.EmailIncorrectoExeption;
+import Ayudemos.excepciones.FormatoFechaIExeption;
+import Ayudemos.excepciones.IngresoIncorrectoExeption;
 import Ayudemos.objects.Beneficiario;
 import Ayudemos.objects.Usuario;
 import Ayudemos.types.Barrio;
@@ -9,10 +14,13 @@ import Ayudemos.types.EstadoBeneficiario;
 
 import java.util.List;
 
-public interface IAltaUsuario  {
+public interface IAltaUsuario {
 
     // Operación para agregar un usuario
-    void agregarUsuario(Usuario usuario);
+    void agregarUsuario(DtUsuario dtusuario) throws IngresoIncorrectoExeption;
+
+    //Operacion para modificar un usuario.
+    public void modificarUsuario(DtUsuario dtUsuario, String eMail);
 
     // Operación para eliminar un usuario por su email
     void eliminarUsuario(String email);
@@ -30,9 +38,11 @@ public interface IAltaUsuario  {
 
     Usuario crearRepartidor(String nombre, String email, String numeroLicencia);
 
-    boolean validarEmail(String email);
+    void validarEmail(String email) throws EmailIncorrectoExeption;
 
-    DTFecha parseFecha(String fechaStr) throws Exception;
+    DTFecha parseFecha(String fechaStr) throws FormatoFechaIExeption;
 
     List<DtBeneficiario> listarBeneficiarios();
+
+    List<DtRepartidor> listarRepartidores();
 }

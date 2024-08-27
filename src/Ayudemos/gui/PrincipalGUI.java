@@ -45,8 +45,8 @@ public class PrincipalGUI extends JFrame {
         altaUsuarioB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegistroUsuarioGUI registroUsuarioGUI = new RegistroUsuarioGUI(altaUsuario);
-                registroUsuarioGUI.setVisible(true);
+                AltaUsuarioUI altaUsuarioUI = new AltaUsuarioUI(altaUsuario);
+                altaUsuarioUI.setVisible(true);
             }
         });
         modificarDonacion.addActionListener(new ActionListener() {
