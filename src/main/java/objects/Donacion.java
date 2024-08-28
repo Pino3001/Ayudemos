@@ -1,38 +1,51 @@
 package objects;
 
 
-import types.DTFechaHora;
-import types.DateTime;
-
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+// SINGLE_TABLE mete tanto articulos como alimentos en la misma tabla.
 public abstract class Donacion {
+    @Id
     private Integer id;
-    private DateTime fechaIngresada;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaIngresada; // cambiado de DateTime a LocalDateTime.
+
+    @OneToMany(mappedBy = "distribuciones", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Distribucion> distribuciones;
 
     //Constructor
     public Donacion(Integer id) {
         this.id = id;//
-        this.fechaIngresada = new DateTime();
+        this.fechaIngresada = new Date(); // TODO: Arreglar
+    }
+
+    public Donacion() {
+
     }
 
     // Getters Y Setters
-    public Integer getId() {return id;}
+    public Integer getId() {
+        return id;
+    }
 
-    //TODO: Ver si se quiere poder modificar el Id, si no hay que dejarlo como final sin setter.
+    // TODO: Ver si se quiere poder modificar el Id, si no hay que dejarlo como final sin setter.
     public void setId(int id) {
         this.id = id;
     }
 
-    //Convierto el DateTime en un DTFecha.
-    public DTFechaHora getFechaIngresada() {
-        return fechaIngresada.convertir();
+
+    public Date getFechaIngresada() {
+        return fechaIngresada;
     }
 
-    public void setFechaIngresada(DateTime fechaIngresada) {
+    public void setFechaIngresada(Date fechaIngresada) {
         this.fechaIngresada = fechaIngresada;
     }
 

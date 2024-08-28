@@ -1,25 +1,48 @@
 package objects;
 
+import persistencia.DistribucionID;
 import types.DTFechaHora;
 import types.EstadoDistribucion;
 
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
+@Entity
+@IdClass(DistribucionID.class)
 public class Distribucion {
-    private DTFechaHora fechaPreparacion;
-    private DTFechaHora fechaEntrega;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaPreparacion;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaEntrega;
+
     private EstadoDistribucion estado;
     //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
 
     // Dependencias
     // Lista de donaciones de una distribución.
+    @Id
+    @ManyToOne
+    @JoinColumn(
+            insertable = false,
+            updatable = false
+    )
     private Donacion donacion;//
+
     // Una distribución está destinada a un beneficiario específico.
+    @Id
+    @ManyToOne
+    @JoinColumn(
+            insertable = false,
+            updatable = false
+    )
     private Beneficiario beneficiario;
 
     //Constructor
-    public Distribucion(DTFechaHora fechaPreparacion,
-                        DTFechaHora fechaEntrega,
+    public Distribucion(Date fechaPreparacion,
+                        Date fechaEntrega,
                         EstadoDistribucion estado,
                         Donacion donacion,
                         Beneficiario beneficiario) {
@@ -28,6 +51,10 @@ public class Distribucion {
         this.estado = estado;
         this.donacion = donacion;
         this.beneficiario = beneficiario;
+    }
+
+    public Distribucion() {
+
     }
 
     //Getters y Setters

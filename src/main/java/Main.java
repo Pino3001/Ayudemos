@@ -18,19 +18,19 @@ public class Main {
         Fabrica fabrica = Fabrica.getInstancia();
         // Interfaces
         IAltaUsuario iAltaUsuario = fabrica.getAltaUsuario();
-        IAltaDonacion iAltaDonacion =fabrica.getAltaDonacion();
+        IAltaDonacion iAltaDonacion = fabrica.getAltaDonacion();
 
         DatosPorDefecto dpf = new DatosPorDefecto();
         List<DTDonacion> dt = dpf.getAlimentosDT();
-        for(DTDonacion d : dt){
-            if(iAltaDonacion.crearDonacion(d)){
+        for (DTDonacion d : dt) {
+            if (iAltaDonacion.crearDonacion(d)) {
                 System.out.println("Al parecer fue creado!");
             }
         }
 
         // GUI
 
-      PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion);
-      principalGUI.setVisible(true);
+        PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion);
+        principalGUI.setVisible(true);
     }
 }
