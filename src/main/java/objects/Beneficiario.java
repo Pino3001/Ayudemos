@@ -1,5 +1,6 @@
 package objects;
 
+import datatypes.DtBeneficiario;
 import types.DTFecha;
 import types.EstadoBeneficiario;
 import types.Barrio;
@@ -35,6 +36,20 @@ public class Beneficiario extends Usuario {
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
         this.barrio = barrio;
+    }
+
+    public Beneficiario(String nombre, String mail, String direccion, Date fechaNacimientoDate, EstadoBeneficiario estado, Barrio barrio) {
+    }
+
+    public DtBeneficiario getDTBeneficiario() {
+        return new DtBeneficiario(
+                this.getNombre(),
+                this.getMail(),
+                this.getDireccion(),
+                new Date(this.getFechaNacimiento().getDate(), this.getFechaNacimiento().getMonth() + 1, this.getFechaNacimiento().getYear() + 1900),
+                this.getEstado(),
+                this.getBarrio()
+        );
     }
 
     public Beneficiario() {

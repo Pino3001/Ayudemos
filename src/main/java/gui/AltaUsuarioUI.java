@@ -18,6 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class AltaUsuarioUI extends JFrame {
     private IAltaUsuario altaUsuario;
@@ -140,7 +141,7 @@ public class AltaUsuarioUI extends JFrame {
         buttonAceptarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DTFecha fecha = null;
+                Date fecha = null;
                 try {
                     if (textNombreBenef.getText().equals("Ingrese el Nombre...") || textNombreBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");

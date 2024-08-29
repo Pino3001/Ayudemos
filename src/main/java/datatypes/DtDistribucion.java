@@ -1,5 +1,7 @@
 package types;
 
+import java.util.Date;
+
 public class DtDistribucion {
     private DTFechaHora preparacion;
     private DTFechaHora entrega;
@@ -11,6 +13,10 @@ public class DtDistribucion {
         this.entrega = entrega;
         this.estado = estado;
     }
+
+    public DtDistribucion(Date fechaPreparacion, Date fechaEntrega, EstadoDistribucion estado) {
+    }
+
     //setter y getters
     public DTFechaHora getPreparacion() {
         return preparacion;

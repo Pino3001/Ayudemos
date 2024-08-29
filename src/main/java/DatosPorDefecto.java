@@ -5,7 +5,9 @@ import objects.Alimento;
 import types.DTFecha;
 import types.DTFechaHora;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatosPorDefecto {
@@ -19,34 +21,34 @@ public class DatosPorDefecto {
         // Agregar elementos a la lista
 
         DTFecha dtFecha1 = new DTFecha(15, 8, 2021);
-        DTFechaHora dtFechaHora1 = new DTFechaHora(dtFecha1, 14, 45);
+        Date dtFechaHora1 = new Date();
         donacionesDT.add(new DTAlimento(1, dtFechaHora1, "Manzanas", 10));
 
         DTFecha dtFecha2 = new DTFecha(22, 11, 2022);
-        DTFechaHora dtFechaHora2 = new DTFechaHora(dtFecha2, 9, 15);
+        Date dtFechaHora2 = new Date();
         donacionesDT.add(new DTAlimento(2, dtFechaHora2, "Pan", 20));
 
         DTFecha dtFecha3 = new DTFecha(3, 1, 2023);
-        DTFechaHora dtFechaHora3 = new DTFechaHora(dtFecha3, 18, 0);
+        Date dtFechaHora3 = new Date();
         donacionesDT.add(new DTAlimento(3, dtFechaHora3, "Leche", 15));
 
         DTFecha dtFecha4 = new DTFecha(10, 5, 2020);
-        DTFechaHora dtFechaHora4 = new DTFechaHora(dtFecha1, 12, 30);
+        Date dtFechaHora4 = new Date();
         DTArticulo dtArticulo1 = new DTArticulo(0, dtFechaHora1, "Mesa", 10, "120x60x75");
         donacionesDT.add(dtArticulo1);
 
         DTFecha dtFecha5 = new DTFecha(15, 8, 2021);
-        DTFechaHora dtFechaHora5 = new DTFechaHora(dtFecha2, 14, 45);
+        Date dtFechaHora5 = new Date();
         DTArticulo dtArticulo2 = new DTArticulo(1, dtFechaHora2, "Silla", 5, "45x45x90");
         donacionesDT.add(dtArticulo2);
 
         DTFecha dtFecha6 = new DTFecha(22, 11, 2022);
-        DTFechaHora dtFechaHora6 = new DTFechaHora(dtFecha3, 9, 15);
+        Date dtFechaHora6 = new Date();
         DTArticulo dtArticulo3 = new DTArticulo(2, dtFechaHora3, "Lámpara", 1, "20x20x40");
         donacionesDT.add(dtArticulo3);
 
         DTFecha dtFecha7 = new DTFecha(3, 1, 2023);
-        DTFechaHora dtFechaHora7 = new DTFechaHora(dtFecha4, 18, 0);
+        Date dtFechaHora7 = new Date();
         DTArticulo dtArticulo4 = new DTArticulo(3, dtFechaHora4, "Espejo", 7, "80x60x5");
         donacionesDT.add(dtArticulo4);
 
@@ -59,7 +61,7 @@ public class DatosPorDefecto {
             int minuto = (i * 5) % 60;  // Generar minutos
 
             DTFecha dtFecha = new DTFecha(dia, mes, anio);
-            DTFechaHora dtFechaHora = new DTFechaHora(dtFecha, hora, minuto);
+            Date dtFechaHora = new Date();
 
             // Crear un nombre distinto para la descripción de cada donación
             String descripcion = "Donación " + i;
@@ -79,7 +81,7 @@ public class DatosPorDefecto {
             int minuto = (i * 5) % 60;  // Generar minutos
 
             DTFecha dtFecha = new DTFecha(dia, mes, anio);
-            DTFechaHora dtFechaHora = new DTFechaHora(dtFecha, hora, minuto);
+            Date dtFechaHora = new Date();
 
             // Crear un nombre distinto para la descripción de cada artículo
             String descripcion = "Artículo " + i;

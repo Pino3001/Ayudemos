@@ -3,6 +3,9 @@ package objects;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Articulo extends Donacion {
     private String descripcion;
     private float peso;
@@ -14,6 +17,10 @@ public class Articulo extends Donacion {
         this.descripcion = descripcion;//
         this.peso = peso;
         this.dimensiones = dimensiones;
+    }
+
+    public Articulo() {
+
     }
 
     //Getters Y Setters

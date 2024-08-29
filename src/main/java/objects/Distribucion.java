@@ -6,7 +6,6 @@ import types.EstadoDistribucion;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @IdClass(DistribucionID.class)
@@ -58,19 +57,19 @@ public class Distribucion {
     }
 
     //Getters y Setters
-    public DTFechaHora getFechaPreparacion() {
+    public Date getFechaPreparacion() {
         return fechaPreparacion;
     }
 
-    public void setFechaPreparacion(DTFechaHora fechaPreparacion) {
+    public void setFechaPreparacion(Date fechaPreparacion) {
         this.fechaPreparacion = fechaPreparacion;
     }
 
-    public DTFechaHora getFechaEntrega() {
+    public Date getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(DTFechaHora fechaEntrega) {
+    public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
