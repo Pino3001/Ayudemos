@@ -18,16 +18,16 @@ public class AltaDistribucion implements IAltaDistribucion {
 
     // Crea una nueva distribución.
     @Override
-    public void crearDistribucion(Beneficiario beneficiario,
-                                  Donacion donacion,
+    public void crearDistribucion(DtBeneficiario beneficiario,
+                                  DTDonacion donacion,
                                   LocalDateTime fechaPreparacion,
                                   LocalDateTime fechaEntrega,
                                   EstadoDistribucion estado) {
-        // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
-        Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
-        // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
-        donacion.addDistribucion(nuevaDist);
-        beneficiario.addDistribucion(nuevaDist);
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        ManejadorDistribucion manejadorDistribucion = ManejadorDistribucion.getInstance();
+        Beneficiario beneficarioEncontrado = manejadorUsuario.obtenerBeneficiarios();
+        Donacion donacionEncontrada = manejadorDonacion.buscarDonacionID();
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.

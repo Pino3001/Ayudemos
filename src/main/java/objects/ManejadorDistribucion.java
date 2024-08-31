@@ -1,11 +1,14 @@
 package objects;
 
 import datatypes.DtDistribucion;
+import jakarta.persistence.EntityManager;
+import persistencia.Conexion;
 import types.Barrio;
 import types.EstadoDistribucion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ManejadorDistribucion {
@@ -23,61 +26,62 @@ public class ManejadorDistribucion {
 
     }
 
+    // Retorna una lista de datatypes de distribuciones segun el estado
     public List<DtDistribucion> buscarDistribucionesPorEstado(EstadoDistribucion estado) {
-        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
-        for (Distribucion d : distribuciones) {
-            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
-
-            if (estado == null || d.getEstado().equals(estado)) {
-                lista.add(dt);
-            }
+        // Conexion y Entity Manager
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT d from Distribucion d WHERE d.estado = :estado ", Distribucion.class)
+                    .setParameter("estado", estado)
+                    .getResultList()
+                    .stream()
+                    .map(Distribucion::getDtDistribucion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
         }
 
-        return lista;
     }
 
     // Retorna una lista de datatypes de todas las distribuciones del sistema.
     public List<DtDistribucion> obtenerListaDistribuciones() {
-        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
-        for (Distribucion d : distribuciones) {
-            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
-            lista.add(dt);
-        }
+        // Conexion y Entity Manager
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
 
-        return lista;
+        try {
+            return em.createQuery("SELECT d from Distribucion d", Distribucion.class)
+                    .getResultList()
+                    .stream()
+                    .map(Distribucion::getDtDistribucion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
+        }
     }
 
     // Retorna una lista de datatypes de todas las distribuciones del sistema filtradas por zona.
     public List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio) {
-        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
-        for (Distribucion d : distribuciones) {
-            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            if (d.getBeneficiario().getBarrio() == barrio) {
-                DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
-                lista.add(dt);
-            }
+        // Conexion y Entity Manager
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT d from Distribucion d JOIN Beneficiario b ON d.beneficiario.id = b.id WHERE b.barrio = :barrio", Distribucion.class)
+                    .setParameter("barrio", barrio)
+                    .getResultList()
+                    .stream()
+                    .map(Distribucion::getDtDistribucion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
         }
-
-        return lista;
     }
 
     // Crea una nueva distribución.
-//    @Override
-//    public void AltaDistribucion(Beneficiario beneficiario,
-//                                  Donacion donacion,
-//                                  DTFechaHora fechaPreparacion,
-//                                  DTFechaHora fechaEntrega,
-//                                  EstadoDistribucion estado) {
-//        // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
-//        Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
-//        // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
-//        donacion.addDistribucion(nuevaDist);
-//        beneficiario.addDistribucion(nuevaDist);
-//        // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.
-//    }
+    public void agregarDistribucion(){
 
+    }
 
 }
 

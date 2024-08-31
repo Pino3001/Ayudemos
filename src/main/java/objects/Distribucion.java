@@ -1,5 +1,7 @@
 package objects;
 
+import datatypes.DTDonacion;
+import datatypes.DtDistribucion;
 import jakarta.persistence.*;
 import objects.Beneficiario;
 import objects.Donacion;
@@ -89,6 +91,10 @@ public class Distribucion {
 
     public Beneficiario getBeneficiario() {
         return beneficiario;
+    }
+
+    public DtDistribucion getDtDistribucion(){
+        return new DtDistribucion(this.getFechaPreparacion(), this.getFechaEntrega(), this.getEstado(), this.getDonacion().getId(), this.getBeneficiario().getNombre(), this.getBeneficiario().getMail());
     }
 
     public void setBeneficiario(Beneficiario beneficiario) {

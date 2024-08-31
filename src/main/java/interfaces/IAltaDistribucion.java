@@ -19,8 +19,8 @@ import java.util.List;
 
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
-    void crearDistribucion(Beneficiario beneficiario,
-                           Donacion donacion,
+    void crearDistribucion(DtBeneficiario beneficiario,
+                           DTDonacion donacion,
                            LocalDateTime fechaPreparacion,
                            LocalDateTime fechaEntrega,
                            EstadoDistribucion estado);
