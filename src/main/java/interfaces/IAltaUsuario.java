@@ -8,8 +8,10 @@ import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
 import objects.Usuario;
 import types.Barrio;
+import types.DTFecha;
 import types.EstadoBeneficiario;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,33 +21,25 @@ public interface IAltaUsuario {
     void agregarUsuario(DtUsuario dtusuario) throws IngresoIncorrectoExeption;//
 
     //Operacion para modificar un usuario.
-    public void modificarUsuario(DtUsuario dtUsuario, String eMail);
+    void modificarUsuario(DtUsuario dtUsuario);
 
     // Operación para eliminar un usuario por su email
-    void eliminarUsuario(String email);
-
-    // Operación para actualizar la información de un usuario
-    void actualizarUsuario(Usuario usuario);
+    void eliminarUsuario(String id);
 
     // Operación para obtener un usuario por su email
-    Usuario obtenerUsuarioPorEmail(String email);
+    DtUsuario obtenerUsuarioPorEmail(String email);
+
+    DtUsuario obtenerUsuarioPorId(String id);
 
     // Operación para listar todos los usuarios
     List<Usuario> listarUsuarios();
 
-    void crearBeneficiario(DtBeneficiario dtBeneficiario);
-
-    void crearRepartidor(DtRepartidor dtRepartidor);
-
     void validarEmail(String email) throws EmailIncorrectoExeption;
 
-    Date parseFecha(String fechaStr) throws FormatoFechaIExeption;
+    LocalDate parseFecha(String fechaStr) throws FormatoFechaIExeption;
 
     List<DtBeneficiario> listarBeneficiarios();
 
     List<DtRepartidor> listarRepartidores();
 
-    Usuario crearRepartidor(String nombre, String email, String numeroLicencia);
-
-    Usuario crearBeneficiario(String nombre, String email, String direccion, Date fechaNacimiento, EstadoBeneficiario estado, Barrio barrio);
 }

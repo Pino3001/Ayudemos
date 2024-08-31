@@ -1,13 +1,15 @@
 package datatypes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DTDonacion {
+
     private final Integer id;
-    private final Date fechaIngresada;
+    private final LocalDate fechaIngresada;
 
     //Consutructor
-    public DTDonacion(Integer id, Date fechaIngresada) {
+    public DTDonacion(Integer id, LocalDate fechaIngresada) {
         this.id = id;//
         this.fechaIngresada = fechaIngresada;
     }
@@ -17,7 +19,7 @@ public class DTDonacion {
         return id;
     }
 
-    public Date getFechaIngresada() {
+    public LocalDate getFechaIngresada() {
         return fechaIngresada;
     }
 }

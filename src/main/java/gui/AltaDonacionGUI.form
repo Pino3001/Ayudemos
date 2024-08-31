@@ -63,7 +63,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="Ayudemos/Resources/cesta-de-la-compra.png"/>
+              <icon value="images/cesta-de-la-compra.png"/>
               <label value="Nuevo Alimento"/>
               <text value="Nuevo Alimento"/>
             </properties>
@@ -80,7 +80,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="Ayudemos/Resources/moda.png"/>
+              <icon value="images/moda.png"/>
               <label value="Nuevo Articulo"/>
               <text value="Nuevo Articulo"/>
             </properties>

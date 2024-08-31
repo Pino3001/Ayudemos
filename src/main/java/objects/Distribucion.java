@@ -1,45 +1,36 @@
 package objects;
 
-import persistencia.DistribucionID;
-import types.DTFechaHora;
+import jakarta.persistence.*;
+import objects.Beneficiario;
+import objects.Donacion;
 import types.EstadoDistribucion;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@IdClass(DistribucionID.class)
 public class Distribucion {
 
-    @Temporal(TemporalType.DATE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automático
+    private Integer id;
+
     private LocalDateTime fechaPreparacion;
 
-    @Temporal(TemporalType.DATE)
     private LocalDateTime fechaEntrega;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private EstadoDistribucion estado;
-    //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
 
-    // Dependencias
-    // Lista de donaciones de una distribución.
-    @Id
     @ManyToOne
-    @JoinColumn(
-            insertable = false,
-            updatable = false
-    )
-    private Donacion donacion;//
+    @JoinColumn(name = "donacion_id", nullable = false)
+    private Donacion donacion;
 
-    // Una distribución está destinada a un beneficiario específico.
-    @Id
     @ManyToOne
-    @JoinColumn(
-            insertable = false,
-            updatable = false
-    )
+    @JoinColumn(name = "beneficiario_id", nullable = false)
     private Beneficiario beneficiario;
 
-    //Constructor
+    // Constructor
     public Distribucion(LocalDateTime fechaPreparacion,
                         LocalDateTime fechaEntrega,
                         EstadoDistribucion estado,
@@ -53,10 +44,17 @@ public class Distribucion {
     }
 
     public Distribucion() {
-
     }
 
-    //Getters y Setters
+    // Getters y Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public LocalDateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
@@ -85,7 +83,15 @@ public class Distribucion {
         return donacion;
     }
 
+    public void setDonacion(Donacion donacion) {
+        this.donacion = donacion;
+    }
+
     public Beneficiario getBeneficiario() {
         return beneficiario;
+    }
+
+    public void setBeneficiario(Beneficiario beneficiario) {
+        this.beneficiario = beneficiario;
     }
 }

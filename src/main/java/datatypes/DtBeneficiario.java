@@ -4,17 +4,18 @@ import types.Barrio;
 import types.DTFecha;
 import types.EstadoBeneficiario;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DtBeneficiario extends DtUsuario{
-    private String direccion;
-    private Date fechaNacimiento;
-    private EstadoBeneficiario estado;
-    private Barrio barrio;
+    private final String direccion;
+    private final LocalDate fechaNacimiento;
+    private final EstadoBeneficiario estado;
+    private final Barrio barrio;
 
     // Constructor.
-    public DtBeneficiario(String nombre, String mail, String direccion, Date fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        super(nombre, mail);//
+    public DtBeneficiario(Integer id, String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
+        super(id, nombre, mail);
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
@@ -27,7 +28,7 @@ public class DtBeneficiario extends DtUsuario{
         return direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 

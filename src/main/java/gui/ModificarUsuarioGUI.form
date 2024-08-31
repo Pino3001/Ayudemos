@@ -865,7 +865,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="Ayudemos/Resources/agregar-usuario.png"/>
+              <icon value="images/agregar-usuario.png"/>
               <label value="Beneficiario"/>
               <opaque value="true"/>
               <text value="Beneficiario"/>
@@ -888,7 +888,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="Ayudemos/Resources/paquete.png"/>
+              <icon value="images/paquete.png"/>
               <label value="Repartidor"/>
               <text value="Repartidor"/>
             </properties>

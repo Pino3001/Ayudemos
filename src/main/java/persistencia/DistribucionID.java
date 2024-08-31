@@ -1,21 +1,60 @@
 package persistencia;
 
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
-//No es una entidad, debe implementar serializable
+@Embeddable
 public class DistribucionID implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private Integer donacionId;
+    private Integer beneficiarioId;
 
-//    private int clase;
-//    private String socio;
+    // Constructors, Getters, and Setters
 
-    //Tiene que tener constructor por defecto
     public DistribucionID() {
-        super();
     }
 
-    //Tiene que implementar los getters y setters
+    public DistribucionID(Integer donacionId, Integer beneficiarioId) {
+        this.donacionId = donacionId;
+        this.beneficiarioId = beneficiarioId;
+    }
+
+    public Integer getDonacionId() {
+        return donacionId;
+    }
+
+    public void setDonacionId(Integer donacionId) {
+        this.donacionId = donacionId;
+    }
+
+    public Integer getBeneficiarioId() {
+        return beneficiarioId;
+    }
+
+    public void setBeneficiarioId(Integer beneficiarioId) {
+        this.beneficiarioId = beneficiarioId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DistribucionID that = (DistribucionID) o;
+
+        if (!donacionId.equals(that.donacionId)) return false;
+        return beneficiarioId.equals(that.beneficiarioId);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = donacionId.hashCode();
+        result = 31 * result + beneficiarioId.hashCode();
+        return result;
+    }
+}
+
+//Tiene que implementar los getters y setters
 //    public int getClase() {
 //        return clase;
 //    }
@@ -61,4 +100,4 @@ public class DistribucionID implements Serializable {
         return true;
     }*/
 
-}
+

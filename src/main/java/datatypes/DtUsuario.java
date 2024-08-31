@@ -1,10 +1,12 @@
 package datatypes;
 
 public class DtUsuario {
+    private final Integer id;
     private final String nombre;
     private final String mail;
 
-    public DtUsuario(String nombre, String mail) {
+    public DtUsuario(Integer id, String nombre, String mail) {
+        this.id = id;
         this.nombre = nombre;//
         this.mail = mail;
     }
@@ -16,4 +18,6 @@ public class DtUsuario {
     public String getMail() {
         return mail;
     }
+
+    public Integer getId() { return id; }
 }

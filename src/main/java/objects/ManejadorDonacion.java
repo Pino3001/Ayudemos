@@ -3,19 +3,24 @@ package objects;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import datatypes.DTDonacion;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import persistencia.Conexion;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ManejadorDonacion {
     private static ManejadorDonacion instance = null;
-    private Set<Donacion> donaciones = new HashSet<Donacion>();//
 
     private ManejadorDonacion() {
     }
 
+    // Singleton
     public static ManejadorDonacion getInstance() {
         if (instance == null) {
             instance = new ManejadorDonacion();
@@ -25,111 +30,131 @@ public class ManejadorDonacion {
 
     // Retorna una lista datatypes de todas las donaciones del sistema.
     public List<DTDonacion> obtenerDonaciones() {
-        List<DTDonacion> lista = new ArrayList<DTDonacion>();
-        for (Donacion d : donaciones) {
-            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            DTDonacion dt = new DTDonacion(d.getId(), d.getFechaIngresada());
-            lista.add(dt);
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT d FROM Donacion d", Donacion.class)
+                    .getResultList()
+                    .stream()
+                    .map(Donacion::getDTDonacion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
         }
-        return lista;
     }
 
     // Agrega donacion a la lista de donaciones existentes.
     public void agregarDonacion(Donacion donacion) {
-        donaciones.add(donacion);
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            em.persist(donacion);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
+
 
     // Busca una donación por ID en la lista de donaciones y retorna la información en un dt.
     // TODO: Imlpementar Exepciones y ver si se puede mejorar
     public DTDonacion buscarDonacionID(Integer id) {
-        DTDonacion dt = null;
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
 
-        // Itera sobre cada donación en el set 'donaciones'
-        for (Donacion d : donaciones) {
-            // Comprueba si el ID de la donación coincide con el ID buscado
-            if (d.getId().equals(id)) {
-                // Si es una instancia de Articulo, crea un DTArticulo
-                if (d instanceof Articulo) {
-                    dt = new DTArticulo(d.getId(), d.getFechaIngresada(), ((Articulo) d).getDescripcion(), ((Articulo) d).getPeso(), ((Articulo) d).getDimensiones());
-                }
-                // Si es una instancia de Alimento, crea un DTAlimento
-                else {
-                    dt = new DTAlimento(d.getId(), d.getFechaIngresada(), ((Alimento) d).getDescripcionProductos(), ((Alimento) d).getCantElementos());
-                }
-                // Retorna el DT encontrado
-                return dt;
+        try {
+            Donacion donacion = em.find(Donacion.class, id);
+            if (donacion == null) throw new IllegalArgumentException("La Donacion no existe");
+            else if (donacion instanceof Alimento) {
+                return new DTAlimento(donacion.getId(),
+                        donacion.getFechaIngresada(),
+                        ((Alimento) donacion).getDescripcionProductos(),
+                        ((Alimento) donacion).getCantElementos());
+            } else if (donacion instanceof Articulo) {
+                return new DTArticulo(donacion.getId(), donacion.getFechaIngresada(), ((Articulo) donacion).getDescripcion(), ((Articulo) donacion).getPeso(), ((Articulo) donacion).getDimensiones());
             }
+        } finally {
+            em.close();
         }
-        // Si no encuentra una donación con el ID especificado, retorna null
-        return dt;
+        return null;
     }
 
     // Modifica una donación.
-    // TODO: Implementar Exepciones.
-    public void modificarDonacion(DTDonacion dtDonacion, Integer id) {
-        for(Donacion d : donaciones) {
-            if (d.getId().equals(id)) {
-                if (d instanceof Articulo) {
-                    if (dtDonacion instanceof DTArticulo) {
-                        ((Articulo) d).setDescripcion(((DTArticulo) dtDonacion).getDescripcion());
-                        ((Articulo) d).setPeso(((DTArticulo) dtDonacion).getPeso());
-                        ((Articulo) d).setDimensiones(((DTArticulo) dtDonacion).getDimensiones());
-                        return;
-                    }
-                    // Retornar un error si no se cumple las condiciones.
-                } else {
-                    if (dtDonacion instanceof DTAlimento) {
-                        ((Alimento) d).setDescripcionProductos(((DTAlimento) dtDonacion).getDescripcionProductos());
-                        ((Alimento) d).setCantElementos(((DTAlimento) dtDonacion).getCantElementos());
-                        return;
-                    }
-                    // Retornar el error correspondiente.
-                }
+    public void modificarDonacion(DTDonacion dtDonacion) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Donacion d = em.find(Donacion.class, dtDonacion.getId());
+            if (d == null) {
+                throw new IllegalArgumentException("La Donacion no existe");
             }
+
+            // Actualiza los atributos de la donación
+            d.setFechaIngresada(dtDonacion.getFechaIngresada());
+
+            // Verifica y actualiza las subclases de donación
+            if (d instanceof Alimento alimento && dtDonacion instanceof DTAlimento) {
+                alimento.setDescripcionProductos(((DTAlimento) dtDonacion).getDescripcionProductos());
+                alimento.setCantElementos(((DTAlimento) dtDonacion).getCantElementos());
+            } else if (d instanceof Articulo articulo && dtDonacion instanceof DTArticulo) {
+                articulo.setDescripcion(((DTArticulo) dtDonacion).getDescripcion());
+                articulo.setPeso(((DTArticulo) dtDonacion).getPeso());
+                articulo.setDimensiones(((DTArticulo) dtDonacion).getDimensiones());
+            } else {
+                throw new IllegalArgumentException("El tipo de Donacion o los datos no son válidos");
+            }
+
+            // Confirma la transacción
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException("Error al modificar la donación", e);
+        } finally {
+            em.close();
         }
     }
 
     // Obtiene una lista de DTAlimentos
-    //TODO: Implementar Exepciones.
-    public List<DTAlimento> listarAlimentosManejador(){
-        List<DTAlimento> dtAlimentos = new ArrayList<>();
-        for (Donacion d : donaciones) {
-            if (d instanceof Alimento) {
-                DTAlimento dtAlimento = ((Alimento) d).getDTAlimento();
-                dtAlimentos.add(dtAlimento);
-            }
+    public List<DTAlimento> listarAlimentosManejador() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT alimento FROM Alimento alimento", Alimento.class)
+                    .getResultList()
+                    .stream()
+                    .map(Alimento::getDTDonacion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
         }
-        return dtAlimentos;
     }
 
     // Obtiene una lista de DTArticulos
-    public List<DTArticulo> listarArticulosManejador(){
-        List<DTArticulo> dtArticulos = new ArrayList<>();
-        for (Donacion d : donaciones) {
-            if (d instanceof Articulo) {
-                DTArticulo dtArticulo = ((Articulo) d).getDTArticulo();
-                dtArticulos.add(dtArticulo);
-            }
+    public List<DTArticulo> listarArticulosManejador() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT articulo FROM Articulo articulo", Articulo.class)
+                    .getResultList()
+                    .stream()
+                    .map(Articulo::getDTDonacion)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
         }
-        return dtArticulos;
-    }
-
-    // Genera un ID unico para la donacion.
-    public Integer generarID(){
-        int nuevoId = donaciones.size();
-        // Iterar hasta encontrar un ID que no esté en uso
-        boolean idEnUso;
-        do {
-            idEnUso = false;
-            for (Donacion d : donaciones) {
-                if (d.getId().equals(nuevoId)) {
-                    idEnUso = true;
-                    nuevoId++;
-                    break;
-                }
-            }
-        } while (idEnUso);
-        return nuevoId;  // Devolver el ID único encontrado
     }
 
 }

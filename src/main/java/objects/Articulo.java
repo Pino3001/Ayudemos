@@ -1,20 +1,30 @@
 package objects;
 
+
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-import javax.persistence.Entity;
+import java.time.LocalDate;
 
 @Entity
+@DiscriminatorValue("articulo")
 public class Articulo extends Donacion {
+    @Column(nullable = false)
     private String descripcion;
+
+    @Column(nullable = false)
     private float peso;
+
+    @Column(nullable = false)
     private String dimensiones;
 
     //Constructor
-    public Articulo(Integer id, String descripcion, float peso, String dimensiones) {
-        super(id);
-        this.descripcion = descripcion;//
+    public Articulo(String descripcion, float peso, String dimensiones) {
+        super();
+        this.descripcion = descripcion;
         this.peso = peso;
         this.dimensiones = dimensiones;
     }
@@ -49,8 +59,8 @@ public class Articulo extends Donacion {
     }
 
     //Devuelvo un DTArticulo con mis datos.
-    public DTArticulo getDTArticulo(){
-        DTArticulo dtArticulo = new DTArticulo(this.getId(), this.getFechaIngresada(), this.descripcion, this.peso, this.dimensiones);
-        return dtArticulo;
+    @Override
+    public DTArticulo getDTDonacion(){
+        return new DTArticulo(this.getId(), this.getFechaIngresada(), this.descripcion, this.peso, this.dimensiones);
     }
 }

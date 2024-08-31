@@ -11,9 +11,11 @@ public interface IAltaDonacion {
 
     DTDonacion buscarDonacionID(DTDonacion dtDonacion);
 
-    void editarDonacion(DTDonacion dtDonacion, Integer id);
+    void editarDonacion(DTDonacion dtDonacion);
 
     List<DTAlimento> listarAlimentos();
 
     List<DTArticulo> listarArticulos();
+
+    List<DTDonacion> listarDonaciones();
 }
