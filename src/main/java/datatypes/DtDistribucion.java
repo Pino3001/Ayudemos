@@ -1,41 +1,49 @@
-package types;
+package datatypes;
 
-import java.util.Date;
+import types.EstadoDistribucion;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class DtDistribucion {
-    private DTFechaHora preparacion;
-    private DTFechaHora entrega;
+    private LocalDateTime fechaPreparacion;
+    private LocalDateTime fechaEntrega;
     private EstadoDistribucion estado;
+    private int idDonacion;
+    private String emailBeneficiario;
 
-    public DtDistribucion(DTFechaHora preparacion, DTFechaHora entrega, EstadoDistribucion estado) {
-        super();
-        this.preparacion = preparacion;
-        this.entrega = entrega;
+    // Constructor
+    public DtDistribucion(LocalDateTime fechaPreparacion,
+                          LocalDateTime fechaEntrega,
+                          EstadoDistribucion estado,
+                          int idDonacion,
+                          String nombreBeneficiario,
+                          String emailBeneficiario) {
+        this.fechaPreparacion = fechaPreparacion;
+        this.fechaEntrega = fechaEntrega;
         this.estado = estado;
+        this.idDonacion = idDonacion;
+        this.emailBeneficiario = emailBeneficiario;
     }
 
-    public DtDistribucion(Date fechaPreparacion, Date fechaEntrega, EstadoDistribucion estado) {
+    // Getters
+    public LocalDateTime getFechaPreparacion() {
+        return fechaPreparacion;
     }
 
-    //setter y getters
-    public DTFechaHora getPreparacion() {
-        return preparacion;
+    public LocalDateTime getFechaEntrega() {
+        return fechaEntrega;
     }
-    public void setPreparacion(DTFechaHora preparacion) {
-        this.preparacion = preparacion;
-    }
-    public DTFechaHora getEntrega() {
-        return entrega;
-    }
-    public void setEntrega(DTFechaHora entrega) {
-        this.entrega = entrega;
-    }
+
     public EstadoDistribucion getEstado() {
         return estado;
     }
-    public void setEstado(EstadoDistribucion estado) {
-        this.estado = estado;
+
+    public int getIdDonacion() {
+        return idDonacion;
     }
 
-
+    public String getEmailBeneficiario() {
+        return emailBeneficiario;
+    }
 }

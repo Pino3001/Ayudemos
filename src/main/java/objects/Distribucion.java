@@ -5,17 +5,17 @@ import types.DTFechaHora;
 import types.EstadoDistribucion;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @IdClass(DistribucionID.class)
 public class Distribucion {
 
     @Temporal(TemporalType.DATE)
-    private Date fechaPreparacion;
+    private LocalDateTime fechaPreparacion;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaEntrega;
+    private LocalDateTime fechaEntrega;
 
     private EstadoDistribucion estado;
     //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
@@ -40,8 +40,8 @@ public class Distribucion {
     private Beneficiario beneficiario;
 
     //Constructor
-    public Distribucion(Date fechaPreparacion,
-                        Date fechaEntrega,
+    public Distribucion(LocalDateTime fechaPreparacion,
+                        LocalDateTime fechaEntrega,
                         EstadoDistribucion estado,
                         Donacion donacion,
                         Beneficiario beneficiario) {
@@ -57,19 +57,19 @@ public class Distribucion {
     }
 
     //Getters y Setters
-    public Date getFechaPreparacion() {
+    public LocalDateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
 
-    public void setFechaPreparacion(Date fechaPreparacion) {
+    public void setFechaPreparacion(LocalDateTime fechaPreparacion) {
         this.fechaPreparacion = fechaPreparacion;
     }
 
-    public Date getFechaEntrega() {
+    public LocalDateTime getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(LocalDateTime fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 

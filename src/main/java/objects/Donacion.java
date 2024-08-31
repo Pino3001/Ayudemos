@@ -27,7 +27,6 @@ public abstract class Donacion {
     }
 
     public Donacion() {
-
     }
 
     // Getters Y Setters
