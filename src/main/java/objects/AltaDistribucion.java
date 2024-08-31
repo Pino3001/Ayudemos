@@ -6,7 +6,7 @@ import types.DTFechaHora;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // Controlador Alta Distribución.
@@ -19,8 +19,8 @@ public class AltaDistribucion implements IAltaDistribucion {
     @Override
     public void crearDistribucion(Beneficiario beneficiario,
                                   Donacion donacion,
-                                  DTFechaHora fechaPreparacion,
-                                  DTFechaHora fechaEntrega,
+                                  Date fechaPreparacion,
+                                  Date fechaEntrega,
                                   EstadoDistribucion estado) {
         // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
         Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
@@ -28,6 +28,11 @@ public class AltaDistribucion implements IAltaDistribucion {
         donacion.addDistribucion(nuevaDist);
         beneficiario.addDistribucion(nuevaDist);
         // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.
+    }
+
+    @Override
+    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado) {
+
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.

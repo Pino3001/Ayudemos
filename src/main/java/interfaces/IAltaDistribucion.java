@@ -12,9 +12,17 @@ import types.DTFechaHora;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IAltaDistribucion {
+    // Crea una nueva distribución.
+    void crearDistribucion(Beneficiario beneficiario,
+                           Donacion donacion,
+                           Date fechaPreparacion,
+                           Date fechaEntrega,
+                           EstadoDistribucion estado);
+
     // Crea una nueva distribución.
     public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
     //

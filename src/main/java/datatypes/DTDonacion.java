@@ -1,14 +1,13 @@
 package datatypes;
 
-import types.DTFechaHora;
-import types.DateTime;
+import java.util.Date;
 
 public class DTDonacion {
     private final Integer id;
-    private final DTFechaHora fechaIngresada;
+    private final Date fechaIngresada;
 
     //Consutructor
-    public DTDonacion(Integer id, DTFechaHora fechaIngresada) {
+    public DTDonacion(Integer id, Date fechaIngresada) {
         this.id = id;//
         this.fechaIngresada = fechaIngresada;
     }
@@ -18,7 +17,7 @@ public class DTDonacion {
         return id;
     }
 
-    public DTFechaHora getFechaIngresada() {
+    public Date getFechaIngresada() {
         return fechaIngresada;
     }
 }

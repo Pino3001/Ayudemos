@@ -1,18 +1,11 @@
 package interfaces;
 
 
-
-import objects.Distribucion;
-import objects.Donacion;
-import types.DtDistribucion;
+import datatypes.DtDistribucion;
 import types.EstadoDistribucion;
-import types.DTFechaHora;
-import objects.Beneficiario;
 
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 
 public interface IDistribucion {
@@ -30,7 +23,7 @@ public interface IDistribucion {
     //public ArrayList<Distribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
 
 
-    public List<DtDistribucion> listarDistribucionesPorEstado (EstadoDistribucion estado);
+    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
 
     //public DtDistribucion obtenerDistribucion(EstadoDistribucion estado);
 

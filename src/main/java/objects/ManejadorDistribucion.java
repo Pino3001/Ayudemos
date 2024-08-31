@@ -1,8 +1,7 @@
 package objects;
 
-import datatypes.DTDonacion;
-import types.DTFechaHora;
-import types.DtDistribucion;
+import datatypes.DtDistribucion;
+import types.Barrio;
 import types.EstadoDistribucion;
 
 import java.util.ArrayList;
@@ -14,7 +13,8 @@ public class ManejadorDistribucion {
     private static ManejadorDistribucion instacia = null;
     private List<Distribucion> distribuciones = new ArrayList<>();
 
-    private ManejadorDistribucion() {}
+    private ManejadorDistribucion() {
+    }
 
     public static ManejadorDistribucion getInstance() {
         if (instacia == null)
@@ -24,21 +24,46 @@ public class ManejadorDistribucion {
     }
 
     public List<DtDistribucion> buscarDistribucionesPorEstado(EstadoDistribucion estado) {
-//        List<Distribucion> resultados = new ArrayList<>();
-          List<DtDistribucion> lista = new ArrayList<>();
-          for (Distribucion d : distribuciones) {
-                  // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-                  DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado());
+        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
+        for (Distribucion d : distribuciones) {
+            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
+            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
 
-              if (estado == null || d.getEstado().equals(estado)) {
-                  lista.add(dt);
-              }
-          }
-
+            if (estado == null || d.getEstado().equals(estado)) {
+                lista.add(dt);
+            }
+        }
 
         return lista;
     }
-      // Crea una nueva distribución.
+
+    // Retorna una lista de datatypes de todas las distribuciones del sistema.
+    public List<DtDistribucion> obtenerListaDistribuciones() {
+        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
+        for (Distribucion d : distribuciones) {
+            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
+            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
+            lista.add(dt);
+        }
+
+        return lista;
+    }
+
+    // Retorna una lista de datatypes de todas las distribuciones del sistema filtradas por zona.
+    public List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio) {
+        List<DtDistribucion> lista = new ArrayList<DtDistribucion>();
+        for (Distribucion d : distribuciones) {
+            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
+            if (d.getBeneficiario().getBarrio() == barrio) {
+                DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
+                lista.add(dt);
+            }
+        }
+
+        return lista;
+    }
+
+    // Crea una nueva distribución.
 //    @Override
 //    public void AltaDistribucion(Beneficiario beneficiario,
 //                                  Donacion donacion,
@@ -52,7 +77,6 @@ public class ManejadorDistribucion {
 //        beneficiario.addDistribucion(nuevaDist);
 //        // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.
 //    }
-
 
 
 }

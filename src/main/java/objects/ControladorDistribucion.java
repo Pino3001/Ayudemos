@@ -1,12 +1,9 @@
 package objects;
 
-//import objects.Distribucion;
+import datatypes.DtDistribucion;
 import interfaces.IDistribucion;
-import objects.ManejadorDistribucion;
-import objects.Distribucion;
-import types.DtDistribucion;
 import types.EstadoDistribucion;
-//import types.EstadoDistribucion;
+
 import java.util.List;
 
 public class ControladorDistribucion implements IDistribucion {
@@ -27,12 +24,10 @@ public class ControladorDistribucion implements IDistribucion {
 //
 
     @Override
-    public List<DtDistribucion> listarDistribucionesPorEstado (EstadoDistribucion estado){
-
+    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-
-
-        return md.buscarDistribucionesPorEstado(estado);
+        List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
+        return lista;
     }
 
 
@@ -47,7 +42,6 @@ public class ControladorDistribucion implements IDistribucion {
 //    return dtDistribucion;
 //
 //}
-
 
 
 //List<DtDistribucion> listarDistribucionesPorEstado (EstadoDistribucion estado);

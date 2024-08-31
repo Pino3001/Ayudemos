@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Date;
 import java.util.List;
 
 public class ModificarUsuarioGUI extends JFrame {
@@ -244,7 +245,7 @@ public class ModificarUsuarioGUI extends JFrame {
         buttonAceptarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DTFecha fecha = null;
+                Date fecha = null;
                 try {
                     if (textNombreBenef.getText().equals("") || textNombreBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");

@@ -1,25 +1,47 @@
 package objects;
 
+import persistencia.DistribucionID;
 import types.DTFechaHora;
 import types.EstadoDistribucion;
 
-import java.util.List;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@Entity
+@IdClass(DistribucionID.class)
 public class Distribucion {
-    private DTFechaHora fechaPreparacion;
-    private DTFechaHora fechaEntrega;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDateTime fechaPreparacion;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDateTime fechaEntrega;
+
     private EstadoDistribucion estado;
     //TODO: Hay que crear la dependencia a la Donacion, el Repartidor Y el Beneficiario!
 
     // Dependencias
     // Lista de donaciones de una distribución.
+    @Id
+    @ManyToOne
+    @JoinColumn(
+            insertable = false,
+            updatable = false
+    )
     private Donacion donacion;//
+
     // Una distribución está destinada a un beneficiario específico.
+    @Id
+    @ManyToOne
+    @JoinColumn(
+            insertable = false,
+            updatable = false
+    )
     private Beneficiario beneficiario;
 
     //Constructor
-    public Distribucion(DTFechaHora fechaPreparacion,
-                        DTFechaHora fechaEntrega,
+    public Distribucion(LocalDateTime fechaPreparacion,
+                        LocalDateTime fechaEntrega,
                         EstadoDistribucion estado,
                         Donacion donacion,
                         Beneficiario beneficiario) {
@@ -30,20 +52,24 @@ public class Distribucion {
         this.beneficiario = beneficiario;
     }
 
+    public Distribucion() {
+
+    }
+
     //Getters y Setters
-    public DTFechaHora getFechaPreparacion() {
+    public LocalDateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
 
-    public void setFechaPreparacion(DTFechaHora fechaPreparacion) {
+    public void setFechaPreparacion(LocalDateTime fechaPreparacion) {
         this.fechaPreparacion = fechaPreparacion;
     }
 
-    public DTFechaHora getFechaEntrega() {
+    public LocalDateTime getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(DTFechaHora fechaEntrega) {
+    public void setFechaEntrega(LocalDateTime fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 

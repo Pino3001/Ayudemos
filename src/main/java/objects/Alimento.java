@@ -2,6 +2,9 @@ package objects;
 
 import datatypes.DTAlimento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Alimento extends Donacion {
     private String descripcionProductos;//
     private int cantElementos;
@@ -11,6 +14,10 @@ public class Alimento extends Donacion {
         super(id);
         this.descripcionProductos = descripcionProductos;//
         this.cantElementos = cantElementos;
+    }
+
+    public Alimento() {
+
     }
 
     //Getters Y Setters
@@ -31,7 +38,7 @@ public class Alimento extends Donacion {
     }
 
     // Devuelvo un DTAlimento con mis datos.
-    public DTAlimento getDTAlimento(){
+    public DTAlimento getDTAlimento() {
         DTAlimento dtAlimento = new DTAlimento(this.getId(), this.getFechaIngresada(), this.descripcionProductos, this.cantElementos);
         return dtAlimento;
     }
