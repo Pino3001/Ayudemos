@@ -6,12 +6,14 @@
 package interfaces;
 
 import datatypes.DTDonacion;
+import datatypes.DtDistribucion;
 import objects.Beneficiario;
 import objects.Donacion;
-import types.DTFechaHora;
+import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,17 +21,21 @@ public interface IAltaDistribucion {
     // Crea una nueva distribución.
     void crearDistribucion(Beneficiario beneficiario,
                            Donacion donacion,
-                           Date fechaPreparacion,
-                           Date fechaEntrega,
+                           LocalDateTime fechaPreparacion,
+                           LocalDateTime fechaEntrega,
                            EstadoDistribucion estado);
 
-    // Crea una nueva distribución.
-    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
-    //
     // Retornar lista de beneficiarios para cargar el combobox.
     public List<DtBeneficiario> obtenerListaDtBeneficiarios();
 
     // Retornar lista de donaciones para cargar el combobox.
     public List<DTDonacion> obtenerListaDtDonaciones();
+
+    // Retorna una lista de DTDistribucion todas las distribuciones del sistema.
+    List<DtDistribucion> obtenerListaDistribuciones();
+
+    // Retorna una lista de DTDistribucion filtrada por la zona pasada por parámetro.
+    List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio);
+
 
 }

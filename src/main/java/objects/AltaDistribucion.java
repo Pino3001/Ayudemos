@@ -1,12 +1,13 @@
 package objects;
 
 import datatypes.DTDonacion;
+import datatypes.DtDistribucion;
 import interfaces.IAltaDistribucion;
-import types.DTFechaHora;
+import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 // Controlador Alta Distribución.
@@ -19,20 +20,14 @@ public class AltaDistribucion implements IAltaDistribucion {
     @Override
     public void crearDistribucion(Beneficiario beneficiario,
                                   Donacion donacion,
-                                  Date fechaPreparacion,
-                                  Date fechaEntrega,
+                                  LocalDateTime fechaPreparacion,
+                                  LocalDateTime fechaEntrega,
                                   EstadoDistribucion estado) {
         // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
         Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
         // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
         donacion.addDistribucion(nuevaDist);
         beneficiario.addDistribucion(nuevaDist);
-        // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.
-    }
-
-    @Override
-    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado) {
-
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
@@ -52,5 +47,21 @@ public class AltaDistribucion implements IAltaDistribucion {
         ManejadorDonacion md = ManejadorDonacion.getInstance();
         donaciones = md.obtenerDonaciones();
         return donaciones;
+    }
+
+    @Override
+    // Retorna una lista de DTDistribucion todas las distribuciones del sistema.
+    public List<DtDistribucion> obtenerListaDistribuciones() {
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        List<DtDistribucion> lista = md.obtenerListaDistribuciones();
+        return lista;
+    }
+
+    @Override
+    // Retorna una lista de DTDistribucion filtrada por la zona pasada por parámetro.
+    public List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio) {
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        List<DtDistribucion> lista = md.obtenerListaDistribucionesZona(barrio);
+        return lista;
     }
 }
