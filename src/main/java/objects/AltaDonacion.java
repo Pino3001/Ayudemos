@@ -55,6 +55,12 @@ public class AltaDonacion implements IAltaDonacion {
     }
 
     @Override
+    public  List<DTDonacion> listarDonaciones() {
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        return manejadorDonacion.obtenerDonaciones();
+    }
+
+    @Override
     public List<DTAlimento> listarAlimentos(){
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         return manejadorDonacion.listarAlimentosManejador();

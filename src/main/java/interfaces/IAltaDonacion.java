@@ -16,4 +16,6 @@ public interface IAltaDonacion {
     List<DTAlimento> listarAlimentos();
 
     List<DTArticulo> listarArticulos();
+
+    List<DTDonacion> listarDonaciones();
 }

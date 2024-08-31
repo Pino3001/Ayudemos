@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.componentes.ComponenteCalendario">
+  <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="48" y="54" width="650" height="450"/>
+    </constraints>
+    <properties>
+      <background color="-16178384"/>
+      <minimumSize width="400" height="320"/>
+      <preferredSize width="400" height="320"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="d4acf" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="25"/>
+            <preferred-size width="-1" height="25"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16178384"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="8dba6" class="javax.swing.JLabel" binding="textAnio">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+                <preferred-size width="-1" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Roboto Light" size="18" style="0"/>
+              <foreground color="-1537"/>
+              <horizontalAlignment value="0"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="4da7f" class="javax.swing.JButton" binding="prevAnio">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="25"/>
+                <preferred-size width="50" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <focusPainted value="false"/>
+              <font name="Segoe Script" size="18" style="1"/>
+              <foreground color="-1537"/>
+              <horizontalTextPosition value="11"/>
+              <text value="&lt;"/>
+            </properties>
+          </component>
+          <component id="9aac5" class="javax.swing.JButton" binding="nextAnio">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="25"/>
+                <preferred-size width="50" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <focusPainted value="false"/>
+              <font name="Segoe Script" size="18" style="1"/>
+              <foreground color="-1537"/>
+              <label value="&gt;"/>
+              <text value="&gt;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="58880" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="25"/>
+            <preferred-size width="-1" height="25"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16178384"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="38678" class="javax.swing.JButton" binding="prevMes">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="25"/>
+                <preferred-size width="50" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <focusPainted value="false"/>
+              <font name="Segoe Script" size="18" style="1"/>
+              <foreground color="-1537"/>
+              <text value="&lt;"/>
+            </properties>
+          </component>
+          <component id="e9562" class="javax.swing.JLabel" binding="textMes">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+                <preferred-size width="-1" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Roboto Light" size="18" style="0"/>
+              <foreground color="-1537"/>
+              <horizontalAlignment value="0"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="85b13" class="javax.swing.JButton" binding="nextMes">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="25"/>
+                <preferred-size width="50" height="25"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <focusPainted value="false"/>
+              <font name="Segoe Script" size="18" style="1"/>
+              <foreground color="-1537"/>
+              <label value="&gt;"/>
+              <text value="&gt;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="4fd18" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1646362"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="58068" binding="panelBotondias" layout-manager="GridLayoutManager" row-count="7" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1646362"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="92695" class="javax.swing.JLabel" binding="textDiaDomingo">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-1899000"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Dom"/>
+                </properties>
+              </component>
+              <component id="44e36" class="javax.swing.JLabel" binding="textDiaLunes">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Lun"/>
+                </properties>
+              </component>
+              <component id="40b6" class="javax.swing.JLabel" binding="textDiaMartes">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Mar"/>
+                </properties>
+              </component>
+              <component id="74e65" class="javax.swing.JLabel" binding="textDiaMiercoles">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Mier"/>
+                </properties>
+              </component>
+              <component id="2d9c7" class="javax.swing.JLabel" binding="textdiaJueves">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Juev"/>
+                </properties>
+              </component>
+              <component id="3376" class="javax.swing.JLabel" binding="textDiaViernes">
+                <constraints>
+                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Vier"/>
+                </properties>
+              </component>
+              <component id="8497a" class="javax.swing.JLabel" binding="textdiaSabado">
+                <constraints>
+                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="11" style="2"/>
+                  <foreground color="-16178384"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Sab"/>
+                </properties>
+              </component>
+              <component id="9d71c" class="javax.swing.JButton" binding="boton1">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="4dda8" class="javax.swing.JButton" binding="boton2">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <hideActionText value="false"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="f0e46" class="javax.swing.JButton" binding="boton3">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="16aab" class="javax.swing.JButton" binding="boton4">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="7a3d0" class="javax.swing.JButton" binding="boton5">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e9e41" class="javax.swing.JButton" binding="boton6">
+                <constraints>
+                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="650c" class="javax.swing.JButton" binding="boton7">
+                <constraints>
+                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="ce055" class="javax.swing.JButton" binding="boton8">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="9a161" class="javax.swing.JButton" binding="boton9">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="27313" class="javax.swing.JButton" binding="boton10">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="ef425" class="javax.swing.JButton" binding="boton11">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="d1a3c" class="javax.swing.JButton" binding="boton12">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="72d5a" class="javax.swing.JButton" binding="boton13">
+                <constraints>
+                  <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="acd07" class="javax.swing.JButton" binding="boton14">
+                <constraints>
+                  <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="ac1dc" class="javax.swing.JButton" binding="boton15">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="fe373" class="javax.swing.JButton" binding="boton16">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="57e37" class="javax.swing.JButton" binding="boton17">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="37d18" class="javax.swing.JButton" binding="boton18">
+                <constraints>
+                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e902d" class="javax.swing.JButton" binding="boton19">
+                <constraints>
+                  <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e3d1e" class="javax.swing.JButton" binding="boton20">
+                <constraints>
+                  <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="a7e3d" class="javax.swing.JButton" binding="boton21">
+                <constraints>
+                  <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="4a8c8" class="javax.swing.JButton" binding="boton22">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="5b5b0" class="javax.swing.JButton" binding="boton23">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e7fe9" class="javax.swing.JButton" binding="boton24">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="69b82" class="javax.swing.JButton" binding="boton25">
+                <constraints>
+                  <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="c8cfb" class="javax.swing.JButton" binding="boton26">
+                <constraints>
+                  <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="43104" class="javax.swing.JButton" binding="boton28">
+                <constraints>
+                  <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="f9b51" class="javax.swing.JButton" binding="boton29">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="51a46" class="javax.swing.JButton" binding="boton30">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="b3bc6" class="javax.swing.JButton" binding="boton31">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="c27a0" class="javax.swing.JButton" binding="boton32">
+                <constraints>
+                  <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="cb9f0" class="javax.swing.JButton" binding="boton33">
+                <constraints>
+                  <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="cb28c" class="javax.swing.JButton" binding="boton34">
+                <constraints>
+                  <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e2428" class="javax.swing.JButton" binding="boton35">
+                <constraints>
+                  <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="7cc8d" class="javax.swing.JButton" binding="boton36">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="84ea4" class="javax.swing.JButton" binding="boton37">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="1b257" class="javax.swing.JButton" binding="boton38">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="3fe44" class="javax.swing.JButton" binding="boton39">
+                <constraints>
+                  <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="8407e" class="javax.swing.JButton" binding="boton40">
+                <constraints>
+                  <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="false"/>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="7c811" class="javax.swing.JButton" binding="boton41">
+                <constraints>
+                  <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="91f5d" class="javax.swing.JButton" binding="boton42">
+                <constraints>
+                  <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="46648" class="javax.swing.JButton" binding="boton27">
+                <constraints>
+                  <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-16178384"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="bf107" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1646362"/>
+              <font name="Roboto Light" size="14" style="0"/>
+              <foreground color="-1537"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="d5d5b" class="javax.swing.JButton" binding="hoyButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="90" height="25"/>
+                    <preferred-size width="90" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="12" style="0"/>
+                  <foreground color="-1537"/>
+                  <text value="Hoy"/>
+                </properties>
+              </component>
+              <hspacer id="67988">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="185ad" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="90" height="25"/>
+                    <preferred-size width="90" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <font name="Roboto Light" size="12" style="0"/>
+                  <foreground color="-1537"/>
+                  <text value="Cancelar"/>
+                </properties>
+              </component>
+              <hspacer id="9f5d6">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="1b928">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
