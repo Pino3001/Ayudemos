@@ -1,5 +1,6 @@
 package objects;
 
+import datatypes.DTArticulo;
 import datatypes.DtBeneficiario;
 import jakarta.persistence.*;
 import types.Barrio;
@@ -105,7 +106,9 @@ public class Beneficiario extends Usuario {
         distribucion.setBeneficiario(null); // Mantener la relación bidireccional
     }
 
-    public DtBeneficiario getDTBeneficiario() {
+    //Devuelvo un DtBeneficiario con mis datos.
+    @Override
+    public DtBeneficiario getDtUsuario() {
         // Conversión correcta de la fecha
         return new DtBeneficiario(
                 this.getId(),

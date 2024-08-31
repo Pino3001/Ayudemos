@@ -94,7 +94,7 @@ public class ModificarUsuarioGUIJuan extends JPanel {
             usuario.setMail(nuevoEmail);
 
             try {
-                altaUsuario.actualizarUsuario(usuario);
+                //altaUsuario.actualizarUsuario(usuario);
                 JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
                 actualizarListaUsuarios();
             } catch (IllegalArgumentException ex) {
