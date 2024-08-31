@@ -48,7 +48,6 @@ public class Alimento extends Donacion {
     // Devuelvo un DTAlimento con mis datos.
     @Override
     public DTAlimento getDTDonacion() {
-        DTAlimento dtAlimento = new DTAlimento(this.getId(), this.getFechaIngresada(), this.descripcionProductos, this.cantElementos);
-        return dtAlimento;
+        return new DTAlimento(this.getId(), this.getFechaIngresada(), this.descripcionProductos, this.cantElementos);
     }
 }

@@ -10,7 +10,7 @@ import objects.Usuario;
 
 public class ModificarUsuarioGUIJuan extends JPanel {
 
-    private JComboBox<String> userComboBox;
+/*    private JComboBox<String> userComboBox;
     private JTextField nombreField;
     private JTextField emailField;
     private JButton updateButton;
@@ -101,5 +101,5 @@ public class ModificarUsuarioGUIJuan extends JPanel {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
+    }*/
 }

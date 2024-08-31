@@ -18,6 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AltaUsuarioUI extends JFrame {
@@ -123,7 +124,7 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (textNumeroLicencia.getText().equals("Ingrese la Licencia...") || textNumeroLicencia.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        DtUsuario dt = new DtRepartidor(textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
+                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         altaUsuario.agregarUsuario(dt);
                         JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -141,7 +142,7 @@ public class AltaUsuarioUI extends JFrame {
         buttonAceptarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Date fecha = null;
+                LocalDate fecha = null;
                 try {
                     if (textNombreBenef.getText().equals("Ingrese el Nombre...") || textNombreBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
@@ -154,7 +155,7 @@ public class AltaUsuarioUI extends JFrame {
                     } else {
                         fecha = altaUsuario.parseFecha(textFechaNaci.getText());
                         altaUsuario.validarEmail(texteMailBenef.getText());
-                        DtUsuario dt = new DtBeneficiario(textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
+                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
                         altaUsuario.agregarUsuario(dt);
                         JOptionPane.showMessageDialog(null, "Se ha creado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
