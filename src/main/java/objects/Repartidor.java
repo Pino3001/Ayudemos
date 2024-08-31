@@ -1,45 +1,45 @@
 package objects;
 
 import datatypes.DtRepartidor;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("R")
 public class Repartidor extends Usuario {
-    private String numeroLicencia;
-    //Crear Dependencias
 
-    //Constructor
-    public Repartidor(String nombre, String mail, String numeroLicencia, Integer id) {
-        super(nombre, mail, id);
+    @Column(nullable = false)
+    private String numeroLicencia;
+
+    // Constructor completo
+    public Repartidor(String nombre, String mail, String numeroLicencia) {
+        super(nombre, mail);
         this.numeroLicencia = numeroLicencia;
     }
 
-    public Repartidor(String nombre, String mail, String numeroLicencia) {
+    // Constructor sin argumentos requerido por JPA
+    protected Repartidor() {
+        super();
     }
 
-    public DtRepartidor getDTRepartidor() {
-        return new DtRepartidor(
-                this.getNombre(),
-                this.getMail(),
-                this.getNumeroLicencia()
-        );
-    }
-
-
-    public Repartidor() {
-
-    }
-
-
-    //Getters Y Setters
+    // Getters y Setters
     public String getNumeroLicencia() {
-        return numeroLicencia;//
+        return numeroLicencia;
     }
 
     public void setNumeroLicencia(String numeroLicencia) {
         this.numeroLicencia = numeroLicencia;
+    }
+
+    // Método para obtener un DTO
+    public DtRepartidor getDTRepartidor() {
+        return new DtRepartidor(
+                this.getId(),
+                this.getNombre(),
+                this.getMail(),
+                this.getNumeroLicencia()
+        );
     }
 }

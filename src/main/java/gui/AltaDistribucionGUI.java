@@ -20,6 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 public class AltaDistribucionGUI extends JFrame {
@@ -42,8 +43,88 @@ public class AltaDistribucionGUI extends JFrame {
     public AltaDistribucionGUI(IAltaUsuario altaUsuario, IAltaDonacion altaDonacion, IAltaDistribucion altaDistribucion) {
         this.altaDonacion = altaDonacion;
         this.altaUsuario = altaUsuario;
+        this.altaDistribucion = altaDistribucion;
         aplicarEstilosComponentes();
         cargarComboBox();
+        actionBotonCalendario();
+        actionAceptarCancelar();
+    }
+
+    // Infla en componente creado en el form
+    private void createUIComponents() {
+        this.background = new JPanel();
+        setContentPane(background);
+        setSize(450, 500);
+    }
+
+    //Aplica Estilos a los componentes
+    private void aplicarEstilosComponentes() {
+        new ComponenteComboBox(comboDonacion);
+        new ComponenteComboBox(comboEstado);
+        new ComponenteComboBox(comboBeneficiario);
+        new ComponenteTextField(textFechaEntrega, "--/--/----");
+        new ComponenteTextField(textFechaPrepara, "--/--/----");
+    }
+
+    // Cargar comboBox
+    private void cargarComboBox() {
+        java.util.List<DtBeneficiario> dtBeneficiarioList = altaUsuario.listarBeneficiarios();
+        List<DTDonacion> dtDonacionList = altaDonacion.listarDonaciones();
+
+        // Cargo con los beneficiarios
+        for (DtBeneficiario dtBeneficiario : dtBeneficiarioList) {
+            comboBeneficiario.addItem(dtBeneficiario);
+        }
+
+        // Cargo con las donaciones
+        for (DTDonacion dtDonacion : dtDonacionList) {
+            comboDonacion.addItem(dtDonacion);
+        }
+
+        // Cargo con los posibles estados
+        comboEstado.setSelectedItem(EstadoDistribucion.PENDIENTE);
+        for (EstadoDistribucion estadoDistribucion : EstadoDistribucion.values()) {
+            comboEstado.addItem(estadoDistribucion);
+        }
+    }
+
+    // Comportamiento Boton Aceptar-Cancelar
+    private void actionAceptarCancelar() {
+        buttonAceptarBenef.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (comboBeneficiario.getSelectedItem() == null) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (comboDonacion.getSelectedItem() == null) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (comboEstado.getSelectedItem() == null) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (textFechaPrepara.getText().equals("--/--/----") && textFechaPrepara.getText().isEmpty()) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (textFechaEntrega.getText().equals("--/--/----") && textFechaEntrega.getText().isEmpty()) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else {
+                        Date fechaPrepara = altaUsuario.parseFecha(textFechaPrep.getText());
+                        Date fechaEntrega = altaUsuario.parseFecha(textFechaEntrega.getText());
+                        altaDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaPrepara, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                        JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (CamposIncompletosExeption | FormatoFechaIExeption ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        buttonCancelarBenef.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+    }
+
+    // Comportamiento de los botones del calendario
+    private void actionBotonCalendario() {
         buttonCalendarioPrepara.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,74 +163,6 @@ public class AltaDistribucionGUI extends JFrame {
                 }
             }
         });
-        buttonAceptarBenef.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (comboBeneficiario.getSelectedItem() == null) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (comboDonacion.getSelectedItem() == null) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (comboEstado.getSelectedItem() == null) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textFechaPrepara.getText().equals("--/--/----") && textFechaPrepara.getText().isEmpty()) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textFechaEntrega.getText().equals("--/--/----") && textFechaEntrega.getText().isEmpty()) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else {
-                       DTFecha fechaPrepara = altaUsuario.parseFecha(textFechaPrep.getText());
-                       DTFecha fechaEntrega = altaUsuario.parseFecha(textFechaEntrega.getText());
-                       altaDistribucion.crearDistribucion();
-                    }
-                } catch (CamposIncompletosExeption | FormatoFechaIExeption ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        buttonCancelarBenef.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
-
-    //Aplica Estilos a los componentes
-    private void aplicarEstilosComponentes() {
-        new ComponenteComboBox(comboDonacion);
-        new ComponenteComboBox(comboEstado);
-        new ComponenteComboBox(comboBeneficiario);
-        new ComponenteTextField(textFechaEntrega, "--/--/----");
-        new ComponenteTextField(textFechaPrepara, "--/--/----");
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        this.background = new JPanel();
-        setContentPane(background);
-        setSize(450, 500);
-    }
-
-    // Cargar comboBoxs
-    private void cargarComboBox() {
-        java.util.List<DtBeneficiario> dtBeneficiarioList = altaUsuario.listarBeneficiarios();
-        List<DTDonacion> dtDonacionList = altaDonacion.listarDonaciones();
-
-        // Cargo con los beneficiarios
-        for (DtBeneficiario dtBeneficiario : dtBeneficiarioList) {
-            comboBeneficiario.addItem(dtBeneficiario);
-        }
-
-        // Cargo con las donaciones
-        for (DTDonacion dtDonacion : dtDonacionList) {
-            comboDonacion.addItem(dtDonacion);
-        }
-
-        // Cargo con los posibles estados
-        comboEstado.setSelectedItem(EstadoDistribucion.PENDIENTE);
-        for (EstadoDistribucion estadoDistribucion : EstadoDistribucion.values()) {
-            comboEstado.addItem(estadoDistribucion);
-        }
     }
 
     public static void main(String[] args) {

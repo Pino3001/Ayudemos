@@ -2,6 +2,7 @@ package objects;
 
 import datatypes.DTDonacion;
 import interfaces.IAltaDistribucion;
+import types.DTFecha;
 import types.DTFechaHora;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
@@ -17,23 +18,27 @@ public class AltaDistribucion implements IAltaDistribucion {
 
     // Crea una nueva distribución.
     @Override
-    public void crearDistribucion(Beneficiario beneficiario,
-                                  Donacion donacion,
+    public void crearDistribucion(DtBeneficiario beneficiario,
+                                  DTDonacion donacion,
                                   Date fechaPreparacion,
                                   Date fechaEntrega,
                                   EstadoDistribucion estado) {
-        // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
+
+        //!!!!ACA tenemos que crear una distribucion a partir de datatypes, porque no se pueden pasar objetos, hay que buscarlos en el sistema y agregarselos al constructos
+/*        // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
         Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
         // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
         donacion.addDistribucion(nuevaDist);
         beneficiario.addDistribucion(nuevaDist);
-        // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.
+        // !!!!! SI IMPLEMENTAMOS UN MANEJADOR DE DISTRIBUCIONES ACA TENDRIAMOS QUE HACER UN PUSH A ESE MANEJADOR.*/
     }
 
+/*
     @Override
     public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado) {
 
     }
+*/
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
     @Override

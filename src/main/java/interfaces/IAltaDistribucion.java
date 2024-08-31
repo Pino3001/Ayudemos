@@ -8,6 +8,7 @@ package interfaces;
 import datatypes.DTDonacion;
 import objects.Beneficiario;
 import objects.Donacion;
+import types.DTFecha;
 import types.DTFechaHora;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
@@ -17,15 +18,15 @@ import java.util.List;
 
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
-    void crearDistribucion(Beneficiario beneficiario,
-                           Donacion donacion,
+    void crearDistribucion(DtBeneficiario beneficiario,
+                           DTDonacion donacion,
                            Date fechaPreparacion,
                            Date fechaEntrega,
                            EstadoDistribucion estado);
 
     // Crea una nueva distribución.
-    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
-    //
+/*    public void crearDistribucion(Beneficiario beneficiario, Donacion donacion, DTFechaHora fechaPreparacion, DTFechaHora fechaEntrega, EstadoDistribucion estado);
+    //*/
     // Retornar lista de beneficiarios para cargar el combobox.
     public List<DtBeneficiario> obtenerListaDtBeneficiarios();
 

@@ -1,32 +1,30 @@
 package objects;
 
 
-import javax.persistence.*;
+import datatypes.DTDonacion;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-// SINGLE_TABLE mete tanto articulos como alimentos en la misma tabla.
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // SINGLE_TABLE mete tanto articulos como alimentos en la misma tabla.
 public abstract class Donacion {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automatico
     private Integer id;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaIngresada; // cambiado de DateTime a LocalDateTime.
+    @Column(nullable = false)
+    private LocalDate fechaIngresada; // cambiado de DateTime a LocalDateTime.
 
     @OneToMany(mappedBy = "distribuciones", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Distribucion> distribuciones;
+    private List<Distribucion> distribuciones = new ArrayList<>();
 
     //Constructor
-    public Donacion(Integer id) {
-        this.id = id;//
-        this.fechaIngresada = new Date(); // TODO: Arreglar
-    }
-
     public Donacion() {
+        this.fechaIngresada = LocalDate.now();
     }
 
     // Getters Y Setters
@@ -34,19 +32,17 @@ public abstract class Donacion {
         return id;
     }
 
-    // TODO: Ver si se quiere poder modificar el Id, si no hay que dejarlo como final sin setter.
-    public void setId(int id) {
-        this.id = id;
-    }
 
-
-    public Date getFechaIngresada() {
+    public LocalDate getFechaIngresada() {
         return fechaIngresada;
     }
 
-    public void setFechaIngresada(Date fechaIngresada) {
+    public void setFechaIngresada(LocalDate fechaIngresada) {
         this.fechaIngresada = fechaIngresada;
     }
+
+    // Metodo abtracto para pasarse como datatype
+    public abstract DTDonacion getDTDonacion();
 
     //Metodos de clase:
     //Inserta una distribucion a la lista de ditribuciones asociadas

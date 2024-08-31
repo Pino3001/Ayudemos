@@ -1,23 +1,31 @@
 package objects;
 
 import datatypes.DTAlimento;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-import javax.persistence.Entity;
+import java.time.LocalDate;
+
 
 @Entity
+@DiscriminatorValue("alimento")
 public class Alimento extends Donacion {
-    private String descripcionProductos;//
+
+    @Column(nullable = false, length = 200)
+    private String descripcionProductos;
+
+    @Column(nullable = false)
     private int cantElementos;
 
     //Constructor
-    public Alimento(Integer id, String descripcionProductos, int cantElementos) {
-        super(id);
+    public Alimento(String descripcionProductos, int cantElementos) {
+        super();
         this.descripcionProductos = descripcionProductos;//
         this.cantElementos = cantElementos;
     }
 
-    public Alimento() {
-
+    protected Alimento() {
     }
 
     //Getters Y Setters
@@ -38,7 +46,8 @@ public class Alimento extends Donacion {
     }
 
     // Devuelvo un DTAlimento con mis datos.
-    public DTAlimento getDTAlimento() {
+    @Override
+    public DTAlimento getDTDonacion() {
         DTAlimento dtAlimento = new DTAlimento(this.getId(), this.getFechaIngresada(), this.descripcionProductos, this.cantElementos);
         return dtAlimento;
     }

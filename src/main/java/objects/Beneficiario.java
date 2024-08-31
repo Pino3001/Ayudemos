@@ -1,62 +1,52 @@
 package objects;
 
 import datatypes.DtBeneficiario;
-import types.DTFecha;
-import types.EstadoBeneficiario;
+import jakarta.persistence.*;
 import types.Barrio;
+import types.EstadoBeneficiario;
 
-import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @DiscriminatorValue("B")
 public class Beneficiario extends Usuario {
+
+    @Column(nullable = false)
     private String direccion;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    @Column(nullable = false)
+    private LocalDate fechaNacimiento;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private EstadoBeneficiario estado;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Barrio barrio;
 
-    @OneToMany(mappedBy = "distribuciones", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Distribucion> distribuciones;
+    @OneToMany(mappedBy = "beneficiario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Distribucion> distribuciones = new ArrayList<>();
 
-    // Constructor
-    public Beneficiario(String nombre, String mail, String direccion, Date fechaNacimiento, EstadoBeneficiario estado, Barrio barrio, Integer id) {
-        super(nombre, mail, id);//
-        if (direccion == null || direccion.trim().isEmpty()) {
-            throw new IllegalArgumentException("La dirección no puede estar vacía.");
-        }
-        if (fechaNacimiento == null) {
-            throw new IllegalArgumentException("La fecha de nacimiento no puede ser nula.");
-        }
-        this.direccion = direccion;
-        this.fechaNacimiento = fechaNacimiento;
+    // Constructor principal
+    public Beneficiario(String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
+        super(nombre, mail);
+        setDireccion(direccion);  // Usar setter para validación
+        setFechaNacimiento(fechaNacimiento);  // Usar setter para validación
         this.estado = estado;
         this.barrio = barrio;
     }
 
-    public Beneficiario(String nombre, String mail, String direccion, Date fechaNacimientoDate, EstadoBeneficiario estado, Barrio barrio) {
-    }
-
-    public DtBeneficiario getDTBeneficiario() {
-        return new DtBeneficiario(
-                this.getNombre(),
-                this.getMail(),
-                this.getDireccion(),
-                new Date(this.getFechaNacimiento().getDate(), this.getFechaNacimiento().getMonth() + 1, this.getFechaNacimiento().getYear() + 1900),
-                this.getEstado(),
-                this.getBarrio()
-        );
-    }
-
-    public Beneficiario() {
+    // Constructor protegido por defecto
+    protected Beneficiario() {
         super();
     }
 
-    // Getters y Setters
+    // Métodos Getter y Setter
     public String getDireccion() {
         return direccion;
     }
@@ -68,11 +58,11 @@ public class Beneficiario extends Usuario {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         if (fechaNacimiento == null) {
             throw new IllegalArgumentException("La fecha de nacimiento no puede ser nula.");
         }
@@ -95,9 +85,36 @@ public class Beneficiario extends Usuario {
         this.barrio = barrio;
     }
 
-    // Metodos de clase:
-    // Inserta una distribucion a la lista de ditribuciones asociadas
+    public List<Distribucion> getDistribuciones() {
+        return distribuciones;
+    }
+
+    public void setDistribuciones(List<Distribucion> distribuciones) {
+        this.distribuciones = distribuciones;
+    }
+
+    // Método para añadir una distribución
     public void addDistribucion(Distribucion distribucion) {
         distribuciones.add(distribucion);
+        distribucion.setBeneficiario(this);  // Mantener la consistencia bidireccional
+    }
+
+    // Remueve una distribucion de la lista
+    public void removeDistribucion(Distribucion distribucion) {
+        distribuciones.remove(distribucion);
+        distribucion.setBeneficiario(null); // Mantener la relación bidireccional
+    }
+
+    public DtBeneficiario getDTBeneficiario() {
+        // Conversión correcta de la fecha
+        return new DtBeneficiario(
+                this.getId(),
+                this.getNombre(),
+                this.getMail(),
+                this.getDireccion(),
+                this.getFechaNacimiento(),
+                this.getEstado(),
+                this.getBarrio()
+        );
     }
 }

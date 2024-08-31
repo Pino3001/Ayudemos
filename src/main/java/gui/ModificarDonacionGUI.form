@@ -714,7 +714,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="moda.png"/>
+              <icon value="images/moda.png"/>
               <label value="Articulo"/>
               <text value="Articulo"/>
             </properties>
@@ -736,7 +736,7 @@
               <borderPainted value="false"/>
               <font name="Roboto Light" size="18" style="0"/>
               <foreground color="-16178384"/>
-              <icon value="cesta-de-la-compra.png"/>
+              <icon value="images/cesta-de-la-compra.png"/>
               <label value="Alimento"/>
               <text value="Alimento"/>
             </properties>
