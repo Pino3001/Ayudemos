@@ -3,13 +3,16 @@ package objects;
 import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import persistencia.Conexion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManejadorUsuario {
-    private static ManejadorUsuario instance = null;//
-    private List<Usuario> usuarios = new ArrayList<>();
+    private static ManejadorUsuario instance = null;
 
     private ManejadorUsuario() {
     }
@@ -21,51 +24,62 @@ public class ManejadorUsuario {
         return instance;
     }
 
-    // Retorna una lista datatypes de todas los usuarios del sistema.
-    public List<DtUsuario> obtenerUsuarios() {
-        List<DtUsuario> lista = new ArrayList<DtUsuario>();
-        DtUsuario dt = null;
-        for (Usuario u : usuarios) {
-            // creamos el dt y lo añadimos a la lista que retornaremos al terminar.
-            if (u instanceof Beneficiario ){
-                dt = new DtBeneficiario(u.getNombre(), u.getMail(), ((Beneficiario) u).getDireccion(), ((Beneficiario) u).getFechaNacimiento(), ((Beneficiario) u).getEstado(), ((Beneficiario) u).getBarrio());
-                lista.add(dt);
-            } else {
-                dt = new DtRepartidor(u.getNombre(), u.getMail(), ((Repartidor) u).getNumeroLicencia());
-                lista.add(dt);
-            }
-        }
-        return lista;
-    }
-
-    public List<DtBeneficiario> obtenerBeneficiarios() {
-        List<DtBeneficiario> list = new ArrayList<DtBeneficiario>();
-        for (Usuario u : usuarios) {
-            if (u instanceof Beneficiario ){
-                DtBeneficiario dtBeneficiario = new DtBeneficiario(u.getNombre(), u.getMail(), ((Beneficiario) u).getDireccion(), ((Beneficiario) u).getFechaNacimiento(), ((Beneficiario) u).getEstado(), ((Beneficiario) u).getBarrio());
-                list.add(dtBeneficiario);
-            }
-        }
-        return list;
-    }
-
-    public List<DtRepartidor> obtenerRepartidores() {
-        List<DtRepartidor> list = new ArrayList<DtRepartidor>();
-        for (Usuario u : usuarios) {
-            if (u instanceof Repartidor ){
-                DtRepartidor dtRepartidor = new DtRepartidor(u.getNombre(), u.getMail(), ((Repartidor) u).getNumeroLicencia());
-                list.add(dtRepartidor);
-            }
-        }
-        return list;
-    }
-
     // Agrega donacion a la lista de usuarios existentes.
     public void agregarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            em.persist(usuario);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
-    public boolean verificarMail(String mail) {
+    // Modifica una instancia de usuario con los datos pasados en el dtUsuario
+    public void actualizarUsuario(Usuario usuario, DtUsuario dtUsuario) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            usuario.setNombre(dtUsuario.getNombre());
+            usuario.setMail(dtUsuario.getMail());
+            if (usuario instanceof Beneficiario beneficiario && dtUsuario instanceof DtBeneficiario) {
+                beneficiario.setDireccion(((DtBeneficiario) dtUsuario).getDireccion());
+                beneficiario.setFechaNacimiento(((DtBeneficiario) dtUsuario).getFechaNacimiento());
+                beneficiario.setEstado(((DtBeneficiario) dtUsuario).getEstado());
+                beneficiario.setBarrio(((DtBeneficiario) dtUsuario).getBarrio());
+            } else if (usuario instanceof Repartidor repartidor && dtUsuario instanceof DtRepartidor) {
+                repartidor.setNumeroLicencia(((DtRepartidor) dtUsuario).getNumeroLicencia());
+            }
+        }catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        }finally {
+            em.close();
+        }
+    }
+
+    // Busca y devuelve un usuario con el id pasado
+   public Usuario buscarUsuario(Integer id){
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+       return em.find(Usuario.class, id);
+   }
+
+
+/*    public boolean verificarMail(String mail) {
         boolean existe = false;
         for(Usuario u : usuarios) {
             if(u.getMail().equals(mail)) {
@@ -74,7 +88,57 @@ public class ManejadorUsuario {
             }
         }
         return existe;
+    }*/
+
+    // Devuelve el usuario con el eMail pasado
+    public DtUsuario obtenerUsuarioEmail(String email){
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.find(Usuario.class, email).getDtUsuario();
     }
+
+    // Devuelve el usuario con el ID pasado
+    public DtUsuario obtenerUsuarioID(Integer id){
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.find(Usuario.class, id).getDtUsuario();
+    }
+
+    // Retorna una lista datatypes de todas los usuarios del sistema.
+    public List<DtUsuario> obtenerUsuarios() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.createQuery("SELECT u FROM Usuario u", Usuario.class)
+                .getResultList()
+                .stream()
+                .map(Usuario::getDtUsuario)
+                .collect(Collectors.toList());
+    }
+
+    public List<DtBeneficiario> obtenerBeneficiarios() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.createQuery("SELECT b FROM Beneficiario b", Beneficiario.class)
+                .getResultList()
+                .stream()
+                .map(Beneficiario::getDtUsuario)
+                .collect(Collectors.toList());
+    }
+
+    public List<DtRepartidor> obtenerRepartidores() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.createQuery("SELECT r FROM Repartidor r", Repartidor.class)
+                .getResultList()
+                .stream()
+                .map(Repartidor::getDtUsuario)
+                .collect(Collectors.toList());
+    }
+
+
+
+
+
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
 //        DtBeneficiario dt = null;

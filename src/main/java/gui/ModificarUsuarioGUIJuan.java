@@ -10,7 +10,7 @@ import objects.Usuario;
 
 public class ModificarUsuarioGUIJuan extends JPanel {
 
-    private JComboBox<String> userComboBox;
+/*    private JComboBox<String> userComboBox;
     private JTextField nombreField;
     private JTextField emailField;
     private JButton updateButton;
@@ -94,12 +94,12 @@ public class ModificarUsuarioGUIJuan extends JPanel {
             usuario.setMail(nuevoEmail);
 
             try {
-                altaUsuario.actualizarUsuario(usuario);
+                //altaUsuario.actualizarUsuario(usuario);
                 JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
                 actualizarListaUsuarios();
             } catch (IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
+    }*/
 }

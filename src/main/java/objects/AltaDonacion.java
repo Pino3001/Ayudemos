@@ -10,6 +10,7 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 public class AltaDonacion implements IAltaDonacion {
+    public AltaDonacion() {super();}
 
     //Crea una nueva Donación
     @Override

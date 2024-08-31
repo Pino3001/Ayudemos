@@ -13,7 +13,7 @@ import java.util.List;
 // Controlador Alta Distribución.
 public class AltaDistribucion implements IAltaDistribucion {
     public AltaDistribucion() {
-        super();//
+        super();
     }
 
     // Crea una nueva distribución.
@@ -53,15 +53,13 @@ public class AltaDistribucion implements IAltaDistribucion {
     // Retorna una lista de DTDistribucion todas las distribuciones del sistema.
     public List<DtDistribucion> obtenerListaDistribuciones() {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        List<DtDistribucion> lista = md.obtenerListaDistribuciones();
-        return lista;
+        return md.obtenerListaDistribuciones();
     }
 
     @Override
     // Retorna una lista de DTDistribucion filtrada por la zona pasada por parámetro.
     public List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio) {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        List<DtDistribucion> lista = md.obtenerListaDistribucionesZona(barrio);
-        return lista;
+        return md.obtenerListaDistribucionesZona(barrio);
     }
 }

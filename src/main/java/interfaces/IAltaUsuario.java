@@ -24,15 +24,15 @@ public interface IAltaUsuario {
     void modificarUsuario(DtUsuario dtUsuario);
 
     // Operación para eliminar un usuario por su email
-    void eliminarUsuario(String id);
+   //void eliminarUsuario(DtUsuario dtUsuario);
 
     // Operación para obtener un usuario por su email
     DtUsuario obtenerUsuarioPorEmail(String email);
 
-    DtUsuario obtenerUsuarioPorId(String id);
+    DtUsuario obtenerUsuarioPorId(Integer id);
 
     // Operación para listar todos los usuarios
-    List<Usuario> listarUsuarios();
+    List<DtUsuario> listarUsuarios();
 
     void validarEmail(String email) throws EmailIncorrectoExeption;
 
