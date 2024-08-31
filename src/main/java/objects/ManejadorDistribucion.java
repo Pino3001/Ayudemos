@@ -6,7 +6,6 @@ import persistencia.Conexion;
 import types.Barrio;
 import types.EstadoDistribucion;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 public class ManejadorDistribucion {
 
     private static ManejadorDistribucion instacia = null;
-    private List<Distribucion> distribuciones = new ArrayList<>();
 
     private ManejadorDistribucion() {
     }
@@ -79,8 +77,23 @@ public class ManejadorDistribucion {
     }
 
     // Crea una nueva distribución.
-    public void agregarDistribucion(){
+    public void agregarDistribucion(Distribucion distribucion) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
 
+        try {
+            em.getTransaction().begin();
+
+            em.persist(distribucion);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
 }

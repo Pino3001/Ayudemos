@@ -23,13 +23,6 @@ public class ControladorDistribucion implements IDistribucion {
 //    public void modificarDistribucion(Distribucion distribucion) {
 //
 
-    @Override
-    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
-        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
-        return lista;
-    }
-
 
 //@Override
 //public DtDistribucion obtenerDistribucion(){

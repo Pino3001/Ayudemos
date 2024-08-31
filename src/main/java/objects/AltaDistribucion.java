@@ -23,11 +23,18 @@ public class AltaDistribucion implements IAltaDistribucion {
                                   LocalDateTime fechaPreparacion,
                                   LocalDateTime fechaEntrega,
                                   EstadoDistribucion estado) {
+        // Manejadores.
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         ManejadorDistribucion manejadorDistribucion = ManejadorDistribucion.getInstance();
-        Beneficiario beneficarioEncontrado = manejadorUsuario.obtenerBeneficiarios();
-        Donacion donacionEncontrada = manejadorDonacion.buscarDonacionID();
+        // Buscamos las instanacias de clase la donacion y beneficiario para mandarlas por parámetro al manejador de distribuciones.
+        Beneficiario beneficarioEncontrado = (Beneficiario) manejadorUsuario.buscarUsuario(beneficiario.getId());
+        Donacion donacionEncontrada = manejadorDonacion.buscarDonacion(donacion.getId());
+
+        // Creamos la instancia de la nueva distribución.
+        Distribucion nuevaDistribucion = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacionEncontrada, beneficarioEncontrado);
+        // Llamamos al manejador de distribuciones para agregar la distribución con los datos recibidos.
+        manejadorDistribucion.agregarDistribucion(nuevaDistribucion);
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
@@ -62,4 +69,13 @@ public class AltaDistribucion implements IAltaDistribucion {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         return md.obtenerListaDistribucionesZona(barrio);
     }
+
+    @Override
+    // Retorna una lista de DtDistribución filtrada por el estado pasado por parámetro.
+    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
+        return lista;
+    }
+
 }

@@ -37,5 +37,7 @@ public interface IAltaDistribucion {
     // Retorna una lista de DTDistribucion filtrada por la zona pasada por parámetro.
     List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio);
 
+    List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
+
 
 }
