@@ -1,5 +1,6 @@
 package objects;
 
+import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -33,8 +34,9 @@ public class Repartidor extends Usuario {
         this.numeroLicencia = numeroLicencia;
     }
 
-    // Método para obtener un DTO
-    public DtRepartidor getDTRepartidor() {
+    //Devuelvo un DtRepartidor con mis datos.
+    @Override
+    public DtRepartidor getDtUsuario() {
         return new DtRepartidor(
                 this.getId(),
                 this.getNombre(),

@@ -1,5 +1,7 @@
 package objects;
 
+import datatypes.DTDonacion;
+import datatypes.DtUsuario;
 import jakarta.persistence.*;
 
 @Entity
@@ -45,4 +47,7 @@ public abstract class Usuario {
     public Integer getId() {
         return id;
     }
+
+    // Metodo abtracto para pasarse como datatype
+    public abstract DtUsuario getDtUsuario();
 }

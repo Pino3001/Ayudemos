@@ -65,7 +65,6 @@ public class ManejadorDonacion {
 
 
     // Busca una donación por ID en la lista de donaciones y retorna la información en un dt.
-    // TODO: Imlpementar Exepciones y ver si se puede mejorar
     public DTDonacion buscarDonacionID(Integer id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
