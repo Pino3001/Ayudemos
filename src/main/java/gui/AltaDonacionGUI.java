@@ -88,7 +88,7 @@ public class AltaDonacionGUI extends JFrame {
         buttonAceptarArticulo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Float peso = ((Number) spinnerPeso.getValue()).floatValue();// Ver de manejar esto mejor
+                float peso = ((Number) spinnerPeso.getValue()).floatValue();// Ver de manejar esto mejor
                 try {//Manejo las exepciones -- Mejorar los dialogMessage y crear Alertas personalizadas.
                     if (peso <= 0) {
                         throw new CamposIncompletosExeption("Por favor, complete todos los campos!");

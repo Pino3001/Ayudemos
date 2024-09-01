@@ -1,14 +1,13 @@
 package datatypes;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class DTAlimento extends DTDonacion{
 
     private final String descripcionProductos;
     private final int cantElementos;
 
-    public DTAlimento(int id, LocalDate fechaIngresada, String descripcionProductos, int cantElementos) {
+    public DTAlimento(int id, LocalDateTime fechaIngresada, String descripcionProductos, int cantElementos) {
         super(id, fechaIngresada);
         this.descripcionProductos = descripcionProductos;
         this.cantElementos = cantElementos;

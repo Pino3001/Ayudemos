@@ -5,6 +5,7 @@ import datatypes.DTDonacion;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +16,15 @@ public abstract class Donacion {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automatico
     private Integer id;
 
-    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private LocalDate fechaIngresada; // cambiado de DateTime a LocalDateTime.
+    private LocalDateTime fechaIngresada; // cambiado de DateTime a LocalDateTime.
 
-    @OneToMany(mappedBy = "distribuciones", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "donacion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Distribucion> distribuciones = new ArrayList<>();
 
     //Constructor
     public Donacion() {
-        this.fechaIngresada = LocalDate.now();
+        this.fechaIngresada = LocalDateTime.now();
     }
 
     // Getters Y Setters
@@ -33,11 +33,11 @@ public abstract class Donacion {
     }
 
 
-    public LocalDate getFechaIngresada() {
+    public LocalDateTime getFechaIngresada() {
         return fechaIngresada;
     }
 
-    public void setFechaIngresada(LocalDate fechaIngresada) {
+    public void setFechaIngresada(LocalDateTime fechaIngresada) {
         this.fechaIngresada = fechaIngresada;
     }
 

@@ -1,7 +1,6 @@
 package datatypes;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class DTArticulo extends DTDonacion{
     private final String descripcion;
@@ -9,8 +8,8 @@ public class DTArticulo extends DTDonacion{
     private final String dimensiones;
 
     //Constructor
-    public DTArticulo(Integer id, LocalDate fechaIngresada, String descripcion, float peso, String dimensiones) {
-        super(id, fechaIngresada);//
+    public DTArticulo(Integer id, LocalDateTime fechaIngresada, String descripcion, float peso, String dimensiones) {
+        super(id, fechaIngresada);
         this.descripcion = descripcion;
         this.peso = peso;
         this.dimensiones = dimensiones;

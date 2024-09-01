@@ -21,7 +21,7 @@ public interface IAltaUsuario {
     void agregarUsuario(DtUsuario dtusuario) throws IngresoIncorrectoExeption;//
 
     //Operacion para modificar un usuario.
-    void modificarUsuario(DtUsuario dtUsuario);
+    void modificarUsuario(DtUsuario dtUsuario, Integer id);
 
     // Operación para eliminar un usuario por su email
    //void eliminarUsuario(DtUsuario dtUsuario);

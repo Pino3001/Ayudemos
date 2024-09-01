@@ -52,10 +52,10 @@ public class AltaUsuario implements IAltaUsuario {
     }
 
     @Override
-    public void modificarUsuario(DtUsuario dtUsuario) {
+    public void modificarUsuario(DtUsuario dtUsuario, Integer id) {
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
         try {
-            Usuario usuario = manejadorUsuario.buscarUsuario(dtUsuario.getId());
+            Usuario usuario = manejadorUsuario.buscarUsuario(id);
             if (usuario == null) {
                 throw new IllegalArgumentException("El usuario no existe");
             } else {

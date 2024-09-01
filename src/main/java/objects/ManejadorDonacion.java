@@ -53,6 +53,7 @@ public class ManejadorDonacion {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -82,14 +83,14 @@ public class ManejadorDonacion {
     }
 
     // Modifica una donación.
-    public void modificarDonacion(DTDonacion dtDonacion) {
+    public void modificarDonacion(DTDonacion dtDonacion, Integer id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
         EntityTransaction tx = em.getTransaction();
 
         try {
             tx.begin();
-            Donacion d = em.find(Donacion.class, dtDonacion.getId());
+            Donacion d = em.find(Donacion.class, id);
             if (d == null) {
                 throw new IllegalArgumentException("La Donacion no existe");
             }

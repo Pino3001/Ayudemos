@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.Date;
 
 import interfaces.IAltaUsuario;
@@ -16,7 +17,7 @@ import types.Barrio;
 
 public class RegistroUsuarioGUI extends JFrame {
 
-    private IAltaUsuario altaUsuario;
+/*    private IAltaUsuario altaUsuario;
     private JTextField txtNombre;
     private JTextField txtEmail;
     private JTextField txtDireccion;
@@ -246,7 +247,7 @@ public class RegistroUsuarioGUI extends JFrame {
                     throw new Exception("La dirección es obligatoria para el tipo Beneficiario.");
                 }
                 String fechaNacimientoStr = txtFechaNacimiento.getText().trim();
-                Date fechaNacimiento = this.altaUsuario.parseFecha(fechaNacimientoStr);
+                LocalDate fechaNacimiento = this.altaUsuario.parseFecha(fechaNacimientoStr);
                 EstadoBeneficiario estado = EstadoBeneficiario.valueOf((String) comboEstado.getSelectedItem());
                 Barrio barrio = Barrio.valueOf(((String) comboBarrio.getSelectedItem()).toUpperCase().replace(" ", "_"));
 
@@ -270,5 +271,5 @@ public class RegistroUsuarioGUI extends JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al registrar usuario: " + ex.getMessage());
         }
-    }
+    }*/
 }

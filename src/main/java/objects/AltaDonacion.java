@@ -38,9 +38,9 @@ public class AltaDonacion implements IAltaDonacion {
     }
 
     @Override
-    public void editarDonacion(DTDonacion dtDonacion){
+    public void editarDonacion(DTDonacion dtDonacion, Integer id){
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
-        manejadorDonacion.modificarDonacion(dtDonacion);
+        manejadorDonacion.modificarDonacion(dtDonacion, id);
     }
 
     @Override

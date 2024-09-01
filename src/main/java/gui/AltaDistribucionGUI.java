@@ -20,6 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -105,8 +106,8 @@ public class AltaDistribucionGUI extends JFrame {
                     } else if (textFechaEntrega.getText().equals("--/--/----") && textFechaEntrega.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        Date fechaPrepara = altaUsuario.parseFecha(textFechaPrep.getText());
-                        Date fechaEntrega = altaUsuario.parseFecha(textFechaEntrega.getText());
+                        LocalDate fechaPrepara = altaUsuario.parseFecha(textFechaPrep.getText());
+                        LocalDate fechaEntrega = altaUsuario.parseFecha(textFechaEntrega.getText());
                         altaDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaPrepara, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }

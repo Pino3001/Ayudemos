@@ -18,7 +18,6 @@ public class Beneficiario extends Usuario {
     @Column(nullable = false)
     private String direccion;
 
-    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 

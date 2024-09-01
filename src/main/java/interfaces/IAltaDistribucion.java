@@ -13,16 +13,17 @@ import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
-    void crearDistribucion(Beneficiario beneficiario,
-                           Donacion donacion,
-                           LocalDateTime fechaPreparacion,
-                           LocalDateTime fechaEntrega,
+    void crearDistribucion(DtBeneficiario beneficiario,
+                           DTDonacion donacion,
+                           LocalDate fechaPreparacion,
+                           LocalDate fechaEntrega,
                            EstadoDistribucion estado);
 
     // Retornar lista de beneficiarios para cargar el combobox.

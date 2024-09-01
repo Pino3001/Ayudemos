@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -227,8 +228,8 @@ public class ModificarUsuarioGUI extends JFrame {
                         throw new CamposIncompletosExeption("Seleccione un Usuario!");
                     } else {
                         iAltaUsuario.validarEmail(texteMailReparti.getText());
-                        DtUsuario dt = new DtRepartidor(textNombreReparti.getText(), texteMailBenef.getText(), textNumeroLicenciaRep.getText());
-                        iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getMail());
+                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailBenef.getText(), textNumeroLicenciaRep.getText());
+                        iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getId());
                         JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption ex) {
@@ -245,7 +246,7 @@ public class ModificarUsuarioGUI extends JFrame {
         buttonAceptarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Date fecha = null;
+                LocalDate fecha = null;
                 try {
                     if (textNombreBenef.getText().equals("") || textNombreBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
@@ -262,8 +263,8 @@ public class ModificarUsuarioGUI extends JFrame {
                     } else {
                         fecha = iAltaUsuario.parseFecha(textFechaNaciBenef.getText());
                         iAltaUsuario.validarEmail(texteMailBenef.getText());
-                        DtUsuario dt = new DtBeneficiario(textNombreBenef.getText(), texteMailBenef.getText(), textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
-                        iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getMail());
+                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
+                        iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getId());
                         JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption ex) {
