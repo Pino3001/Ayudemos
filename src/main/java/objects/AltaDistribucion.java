@@ -7,7 +7,6 @@ import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,14 +20,21 @@ public class AltaDistribucion implements IAltaDistribucion {
     @Override
     public void crearDistribucion(DtBeneficiario beneficiario,
                                   DTDonacion donacion,
-                                  LocalDate fechaPreparacion,
-                                  LocalDate fechaEntrega,
+                                  LocalDateTime fechaPreparacion,
+                                  LocalDateTime fechaEntrega,
                                   EstadoDistribucion estado) {
-/*        // Creamos la nueva distribución, al crearse ya apunta al beneficiario y a la donacion pasados por parámetro.
-        Distribucion nuevaDist = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacion, beneficiario);
-        // Vinculamos la nueva distribución a la lista de distribuciones de la donación y el beneficario.
-        donacion.addDistribucion(nuevaDist);
-        beneficiario.addDistribucion(nuevaDist);*/
+        // Manejadores.
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        ManejadorDistribucion manejadorDistribucion = ManejadorDistribucion.getInstance();
+        // Buscamos las instanacias de clase la donacion y beneficiario para mandarlas por parámetro al manejador de distribuciones.
+        Beneficiario beneficarioEncontrado = (Beneficiario) manejadorUsuario.buscarUsuario(beneficiario.getId());
+        Donacion donacionEncontrada = manejadorDonacion.buscarDonacion(donacion.getId());
+
+        // Creamos la instancia de la nueva distribución.
+        Distribucion nuevaDistribucion = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacionEncontrada, beneficarioEncontrado);
+        // Llamamos al manejador de distribuciones para agregar la distribución con los datos recibidos.
+        manejadorDistribucion.agregarDistribucion(nuevaDistribucion);
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
@@ -63,4 +69,13 @@ public class AltaDistribucion implements IAltaDistribucion {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         return md.obtenerListaDistribucionesZona(barrio);
     }
+
+    @Override
+    // Retorna una lista de DtDistribución filtrada por el estado pasado por parámetro.
+    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
+        return lista;
+    }
+
 }

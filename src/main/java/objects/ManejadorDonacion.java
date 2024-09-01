@@ -6,6 +6,7 @@ import datatypes.DTDonacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import persistencia.Conexion;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class ManejadorDonacion {
 
         try {
             Donacion donacion = em.find(Donacion.class, id);
-            if (donacion == null) throw new IllegalArgumentException("La Donacion no existe");
+            if (donacion == null) throw new IllegalArgumentException("La Donación no existe");
             else if (donacion instanceof Alimento) {
                 return new DTAlimento(donacion.getId(),
                         donacion.getFechaIngresada(),
@@ -75,6 +76,24 @@ public class ManejadorDonacion {
                         ((Alimento) donacion).getCantElementos());
             } else if (donacion instanceof Articulo) {
                 return new DTArticulo(donacion.getId(), donacion.getFechaIngresada(), ((Articulo) donacion).getDescripcion(), ((Articulo) donacion).getPeso(), ((Articulo) donacion).getDimensiones());
+            }
+        } finally {
+            em.close();
+        }
+        return null;
+    }
+
+    // Busca y devuelve una donacion con el id recibido por parámetro.
+    public Donacion buscarDonacion(Integer id) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            Donacion donacion = em.find(Donacion.class, id);
+            if (donacion == null) {
+                throw new IllegalArgumentException("La Donación no existe");
+            } else {
+                return donacion;
             }
         } finally {
             em.close();

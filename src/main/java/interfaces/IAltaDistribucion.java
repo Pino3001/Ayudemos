@@ -13,7 +13,6 @@ import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +21,8 @@ public interface IAltaDistribucion {
     // Crea una nueva distribución.
     void crearDistribucion(DtBeneficiario beneficiario,
                            DTDonacion donacion,
-                           LocalDate fechaPreparacion,
-                           LocalDate fechaEntrega,
+                           LocalDateTime fechaPreparacion,
+                           LocalDateTime fechaEntrega,
                            EstadoDistribucion estado);
 
     // Retornar lista de beneficiarios para cargar el combobox.
@@ -37,6 +36,8 @@ public interface IAltaDistribucion {
 
     // Retorna una lista de DTDistribucion filtrada por la zona pasada por parámetro.
     List<DtDistribucion> obtenerListaDistribucionesZona(Barrio barrio);
+
+    List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
 
 
 }
