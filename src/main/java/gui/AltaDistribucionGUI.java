@@ -125,7 +125,7 @@ public class AltaDistribucionGUI extends JFrame {
             // Crear una instancia del componente de calendario
             ComponenteCalendario calendario = new ComponenteCalendario();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
-            int x = textFechaPrepara.getLocationOnScreen().x - 130;
+            int x = textFechaPrepara.getLocationOnScreen().x;
             int y = textFechaPrepara.getLocationOnScreen().y + buttonCalendarioPrepara.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
@@ -142,7 +142,7 @@ public class AltaDistribucionGUI extends JFrame {
             // Crear una instancia del componente de calendario
             ComponenteCalendario calendario = new ComponenteCalendario();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
-            int x = textFechaEntrega.getLocationOnScreen().x - 130;
+            int x = textFechaEntrega.getLocationOnScreen().x;
             int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada

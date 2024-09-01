@@ -2,6 +2,8 @@ package gui.componentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -65,9 +67,51 @@ public class ComponenteCalendario extends JDialog {
     private JLabel textdiaSabado;
     private JButton hoyButton;
     private JButton cancelarButton;
+    private JLabel dia1;
+    private JLabel dia2;
+    private JLabel dia3;
+    private JLabel dia8;
+    private JLabel dia4;
+    private JLabel dia5;
+    private JLabel dia6;
+    private JLabel dia7;
+    private JLabel dia9;
+    private JLabel dia10;
+    private JLabel dia12;
+    private JLabel dia13;
+    private JLabel dia11;
+    private JLabel dia14;
+    private JLabel dia15;
+    private JLabel dia16;
+    private JLabel dia17;
+    private JLabel dia18;
+    private JLabel dia19;
+    private JLabel dia20;
+    private JLabel dia21;
+    private JLabel dia22;
+    private JLabel dia23;
+    private JLabel dia24;
+    private JLabel dia25;
+    private JLabel dia26;
+    private JLabel dia27;
+    private JLabel dia28;
+    private JLabel dia29;
+    private JLabel dia30;
+    private JLabel dia31;
+    private JLabel dia32;
+    private JLabel dia33;
+    private JLabel dia34;
+    private JLabel dia35;
+    private JLabel dia36;
+    private JLabel dia37;
+    private JLabel dia38;
+    private JLabel dia39;
+    private JLabel dia40;
+    private JLabel dia41;
+    private JLabel dia42;
 
     private Calendar calendar;  // Instancia de Calendar para manipular fechas
-    private JButton[] botonesDias;  // Array para los botones de los días
+    private JLabel[] botonesDias;  // Array para los botones de los días
     private String fechaSeleccionada;
 
     public ComponenteCalendario() {
@@ -78,13 +122,14 @@ public class ComponenteCalendario extends JDialog {
 
         // Inicialización de la lógica del calendario
         calendar = new GregorianCalendar();
-        botonesDias = new JButton[]{
-                boton1, boton2, boton3, boton4, boton5, boton6, boton7,
-                boton8, boton9, boton10, boton11, boton12, boton13, boton14,
-                boton15, boton16, boton17, boton18, boton19, boton20, boton21,
-                boton22, boton23, boton24, boton25, boton26, boton27, boton28,
-                boton29, boton30, boton31, boton32, boton33, boton34, boton35,
-                boton36, boton37, boton38, boton39, boton40, boton41, boton42
+
+        botonesDias = new JLabel[]{
+                dia1, dia2, dia3, dia4, dia5, dia6, dia7,
+                dia8, dia9, dia10, dia11, dia12, dia13, dia14,
+                dia15, dia16, dia17, dia18, dia19, dia20, dia21,
+                dia22, dia23, dia24, dia25, dia26, dia27, dia28,
+                dia29,dia30, dia31, dia32, dia33,dia34,dia35,
+                dia36, dia37, dia38, dia39, dia40,dia41,dia42
         };
 
         // Configuración de la navegación de meses y años
@@ -127,7 +172,7 @@ public class ComponenteCalendario extends JDialog {
         int daysInPrevMonth = prevMonthCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);  // Número de días en el mes anterior
 
         // Limpiar todos los botones de los días
-        for (JButton boton : botonesDias) {
+        for (JLabel boton : botonesDias) {
             boton.setText("");
             boton.setEnabled(false);
         }
@@ -158,29 +203,33 @@ public class ComponenteCalendario extends JDialog {
 
     private void addDayButtonListeners() {
         // Agregar ActionListener a cada botón de día
-        for (JButton boton : botonesDias) {
-            boton.addActionListener(e -> {
-                if (!boton.getText().isEmpty() && boton.isEnabled()) {
-                    // Restaurar el color de fondo y texto de todos los botones antes de cambiar el color del botón seleccionado
-                    for (JButton b : botonesDias) {
-                        b.setBackground(null);  // Fondo predeterminado
-                        b.setForeground(new Color(9, 35, 48));  // Texto en negro predeterminado
+        for (JLabel boton : botonesDias) {
+            boton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    if (!boton.getText().isEmpty() && boton.isEnabled()) {
+                        // Restaurar el color de fondo y texto de todos los botones antes de cambiar el color del botón seleccionado
+                        for (JLabel b : botonesDias) {
+                            b.setBackground(null);  // Fondo predeterminado
+                            b.setForeground(new Color(9, 35, 48));  // Texto en negro predeterminado
+                        }
+
+                        // Cambiar el color de fondo y texto del botón seleccionado
+                        boton.setBackground(boton.getForeground());
+                        boton.setForeground(Color.WHITE);  // Cambiar el color del texto a blanco para que sea visible
+                        // boton.setBorderPainted(false);
+
+                        // Obtener el día, mes y año seleccionados
+                        int day = Integer.parseInt(boton.getText());
+                        int month = calendar.get(Calendar.MONTH) + 1;  // Los meses en Calendar comienzan desde 0
+                        int year = calendar.get(Calendar.YEAR);
+
+                        // Mostrar o devolver la fecha seleccionada
+                        fechaSeleccionada = String.format("%02d/%02d/%04d", day, month, year);
+                        dispose();
+                        System.out.println("Fecha seleccionada: " + day + "/" + month + "/" + year);
                     }
-
-                    // Cambiar el color de fondo y texto del botón seleccionado
-                    boton.setBackground(boton.getForeground());
-                    boton.setForeground(Color.WHITE);  // Cambiar el color del texto a blanco para que sea visible
-                    boton.setBorderPainted(false);
-
-                    // Obtener el día, mes y año seleccionados
-                    int day = Integer.parseInt(boton.getText());
-                    int month = calendar.get(Calendar.MONTH) + 1;  // Los meses en Calendar comienzan desde 0
-                    int year = calendar.get(Calendar.YEAR);
-
-                    // Mostrar o devolver la fecha seleccionada
-                    fechaSeleccionada = String.format("%02d/%02d/%04d", day, month, year);
-                    dispose();
-                    System.out.println("Fecha seleccionada: " + day + "/" + month + "/" + year);
                 }
             });
         }
@@ -226,7 +275,7 @@ public class ComponenteCalendario extends JDialog {
     public String mostrarYObtenerFechaSeleccionada(int x, int y) {
         ComponenteCalendario dialog = new ComponenteCalendario();
         dialog.pack();
-        dialog.setLocation(x,y);
+        dialog.setLocation(x, y);
         dialog.setVisible(true);  // Mostrar el modal
         return dialog.getFechaSeleccionada();  // Devolver la fecha seleccionada
     }
