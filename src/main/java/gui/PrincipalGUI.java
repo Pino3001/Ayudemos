@@ -22,8 +22,8 @@ public class PrincipalGUI extends JFrame {
     private JButton altaUsuarioB;
     private JButton modificarUsr;
     private JButton listarBeneficiarios;
-    private JButton listarBenefZona;
-    private JButton listarBenefEstado;
+    private JButton listarBenefiZona;
+    private JButton listarBenefiEstado;
     private JButton altadistribucion;
     private JLabel titulodistribucion;
     private JLabel tituloDistribucion;
