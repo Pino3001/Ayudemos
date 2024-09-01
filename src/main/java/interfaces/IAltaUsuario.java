@@ -24,7 +24,7 @@ public interface IAltaUsuario {
     void modificarUsuario(DtUsuario dtUsuario, Integer id);
 
     // Operación para eliminar un usuario por su email
-   //void eliminarUsuario(DtUsuario dtUsuario);
+    //void eliminarUsuario(DtUsuario dtUsuario);
 
     // Operación para obtener un usuario por su email
     DtUsuario obtenerUsuarioPorEmail(String email);
@@ -34,11 +34,15 @@ public interface IAltaUsuario {
     // Operación para listar todos los usuarios
     List<DtUsuario> listarUsuarios();
 
+
     void validarEmail(String email) throws EmailIncorrectoExeption;
 
     LocalDate parseFecha(String fechaStr) throws FormatoFechaIExeption;
 
     List<DtBeneficiario> listarBeneficiarios();
+
+    // Operación para listar todos los usuarios segun su estado: EstadoDistribucion.
+    List<DtBeneficiario> listarBeneficiariosPorEstado(EstadoBeneficiario estado);
 
     List<DtRepartidor> listarRepartidores();
 
