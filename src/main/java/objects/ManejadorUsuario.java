@@ -6,6 +6,7 @@ import datatypes.DtUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import persistencia.Conexion;
+import types.EstadoBeneficiario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,22 +62,22 @@ public class ManejadorUsuario {
             } else if (usuario instanceof Repartidor repartidor && dtUsuario instanceof DtRepartidor) {
                 repartidor.setNumeroLicencia(((DtRepartidor) dtUsuario).getNumeroLicencia());
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             if (tx.isActive()) {
                 tx.rollback();
             }
-        }finally {
+        } finally {
             em.close();
         }
     }
 
     // Busca y devuelve un usuario con el id pasado
-   public Usuario buscarUsuario(Integer id){
+    public Usuario buscarUsuario(Integer id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
 
-       return em.find(Usuario.class, id);
-   }
+        return em.find(Usuario.class, id);
+    }
 
 
 /*    public boolean verificarMail(String mail) {
@@ -91,14 +92,14 @@ public class ManejadorUsuario {
     }*/
 
     // Devuelve el usuario con el eMail pasado
-    public DtUsuario obtenerUsuarioEmail(String email){
+    public DtUsuario obtenerUsuarioEmail(String email) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
         return em.find(Usuario.class, email).getDtUsuario();
     }
 
     // Devuelve el usuario con el ID pasado
-    public DtUsuario obtenerUsuarioID(Integer id){
+    public DtUsuario obtenerUsuarioID(Integer id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
         return em.find(Usuario.class, id).getDtUsuario();
@@ -125,6 +126,18 @@ public class ManejadorUsuario {
                 .collect(Collectors.toList());
     }
 
+    // Devuelve una lista de DtBeneficiario filtrada por el estado.
+    public List<DtBeneficiario> obtenerBeneficiariosEstado(EstadoBeneficiario estado) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.estado = :estado", Beneficiario.class)
+                .setParameter("estado", estado)
+                .getResultList()
+                .stream()
+                .map(Beneficiario::getDtUsuario)
+                .collect(Collectors.toList());
+    }
+
     public List<DtRepartidor> obtenerRepartidores() {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
@@ -134,9 +147,6 @@ public class ManejadorUsuario {
                 .map(Repartidor::getDtUsuario)
                 .collect(Collectors.toList());
     }
-
-
-
 
 
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.

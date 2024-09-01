@@ -10,6 +10,7 @@ import interfaces.IAltaUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import types.EstadoBeneficiario;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -100,6 +101,13 @@ public class AltaUsuario implements IAltaUsuario {
     public List<DtBeneficiario> listarBeneficiarios() {
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
         return manejadorUsuario.obtenerBeneficiarios();
+    }
+
+    @Override
+    // Listar beneficiarios según su estado.
+    public List<DtBeneficiario> listarBeneficiariosPorEstado(EstadoBeneficiario estado) {
+        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+        return manejadorUsuario.obtenerBeneficiariosEstado(estado);
     }
 
     @Override
