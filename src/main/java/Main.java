@@ -1,14 +1,10 @@
-import datatypes.DTAlimento;
+
 import datatypes.DTDonacion;
 import gui.*;
 import interfaces.Fabrica;
 import interfaces.IAltaDistribucion;
 import interfaces.IAltaDonacion;
 import interfaces.IAltaUsuario;
-import types.DTFecha;
-import types.DTFechaHora;
-
-import java.io.Console;
 import java.util.List;
 //import Ayudemos.gui.AltaDistribucionGUI;
 
