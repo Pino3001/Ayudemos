@@ -3,15 +3,18 @@ package gui;
 import interfaces.IAltaDistribucion;
 import interfaces.IAltaDonacion;
 import interfaces.IAltaUsuario;
+import persistencia.Conexion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class PrincipalGUI extends JFrame {
-    private IAltaUsuario iAltaUsuario;
-    private IAltaDonacion iAltaDonacion;
-    private IAltaDistribucion iAltaDistribucion;
+    private final IAltaUsuario iAltaUsuario;
+    private final IAltaDonacion iAltaDonacion;
+    private final IAltaDistribucion iAltaDistribucion;
     private JPanel principalPanel;
     private JPanel tituloPanel;
     private JPanel botoneraPanel;
@@ -19,8 +22,8 @@ public class PrincipalGUI extends JFrame {
     private JButton altaUsuarioB;
     private JButton modificarUsr;
     private JButton listarBeneficiarios;
-    private JButton listarBenefiZona;
-    private JButton listarBenefiEstado;
+    private JButton listarBenefZona;
+    private JButton listarBenefEstado;
     private JButton altadistribucion;
     private JLabel titulodistribucion;
     private JLabel tituloDistribucion;
@@ -37,6 +40,7 @@ public class PrincipalGUI extends JFrame {
         this.iAltaUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         this.iAltaDistribucion = iAltaDistribucion;
+
         altaDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +82,15 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion);
                 altaDistribucionGUI.setVisible(true);
+            }
+        });
+
+        // Añadir WindowListener para cerrar conexiones al cerrar la ventana
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Conexion.getInstancia().close();  // Cierra la conexión cuando la ventana se cierra
+                System.exit(0);  // Asegura la terminación del programa
             }
         });
     }

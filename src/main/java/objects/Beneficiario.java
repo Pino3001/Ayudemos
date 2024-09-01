@@ -1,6 +1,5 @@
 package objects;
 
-import datatypes.DTArticulo;
 import datatypes.DtBeneficiario;
 import jakarta.persistence.*;
 import types.Barrio;
@@ -12,7 +11,6 @@ import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("B")
 public class Beneficiario extends Usuario {
 
     @Column(nullable = false)

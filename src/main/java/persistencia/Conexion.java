@@ -7,16 +7,13 @@ import jakarta.persistence.Persistence;
 public class Conexion {
     private static Conexion instancia = null;
     private static EntityManagerFactory emf;
-    private static EntityManager em;
 
-    // Constructor privado
+    // Constructor privado para inicializar el EntityManagerFactory
     private Conexion() {
-        // Inicializa el EntityManagerFactory y el EntityManager
         emf = Persistence.createEntityManagerFactory("hibernate");
-        em = emf.createEntityManager();
     }
 
-    // Singleton con sincronización
+    // Function para obtener la instancia del Singleton
     public static synchronized Conexion getInstancia() {
         if (instancia == null) {
             instancia = new Conexion();
@@ -24,16 +21,13 @@ public class Conexion {
         return instancia;
     }
 
-    // Obtener EntityManager
+    // Function para obtener un nuevo EntityManager
     public EntityManager getEntityManager() {
-        return em;
+        return emf.createEntityManager();
     }
 
-    // Cerrar conexión
+    // Function para cerrar el EntityManagerFactory al finalizar la aplicación
     public void close() {
-        if (em != null) {
-            em.close();
-        }
         if (emf != null) {
             emf.close();
         }

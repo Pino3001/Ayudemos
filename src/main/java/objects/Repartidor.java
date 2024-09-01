@@ -1,14 +1,11 @@
 package objects;
 
-import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 
 @Entity
-@DiscriminatorValue("R")
 public class Repartidor extends Usuario {
 
     @Column(nullable = false)

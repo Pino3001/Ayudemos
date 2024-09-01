@@ -1,11 +1,10 @@
 package objects;
 
-import datatypes.DTDonacion;
 import datatypes.DtUsuario;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automatico

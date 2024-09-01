@@ -11,6 +11,11 @@ public class ControladorDistribucion implements IDistribucion {
         super();
 
     }
+
+    @Override
+    public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
+        return List.of();
+    }
 //    @Override
 //    public void altaDistribucion(Beneficiario beneficiario,List< Donacion > donaciones,DTFechaHora fechaPreparacion,DTFechaHora fechaEntrega,EstadoDistribucion estado) {
 //

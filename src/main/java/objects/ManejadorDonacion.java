@@ -54,7 +54,6 @@ public class ManejadorDonacion {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -98,7 +97,6 @@ public class ManejadorDonacion {
         } finally {
             em.close();
         }
-        return null;
     }
 
     // Modifica una donación.

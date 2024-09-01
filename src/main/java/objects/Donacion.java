@@ -4,13 +4,12 @@ package objects;
 import datatypes.DTDonacion;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // SINGLE_TABLE mete tanto articulos como alimentos en la misma tabla.
+@Inheritance(strategy = InheritanceType.JOINED) // SINGLE_TABLE mete tanto articulos como alimentos en la misma tabla.
 public abstract class Donacion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automatico
@@ -44,7 +43,7 @@ public abstract class Donacion {
     // Metodo abtracto para pasarse como datatype
     public abstract DTDonacion getDTDonacion();
 
-    //Metodos de clase:
+    //Function de clase:
     //Inserta una distribucion a la lista de ditribuciones asociadas
     public void addDistribucion(Distribucion distribucion) {
         distribuciones.add(distribucion);

@@ -2,14 +2,11 @@ package objects;
 
 import datatypes.DTAlimento;
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
-import java.time.LocalDate;
 
 
 @Entity
-@DiscriminatorValue("alimento")
 public class Alimento extends Donacion {
 
     @Column(nullable = false, length = 200)
