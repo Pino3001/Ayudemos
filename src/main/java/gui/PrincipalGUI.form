@@ -392,6 +392,15 @@
           </component>
         </children>
       </grid>
+      <component id="1a02b" class="javax.swing.JLabel">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <icon value="images/Designer (4).jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

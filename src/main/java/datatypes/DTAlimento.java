@@ -24,6 +24,6 @@ public class DTAlimento extends DTDonacion{
 
     @Override
     public String toString() {
-        return "ID: " + this.getId() + " - " + descripcionProductos;
+        return "  " + descripcionProductos + " - Cantidad " + cantElementos;
     }
 }

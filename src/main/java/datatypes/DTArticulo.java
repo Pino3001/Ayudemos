@@ -30,6 +30,6 @@ public class DTArticulo extends DTDonacion{
 
     @Override
     public String toString() {
-        return "ID: " + this.getId() + " - " + descripcion;
+        return " " + descripcion + " - Peso " + peso + " - Dimensiones " + dimensiones;
     }
 }

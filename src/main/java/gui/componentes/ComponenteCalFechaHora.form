@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.componentes.ComponenteCalFechaHora">
+  <grid id="27dc6" binding="background" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-16178384"/>
+      <minimumSize width="300" height="300"/>
+      <preferredSize width="300" height="300"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="cbf33" binding="contentPane" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16178384"/>
+          <minimumSize width="300" height="260"/>
+          <preferredSize width="300" height="260"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="f4e86" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="300" height="15"/>
+                <preferred-size width="300" height="15"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="8e428" class="javax.swing.JLabel" binding="textAnio">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="25"/>
+                    <preferred-size width="-1" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="12" style="0"/>
+                  <foreground color="-1537"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Label"/>
+                  <verticalAlignment value="1"/>
+                </properties>
+              </component>
+              <component id="dc21d" class="javax.swing.JButton" binding="prevAnio">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="-1"/>
+                    <preferred-size width="50" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
+                  <focusPainted value="false"/>
+                  <font name="Segoe Script" size="13" style="1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="&lt;"/>
+                </properties>
+              </component>
+              <component id="7e08b" class="javax.swing.JButton" binding="nextAnio">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="-1"/>
+                    <preferred-size width="50" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
+                  <focusPainted value="false"/>
+                  <font name="Segoe Script" size="13" style="1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="4"/>
+                  <label value="&gt;"/>
+                  <text value="&gt;"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b866" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="300" height="15"/>
+                <preferred-size width="300" height="15"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="c2070" class="javax.swing.JButton" binding="prevMes">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="-1"/>
+                    <preferred-size width="50" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
+                  <focusPainted value="false"/>
+                  <font name="Segoe Script" size="13" style="1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <text value="&lt;"/>
+                  <verticalAlignment value="0"/>
+                  <verticalTextPosition value="0"/>
+                </properties>
+              </component>
+              <component id="873ec" class="javax.swing.JLabel" binding="textMes">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="25"/>
+                    <preferred-size width="-1" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Roboto Light" size="13" style="0"/>
+                  <foreground color="-1537"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Label"/>
+                  <verticalAlignment value="1"/>
+                  <verticalTextPosition value="0"/>
+                </properties>
+              </component>
+              <component id="587b1" class="javax.swing.JButton" binding="nextMes">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="-1"/>
+                    <preferred-size width="50" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-16178384"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
+                  <focusPainted value="false"/>
+                  <font name="Segoe Script" size="13" style="1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="4"/>
+                  <text value="&gt;"/>
+                  <verticalAlignment value="0"/>
+                  <verticalTextPosition value="0"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="3fd35" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="300" height="-1"/>
+                <preferred-size width="300" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1646362"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="fab5" binding="panelBotondias" layout-manager="GridLayoutManager" row-count="7" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="5" bottom="0" right="5"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="300" height="-1"/>
+                    <preferred-size width="300" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="e9f96" class="javax.swing.JLabel" binding="textDiaDomingo">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-1899000"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Dom"/>
+                    </properties>
+                  </component>
+                  <component id="f76c2" class="javax.swing.JLabel" binding="textDiaLunes">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Lun"/>
+                    </properties>
+                  </component>
+                  <component id="88b64" class="javax.swing.JLabel" binding="textDiaMartes">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Mar"/>
+                    </properties>
+                  </component>
+                  <component id="69538" class="javax.swing.JLabel" binding="textDiaMiercoles">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Mier"/>
+                    </properties>
+                  </component>
+                  <component id="6c8bc" class="javax.swing.JLabel" binding="textdiaJueves">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Juev"/>
+                    </properties>
+                  </component>
+                  <component id="8fe8" class="javax.swing.JLabel" binding="textDiaViernes">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Vier"/>
+                    </properties>
+                  </component>
+                  <component id="fb5a6" class="javax.swing.JLabel" binding="textdiaSabado">
+                    <constraints>
+                      <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Light" size="11" style="2"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Sab"/>
+                    </properties>
+                  </component>
+                  <component id="461dd" class="javax.swing.JLabel" binding="dia1">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="54e10" class="javax.swing.JLabel" binding="dia8">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="1d363" class="javax.swing.JLabel" binding="dia15">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="7836" class="javax.swing.JLabel" binding="dia22">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="5c599" class="javax.swing.JLabel" binding="dia29">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="7c830" class="javax.swing.JLabel" binding="dia36">
+                    <constraints>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="3cde7" class="javax.swing.JLabel" binding="dia2">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="8260f" class="javax.swing.JLabel" binding="dia3">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="47ba" class="javax.swing.JLabel" binding="dia4">
+                    <constraints>
+                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="a3e81" class="javax.swing.JLabel" binding="dia5">
+                    <constraints>
+                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="cd756" class="javax.swing.JLabel" binding="dia6">
+                    <constraints>
+                      <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="8ab32" class="javax.swing.JLabel" binding="dia7">
+                    <constraints>
+                      <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="e8f2b" class="javax.swing.JLabel" binding="dia9">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="912a" class="javax.swing.JLabel" binding="dia10">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="4660e" class="javax.swing.JLabel" binding="dia12">
+                    <constraints>
+                      <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="19520" class="javax.swing.JLabel" binding="dia13">
+                    <constraints>
+                      <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="493c8" class="javax.swing.JLabel" binding="dia11">
+                    <constraints>
+                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="f3b53" class="javax.swing.JLabel" binding="dia14">
+                    <constraints>
+                      <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="c1ed9" class="javax.swing.JLabel" binding="dia16">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="a16a2" class="javax.swing.JLabel" binding="dia17">
+                    <constraints>
+                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="c0df8" class="javax.swing.JLabel" binding="dia18">
+                    <constraints>
+                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="3d4c2" class="javax.swing.JLabel" binding="dia19">
+                    <constraints>
+                      <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="82dab" class="javax.swing.JLabel" binding="dia20">
+                    <constraints>
+                      <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="7c008" class="javax.swing.JLabel" binding="dia21">
+                    <constraints>
+                      <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="35294" class="javax.swing.JLabel" binding="dia23">
+                    <constraints>
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="77dfc" class="javax.swing.JLabel" binding="dia24">
+                    <constraints>
+                      <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="1d745" class="javax.swing.JLabel" binding="dia25">
+                    <constraints>
+                      <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="fa8ee" class="javax.swing.JLabel" binding="dia26">
+                    <constraints>
+                      <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="46d4e" class="javax.swing.JLabel" binding="dia27">
+                    <constraints>
+                      <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="3a603" class="javax.swing.JLabel" binding="dia28">
+                    <constraints>
+                      <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="117e1" class="javax.swing.JLabel" binding="dia30">
+                    <constraints>
+                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="e4cc1" class="javax.swing.JLabel" binding="dia31">
+                    <constraints>
+                      <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="66fb0" class="javax.swing.JLabel" binding="dia32">
+                    <constraints>
+                      <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="45cda" class="javax.swing.JLabel" binding="dia33">
+                    <constraints>
+                      <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="4870b" class="javax.swing.JLabel" binding="dia34">
+                    <constraints>
+                      <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="d5f04" class="javax.swing.JLabel" binding="dia35">
+                    <constraints>
+                      <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="78ed0" class="javax.swing.JLabel" binding="dia37">
+                    <constraints>
+                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1899000"/>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="aa9e3" class="javax.swing.JLabel" binding="dia38">
+                    <constraints>
+                      <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="19cc0" class="javax.swing.JLabel" binding="dia39">
+                    <constraints>
+                      <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="66097" class="javax.swing.JLabel" binding="dia40">
+                    <constraints>
+                      <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="bcde2" class="javax.swing.JLabel" binding="dia41">
+                    <constraints>
+                      <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="d2148" class="javax.swing.JLabel" binding="dia42">
+                    <constraints>
+                      <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Roboto Thin" size="15" style="0"/>
+                      <foreground color="-16178384"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="2d7f8" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="300" height="30"/>
+                    <preferred-size width="300" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-1646362"/>
+                  <font name="Roboto Light" size="14" style="0"/>
+                  <foreground color="-1537"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="4c302" class="javax.swing.JButton" binding="hoyButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="90" height="25"/>
+                        <preferred-size width="90" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-16178384"/>
+                      <borderPainted value="false"/>
+                      <font name="Roboto Light" size="12" style="0"/>
+                      <foreground color="-1537"/>
+                      <text value="Hoy"/>
+                    </properties>
+                  </component>
+                  <hspacer id="997c4">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="5377c" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="90" height="25"/>
+                        <preferred-size width="90" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-16178384"/>
+                      <borderPainted value="false"/>
+                      <font name="Roboto Light" size="12" style="0"/>
+                      <foreground color="-1537"/>
+                      <text value="Cancelar"/>
+                    </properties>
+                  </component>
+                  <hspacer id="d2ab2">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <hspacer id="aeaf5">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="bcd98" layout-manager="GridLayoutManager" row-count="1" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="15"/>
+            <preferred-size width="-1" height="15"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16178384"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="c95fd" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="2" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="-1"/>
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+            </properties>
+          </component>
+          <component id="273b4" class="javax.swing.JSpinner" binding="spinner2" default-binding="true">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="2" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="-1"/>
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16178384"/>
+            </properties>
+          </component>
+          <hspacer id="a671d">
+            <constraints>
+              <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="f74a7">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="93467" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto Light" size="16" style="0"/>
+              <foreground color="-1"/>
+              <text value="hh :"/>
+            </properties>
+          </component>
+          <component id="25192" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto Light" size="16" style="0"/>
+              <foreground color="-1"/>
+              <text value="mm :"/>
+            </properties>
+          </component>
+          <hspacer id="2dd9e">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="30286">
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

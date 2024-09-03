@@ -18,4 +18,6 @@ public interface IAltaDonacion {
     List<DTArticulo> listarArticulos();
 
     List<DTDonacion> listarDonaciones();
+
+    DTDonacion obtenerDonacionPorId(Integer id);
 }

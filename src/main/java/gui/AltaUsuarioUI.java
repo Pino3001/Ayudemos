@@ -7,11 +7,9 @@ import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
-import gui.componentes.ComponenteComboBox;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import interfaces.IAltaUsuario;
 import types.Barrio;
-import types.DTFecha;
 import types.EstadoBeneficiario;
 
 import javax.swing.*;
@@ -19,7 +17,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AltaUsuarioUI extends JFrame {
     private IAltaUsuario altaUsuario;
@@ -41,6 +38,7 @@ public class AltaUsuarioUI extends JFrame {
     private JTextField textNumeroLicencia;
     private JButton buttonAceptarReparti;
     private JButton buttonCancelarReparti;
+    private JButton buttonCalendar;
     private CardLayout cardLayout;
     private Barrio barrio = null;
 
@@ -54,6 +52,7 @@ public class AltaUsuarioUI extends JFrame {
         aplicarEstilosComponentes();
         cargarComboBarrio();
         cambiarTipoUsuario();
+        actionButtonCalendario();
         botonesAceptarCancelar();
 
         comboBarrio.addActionListener(new ActionListener() {
@@ -126,10 +125,10 @@ public class AltaUsuarioUI extends JFrame {
                     } else {
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         altaUsuario.agregarUsuario(dt);
-                        JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha creado el Beneficiario Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption | IngresoIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -157,11 +156,11 @@ public class AltaUsuarioUI extends JFrame {
                         altaUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
                         altaUsuario.agregarUsuario(dt);
-                        JOptionPane.showMessageDialog(null, "Se ha creado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha creado el Beneficiario Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption |
                          IngresoIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -169,6 +168,31 @@ public class AltaUsuarioUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+            }
+        });
+    }
+
+    // Comportamiento de los botones del calendario
+    private void actionButtonCalendario() {
+
+        buttonCalendar.addActionListener(e -> {
+            if (textFechaNaci == null) {
+                System.out.println("textFechaPrepara es null");
+                return;
+            }
+            // Crear una instancia del componente de calendario
+            ComponenteCalendario calendario = new ComponenteCalendario();
+            // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
+            int x = textFechaNaci.getLocationOnScreen().x;
+            int y = textFechaNaci.getLocationOnScreen().y + buttonCalendar.getHeight();
+
+            // Mostrar el calendario y obtener la fecha seleccionada
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+
+            // Verificar si se seleccionó una fecha o si se canceló la selección
+            if (fechaSeleccionada != null) {
+                // Actualizar un campo de texto con la fecha seleccionada
+                textFechaNaci.setText(fechaSeleccionada);
             }
         });
     }

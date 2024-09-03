@@ -94,7 +94,7 @@ public class Distribucion {
     }
 
     public DtDistribucion getDtDistribucion(){
-        return new DtDistribucion(this.getFechaPreparacion(), this.getFechaEntrega(), this.getEstado(), this.getDonacion().getId(), this.getBeneficiario().getNombre(), this.getBeneficiario().getMail());
+        return new DtDistribucion(this.getFechaPreparacion(), this.getFechaEntrega(), this.getEstado(), this.getDonacion().getId(), this.getBeneficiario().getNombre(), this.getBeneficiario().getId());
     }
 
     public void setBeneficiario(Beneficiario beneficiario) {

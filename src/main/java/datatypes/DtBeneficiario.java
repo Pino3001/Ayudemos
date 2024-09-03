@@ -39,4 +39,9 @@ public class DtBeneficiario extends DtUsuario{
     public Barrio getBarrio() {
         return barrio;
     }
+
+    @Override
+    public String toString() {
+        return " " + this.getNombre() + " -eMail:" + this.getMail() + " -Direccion:" + this.getDireccion();
+    }
 }

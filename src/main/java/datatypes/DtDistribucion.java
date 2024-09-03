@@ -9,21 +9,21 @@ public class DtDistribucion {
     private LocalDateTime fechaPreparacion;
     private LocalDateTime fechaEntrega;
     private EstadoDistribucion estado;
-    private int idDonacion;
-    private String emailBeneficiario;
+    private Integer idDonacion;
+    private Integer idBeneficiario;
 
     // Constructor
     public DtDistribucion(LocalDateTime fechaPreparacion,
                           LocalDateTime fechaEntrega,
                           EstadoDistribucion estado,
-                          int idDonacion,
+                          Integer idDonacion,
                           String nombreBeneficiario,
-                          String emailBeneficiario) {
+                          Integer emailBeneficiario) {
         this.fechaPreparacion = fechaPreparacion;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
         this.idDonacion = idDonacion;
-        this.emailBeneficiario = emailBeneficiario;
+        this.idBeneficiario = emailBeneficiario;
     }
 
     // Getters
@@ -43,7 +43,12 @@ public class DtDistribucion {
         return idDonacion;
     }
 
-    public String getEmailBeneficiario() {
-        return emailBeneficiario;
+    public Integer getIdBeneficiario() {
+        return idBeneficiario;
+    }
+
+    @Override
+    public String toString() {
+        return this.fechaPreparacion + " " + this.fechaEntrega + " " + this.estado + " ";
     }
 }

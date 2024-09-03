@@ -7,8 +7,8 @@
     <properties>
       <background color="-330502"/>
       <foreground color="-198916"/>
-      <minimumSize width="450" height="600"/>
-      <preferredSize width="450" height="600"/>
+      <minimumSize width="500" height="600"/>
+      <preferredSize width="500" height="600"/>
     </properties>
     <border type="none"/>
     <children>
@@ -17,8 +17,8 @@
         <constraints border-constraint="North"/>
         <properties>
           <background color="-16178384"/>
-          <minimumSize width="-1" height="90"/>
-          <preferredSize width="-1" height="90"/>
+          <minimumSize width="-1" height="70"/>
+          <preferredSize width="-1" height="70"/>
         </properties>
         <border type="none"/>
         <children>
@@ -40,8 +40,8 @@
       <scrollpane id="1f424" binding="scroll">
         <constraints border-constraint="Center"/>
         <properties>
-          <minimumSize width="-1" height="15"/>
-          <preferredSize width="-1" height="119"/>
+          <minimumSize width="-1" height="300"/>
+          <preferredSize width="500" height="119"/>
         </properties>
         <border type="none"/>
         <children>
@@ -50,21 +50,24 @@
             <constraints/>
             <properties>
               <background color="-330502"/>
-              <minimumSize width="-1" height="119"/>
-              <preferredSize width="-1" height="119"/>
+              <minimumSize width="500" height="450"/>
+              <preferredSize width="500" height="450"/>
             </properties>
             <border type="none"/>
             <children>
               <component id="85d0f" class="javax.swing.JList" binding="listBeneficiarios">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <minimum-size width="400" height="-1"/>
                     <preferred-size width="400" height="-1"/>
                   </grid>
                 </constraints>
                 <properties>
                   <background color="-330502"/>
-                  <font name="Roboto Light" size="16" style="1"/>
+                  <font name="Roboto Light" size="15" style="1"/>
+                  <foreground color="-16178384"/>
+                  <selectionBackground color="-16178384"/>
+                  <selectionForeground color="-1"/>
                 </properties>
               </component>
               <component id="f381c" class="javax.swing.JLabel">

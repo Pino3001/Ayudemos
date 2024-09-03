@@ -15,7 +15,7 @@ public class ComponenteComboBox {
     private final Color colorSelected = new Color(110, 126, 227);
     private final Border border = new LineBorder(colorBorde, 1);
     private final Color colorFlecha = new Color(232, 225, 232);
-    private final Font font = new Font("Roboto light", Font.PLAIN, 15);
+    private final Font font = new Font("Roboto light", Font.PLAIN, 13);
 
     public ComponenteComboBox(JComboBox comboBox) {
         this.comboBox = comboBox;

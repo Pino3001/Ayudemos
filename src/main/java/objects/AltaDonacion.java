@@ -61,4 +61,9 @@ public class AltaDonacion implements IAltaDonacion {
         return manejadorDonacion.listarArticulosManejador();
     }
 
+    public DTDonacion obtenerDonacionPorId(Integer id){
+        ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
+        return manejadorDonacion.buscarDonacionID(id);
+    }
+
 }

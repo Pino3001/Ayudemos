@@ -3,7 +3,8 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
-import gui.AlertasGUI.AlertaIngresoGUI;
+
+import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
@@ -32,10 +33,10 @@ public class AltaDonacionGUI extends JFrame {
     private JPanel panelAlimento;
     private JPanel panelArticulo;
     private CardLayout cardLayout;
-    private final String textoPorDefectoDescAlimento = "Ingrese la descripcion del Alimento...";
-    private final String textoPorDefectoDescArticulo = "Ingrese la descripcion Articulo...";
-    private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones del Articulo...";
-    private AlertaIngresoGUI alerta;
+    private final String textoPorDefectoDescAlimento = "Ingrese la descripcion...";
+    private final String textoPorDefectoDescArticulo = "Ingrese la descripcion...";
+    private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones...";
+
 
     public AltaDonacionGUI(IAltaDonacion altaDonacion) {
         cardLayout = new CardLayout();
@@ -44,6 +45,8 @@ public class AltaDonacionGUI extends JFrame {
         cardAlimentoArticulo.add(panelAlimento, "alimento");
         cardAlimentoArticulo.add(panelArticulo, "articulo");
         aplicarEstilos();
+        actionBotonesNavDonaciones();
+        actionBotonesAceptarCancelar();
     }
 
     // Aplica estilos personalizados que no están en él .form
@@ -60,8 +63,7 @@ public class AltaDonacionGUI extends JFrame {
         new ComponenteTextField(textDimensiones, textoPorDefectoDimensiArticulos);
         new ComponenteSpinner(spinnerCantidad);
         new ComponenteSpinner(spinnerPeso);
-        actionBotonesNavDonaciones();
-        actionBotonesAceptarCancelar();
+
     }
 
     // Comportamiento de navegacion de los botones: Nuevo Artículo y Nuevo Alimento
@@ -99,13 +101,13 @@ public class AltaDonacionGUI extends JFrame {
                     } else {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
                         if (altaDonacion.crearDonacion(dtArticulo)) {
-                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                            new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -130,13 +132,13 @@ public class AltaDonacionGUI extends JFrame {
                     } else {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripcionAlimento.getText(), cantidad);
                         if (altaDonacion.crearDonacion(dtAlimento)) {
-                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                            new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -154,6 +156,6 @@ public class AltaDonacionGUI extends JFrame {
         // TODO: place custom component creation code here
         this.background = new JPanel();
         setContentPane(background);
-        setSize(600, 400);
+        setSize(400, 400);
     }
 }

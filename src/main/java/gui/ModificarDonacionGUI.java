@@ -60,7 +60,7 @@ public class ModificarDonacionGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(450, 600);
+        setSize(400, 550);
     }
 
     // Aplica estilos personalizados que no están en él .form

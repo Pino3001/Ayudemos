@@ -5,6 +5,8 @@ import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 import persistencia.Conexion;
 
 import java.util.ArrayList;
@@ -91,10 +93,31 @@ public class ManejadorUsuario {
     }*/
 
     // Devuelve el usuario con el eMail pasado
-    public DtUsuario obtenerUsuarioEmail(String email){
+    public DtUsuario obtenerUsuarioEmail(String email) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.find(Usuario.class, email).getDtUsuario();
+        DtUsuario dtUsuario = null;
+
+        try {
+            // Crear la consulta JPQL para buscar el usuario por email
+            String jpql = "SELECT u FROM Usuario u WHERE u.email = :email";
+            TypedQuery<Usuario> query = em.createQuery(jpql, Usuario.class);
+            query.setParameter("email", email);
+
+            // Ejecutar la consulta y obtener el resultado único
+            Usuario usuario = query.getSingleResult();
+
+            // Convertir a DtUsuario
+            if (usuario != null) {
+                dtUsuario = usuario.getDtUsuario();
+            }
+        } catch (NoResultException e) {
+            System.out.println("No se encontró el usuario con el email proporcionado.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return dtUsuario;
     }
 
     // Devuelve el usuario con el ID pasado

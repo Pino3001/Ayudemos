@@ -6,10 +6,8 @@ import interfaces.IAltaUsuario;
 import persistencia.Conexion;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 public class PrincipalGUI extends JFrame {
     private final IAltaUsuario iAltaUsuario;
@@ -40,7 +38,15 @@ public class PrincipalGUI extends JFrame {
         this.iAltaUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         this.iAltaDistribucion = iAltaDistribucion;
-
+        // Añadir WindowListener para cerrar conexiones al cerrar la ventana
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Conexion.getInstancia().close();  // Cierra la conexión cuando la ventana se cierra
+                System.exit(0);  // Asegura la terminación del programa
+            }
+        });
+        altaDonacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         altaDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +55,7 @@ public class PrincipalGUI extends JFrame {
             }
 
         });
+        altaUsuarioB.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         altaUsuarioB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +63,7 @@ public class PrincipalGUI extends JFrame {
                 altaUsuarioUI.setVisible(true);
             }
         });
+        modificarDonacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         modificarDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +71,7 @@ public class PrincipalGUI extends JFrame {
                 modificarDonacionGUI.setVisible(true);
             }
         });
+        modificarUsr.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         modificarUsr.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +79,7 @@ public class PrincipalGUI extends JFrame {
                 modificarUsuarioGUI.setVisible(true);
             }
         });
+        listarBeneficiarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         listarBeneficiarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,6 +87,7 @@ public class PrincipalGUI extends JFrame {
                 listarBeneficiariosGUI.setVisible(true);
             }
         });
+        altadistribucion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         altadistribucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,12 +96,12 @@ public class PrincipalGUI extends JFrame {
             }
         });
 
-        // Añadir WindowListener para cerrar conexiones al cerrar la ventana
-        addWindowListener(new WindowAdapter() {
+
+        modificarDistribucion.addActionListener(new ActionListener() {
             @Override
-            public void windowClosing(WindowEvent e) {
-                Conexion.getInstancia().close();  // Cierra la conexión cuando la ventana se cierra
-                System.exit(0);  // Asegura la terminación del programa
+            public void actionPerformed(ActionEvent e) {
+                ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iAltaUsuario,iAltaDonacion,iAltaDistribucion);
+                modificarDistribucionGUI.setVisible(true);
             }
         });
     }

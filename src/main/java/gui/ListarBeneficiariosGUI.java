@@ -29,7 +29,7 @@ public class ListarBeneficiariosGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(450,500);
+        setSize(500,600);
     }
 
     // Funcion para cargar los elementos en la lista
@@ -40,7 +40,7 @@ public class ListarBeneficiariosGUI extends JFrame {
         }else {
             modeloLista.clear(); // Limpiar elementos existentes
              for (DtBeneficiario beneficiario : beneficiarios) {
-               modeloLista.addElement(beneficiario.getNombre() + beneficiario.getMail() + beneficiario.getDireccion() + beneficiario.getBarrio().toString());
+               modeloLista.addElement(" "+beneficiario.getNombre() + " eMail: " + beneficiario.getMail() + " Direccion: " + beneficiario.getDireccion() + " Barrio: " + beneficiario.getBarrio().toString());
             }
         }
     }

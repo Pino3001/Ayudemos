@@ -3,9 +3,7 @@ package gui;
 import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import excepciones.CamposIncompletosExeption;
-import gui.componentes.ComponenteCalendario;
-import gui.componentes.ComponenteComboBox;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import interfaces.Fabrica;
 import interfaces.IAltaDistribucion;
 import interfaces.IAltaDonacion;
@@ -16,6 +14,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class AltaDistribucionGUI extends JFrame {
@@ -23,7 +23,6 @@ public class AltaDistribucionGUI extends JFrame {
     private final IAltaUsuario altaUsuario;
     private final IAltaDistribucion altaDistribucion;
     private JPanel background;
-    private JTextField textFechaPrep;
     private JButton buttonAceptarBenef;
     private JButton buttonCancelarBenef;
     private JButton buttonCalendarioEntrega;
@@ -43,6 +42,18 @@ public class AltaDistribucionGUI extends JFrame {
         cargarComboBox();
         actionButtonCalendario();
         actionAceptarCancelar();
+        // Verificar si los JTextField están inicializados correctamente
+        if (textFechaPrepara == null) {
+            System.out.println("textFechaPrep es null en la parte del código donde se usa.");
+        } else {
+            System.out.println("textFechaPrep está inicializado.");
+        }
+
+        if (textFechaEntrega == null) {
+            System.out.println("textFechaEntrega es null en la parte del código donde se usa.");
+        } else {
+            System.out.println("textFechaEntrega está inicializado.");
+        }
     }
 
     // Infla en componente creado en el form
@@ -63,7 +74,7 @@ public class AltaDistribucionGUI extends JFrame {
 
     // Cargar comboBox
     private void cargarComboBox() {
-        java.util.List<DtBeneficiario> dtBeneficiarioList = altaUsuario.listarBeneficiarios();
+        List<DtBeneficiario> dtBeneficiarioList = altaUsuario.listarBeneficiarios();
         List<DTDonacion> dtDonacionList = altaDonacion.listarDonaciones();
 
         // Cargo con los beneficiarios
@@ -100,13 +111,20 @@ public class AltaDistribucionGUI extends JFrame {
                     } else if (textFechaEntrega.getText().equals("--/--/----") && textFechaEntrega.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        //!!!!!!!!!CAMBIAR
-                        LocalDateTime fechaEntrega = LocalDateTime.now();
-                        altaDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaEntrega, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
-                        JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        // Define el formato de la cadena
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+                        // Parsear la cadena a un objeto LocalDateTime
+                        System.out.println("En fecha prep hay"+ textFechaPrepara.getText());
+                        System.out.println("En fecha entre hay"+ textFechaEntrega.getText());
+
+                        LocalDateTime fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
+                        LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
+
+                        altaDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                        new AlertaGUI(false, "Se ha creado La Distribucion Exitosamente").mostrarAlerta();
                     }
-                } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                } catch (CamposIncompletosExeption | DateTimeParseException ex) {
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -122,14 +140,18 @@ public class AltaDistribucionGUI extends JFrame {
     private void actionButtonCalendario() {
 
         buttonCalendarioPrepara.addActionListener(e -> {
+            if (textFechaPrepara == null) {
+                System.out.println("textFechaPrepara es null");
+                return;
+            }
             // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario();
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
             int x = textFechaPrepara.getLocationOnScreen().x;
             int y = textFechaPrepara.getLocationOnScreen().y + buttonCalendarioPrepara.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
 
             // Verificar si se seleccionó una fecha o si se canceló la selección
             if (fechaSeleccionada != null) {
@@ -139,14 +161,18 @@ public class AltaDistribucionGUI extends JFrame {
         });
 
         buttonCalendarioEntrega.addActionListener(e -> {
+            if (textFechaEntrega == null) {
+                System.out.println("textFechaPrepara es null");
+                return;
+            }
             // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario();
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
             int x = textFechaEntrega.getLocationOnScreen().x;
             int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
 
             // Verificar si se seleccionó una fecha o si se canceló la selección
             if (fechaSeleccionada != null) {

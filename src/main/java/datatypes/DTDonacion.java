@@ -23,4 +23,21 @@ public class DTDonacion {
     public LocalDateTime getFechaIngresada() {
         return fechaIngresada;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        DTDonacion that = (DTDonacion) obj;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

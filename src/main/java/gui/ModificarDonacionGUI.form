@@ -6,8 +6,8 @@
     </constraints>
     <properties>
       <background color="-330502"/>
-      <minimumSize width="450" height="600"/>
-      <preferredSize width="450" height="600"/>
+      <minimumSize width="400" height="550"/>
+      <preferredSize width="400" height="550"/>
     </properties>
     <border type="none"/>
     <children>
@@ -16,8 +16,8 @@
         <constraints border-constraint="North"/>
         <properties>
           <background color="-16178384"/>
-          <minimumSize width="-1" height="90"/>
-          <preferredSize width="-1" height="90"/>
+          <minimumSize width="-1" height="70"/>
+          <preferredSize width="-1" height="70"/>
         </properties>
         <border type="none"/>
         <children>
@@ -53,8 +53,8 @@
             </constraints>
             <properties>
               <background color="-330502"/>
-              <minimumSize width="440" height="350"/>
-              <preferredSize width="440" height="350"/>
+              <minimumSize width="400" height="350"/>
+              <preferredSize width="400" height="350"/>
             </properties>
             <border type="none"/>
             <children>
@@ -62,8 +62,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="450" height="35"/>
-                    <preferred-size width="450" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -76,8 +76,8 @@
                   <component id="822f8" class="javax.swing.JComboBox" binding="comboBuscarArticulo">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="30"/>
-                        <preferred-size width="250" height="30"/>
+                        <minimum-size width="200" height="30"/>
+                        <preferred-size width="200" height="30"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -115,8 +115,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -141,8 +141,8 @@
                   <component id="44fdc" class="javax.swing.JLabel" binding="textoArticuloSeleccionado">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="35"/>
-                        <preferred-size width="250" height="35"/>
+                        <minimum-size width="150" height="35"/>
+                        <preferred-size width="150" height="35"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -158,8 +158,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -170,8 +170,8 @@
                   <component id="de20a" class="javax.swing.JTextField" binding="textDescripcionArticulo">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="30"/>
-                        <preferred-size width="250" height="30"/>
+                        <minimum-size width="200" height="30"/>
+                        <preferred-size width="200" height="30"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -209,8 +209,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -257,8 +257,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -269,8 +269,8 @@
                   <component id="fe883" class="javax.swing.JTextField" binding="textDimensiones">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="30"/>
-                        <preferred-size width="250" height="30"/>
+                        <minimum-size width="200" height="30"/>
+                        <preferred-size width="200" height="30"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -308,8 +308,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="60"/>
-                    <preferred-size width="440" height="60"/>
+                    <minimum-size width="400" height="60"/>
+                    <preferred-size width="400" height="60"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -401,8 +401,8 @@
             </constraints>
             <properties>
               <background color="-330502"/>
-              <minimumSize width="440" height="414"/>
-              <preferredSize width="440" height="414"/>
+              <minimumSize width="400" height="414"/>
+              <preferredSize width="400" height="414"/>
             </properties>
             <border type="none"/>
             <children>
@@ -410,8 +410,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -424,8 +424,8 @@
                   <component id="30194" class="javax.swing.JComboBox" binding="comboBuscarAlimento">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="30"/>
-                        <preferred-size width="250" height="30"/>
+                        <minimum-size width="200" height="30"/>
+                        <preferred-size width="200" height="30"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -461,8 +461,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -504,8 +504,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -516,8 +516,8 @@
                   <component id="8454" class="javax.swing.JTextField" binding="textDescripAlimento">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                        <minimum-size width="250" height="30"/>
-                        <preferred-size width="250" height="30"/>
+                        <minimum-size width="200" height="30"/>
+                        <preferred-size width="200" height="30"/>
                       </grid>
                     </constraints>
                     <properties>
@@ -555,8 +555,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="35"/>
-                    <preferred-size width="440" height="35"/>
+                    <minimum-size width="400" height="35"/>
+                    <preferred-size width="400" height="35"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -600,8 +600,8 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <minimum-size width="440" height="60"/>
-                    <preferred-size width="440" height="60"/>
+                    <minimum-size width="400" height="60"/>
+                    <preferred-size width="400" height="60"/>
                   </grid>
                 </constraints>
                 <properties>
@@ -697,16 +697,16 @@
         <properties>
           <background color="-330502"/>
           <maximumSize width="-1" height="-1"/>
-          <minimumSize width="440" height="40"/>
-          <preferredSize width="440" height="40"/>
+          <minimumSize width="400" height="40"/>
+          <preferredSize width="400" height="40"/>
         </properties>
         <border type="none"/>
         <children>
           <component id="63cd0" class="javax.swing.JButton" binding="buttonModificarArticulo">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="200" height="40"/>
-                <preferred-size width="200" height="40"/>
+                <minimum-size width="150" height="40"/>
+                <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
             <properties>
@@ -727,8 +727,8 @@
           <component id="fb9f5" class="javax.swing.JButton" binding="buttonModificarAlimento">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="200" height="40"/>
-                <preferred-size width="200" height="40"/>
+                <minimum-size width="150" height="40"/>
+                <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
             <properties>
