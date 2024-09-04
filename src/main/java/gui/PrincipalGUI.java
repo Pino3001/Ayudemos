@@ -3,6 +3,7 @@ package gui;
 import interfaces.IAltaDistribucion;
 import interfaces.IAltaDonacion;
 import interfaces.IAltaUsuario;
+import interfaces.IListarBeneficiariosZona;
 import persistencia.Conexion;
 
 import javax.swing.*;
@@ -36,7 +37,7 @@ public class PrincipalGUI extends JFrame {
     private JLabel tituloDonaciones;
     private JButton mayoresDistribuciones;
 
-    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion) {
+    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion, IListarBeneficiariosZona iListarBeneficiariosZona) {
         this.iAltaUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         this.iAltaDistribucion = iAltaDistribucion;
@@ -47,8 +48,8 @@ public class PrincipalGUI extends JFrame {
                 AltaDonacionGUI altaDonacionGUI = new AltaDonacionGUI(iAltaDonacion);
                 altaDonacionGUI.setVisible(true);
             }
-
         });
+
         altaUsuarioB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +57,7 @@ public class PrincipalGUI extends JFrame {
                 altaUsuarioUI.setVisible(true);
             }
         });
+
         modificarDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +65,7 @@ public class PrincipalGUI extends JFrame {
                 modificarDonacionGUI.setVisible(true);
             }
         });
+
         modificarUsr.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +73,7 @@ public class PrincipalGUI extends JFrame {
                 modificarUsuarioGUI.setVisible(true);
             }
         });
+
         listarBeneficiarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,11 +81,21 @@ public class PrincipalGUI extends JFrame {
                 listarBeneficiariosGUI.setVisible(true);
             }
         });
+
         altadistribucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion);
                 altaDistribucionGUI.setVisible(true);
+            }
+        });
+
+        // Agregar el ActionListener para listarBenefiZona
+        listarBenefiZona.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ListarBeneficiariosZonaGUI listarBeneficiariosZonaGUI = new ListarBeneficiariosZonaGUI(iListarBeneficiariosZona);
+                listarBeneficiariosZonaGUI.setVisible(true);
             }
         });
 
@@ -98,6 +112,6 @@ public class PrincipalGUI extends JFrame {
     private void createUIComponents() {
         this.principalPanel = new JPanel();
         setContentPane(principalPanel);
-        setSize(1100,700);
+        setSize(1100, 700);
     }
 }

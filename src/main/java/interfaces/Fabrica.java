@@ -4,7 +4,7 @@ import objects.AltaDistribucion;
 
 import objects.AltaDonacion;
 import objects.AltaUsuario;
-import interfaces.IAltaUsuario;
+import objects.ListarBeneficiariosZona;
 
 public class Fabrica {
     private static Fabrica instancia = null;
@@ -28,5 +28,12 @@ public class Fabrica {
         return new AltaUsuario();
     }
 
-    public IAltaDonacion getAltaDonacion() {return new AltaDonacion();}
+    public IAltaDonacion getAltaDonacion() {
+        return new AltaDonacion();
+    }
+
+    public IListarBeneficiariosZona getListarBeneficiariosZona() {
+        // Retornar la instancia de la implementación de IListarBeneficiariosZona
+        return new ListarBeneficiariosZona();
+    }
 }

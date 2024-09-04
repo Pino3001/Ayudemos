@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import persistencia.Conexion;
 import types.EstadoBeneficiario;
+import types.Barrio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,7 @@ public class ManejadorUsuario {
 
         try {
             em.getTransaction().begin();
-
             em.persist(usuario);
-
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
@@ -132,6 +131,17 @@ public class ManejadorUsuario {
         EntityManager em = conexion.getEntityManager();
         return em.createQuery("SELECT b FROM Beneficiario b WHERE b.estado = :estado", Beneficiario.class)
                 .setParameter("estado", estado)
+                .getResultList()
+                .stream()
+                .map(Beneficiario::getDtUsuario)
+                .collect(Collectors.toList());
+    }
+
+    public List<DtBeneficiario> obtenerBeneficiariosPorZona(Barrio barrio) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.barrio = :barrio", Beneficiario.class)
+                .setParameter("barrio", barrio)
                 .getResultList()
                 .stream()
                 .map(Beneficiario::getDtUsuario)

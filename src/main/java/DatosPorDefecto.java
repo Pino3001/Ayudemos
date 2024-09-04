@@ -1,30 +1,37 @@
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import datatypes.DTDonacion;
-import objects.Alimento;
-import types.DTFecha;
-import types.DTFechaHora;
+import datatypes.DtBeneficiario;
+import types.Barrio;
+import types.EstadoBeneficiario;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DatosPorDefecto {
 
     private List<DTDonacion> donacionesDT;
+    private List<DtBeneficiario> beneficiariosDT;
 
     public DatosPorDefecto() {
-        // Crear la lista de DTAlimento
+        // Inicializar las listas
         donacionesDT = new ArrayList<>();
+        beneficiariosDT = new ArrayList<>();
 
+        // Cargar donaciones de prueba
+        cargarDonaciones();
+
+        // Cargar beneficiarios de prueba
+        cargarBeneficiarios();
+    }
+
+    private void cargarDonaciones() {
         // Agregar elementos a la lista
 
         donacionesDT.add(new DTAlimento(1, LocalDateTime.now(), "Manzanas", 10));
-
         donacionesDT.add(new DTAlimento(2, LocalDateTime.now(), "Pan", 20));
-
         donacionesDT.add(new DTAlimento(3, LocalDateTime.now(), "Leche", 15));
 
         DTArticulo dtArticulo1 = new DTArticulo(0, LocalDateTime.now(), "Mesa", 10, "120x60x75");
@@ -40,37 +47,17 @@ public class DatosPorDefecto {
         donacionesDT.add(dtArticulo4);
 
         for (int i = 1; i <= 100; i++) {
-            // Generar una fecha y hora distintas para cada donación
-            int dia = i % 28 + 1;  // Generar días entre 1 y 28
-            int mes = i % 12 + 1;  // Generar meses entre 1 y 12
-            int anio = 2020 + (i % 5);  // Generar años entre 2020 y 2024
-            int hora = i % 24;  // Generar horas entre 0 y 23
-            int minuto = (i * 5) % 60;  // Generar minutos
-
             // Crear un nombre distinto para la descripción de cada donación
             String descripcion = "Donación " + i;
-
-            // Generar una cantidad aleatoria
             int cantidad = i % 10 + 1;  // Generar cantidades entre 1 y 10
 
             // Agregar la nueva donación a la lista
             donacionesDT.add(new DTAlimento(i, LocalDateTime.now(), descripcion, cantidad));
         }
         for (int i = 1; i <= 100; i++) {
-            // Generar una fecha y hora distintas para cada donación
-            int dia = i % 28 + 1;  // Generar días entre 1 y 28
-            int mes = i % 12 + 1;  // Generar meses entre 1 y 12
-            int anio = 2020 + (i % 5);  // Generar años entre 2020 y 2024
-            int hora = i % 24;  // Generar horas entre 0 y 23
-            int minuto = (i * 5) % 60;  // Generar minutos
-
             // Crear un nombre distinto para la descripción de cada artículo
             String descripcion = "Artículo " + i;
-
-            // Generar una cantidad aleatoria
-            float peso = i % 10 + 1;  // Generar cantidades entre 1 y 10
-
-            // Generar dimensiones aleatorias
+            float peso = i % 10 + 1;  // Generar pesos entre 1 y 10
             String dimensiones = (50 + i % 50) + "x" + (40 + i % 30) + "x" + (10 + i % 10);
 
             // Crear y agregar la nueva instancia de DTArticulo a la lista
@@ -78,8 +65,31 @@ public class DatosPorDefecto {
         }
     }
 
+    private void cargarBeneficiarios() {
+        // Crear beneficiarios para cada barrio usando DtBeneficiario
+        for (Barrio barrio : Barrio.values()) {
+            for (int i = 1; i <= 5; i++) { // Generar 5 beneficiarios por barrio
+                String nombre = "Beneficiario " + barrio + " " + i;
+                String email = "email" + barrio + i + "@example.com";
+                String direccion = "Calle Falsa " + (100 + i);
+                LocalDate fechaNacimiento = LocalDate.of(1990 + i % 10, i % 12 + 1, i % 28 + 1);
+                EstadoBeneficiario estado = i % 2 == 0 ? EstadoBeneficiario.ACTIVO : EstadoBeneficiario.SUSPENDIDO;
+
+                // ID ficticio
+                Integer id = i + (barrio.ordinal() * 100);
+
+                // Crear y agregar DtBeneficiario a la lista
+                DtBeneficiario dtBeneficiario = new DtBeneficiario(id, nombre, email, direccion, fechaNacimiento, estado, barrio);
+                beneficiariosDT.add(dtBeneficiario);
+            }
+        }
+    }
+
     public List<DTDonacion> getAlimentosDT() {
         return donacionesDT;
     }
 
+    public List<DtBeneficiario> getBeneficiariosDT() {
+        return beneficiariosDT;
+    }
 }
