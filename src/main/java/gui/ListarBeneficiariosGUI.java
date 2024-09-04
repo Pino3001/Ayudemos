@@ -14,7 +14,7 @@ public class ListarBeneficiariosGUI extends JFrame {
     private JPanel panelLista;
     private JList<String> listBeneficiarios;
     private JScrollPane scroll;
-    private DefaultListModel<String> modeloLista;
+    private final DefaultListModel<String> modeloLista;
 
     private IAltaUsuario altaUsuario;
 

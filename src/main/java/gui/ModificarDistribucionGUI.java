@@ -30,7 +30,7 @@ public class ModificarDistribucionGUI extends JFrame {
     private JComboBox<DtDistribucion> comboDistribuciones;
     private JTextField textFechaPrepara;
     private JButton buttonCalendarioPrepara;
-    private JLabel textSeleccionadoDistribu;
+    private JTextArea textSeleccionadoDistribu;
     private JButton buttonAceptarDonacion;
     private JButton buttonCancelarDonacion;
     private JComboBox<DtUsuario> comboBeneficiario;
@@ -51,23 +51,14 @@ public class ModificarDistribucionGUI extends JFrame {
         cargarComboBoxDistribuciones();
         actionListenerComboBox();
         actionButtonCalendario();
-    }
-
-    // Aplica estilos predeterminados
-    public void aplicarEstilos() {
-        new ComponenteTextField(textFechaPrepara, textFechaPreparaDefecto);
-        new ComponenteTextField(textFechaEntrega, textFechaEntregaDefecto);
-        new ComponenteComboBox(comboDistribuciones);
-        new ComponenteComboBox(comboBeneficiario);
-        new ComponenteComboBox(comboDonacion);
-        new ComponenteComboBox(comboEstado);
+        actionAceptarCancelar();
     }
 
     // Infla en componente creado en el form
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(450, 550);
+        setSize(450, 600);
     }
 
     // Carga el combobox de las distribuciones
@@ -145,6 +136,9 @@ public class ModificarDistribucionGUI extends JFrame {
         String fechaEntrega = distribu.getFechaEntrega().format(formatter);
         textFechaPrepara.setText(fechaPrep);
         textFechaEntrega.setText(fechaEntrega);
+        if (dtDonacion instanceof DTArticulo) textSeleccionadoDistribu.setText( ((DTArticulo) dtDonacion).getDescripcion() + " " + distribu.getEstado() + "\nFecha Entrega :" + distribu.getFechaEntrega());
+        else textSeleccionadoDistribu.setText(((DTAlimento) dtDonacion).getDescripcionProductos() + " " + distribu.getEstado() + "\nFecha Entrega :" + distribu.getFechaEntrega());
+
     }
 
     // Comportamiento de los botones del calendario
@@ -219,7 +213,7 @@ public class ModificarDistribucionGUI extends JFrame {
                         LocalDateTime fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
                         LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
 ////Colocar la funcion de modificar Distribucion
-                        new AlertaGUI(false, "Se ha creado La Distribucion Exitosamente").mostrarAlerta();
+                        new AlertaGUI(false, "¡Se ha modificado La Distribucion Exitosamente!").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | DateTimeParseException ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
@@ -229,10 +223,21 @@ public class ModificarDistribucionGUI extends JFrame {
         buttonCancelarDonacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setVisible(false);
             }
         });
     }
+
+    // Aplica estilos predeterminados
+    public void aplicarEstilos() {
+        new ComponenteTextField(textFechaPrepara, textFechaPreparaDefecto);
+        new ComponenteTextField(textFechaEntrega, textFechaEntregaDefecto);
+        new ComponenteComboBox(comboDistribuciones);
+        new ComponenteComboBox(comboBeneficiario);
+        new ComponenteComboBox(comboDonacion);
+        new ComponenteComboBox(comboEstado);
+    }
+
 
     public static void main(String[] args) {
         Fabrica fabrica = Fabrica.getInstancia();

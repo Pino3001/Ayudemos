@@ -112,9 +112,6 @@ public class ManejadorDonacion {
                 throw new IllegalArgumentException("La Donacion no existe");
             }
 
-            // Actualiza los atributos de la donación
-            d.setFechaIngresada(dtDonacion.getFechaIngresada());
-
             // Verifica y actualiza las subclases de donación
             if (d instanceof Alimento alimento && dtDonacion instanceof DTAlimento) {
                 alimento.setDescripcionProductos(((DTAlimento) dtDonacion).getDescripcionProductos());

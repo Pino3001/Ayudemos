@@ -42,18 +42,6 @@ public class AltaDistribucionGUI extends JFrame {
         cargarComboBox();
         actionButtonCalendario();
         actionAceptarCancelar();
-        // Verificar si los JTextField están inicializados correctamente
-        if (textFechaPrepara == null) {
-            System.out.println("textFechaPrep es null en la parte del código donde se usa.");
-        } else {
-            System.out.println("textFechaPrep está inicializado.");
-        }
-
-        if (textFechaEntrega == null) {
-            System.out.println("textFechaEntrega es null en la parte del código donde se usa.");
-        } else {
-            System.out.println("textFechaEntrega está inicializado.");
-        }
     }
 
     // Infla en componente creado en el form

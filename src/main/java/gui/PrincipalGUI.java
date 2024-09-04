@@ -96,7 +96,7 @@ public class PrincipalGUI extends JFrame {
             }
         });
 
-
+        modificarDistribucion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         modificarDistribucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
