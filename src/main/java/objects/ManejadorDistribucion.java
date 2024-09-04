@@ -6,6 +6,7 @@ import persistencia.Conexion;
 import types.Barrio;
 import types.EstadoDistribucion;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 public class ManejadorDistribucion {
 
     private static ManejadorDistribucion instacia = null;
+
+    private List<Distribucion> distribuciones = new ArrayList<>();
 
     private ManejadorDistribucion() {
     }
@@ -93,6 +96,27 @@ public class ManejadorDistribucion {
             }
         } finally {
             em.close();
+        }
+    }
+
+    public DtDistribucion buscarDistribucion(String emailBeneficiario, int idDonacion) {
+        for (Distribucion distribucion : distribuciones) {
+            if (distribucion.getBeneficiario().getMail().equals(emailBeneficiario)
+                    && distribucion.getDonacion().getId() == idDonacion) {
+                return new DtDistribucion(distribucion.getFechaPreparacion(),distribucion.getFechaEntrega(),distribucion.getEstado(),distribucion.getDonacion().getId(),distribucion.getBeneficiario().getNombre(), distribucion.getBeneficiario().getMail());
+            }
+        }
+        return null;
+    }
+
+    // Modifica una distribución existente
+    public void modificarDistribucion(DtDistribucion dtDistribucion) {
+        for (Distribucion distribucion : distribuciones) {
+            if (distribucion.getBeneficiario().getMail().equals(dtDistribucion.getEmailBeneficiario()) && distribucion.getDonacion().getId() == dtDistribucion.getIdDonacion()) {
+                distribucion.setFechaPreparacion(dtDistribucion.getFechaPreparacion());
+                distribucion.setFechaEntrega(dtDistribucion.getFechaEntrega());
+                distribucion.setEstado(dtDistribucion.getEstado());
+            }
         }
     }
 

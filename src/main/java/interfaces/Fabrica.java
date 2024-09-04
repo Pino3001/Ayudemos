@@ -1,10 +1,6 @@
 package interfaces;
 
-import objects.AltaDistribucion;
-
-import objects.AltaDonacion;
-import objects.AltaUsuario;
-import objects.ListarBeneficiariosZona;
+import objects.*;
 
 public class Fabrica {
     private static Fabrica instancia = null;
@@ -33,7 +29,10 @@ public class Fabrica {
     }
 
     public IListarBeneficiariosZona getListarBeneficiariosZona() {
-        // Retornar la instancia de la implementación de IListarBeneficiariosZona
         return new ListarBeneficiariosZona();
+    }
+
+    public IModificarDistribucion getModificarDistribucion() {
+        return new ModificarDistribucion();
     }
 }

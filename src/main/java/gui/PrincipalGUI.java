@@ -1,9 +1,6 @@
 package gui;
 
-import interfaces.IAltaDistribucion;
-import interfaces.IAltaDonacion;
-import interfaces.IAltaUsuario;
-import interfaces.IListarBeneficiariosZona;
+import interfaces.*;
 import persistencia.Conexion;
 
 import javax.swing.*;
@@ -37,7 +34,7 @@ public class PrincipalGUI extends JFrame {
     private JLabel tituloDonaciones;
     private JButton mayoresDistribuciones;
 
-    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion, IListarBeneficiariosZona iListarBeneficiariosZona) {
+    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion, IListarBeneficiariosZona iListarBeneficiariosZona, IModificarDistribucion iModificarDistribucion) {
         this.iAltaUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         this.iAltaDistribucion = iAltaDistribucion;
@@ -71,6 +68,14 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ModificarUsuarioGUI modificarUsuarioGUI = new ModificarUsuarioGUI(iAltaUsuario);
                 modificarUsuarioGUI.setVisible(true);
+            }
+        });
+
+        modificarDistribucion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iModificarDistribucion);
+                modificarDistribucionGUI.setVisible(true);
             }
         });
 

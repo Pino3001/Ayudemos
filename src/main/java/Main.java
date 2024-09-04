@@ -1,11 +1,7 @@
 import datatypes.DtBeneficiario;
 import datatypes.DTDonacion;
 import gui.PrincipalGUI;
-import interfaces.Fabrica;
-import interfaces.IAltaDistribucion;
-import interfaces.IAltaDonacion;
-import interfaces.IAltaUsuario;
-import interfaces.IListarBeneficiariosZona;
+import interfaces.*;
 import objects.Beneficiario;
 import objects.ManejadorUsuario;
 import persistencia.Conexion;
@@ -23,15 +19,16 @@ public class Main {
         IAltaDonacion iAltaDonacion = fabrica.getAltaDonacion();
         IAltaDistribucion iAltaDistribucion = fabrica.getIAltaDistribucion();
         IListarBeneficiariosZona iListarBeneficiariosZona = fabrica.getListarBeneficiariosZona();
+        IModificarDistribucion iModificarDistribucion = fabrica.getModificarDistribucion();
 
         // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 
         // Crear donaciones de prueba
-        List<DTDonacion> dtDonaciones = dpf.getAlimentosDT();
-        for (DTDonacion d : dtDonaciones) {
+        List<DTDonacion> dt = dpf.getDonacionesDT(); // Cambio aquí de getAlimentosDT a getDonacionesDT
+        for (DTDonacion d : dt) {
             if (iAltaDonacion.crearDonacion(d)) {
-                System.out.println("Donación creada exitosamente!");
+                System.out.println("Al parecer fue creado!");
             }
         }
 
@@ -68,7 +65,7 @@ public class Main {
         }*/
 
         // GUI
-        PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion, iListarBeneficiariosZona);
+        PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion, iListarBeneficiariosZona, iModificarDistribucion);
         principalGUI.setVisible(true);
     }
 }

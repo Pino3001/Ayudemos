@@ -2,8 +2,10 @@ import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
+import datatypes.DtDistribucion;
 import types.Barrio;
 import types.EstadoBeneficiario;
+import types.EstadoDistribucion;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,21 +16,22 @@ public class DatosPorDefecto {
 
     private List<DTDonacion> donacionesDT;
     private List<DtBeneficiario> beneficiariosDT;
+    private List<DtDistribucion> distribucionesDT;
 
     public DatosPorDefecto() {
         // Inicializar las listas
         donacionesDT = new ArrayList<>();
         beneficiariosDT = new ArrayList<>();
+        distribucionesDT = new ArrayList<>();
 
-        // Cargar donaciones de prueba
+        // Cargar donaciones, beneficiarios y distribuciones de prueba
         cargarDonaciones();
-
-        // Cargar beneficiarios de prueba
         cargarBeneficiarios();
+        cargarDistribuciones();
     }
 
     private void cargarDonaciones() {
-        // Agregar elementos a la lista
+        // Agregar elementos a la lista de donaciones
 
         donacionesDT.add(new DTAlimento(1, LocalDateTime.now(), "Manzanas", 10));
         donacionesDT.add(new DTAlimento(2, LocalDateTime.now(), "Pan", 20));
@@ -47,20 +50,15 @@ public class DatosPorDefecto {
         donacionesDT.add(dtArticulo4);
 
         for (int i = 1; i <= 100; i++) {
-            // Crear un nombre distinto para la descripción de cada donación
             String descripcion = "Donación " + i;
             int cantidad = i % 10 + 1;  // Generar cantidades entre 1 y 10
-
-            // Agregar la nueva donación a la lista
             donacionesDT.add(new DTAlimento(i, LocalDateTime.now(), descripcion, cantidad));
         }
+
         for (int i = 1; i <= 100; i++) {
-            // Crear un nombre distinto para la descripción de cada artículo
             String descripcion = "Artículo " + i;
             float peso = i % 10 + 1;  // Generar pesos entre 1 y 10
             String dimensiones = (50 + i % 50) + "x" + (40 + i % 30) + "x" + (10 + i % 10);
-
-            // Crear y agregar la nueva instancia de DTArticulo a la lista
             donacionesDT.add(new DTArticulo(i, LocalDateTime.now(), descripcion, peso, dimensiones));
         }
     }
@@ -85,11 +83,47 @@ public class DatosPorDefecto {
         }
     }
 
-    public List<DTDonacion> getAlimentosDT() {
+    private void cargarDistribuciones() {
+        // Crear distribuciones de prueba asociadas a beneficiarios y donaciones
+        for (int i = 0; i < 8; i++) {
+            DtBeneficiario beneficiario = beneficiariosDT.get(i);
+            DTDonacion donacion = donacionesDT.get(i);
+
+            distribucionesDT.add(new DtDistribucion(
+                    LocalDateTime.now().minusDays(i + 3),
+                    LocalDateTime.now().minusDays(i + 1),
+                    EstadoDistribucion.ENTREGADO,
+                    donacion.getId(),
+                    beneficiario.getNombre(),
+                    beneficiario.getMail()
+            ));
+        }
+
+        // Agregar más distribuciones si es necesario
+        for (int i = 9; i <= 15; i++) {
+            DtBeneficiario beneficiario = beneficiariosDT.get(i % beneficiariosDT.size());
+            DTDonacion donacion = donacionesDT.get(i % donacionesDT.size());
+
+            distribucionesDT.add(new DtDistribucion(
+                    LocalDateTime.now().minusDays(i),
+                    LocalDateTime.now().minusDays(i - 1),
+                    EstadoDistribucion.EN_CAMINO,
+                    donacion.getId(),
+                    beneficiario.getNombre(),
+                    beneficiario.getMail()
+            ));
+        }
+    }
+
+    public List<DTDonacion> getDonacionesDT() {
         return donacionesDT;
     }
 
     public List<DtBeneficiario> getBeneficiariosDT() {
         return beneficiariosDT;
+    }
+
+    public List<DtDistribucion> getDistribucionesDT() {
+        return distribucionesDT;
     }
 }
