@@ -2,15 +2,12 @@ package objects;
 
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
-import datatypes.DtReporteZona;
 import interfaces.IAltaDistribucion;
 import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

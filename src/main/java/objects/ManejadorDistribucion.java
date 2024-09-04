@@ -1,7 +1,6 @@
 package objects;
 
 import datatypes.DtDistribucion;
-import datatypes.DtReporteZona;
 import jakarta.persistence.EntityManager;
 import persistencia.Conexion;
 import types.Barrio;
