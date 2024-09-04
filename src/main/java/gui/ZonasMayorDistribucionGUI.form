@@ -60,7 +60,7 @@
                   <text value="Rango de Fechas :"/>
                 </properties>
               </component>
-              <component id="bc207" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="bc207" class="javax.swing.JTextField" binding="textFieldFecha1">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="90" height="-1"/>
@@ -80,7 +80,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="8d48c" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="8d48c" class="javax.swing.JTextField" binding="textFieldFecha2">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="90" height="-1"/>

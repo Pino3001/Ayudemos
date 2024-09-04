@@ -1,21 +1,21 @@
 package gui;
 
-import gui.componentes.ColorUtil;
-import gui.componentes.ComponenteGraficoCircular;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import types.Barrio;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ZonasMayorDistribucionGUI extends JFrame {
-    private JTextField textField1;
+    private JTextField textFieldFecha1;
     private JButton button1;
-    private JTextField textField2;
+    private JTextField textFieldFecha2;
     private JPanel background;
     private JTable tableZonas;
     private JPanel panelGrafico;
@@ -33,13 +33,11 @@ public class ZonasMayorDistribucionGUI extends JFrame {
     private JPanel panelGeneral;
     private JPanel panel8;
 
-    // Mapa para almacenar el color de cada barrio
-    private Map<Barrio, Color> rowColors;
 
     public ZonasMayorDistribucionGUI() {
 
         aplicarEstilos();
-        rowColors = new HashMap<>();  // Inicializamos el mapa
+
 
         // Crear modelo de tabla con dos columnas
         String[] columnNames = {"Barrio", "Cantidad"};
@@ -59,7 +57,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
 
                 // Obtener el color de la fila basado en el barrio
                 Barrio barrio = (Barrio) table.getValueAt(row, 0);  // Obtenemos el barrio de la fila actual
-                Color color = rowColors.get(barrio);  // Obtenemos el color asociado a ese barrio
+                Color color = barrio.getColor();  // Obtenemos el color asociado a ese barrio
 
                 // Si no está seleccionado, usar el color personalizado
                 if (!isSelected && color != null) {
@@ -89,11 +87,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         for (Barrio barrio : Barrio.values()) {
             tableModel.addRow(new Object[]{barrio, cantidad});
             data.put(barrio.toString(), cantidad);
-            // Generar un color pastel aleatorio para cada barrio
-            Color randomPastelColor = ColorUtil.generateRandomColor();
-
             // Establecer el color de la fila en el mapa basado en el barrio
-            rowColors.put(barrio, randomPastelColor);
             cantidad -= 60;
 
         }
@@ -101,17 +95,32 @@ public class ZonasMayorDistribucionGUI extends JFrame {
 
 // Llamamos a createPieChart() después de inicializar y agregar el panel
         // Crear una instancia de PieChartPanel con los datos y el título
-        ComponenteGraficoCircular pieChartPanel = new ComponenteGraficoCircular(data, "Distribución por Barrio", rowColors);
+        ComponenteGraficoCircular pieChartPanel = new ComponenteGraficoCircular(data, "Distribuciónes por Barrio");
         panelGrafico.add(pieChartPanel);
         // Agregar panelGrafico al contenedor principal
         repaint();
         revalidate();
-    }
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Crear una instancia del componente de calendario
+                ComponenteCalendarioTupla calendario = new ComponenteCalendarioTupla();
+                // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
+                int x = button1.getLocationOnScreen().x;
+                int y = button1.getLocationOnScreen().y + -100;
 
+                // Mostrar el calendario y obtener la fecha seleccionada
+                String[] fechaSeleccionada = calendario.mostrarYObtenerFechasSeleccionadas(x, y);
 
-    // Método para obtener el color de un barrio específico
-    public Color getRowColor(Barrio barrio) {
-        return rowColors.get(barrio);
+                // Verificar si se seleccionó una fecha o si se canceló la selección
+                if (fechaSeleccionada != null) {
+                    // Actualizar un campo de texto con la fecha seleccionada
+                    textFieldFecha1.setText(fechaSeleccionada[0]);
+                    textFieldFecha2.setText(fechaSeleccionada[1]);
+
+                }
+            }
+        });
     }
 
     private void createUIComponents() {
@@ -140,8 +149,8 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         panelGeneral.setBackground(ColorUtil.getColor("backgroundColor"));
         scrolpanel1.setBackground(ColorUtil.getColor("backgroundColor"));
         panel8.setBackground(ColorUtil.getColor("backgroundColor"));
-        new ComponenteTextField(textField1, "");
-        new ComponenteTextField(textField2, "");
+        new ComponenteTextField(textFieldFecha1, "");
+        new ComponenteTextField(textFieldFecha2, "");
     }
 
     public static void main(String[] args) {

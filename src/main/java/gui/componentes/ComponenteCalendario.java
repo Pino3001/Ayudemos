@@ -316,10 +316,9 @@ public class ComponenteCalendario extends JDialog {
     }
 
     // Método estático para mostrar el componente y obtener la fecha seleccionada
-    public static String mostrarYObtenerFechaSeleccionada(int x, int y) {
-        ComponenteCalendario dialog = new ComponenteCalendario();
-        dialog.mostrarCalendario(x, y);  // Mostrar el calendario
-        return dialog.getFechaSeleccionada();  // Devolver la fecha seleccionada
+    public String mostrarYObtenerFechaSeleccionada(int x, int y) {
+        mostrarCalendario(x, y);  // Mostrar el calendario
+        return getFechaSeleccionada();  // Devolver la fecha seleccionada
     }
 
     public static void main(String[] args) {
