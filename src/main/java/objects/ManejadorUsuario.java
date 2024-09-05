@@ -158,6 +158,22 @@ public class ManejadorUsuario {
                 .collect(Collectors.toList());
     }
 
+    public Beneficiario obtenerBeneficiarioEmail(String email) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            return em.createQuery("SELECT b FROM Beneficiario b WHERE b.mail = :email", Beneficiario.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
 
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {

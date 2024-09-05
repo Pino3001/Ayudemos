@@ -11,4 +11,5 @@ public interface IModificarDistribucion {
     void modificarDistribucion(DtDistribucion dtDistribucion);
     DtBeneficiario[] obtenerBeneficiarios();
     DTDonacion[] obtenerDonaciones();
+    List<DtDistribucion> obtenerDistribuciones(); // Nuevo metodo para obtener distribuciones
 }

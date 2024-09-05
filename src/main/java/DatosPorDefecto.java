@@ -67,7 +67,7 @@ public class DatosPorDefecto {
         // Crear beneficiarios para cada barrio usando DtBeneficiario
         for (Barrio barrio : Barrio.values()) {
             for (int i = 1; i <= 5; i++) { // Generar 5 beneficiarios por barrio
-                String nombre = "Beneficiario " + barrio + " " + i;
+                String nombre = barrio + " " + i;
                 String email = "email" + barrio + i + "@example.com";
                 String direccion = "Calle Falsa " + (100 + i);
                 LocalDate fechaNacimiento = LocalDate.of(1990 + i % 10, i % 12 + 1, i % 28 + 1);

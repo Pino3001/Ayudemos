@@ -5,27 +5,33 @@ import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import interfaces.IModificarDistribucion;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ModificarDistribucion implements IModificarDistribucion {
 
     private ManejadorDistribucion manejadorDistribucion;
+    private ManejadorUsuario manejadorUsuario;  // Usaremos para obtener beneficiarios
+    private ManejadorDonacion manejadorDonacion; // Usaremos para obtener donaciones
 
     public ModificarDistribucion() {
         this.manejadorDistribucion = ManejadorDistribucion.getInstance();
+        this.manejadorUsuario = ManejadorUsuario.getInstance();
+        this.manejadorDonacion = ManejadorDonacion.getInstance();
     }
 
     @Override
     public DtDistribucion buscarDistribucion(String emailBeneficiario, int idDonacion) {
-        return null;
+        return manejadorDistribucion.buscarDistribucion(emailBeneficiario, idDonacion);
     }
 
+    @Override
     public void modificarDistribucion(DtDistribucion dtDistribucion) {
-        // Buscar la distribución existente utilizando el DTO
-        DtDistribucion distribucionExistente = manejadorDistribucion.buscarDistribucion(dtDistribucion.getEmailBeneficiario(),dtDistribucion.getIdDonacion()
+        DtDistribucion distribucionExistente = manejadorDistribucion.buscarDistribucion(
+                dtDistribucion.getEmailBeneficiario(), dtDistribucion.getIdDonacion()
         );
 
-        // Si se encuentra la distribución
         if (distribucionExistente != null) {
-            // Actualizar la distribución con los nuevos datos del DTO
             manejadorDistribucion.modificarDistribucion(dtDistribucion);
         } else {
             throw new IllegalArgumentException("La distribución no existe en el sistema");
@@ -34,11 +40,18 @@ public class ModificarDistribucion implements IModificarDistribucion {
 
     @Override
     public DtBeneficiario[] obtenerBeneficiarios() {
-        return new DtBeneficiario[0];
+        List<DtBeneficiario> beneficiarios = manejadorUsuario.obtenerBeneficiarios();
+        return beneficiarios.toArray(new DtBeneficiario[0]);
     }
 
     @Override
     public DTDonacion[] obtenerDonaciones() {
-        return new DTDonacion[0];
+        List<DTDonacion> donaciones = manejadorDonacion.obtenerDonaciones();
+        return donaciones.toArray(new DTDonacion[0]);
+    }
+
+    @Override
+    public List<DtDistribucion> obtenerDistribuciones() {
+        return manejadorDistribucion.obtenerListaDistribuciones();  // Ya es una lista, no necesitas convertir
     }
 }

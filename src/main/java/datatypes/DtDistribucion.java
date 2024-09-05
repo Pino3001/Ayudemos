@@ -46,4 +46,10 @@ public class DtDistribucion {
     public String getEmailBeneficiario() {
         return emailBeneficiario;
     }
+
+    // Sobrescribir el método toString para mostrar los datos correctos en el JComboBox
+    @Override
+    public String toString() {
+        return "ID Donación: " + idDonacion + ", Beneficiario: " + emailBeneficiario + ", Estado: " + estado;
+    }
 }

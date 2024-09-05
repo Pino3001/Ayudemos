@@ -1,8 +1,12 @@
 import datatypes.DtBeneficiario;
 import datatypes.DTDonacion;
+import datatypes.DtDistribucion;
+import datatypes.DtUsuario;
 import gui.PrincipalGUI;
 import interfaces.*;
 import objects.Beneficiario;
+import objects.Donacion;
+import objects.Distribucion;
 import objects.ManejadorUsuario;
 import persistencia.Conexion;
 
@@ -40,6 +44,7 @@ public class Main {
         EntityManager em = conexion.getEntityManager();
         EntityTransaction tx = em.getTransaction();
 
+        // Una vez cargados comenté para evitar errores en consola
         /*try {
             tx.begin();
             for (DtBeneficiario dtBeneficiario : dpf.getBeneficiariosDT()) {
@@ -63,6 +68,36 @@ public class Main {
         } finally {
             em.close();
         }*/
+
+        // Cargar distribuciones de prueba en la base de datos
+        try {
+            tx.begin();
+            for (DtDistribucion dtDistribucion : dpf.getDistribucionesDT()) {
+                // Buscar los beneficiarios y donaciones para asociarlos con la distribución
+                Beneficiario beneficiario = manejadorUsuario.obtenerBeneficiarioEmail(dtDistribucion.getEmailBeneficiario());
+                Donacion donacion = em.find(Donacion.class, dtDistribucion.getIdDonacion());
+
+                if (beneficiario != null && donacion != null) {
+                    Distribucion distribucion = new Distribucion(
+                            dtDistribucion.getFechaPreparacion(),
+                            dtDistribucion.getFechaEntrega(),
+                            dtDistribucion.getEstado(),
+                            donacion,
+                            beneficiario
+                    );
+                    em.persist(distribucion);
+                }
+            }
+            tx.commit();
+            System.out.println("Distribuciones de prueba cargadas correctamente.");
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
 
         // GUI
         PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion, iListarBeneficiariosZona, iModificarDistribucion);

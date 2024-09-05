@@ -39,4 +39,9 @@ public class DtBeneficiario extends DtUsuario{
     public Barrio getBarrio() {
         return barrio;
     }
+
+    @Override
+    public String toString() {
+        return getId() + " - " + getNombre(); // Mostrar ID y nombre en el JComboBox
+    }
 }
