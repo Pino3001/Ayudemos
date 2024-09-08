@@ -9,6 +9,7 @@ import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 // Controlador Alta Distribución.
 public class AltaDistribucion implements IAltaDistribucion {
@@ -76,6 +77,13 @@ public class AltaDistribucion implements IAltaDistribucion {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
         return lista;
+    }
+
+
+    // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
+    public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        return md.obtenerReporteZonas(fechaInicial, fechaFinal);
     }
 
 }

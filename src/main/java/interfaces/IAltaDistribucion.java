@@ -7,15 +7,13 @@ package interfaces;
 
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
-import objects.Beneficiario;
-import objects.Donacion;
 import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface IAltaDistribucion {
     // Crea una nueva distribución.
@@ -39,5 +37,7 @@ public interface IAltaDistribucion {
 
     List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
 
+    // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
+    public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
 
 }
