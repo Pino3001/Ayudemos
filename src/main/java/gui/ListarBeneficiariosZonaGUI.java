@@ -5,68 +5,60 @@ import interfaces.IListarBeneficiariosZona;
 import types.Barrio;
 
 import javax.swing.*;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ListarBeneficiariosZonaGUI extends JFrame {
+    // Componentes generados por el archivo .form
+    private JPanel background;
     private JComboBox<Barrio> barrioComboBox;
-    private JTextArea resultadoArea;
+    private JButton listarButton;
+    private JScrollPane scrollPane;
+    private JList<String> listaBeneficiarios; // Cambiamos el tipo del JList para mostrar Strings
+    private JPanel paneltitulo;
+    private JScrollPane scroll;
+    private JPanel panelLista;
+
     private IListarBeneficiariosZona listarBeneficiariosZonaService;
 
     public ListarBeneficiariosZonaGUI(IListarBeneficiariosZona listarBeneficiariosZonaService) {
         this.listarBeneficiariosZonaService = listarBeneficiariosZonaService;
-        initUI();
-    }
 
-    private void initUI() {
+        // Configuración de la ventana usando el .form
+        setContentPane(background);
         setTitle("Listar Beneficiarios por Zona");
-        setLayout(new BorderLayout());
-
-        // Configurar el comportamiento al cerrar la ventana
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 500);
+        setLocationRelativeTo(null);
 
-        // Panel superior con ComboBox y botón
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        // Cargar los barrios en el comboBox
+        cargarBarrios();
 
-        JLabel barrioLabel = new JLabel("Selecciona un barrio:");
-        barrioComboBox = new JComboBox<>(Barrio.values());
-        JButton listarButton = new JButton("Listar Beneficiarios");
-
-        panel.add(barrioLabel);
-        panel.add(barrioComboBox);
-        panel.add(listarButton);
-
-        add(panel, BorderLayout.NORTH);
-
-        // Área de texto para mostrar los resultados
-        resultadoArea = new JTextArea(15, 30);
-        resultadoArea.setEditable(false);
-        add(new JScrollPane(resultadoArea), BorderLayout.CENTER);
-
-        // Acción del botón
+        // Acción del botón "Listar Beneficiarios"
         listarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Barrio barrioSeleccionado = (Barrio) barrioComboBox.getSelectedItem();
                 List<DtBeneficiario> beneficiarios = listarBeneficiariosZonaService.listarBeneficiariosPorZona(barrioSeleccionado);
 
-                StringBuilder resultado = new StringBuilder();
-                for (DtBeneficiario b : beneficiarios) {
-                    resultado.append("Nombre: ").append(b.getNombre()).append("\n");
-                    //resultado.append("Email: ").append(b.getMail()).append("\n");
-                    resultado.append("Dirección: ").append(b.getDireccion()).append("\n");
-                    resultado.append("Estado: ").append(b.getEstado()).append("\n\n");
+                // Convertir la lista de beneficiarios a un array de Strings para mostrar en el JList
+                String[] nombresBeneficiarios = new String[beneficiarios.size()];
+                for (int i = 0; i < beneficiarios.size(); i++) {
+                    DtBeneficiario beneficiario = beneficiarios.get(i);
+                    nombresBeneficiarios[i] = beneficiario.getNombre() + " - " + beneficiario.getDireccion() + " - " + beneficiario.getEstado();
                 }
 
-                resultadoArea.setText(resultado.toString());
+                // Actualizar el JList con los nombres de los beneficiarios
+                listaBeneficiarios.setListData(nombresBeneficiarios);
             }
         });
+    }
 
-        // Configuraciones de la ventana
-        setSize(500, 500);
-        setLocationRelativeTo(null);
+    private void cargarBarrios() {
+        // Recorrer los valores del enum Barrio y agregarlos al comboBox
+        for (Barrio barrio : Barrio.values()) {
+            barrioComboBox.addItem(barrio);
+        }
     }
 }

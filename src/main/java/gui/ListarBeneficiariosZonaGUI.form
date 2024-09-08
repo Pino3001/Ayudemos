@@ -1,13 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.ListarBeneficiariosZonaGUI">
-  <grid id="27dc6" row-count="1" column-count="1" layout-manager="GridLayoutManager">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="background" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
-      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+      <xy x="20" y="20" width="500" height="600"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-330502"/>
+      <foreground color="-198916"/>
+      <minimumSize width="450" height="600"/>
+      <preferredSize width="450" height="600"/>
+    </properties>
     <border type="none"/>
-    <children/>
+    <children>
+      <grid id="f8101" binding="paneltitulo" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-16178384"/>
+          <minimumSize width="-1" height="90"/>
+          <preferredSize width="-1" height="90"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="b5b44" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto Light" size="28" style="1"/>
+              <foreground color="-1537"/>
+              <text value="Listar Beneficiarios por zona"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="1d931">
+        <constraints border-constraint="South"/>
+      </vspacer>
+      <scrollpane id="133d3" binding="scroll">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <minimumSize width="-1" height="15"/>
+          <preferredSize width="-1" height="119"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="f4880" binding="panelLista" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints/>
+            <properties>
+              <background color="-330502"/>
+              <minimumSize width="-1" height="119"/>
+              <preferredSize width="-1" height="119"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="7d935" class="javax.swing.JComboBox" binding="barrioComboBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-2305"/>
+                </properties>
+              </component>
+              <component id="a47ce" class="javax.swing.JList" binding="listaBeneficiarios">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-2305"/>
+                </properties>
+              </component>
+              <component id="5a2af" class="javax.swing.JButton" binding="listarButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="false"/>
+                  <background color="-2305"/>
+                  <borderPainted value="true"/>
+                  <text value="Seleccionar"/>
+                </properties>
+              </component>
+              <component id="4353f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="60"/>
+                    <preferred-size width="-1" height="60"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <focusCycleRoot value="true"/>
+                  <font name="Roboto Light" size="20" style="1"/>
+                  <foreground color="-16178384"/>
+                  <text value="  Zona :"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </scrollpane>
+      <hspacer id="f9a89">
+        <constraints border-constraint="West"/>
+      </hspacer>
+      <hspacer id="51cfe">
+        <constraints border-constraint="East"/>
+      </hspacer>
+    </children>
   </grid>
 </form>
