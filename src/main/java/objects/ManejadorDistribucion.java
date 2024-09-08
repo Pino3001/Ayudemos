@@ -128,30 +128,40 @@ public class ManejadorDistribucion {
         EntityManager em = conexion.getEntityManager();
 
         try {
-            em.getTransaction().begin();
-            Distribucion distribucion = em.createQuery(
-                            "SELECT d FROM Distribucion d WHERE d.beneficiario.mail = :email AND d.donacion.id = :idDonacion",
+            // Búsqueda utilizando idDonacion, emailBeneficiario y fechaPreparacion para asegurarse de que es único
+            List<Distribucion> distribuciones = em.createQuery(
+                            "SELECT d FROM Distribucion d WHERE d.donacion.id = :idDonacion AND d.beneficiario.mail = :emailBeneficiario AND d.fechaPreparacion = :fechaPreparacion",
                             Distribucion.class)
-                    .setParameter("email", dtDistribucion.getEmailBeneficiario())
                     .setParameter("idDonacion", dtDistribucion.getIdDonacion())
-                    .getSingleResult();
+                    .setParameter("emailBeneficiario", dtDistribucion.getEmailBeneficiario())
+                    .setParameter("fechaPreparacion", dtDistribucion.getFechaPreparacion())
+                    .getResultList();
 
-            if (distribucion != null) {
-                distribucion.setFechaPreparacion(dtDistribucion.getFechaPreparacion());
-                distribucion.setFechaEntrega(dtDistribucion.getFechaEntrega());
-                distribucion.setEstado(dtDistribucion.getEstado());
-                em.merge(distribucion);
+            if (distribuciones.size() == 1) {
+                // Solo modificar si existe exactamente una distribución
+                Distribucion distribucionExistente = distribuciones.get(0);
+                distribucionExistente.setFechaEntrega(dtDistribucion.getFechaEntrega());
+                distribucionExistente.setEstado(dtDistribucion.getEstado());
+
+                em.getTransaction().begin();
+                em.merge(distribucionExistente);
                 em.getTransaction().commit();
+            } else if (distribuciones.isEmpty()) {
+                throw new IllegalArgumentException("No se encontró ninguna distribución con los criterios especificados.");
+            } else {
+                throw new IllegalArgumentException("Se encontraron múltiples distribuciones con los mismos criterios. Verifique los datos.");
             }
+
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            throw e;
+            throw e;  // Re-lanzar la excepción para manejarla en niveles superiores si es necesario
         } finally {
             em.close();
         }
     }
+
     // Retorna una lista de todas las distribuciones del sistema.
     private List<Distribucion> obtenerListaDistribucionesClase() {
         // Conexion y Entity Manager

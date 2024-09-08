@@ -26,6 +26,19 @@ public class DtDistribucion {
         this.emailBeneficiario = emailBeneficiario;
     }
 
+    // Constructor
+    public DtDistribucion(LocalDateTime fechaPreparacion,
+                          LocalDateTime fechaEntrega,
+                          EstadoDistribucion estado,
+                          int idDonacion,
+                          String emailBeneficiario) {
+        this.fechaPreparacion = fechaPreparacion;
+        this.fechaEntrega = fechaEntrega;
+        this.estado = estado;
+        this.idDonacion = idDonacion;
+        this.emailBeneficiario = emailBeneficiario;
+    }
+
     // Getters
     public LocalDateTime getFechaPreparacion() {
         return fechaPreparacion;
