@@ -6,15 +6,23 @@ import datatypes.DtUsuario;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
+import interfaces.IControladorUsuario;
+import types.Barrio;
 import types.EstadoBeneficiario;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class AltaUsuario implements IAltaUsuario {
+public class ControladorUsuario implements IControladorUsuario {
 
     private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+//    private ManejadorUsuario manejadorUsuario;
+//
+//    public ControladorUsuario() {
+//        // Asegúrate de que esta línea esté presente para inicializar el manejador.
+//        this.manejadorUsuario = ManejadorUsuario.getInstance();
+//    }
 
     @Override
     public void agregarUsuario(DtUsuario dtUsuario) throws IngresoIncorrectoExeption {
@@ -61,18 +69,6 @@ public class AltaUsuario implements IAltaUsuario {
             throw new IllegalArgumentException("Error al modificar el usuario: " + dtUsuario.getNombre());
         }
     }
-
-/*    @Override
-    public void eliminarUsuario(DtUsuario dtUsuario) {
-        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-
-        Usuario usuario = manejadorUsuario.buscarUsuario(dtUsuario.getId());
-        if (usuario == null) {
-            throw new IllegalArgumentException("El usuario no existe");
-        } else {
-            manejadorUsuario.removeUsuario(usuario);
-        }
-    }*/
 
     @Override
     public DtUsuario obtenerUsuarioPorEmail(String email) {
@@ -128,5 +124,12 @@ public class AltaUsuario implements IAltaUsuario {
         int mes = Integer.parseInt(partes[1]);
         int anio = Integer.parseInt(partes[2]);
         return LocalDate.of(anio, mes, dia);
+    }
+
+
+    @Override
+    public List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio) {
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        return mu.obtenerBeneficiariosPorZona(barrio);
     }
 }

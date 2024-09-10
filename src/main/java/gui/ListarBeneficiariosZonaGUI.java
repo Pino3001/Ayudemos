@@ -1,7 +1,7 @@
 package gui;
 
 import datatypes.DtBeneficiario;
-import interfaces.IListarBeneficiariosZona;
+import interfaces.IControladorUsuario;
 import types.Barrio;
 
 import javax.swing.*;
@@ -20,10 +20,10 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
     private JScrollPane scroll;
     private JPanel panelLista;
 
-    private IListarBeneficiariosZona listarBeneficiariosZonaService;
+    private IControladorUsuario controladorUsuarioService;
 
-    public ListarBeneficiariosZonaGUI(IListarBeneficiariosZona listarBeneficiariosZonaService) {
-        this.listarBeneficiariosZonaService = listarBeneficiariosZonaService;
+    public ListarBeneficiariosZonaGUI(IControladorUsuario controladorUsuarioService) {
+        this.controladorUsuarioService = controladorUsuarioService;
 
         // Configuración de la ventana usando el .form
         setContentPane(background);
@@ -40,7 +40,7 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Barrio barrioSeleccionado = (Barrio) barrioComboBox.getSelectedItem();
-                List<DtBeneficiario> beneficiarios = listarBeneficiariosZonaService.listarBeneficiariosPorZona(barrioSeleccionado);
+                List<DtBeneficiario> beneficiarios = controladorUsuarioService.listarBeneficiariosPorZona(barrioSeleccionado);
 
                 // Convertir la lista de beneficiarios a un array de Strings para mostrar en el JList
                 String[] nombresBeneficiarios = new String[beneficiarios.size()];

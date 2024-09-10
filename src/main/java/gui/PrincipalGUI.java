@@ -10,7 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class PrincipalGUI extends JFrame {
-    private final IAltaUsuario iAltaUsuario;
+    private final IControladorUsuario controladorUsuario;
     private final IAltaDonacion iAltaDonacion;
     private final IAltaDistribucion iAltaDistribucion;
     private JPanel principalPanel;
@@ -34,8 +34,8 @@ public class PrincipalGUI extends JFrame {
     private JLabel tituloDonaciones;
     private JButton mayoresDistribuciones;
 
-    public PrincipalGUI(IAltaUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion, IListarBeneficiariosZona iListarBeneficiariosZona, IModificarDistribucion iModificarDistribucion) {
-        this.iAltaUsuario = altaUsuario;
+    public PrincipalGUI(IControladorUsuario altaUsuario, IAltaDonacion iAltaDonacion, IAltaDistribucion iAltaDistribucion, IModificarDistribucion iModificarDistribucion) {
+        this.controladorUsuario = altaUsuario;
         this.iAltaDonacion = iAltaDonacion;
         this.iAltaDistribucion = iAltaDistribucion;
 
@@ -50,7 +50,7 @@ public class PrincipalGUI extends JFrame {
         altaUsuarioB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AltaUsuarioUI altaUsuarioUI = new AltaUsuarioUI(iAltaUsuario);
+                AltaUsuarioUI altaUsuarioUI = new AltaUsuarioUI(controladorUsuario);
                 altaUsuarioUI.setVisible(true);
             }
         });
@@ -66,7 +66,7 @@ public class PrincipalGUI extends JFrame {
         modificarUsr.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ModificarUsuarioGUI modificarUsuarioGUI = new ModificarUsuarioGUI(iAltaUsuario);
+                ModificarUsuarioGUI modificarUsuarioGUI = new ModificarUsuarioGUI(controladorUsuario);
                 modificarUsuarioGUI.setVisible(true);
             }
         });
@@ -82,7 +82,7 @@ public class PrincipalGUI extends JFrame {
         listarBeneficiarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ListarBeneficiariosGUI listarBeneficiariosGUI = new ListarBeneficiariosGUI(iAltaUsuario);
+                ListarBeneficiariosGUI listarBeneficiariosGUI = new ListarBeneficiariosGUI(controladorUsuario);
                 listarBeneficiariosGUI.setVisible(true);
             }
         });
@@ -90,7 +90,7 @@ public class PrincipalGUI extends JFrame {
         altadistribucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion);
+                AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(controladorUsuario, iAltaDonacion, iAltaDistribucion);
                 altaDistribucionGUI.setVisible(true);
             }
         });
@@ -99,7 +99,7 @@ public class PrincipalGUI extends JFrame {
         listarBenefiZona.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ListarBeneficiariosZonaGUI listarBeneficiariosZonaGUI = new ListarBeneficiariosZonaGUI(iListarBeneficiariosZona);
+                ListarBeneficiariosZonaGUI listarBeneficiariosZonaGUI = new ListarBeneficiariosZonaGUI(controladorUsuario);
                 listarBeneficiariosZonaGUI.setVisible(true);
             }
         });

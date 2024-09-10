@@ -4,14 +4,11 @@ import datatypes.*;
 import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
-import excepciones.IngresoIncorrectoExeption;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
 import interfaces.Fabrica;
-import interfaces.IAltaUsuario;
-import objects.AltaUsuario;
+import interfaces.IControladorUsuario;
 import types.Barrio;
-import types.DTFecha;
 import types.EstadoBeneficiario;
 
 import javax.swing.*;
@@ -21,11 +18,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class ModificarUsuarioGUI extends JFrame {
-    private IAltaUsuario iAltaUsuario;
+    private IControladorUsuario iAltaUsuario;
     private JPanel background;
     private JButton buttonBeneficiario;
     private JButton buttonRepartidor;
@@ -55,7 +51,7 @@ public class ModificarUsuarioGUI extends JFrame {
     private Barrio barrio = null;
     private EstadoBeneficiario estadoBeneficiario = null;
 
-    public ModificarUsuarioGUI(IAltaUsuario iAltaUsuario) {
+    public ModificarUsuarioGUI(IControladorUsuario iAltaUsuario) {
         this.iAltaUsuario = iAltaUsuario;
         cardLayout = new CardLayout();
         cardBeneficiarioRepartidor.setLayout(cardLayout);
@@ -282,7 +278,7 @@ public class ModificarUsuarioGUI extends JFrame {
 
     public static void main(String[] args) {
         Fabrica fabrica = Fabrica.getInstancia();
-        IAltaUsuario altaUsuario = fabrica.getAltaUsuario();
+        IControladorUsuario altaUsuario = fabrica.getControladorUsuario();
         JFrame frame = new JFrame("ModificarUsuarioGUI");
         frame.setContentPane(new ModificarUsuarioGUI(altaUsuario).background);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

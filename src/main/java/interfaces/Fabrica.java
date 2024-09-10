@@ -20,17 +20,14 @@ public class Fabrica {
         return new AltaDistribucion();
     }
 
-    public IAltaUsuario getAltaUsuario() {
-        return new AltaUsuario();
+    public IControladorUsuario getControladorUsuario() {
+        return new ControladorUsuario();
     }
 
     public IAltaDonacion getAltaDonacion() {
         return new AltaDonacion();
     }
 
-    public IListarBeneficiariosZona getListarBeneficiariosZona() {
-        return new ListarBeneficiariosZona();
-    }
 
     public IModificarDistribucion getModificarDistribucion() {
         return new ModificarDistribucion();

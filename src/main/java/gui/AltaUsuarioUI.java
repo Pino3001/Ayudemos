@@ -9,9 +9,8 @@ import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
-import interfaces.IAltaUsuario;
+import interfaces.IControladorUsuario;
 import types.Barrio;
-import types.DTFecha;
 import types.EstadoBeneficiario;
 
 import javax.swing.*;
@@ -19,10 +18,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AltaUsuarioUI extends JFrame {
-    private IAltaUsuario altaUsuario;
+    private IControladorUsuario controladorUsuario;
     private JPanel background;
     private JButton buttonBeneficiario;
     private JButton buttonRepartidor;
@@ -44,8 +42,8 @@ public class AltaUsuarioUI extends JFrame {
     private CardLayout cardLayout;
     private Barrio barrio = null;
 
-    public AltaUsuarioUI(IAltaUsuario iAltaUsuario) {
-        this.altaUsuario = iAltaUsuario;
+    public AltaUsuarioUI(IControladorUsuario iAltaUsuario) {
+        this.controladorUsuario = iAltaUsuario;
         cardLayout = new CardLayout();
         cardRepartidorBeneficiario.setLayout(cardLayout);
         // Cargo los paneles opcionales.
@@ -115,7 +113,7 @@ public class AltaUsuarioUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    altaUsuario.validarEmail(texteMailReparti.getText());
+                    controladorUsuario.validarEmail(texteMailReparti.getText());
 
                     if (textNombreReparti.getText().equals("Ingrese el Nombre...") || textNombreReparti.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
@@ -125,7 +123,7 @@ public class AltaUsuarioUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
-                        altaUsuario.agregarUsuario(dt);
+                        controladorUsuario.agregarUsuario(dt);
                         JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption | IngresoIncorrectoExeption ex) {
@@ -153,10 +151,10 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (barrio == null) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        fecha = altaUsuario.parseFecha(textFechaNaci.getText());
-                        altaUsuario.validarEmail(texteMailBenef.getText());
+                        fecha = controladorUsuario.parseFecha(textFechaNaci.getText());
+                        controladorUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
-                        altaUsuario.agregarUsuario(dt);
+                        controladorUsuario.agregarUsuario(dt);
                         JOptionPane.showMessageDialog(null, "Se ha creado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption |

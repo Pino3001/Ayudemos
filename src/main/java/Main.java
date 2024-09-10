@@ -12,6 +12,7 @@ import persistencia.Conexion;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+
 import java.util.List;
 
 public class Main {
@@ -19,10 +20,9 @@ public class Main {
         // Fábrica
         Fabrica fabrica = Fabrica.getInstancia();
         // Interfaces
-        IAltaUsuario iAltaUsuario = fabrica.getAltaUsuario();
+        IControladorUsuario controladorUsuario = fabrica.getControladorUsuario();
         IAltaDonacion iAltaDonacion = fabrica.getAltaDonacion();
         IAltaDistribucion iAltaDistribucion = fabrica.getIAltaDistribucion();
-        IListarBeneficiariosZona iListarBeneficiariosZona = fabrica.getListarBeneficiariosZona();
         IModificarDistribucion iModificarDistribucion = fabrica.getModificarDistribucion();
 
         // Cargar beneficiarios de prueba
@@ -100,7 +100,7 @@ public class Main {
         }
 
         // GUI
-        PrincipalGUI principalGUI = new PrincipalGUI(iAltaUsuario, iAltaDonacion, iAltaDistribucion, iListarBeneficiariosZona, iModificarDistribucion);
+        PrincipalGUI principalGUI = new PrincipalGUI(controladorUsuario, iAltaDonacion, iAltaDistribucion, iModificarDistribucion);
         principalGUI.setVisible(true);
     }
 }

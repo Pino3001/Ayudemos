@@ -9,7 +9,7 @@ import gui.componentes.ComponenteTextField;
 import interfaces.Fabrica;
 import interfaces.IAltaDistribucion;
 import interfaces.IAltaDonacion;
-import interfaces.IAltaUsuario;
+import interfaces.IControladorUsuario;
 import types.EstadoDistribucion;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class AltaDistribucionGUI extends JFrame {
     private final IAltaDonacion altaDonacion;
-    private final IAltaUsuario altaUsuario;
+    private final IControladorUsuario controladorUsuario;
     private final IAltaDistribucion altaDistribucion;
     private JPanel background;
     private JTextField textFechaPrep;
@@ -35,9 +35,9 @@ public class AltaDistribucionGUI extends JFrame {
     private JTextField textFechaPrepara;
 
 
-    public AltaDistribucionGUI(IAltaUsuario altaUsuario, IAltaDonacion altaDonacion, IAltaDistribucion altaDistribucion) {
+    public AltaDistribucionGUI(IControladorUsuario altaUsuario, IAltaDonacion altaDonacion, IAltaDistribucion altaDistribucion) {
         this.altaDonacion = altaDonacion;
-        this.altaUsuario = altaUsuario;
+        this.controladorUsuario = altaUsuario;
         this.altaDistribucion = altaDistribucion;
         aplicarEstilosComponentes();
         cargarComboBox();
@@ -63,7 +63,7 @@ public class AltaDistribucionGUI extends JFrame {
 
     // Cargar comboBox
     private void cargarComboBox() {
-        java.util.List<DtBeneficiario> dtBeneficiarioList = altaUsuario.listarBeneficiarios();
+        java.util.List<DtBeneficiario> dtBeneficiarioList = controladorUsuario.listarBeneficiarios();
         List<DTDonacion> dtDonacionList = altaDonacion.listarDonaciones();
 
         // Cargo con los beneficiarios
@@ -158,7 +158,7 @@ public class AltaDistribucionGUI extends JFrame {
 
     public static void main(String[] args) {
         Fabrica fabrica = Fabrica.getInstancia();
-        IAltaUsuario usuarios = fabrica.getAltaUsuario();
+        IControladorUsuario usuarios = fabrica.getControladorUsuario();
         IAltaDonacion donacion = fabrica.getAltaDonacion();
         IAltaDistribucion distribucion = fabrica.getIAltaDistribucion();
         JFrame frame = new JFrame("AltaDistribucionGUI");

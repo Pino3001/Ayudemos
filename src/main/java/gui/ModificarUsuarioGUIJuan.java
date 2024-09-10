@@ -1,12 +1,6 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-import interfaces.IAltaUsuario;
-import objects.Usuario;
 
 public class ModificarUsuarioGUIJuan extends JPanel {
 

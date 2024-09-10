@@ -1,11 +1,9 @@
 package gui;
 
 import datatypes.DtBeneficiario;
-import interfaces.IAltaUsuario;
+import interfaces.IControladorUsuario;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.util.List;
 
 public class ListarBeneficiariosGUI extends JFrame {
@@ -16,10 +14,10 @@ public class ListarBeneficiariosGUI extends JFrame {
     private JScrollPane scroll;
     private DefaultListModel<String> modeloLista;
 
-    private IAltaUsuario altaUsuario;
+    private IControladorUsuario controladorUsuario;
 
-    public ListarBeneficiariosGUI(IAltaUsuario altaUsuario)  {
-        this.altaUsuario = altaUsuario;
+    public ListarBeneficiariosGUI(IControladorUsuario controladorUsuario) {
+        this.controladorUsuario = controladorUsuario;
         modeloLista = new DefaultListModel<>();
         listBeneficiarios.setModel(modeloLista);
 
@@ -29,18 +27,18 @@ public class ListarBeneficiariosGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(450,500);
+        setSize(450, 500);
     }
 
     // Funcion para cargar los elementos en la lista
     private void cargarElementos() {
-        List<DtBeneficiario> beneficiarios = altaUsuario.listarBeneficiarios();
-        if(beneficiarios == null) {
+        List<DtBeneficiario> beneficiarios = controladorUsuario.listarBeneficiarios();
+        if (beneficiarios == null) {
             modeloLista.addElement("Muestro esto");
-        }else {
+        } else {
             modeloLista.clear(); // Limpiar elementos existentes
-             for (DtBeneficiario beneficiario : beneficiarios) {
-               modeloLista.addElement(beneficiario.getNombre() + beneficiario.getMail() + beneficiario.getDireccion() + beneficiario.getBarrio().toString());
+            for (DtBeneficiario beneficiario : beneficiarios) {
+                modeloLista.addElement(beneficiario.getNombre() + beneficiario.getMail() + beneficiario.getDireccion() + beneficiario.getBarrio().toString());
             }
         }
     }

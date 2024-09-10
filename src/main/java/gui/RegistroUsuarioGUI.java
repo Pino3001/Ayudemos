@@ -1,19 +1,7 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.util.Date;
 
-import interfaces.IAltaUsuario;
-import objects.Beneficiario;//TODO: esto no puede estar aca
-import objects.Repartidor;//TODO: esto no puede estar aca
-import objects.Usuario;// TODO: esto no puede estar aca
-import types.DTFecha;
-import types.EstadoBeneficiario;
-import types.Barrio;
 
 public class RegistroUsuarioGUI extends JFrame {
 
