@@ -24,7 +24,7 @@ public interface IControladorUsuario {
     //void eliminarUsuario(DtUsuario dtUsuario);
 
     // Operación para obtener un usuario por su email
-    DtUsuario obtenerUsuarioPorEmail(String email);
+//    DtUsuario obtenerUsuarioPorEmail(String email);
 
     DtUsuario obtenerUsuarioPorId(Integer id);
 

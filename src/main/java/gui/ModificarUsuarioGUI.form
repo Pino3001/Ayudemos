@@ -218,7 +218,10 @@
                         <preferred-size width="250" height="30"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <editable value="false"/>
+                      <enabled value="true"/>
+                    </properties>
                   </component>
                   <component id="ed5e" class="javax.swing.JLabel">
                     <constraints>

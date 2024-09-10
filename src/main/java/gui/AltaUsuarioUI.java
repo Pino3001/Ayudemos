@@ -85,10 +85,12 @@ public class AltaUsuarioUI extends JFrame {
 
     // Agregar items al combo
     private void cargarComboBarrio() {
-        comboBarrio.setSelectedItem(Barrio.CIUDAD_VIEJA);
+        comboBarrio.setSelectedItem(Barrio.values()[0]);
         for (Barrio barrio : Barrio.values()) {
             comboBarrio.addItem(barrio);
         }
+
+        comboBarrio.setSelectedIndex(0);
     }
 
     //Maneja el CardLayaut para mostrar los imputs segun el tipo de usuario a ingresar

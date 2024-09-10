@@ -6,7 +6,7 @@ import excepciones.CamposIncompletosExeption;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
-import interfaces.IAltaDonacion;
+import interfaces.IControladorDonacion;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 public class ModificarDonacionGUI extends JFrame {
-    private IAltaDonacion altaDonacion;
+    private IControladorDonacion altaDonacion;
     private JPanel background;
     private JButton buttonModificarArticulo;
     private JButton buttonModificarAlimento;
@@ -41,7 +41,7 @@ public class ModificarDonacionGUI extends JFrame {
     private DTAlimento aEditarAlimento;
     private DTArticulo aEditarArticulo;
 
-    public ModificarDonacionGUI(IAltaDonacion altaDonacion) {
+    public ModificarDonacionGUI(IControladorDonacion altaDonacion) {
         this.altaDonacion = altaDonacion;
         cardLayout = new CardLayout();
         cardAlimentoArticulo.setLayout(cardLayout);

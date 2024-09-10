@@ -6,7 +6,7 @@ import datatypes.DTDonacion;
 
 import java.util.List;
 
-public interface IAltaDonacion {
+public interface IControladorDonacion {
     boolean crearDonacion(DTDonacion dtDonacion);
 
     DTDonacion buscarDonacionID(DTDonacion dtDonacion);

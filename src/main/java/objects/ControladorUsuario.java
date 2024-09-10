@@ -70,11 +70,11 @@ public class ControladorUsuario implements IControladorUsuario {
         }
     }
 
-    @Override
-    public DtUsuario obtenerUsuarioPorEmail(String email) {
-        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
-        return manejadorUsuario.obtenerUsuarioEmail(email);
-    }
+//    @Override
+//    public DtUsuario obtenerUsuarioPorEmail(String email) {
+//        ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
+//        return manejadorUsuario.obtenerUsuarioEmail(email);
+//    }
 
     @Override
     public DtUsuario obtenerUsuarioPorId(Integer id) {

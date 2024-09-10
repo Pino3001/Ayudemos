@@ -7,7 +7,7 @@ import types.EstadoBeneficiario;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class DtBeneficiario extends DtUsuario{
+public class DtBeneficiario extends DtUsuario {
     private final String direccion;
     private final LocalDate fechaNacimiento;
     private final EstadoBeneficiario estado;
@@ -42,6 +42,6 @@ public class DtBeneficiario extends DtUsuario{
 
     @Override
     public String toString() {
-        return getId() + " - " + getNombre(); // Mostrar ID y nombre en el JComboBox
+        return getMail(); // Mostrar ID y nombre en el JComboBox
     }
 }

@@ -10,33 +10,19 @@ public class DtDistribucion {
     private LocalDateTime fechaEntrega;
     private EstadoDistribucion estado;
     private int idDonacion;
-    private String emailBeneficiario;
+    private int idUsuario;
 
     // Constructor
     public DtDistribucion(LocalDateTime fechaPreparacion,
                           LocalDateTime fechaEntrega,
                           EstadoDistribucion estado,
                           int idDonacion,
-                          String nombreBeneficiario,
-                          String emailBeneficiario) {
+                          int idUsuario) {
         this.fechaPreparacion = fechaPreparacion;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
         this.idDonacion = idDonacion;
-        this.emailBeneficiario = emailBeneficiario;
-    }
-
-    // Constructor
-    public DtDistribucion(LocalDateTime fechaPreparacion,
-                          LocalDateTime fechaEntrega,
-                          EstadoDistribucion estado,
-                          int idDonacion,
-                          String emailBeneficiario) {
-        this.fechaPreparacion = fechaPreparacion;
-        this.fechaEntrega = fechaEntrega;
-        this.estado = estado;
-        this.idDonacion = idDonacion;
-        this.emailBeneficiario = emailBeneficiario;
+        this.idUsuario = idUsuario;
     }
 
     // Getters
@@ -56,13 +42,13 @@ public class DtDistribucion {
         return idDonacion;
     }
 
-    public String getEmailBeneficiario() {
-        return emailBeneficiario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     // Sobrescribir el método toString para mostrar los datos correctos en el JComboBox
     @Override
     public String toString() {
-        return "ID Donación: " + idDonacion + ", Beneficiario: " + emailBeneficiario + ", Estado: " + estado;
+        return "ID Donación: " + idDonacion + ", Beneficiario: " + idUsuario + ", Estado: " + estado;
     }
 }

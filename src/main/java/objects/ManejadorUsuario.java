@@ -90,12 +90,12 @@ public class ManejadorUsuario {
         return existe;
     }*/
 
-    // Devuelve el usuario con el eMail pasado
-    public DtUsuario obtenerUsuarioEmail(String email) {
-        Conexion conexion = Conexion.getInstancia();
-        EntityManager em = conexion.getEntityManager();
-        return em.find(Usuario.class, email).getDtUsuario();
-    }
+//    // Devuelve el usuario con el eMail pasado
+//    public DtUsuario obtenerUsuarioEmail(Integer id) {
+//        Conexion conexion = Conexion.getInstancia();
+//        EntityManager em = conexion.getEntityManager();
+//        return em.find(Usuario.class, id).getDtUsuario();
+//    }
 
     // Devuelve el usuario con el ID pasado
     public DtUsuario obtenerUsuarioID(Integer id) {
@@ -158,14 +158,15 @@ public class ManejadorUsuario {
                 .collect(Collectors.toList());
     }
 
-    public Beneficiario obtenerBeneficiarioEmail(String email) {
+    public Beneficiario obtenerBeneficiarioEmail(int id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
 
         try {
-            return em.createQuery("SELECT b FROM Beneficiario b WHERE b.mail = :email", Beneficiario.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
+            return em.find(Beneficiario.class, id);
+//            em.createQuery("SELECT b FROM Beneficiario b WHERE b.mail = :email", Beneficiario.class)
+//                    .setParameter("email", email)
+//                    .getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

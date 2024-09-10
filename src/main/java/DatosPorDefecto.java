@@ -94,8 +94,7 @@ public class DatosPorDefecto {
                     LocalDateTime.now().minusDays(i + 1),
                     EstadoDistribucion.ENTREGADO,
                     donacion.getId(),
-                    beneficiario.getNombre(),
-                    beneficiario.getMail()
+                    beneficiario.getId()
             ));
         }
 
@@ -109,8 +108,7 @@ public class DatosPorDefecto {
                     LocalDateTime.now().minusDays(i - 1),
                     EstadoDistribucion.EN_CAMINO,
                     donacion.getId(),
-                    beneficiario.getNombre(),
-                    beneficiario.getMail()
+                    beneficiario.getId()
             ));
         }
     }

@@ -169,7 +169,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     textNombreBenef.setText(seleccionado.getNombre());
                     texteMailBenef.setText(seleccionado.getMail());
                     textdireccionBenef.setText(seleccionado.getDireccion());
-                    textFechaNaciBenef.setText(seleccionado.getFechaNacimiento().toString());
+                    textFechaNaciBenef.setText(seleccionado.getFechaNacimiento().getDayOfMonth() + "/" + seleccionado.getFechaNacimiento().getMonth().getValue() + "/" + seleccionado.getFechaNacimiento().getYear());
                 }
             }
         });
@@ -278,7 +278,7 @@ public class ModificarUsuarioGUI extends JFrame {
 
     public static void main(String[] args) {
         Fabrica fabrica = Fabrica.getInstancia();
-        IControladorUsuario altaUsuario = fabrica.getControladorUsuario();
+        IControladorUsuario altaUsuario = fabrica.getIControladorUsuario();
         JFrame frame = new JFrame("ModificarUsuarioGUI");
         frame.setContentPane(new ModificarUsuarioGUI(altaUsuario).background);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

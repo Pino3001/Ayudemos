@@ -105,12 +105,12 @@ public class ManejadorDistribucion {
     }
 
     // Busca una distribución por emailBeneficiario e idDonacion en la base de datos
-    public DtDistribucion buscarDistribucion(String emailBeneficiario, int idDonacion) {
+    public DtDistribucion buscarDistribucion(int idUsuario, int idDonacion) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
         try {
-            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario.mail = :email AND d.donacion.id = :idDonacion", Distribucion.class)
-                    .setParameter("email", emailBeneficiario)
+            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario.id = :idUsuario AND d.donacion.id = :idDonacion", Distribucion.class)
+                    .setParameter("idUsuario", idUsuario)
                     .setParameter("idDonacion", idDonacion)
                     .getResultList()
                     .stream()
@@ -130,10 +130,10 @@ public class ManejadorDistribucion {
         try {
             // Búsqueda utilizando idDonacion, emailBeneficiario y fechaPreparacion para asegurarse de que es único
             List<Distribucion> distribuciones = em.createQuery(
-                            "SELECT d FROM Distribucion d WHERE d.donacion.id = :idDonacion AND d.beneficiario.mail = :emailBeneficiario AND d.fechaPreparacion = :fechaPreparacion",
+                            "SELECT d FROM Distribucion d WHERE d.donacion.id = :idDonacion AND d.beneficiario.id = :idUsuario AND d.fechaPreparacion = :fechaPreparacion",
                             Distribucion.class)
                     .setParameter("idDonacion", dtDistribucion.getIdDonacion())
-                    .setParameter("emailBeneficiario", dtDistribucion.getEmailBeneficiario())
+                    .setParameter("idUsuario", dtDistribucion.getIdUsuario())
                     .setParameter("fechaPreparacion", dtDistribucion.getFechaPreparacion())
                     .getResultList();
 
@@ -191,7 +191,7 @@ public class ManejadorDistribucion {
         // Agrupamos  según el barrio las distribuciones que filtramos por fecha.
         for (Distribucion d : distribucionesFiltradas) {
             Barrio zona = d.getBeneficiario().getBarrio();
-            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getNombre(), d.getBeneficiario().getMail());
+            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getId());
 
             distribucionesPorZona.computeIfAbsent(zona, k -> new ArrayList<>()).add(dt);
         }

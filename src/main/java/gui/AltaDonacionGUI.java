@@ -4,18 +4,16 @@ import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
 import gui.AlertasGUI.AlertaIngresoGUI;
-import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
-import interfaces.IAltaDonacion;
+import interfaces.IControladorDonacion;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
 public class AltaDonacionGUI extends JFrame {
-    private IAltaDonacion altaDonacion;
+    private IControladorDonacion altaDonacion;
     private JPanel background;
     private JButton buttonNuevoAlimento;
     private JButton buttonNuevoArticulo;
@@ -37,7 +35,7 @@ public class AltaDonacionGUI extends JFrame {
     private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones del Articulo...";
     private AlertaIngresoGUI alerta;
 
-    public AltaDonacionGUI(IAltaDonacion altaDonacion) {
+    public AltaDonacionGUI(IControladorDonacion altaDonacion) {
         cardLayout = new CardLayout();
         this.altaDonacion = altaDonacion;
         cardAlimentoArticulo.setLayout(cardLayout);

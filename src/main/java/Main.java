@@ -1,7 +1,5 @@
-import datatypes.DtBeneficiario;
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
-import datatypes.DtUsuario;
 import gui.PrincipalGUI;
 import interfaces.*;
 import objects.Beneficiario;
@@ -20,10 +18,9 @@ public class Main {
         // Fábrica
         Fabrica fabrica = Fabrica.getInstancia();
         // Interfaces
-        IControladorUsuario controladorUsuario = fabrica.getControladorUsuario();
-        IAltaDonacion iAltaDonacion = fabrica.getAltaDonacion();
-        IAltaDistribucion iAltaDistribucion = fabrica.getIAltaDistribucion();
-        IModificarDistribucion iModificarDistribucion = fabrica.getModificarDistribucion();
+        IControladorUsuario controladorUsuario = fabrica.getIControladorUsuario();
+        IControladorDonacion iControladorDonacion = fabrica.getAltaDonacion();
+        IControladorDistribucion iControladorDistribucion = fabrica.getIControladorDistribucion();
 
         // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
@@ -31,10 +28,18 @@ public class Main {
         // Crear donaciones de prueba
         List<DTDonacion> dt = dpf.getDonacionesDT(); // Cambio aquí de getAlimentosDT a getDonacionesDT
         for (DTDonacion d : dt) {
-            if (iAltaDonacion.crearDonacion(d)) {
+            if (iControladorDonacion.crearDonacion(d)) {
                 System.out.println("Al parecer fue creado!");
             }
         }
+    
+
+        for (DTDonacion d : dt) {
+            if (iControladorDonacion.crearDonacion(d)) {
+                System.out.println("Al parecer fue creado!");
+            }
+        }
+
 
         // Obtener la instancia del ManejadorUsuario
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
@@ -74,7 +79,7 @@ public class Main {
             tx.begin();
             for (DtDistribucion dtDistribucion : dpf.getDistribucionesDT()) {
                 // Buscar los beneficiarios y donaciones para asociarlos con la distribución
-                Beneficiario beneficiario = manejadorUsuario.obtenerBeneficiarioEmail(dtDistribucion.getEmailBeneficiario());
+                Beneficiario beneficiario = manejadorUsuario.obtenerBeneficiarioEmail(dtDistribucion.getIdUsuario());
                 Donacion donacion = em.find(Donacion.class, dtDistribucion.getIdDonacion());
 
                 if (beneficiario != null && donacion != null) {
@@ -100,7 +105,7 @@ public class Main {
         }
 
         // GUI
-        PrincipalGUI principalGUI = new PrincipalGUI(controladorUsuario, iAltaDonacion, iAltaDistribucion, iModificarDistribucion);
+        PrincipalGUI principalGUI = new PrincipalGUI(controladorUsuario, iControladorDonacion, iControladorDistribucion);
         principalGUI.setVisible(true);
     }
 }

@@ -3,12 +3,11 @@ package gui;
 import com.toedter.calendar.JDateChooser;
 import datatypes.DtBeneficiario;
 import datatypes.DTDonacion;
+import interfaces.IControladorDistribucion;
 import types.EstadoDistribucion;
 import datatypes.DtDistribucion;
-import interfaces.IModificarDistribucion;
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +15,7 @@ import java.util.Date;
 
 public class ModificarDistribucionGUI extends JFrame {
 
-    private IModificarDistribucion modificarDistribucionInterface;
+    private IControladorDistribucion controladorDistribucion;
 
     // Componentes generados desde el archivo .form
     private JPanel background;
@@ -38,8 +37,8 @@ public class ModificarDistribucionGUI extends JFrame {
 
     private DtDistribucion distribucionOriginal;  // Para guardar la distribución original
 
-    public ModificarDistribucionGUI(IModificarDistribucion modificarDistribucionInterface) {
-        this.modificarDistribucionInterface = modificarDistribucionInterface;
+    public ModificarDistribucionGUI(IControladorDistribucion controladorDistribucion) {
+        this.controladorDistribucion = controladorDistribucion;
 
         // Vincula el formulario al contenido de la ventana
         setContentPane(background);
@@ -53,13 +52,13 @@ public class ModificarDistribucionGUI extends JFrame {
         textFechaPrepara.setEnabled(false);
 
         // Población de combo boxes con datos
-        for (DtBeneficiario beneficiario : modificarDistribucionInterface.obtenerBeneficiarios()) {
+        for (DtBeneficiario beneficiario : controladorDistribucion.obtenerBeneficiarios()) {
             comboBeneficiario.addItem(beneficiario);
         }
-        for (DTDonacion donacion : modificarDistribucionInterface.obtenerDonaciones()) {
+        for (DTDonacion donacion : controladorDistribucion.obtenerDonaciones()) {
             comboDonacion.addItem(donacion);
         }
-        for (DtDistribucion distribucion : modificarDistribucionInterface.obtenerDistribuciones()) {
+        for (DtDistribucion distribucion : controladorDistribucion.obtenerDistribuciones()) {
             comboDistribuciones.addItem(distribucion);
         }
 
@@ -75,7 +74,7 @@ public class ModificarDistribucionGUI extends JFrame {
                 distribucionOriginal = distribucionSeleccionada; // Guardar la distribución original para referencia
                 cargarFechasDistribucion(distribucionSeleccionada.getFechaPreparacion(), distribucionSeleccionada.getFechaEntrega());
                 comboEstado.setSelectedItem(distribucionSeleccionada.getEstado()); // Cargar el estado actual
-                comboBeneficiario.setSelectedItem(distribucionSeleccionada.getEmailBeneficiario()); // Mostrar beneficiario
+                comboBeneficiario.setSelectedItem(distribucionSeleccionada.getIdUsuario()); // Mostrar beneficiario
                 comboDonacion.setSelectedItem(distribucionSeleccionada.getIdDonacion()); // Mostrar donación
             }
         });
@@ -84,7 +83,7 @@ public class ModificarDistribucionGUI extends JFrame {
         buttonAceptarDistribucion.addActionListener(e -> {
             DtDistribucion nuevaDistribucion = getDistribucionFromFields();
             if (!nuevaDistribucion.equals(distribucionOriginal)) {
-                modificarDistribucionInterface.modificarDistribucion(nuevaDistribucion);
+                controladorDistribucion.modificarDistribucion(nuevaDistribucion);
                 JOptionPane.showMessageDialog(null, "Distribución modificada correctamente.");
             }
             dispose();  // Cerrar la ventana después de aceptar los cambios
@@ -112,7 +111,7 @@ public class ModificarDistribucionGUI extends JFrame {
         LocalDateTime fechaPreparacion = distribucionOriginal.getFechaPreparacion();  // Mantener la fecha de preparación original
         LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
         EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();
-        return new DtDistribucion(fechaPreparacion, fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getEmailBeneficiario());
+        return new DtDistribucion(fechaPreparacion, fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
     }
 
     public void cargarFechasDistribucion(LocalDateTime fechaPreparacion, LocalDateTime fechaEntrega) {

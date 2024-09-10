@@ -16,20 +16,17 @@ public class Fabrica {
     //
 
     // Alta distribución.
-    public IAltaDistribucion getIAltaDistribucion() {
-        return new AltaDistribucion();
+    public IControladorDistribucion getIControladorDistribucion() {
+        return new ControladorDistribucion();
     }
 
-    public IControladorUsuario getControladorUsuario() {
+    public IControladorUsuario getIControladorUsuario() {
         return new ControladorUsuario();
     }
 
-    public IAltaDonacion getAltaDonacion() {
-        return new AltaDonacion();
+    public IControladorDonacion getAltaDonacion() {
+        return new ControladorDonacion();
     }
 
 
-    public IModificarDistribucion getModificarDistribucion() {
-        return new ModificarDistribucion();
-    }
 }

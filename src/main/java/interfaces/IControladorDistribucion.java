@@ -1,8 +1,3 @@
-//    Cada distribución incluye una fecha de preparación y una fecha de entrega, además de un
-//    Universidad de la República | Dirección General de Educación Técnico Profesional
-//    estado que puede ser "PENDIENTE", "EN CAMINO" o "ENTREGADO". Una distribución puede
-//    involucrar una o más donaciones, y está destinada a un beneficiario específico.
-
 package interfaces;
 
 import datatypes.DTDonacion;
@@ -15,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-public interface IAltaDistribucion {
+public interface IControladorDistribucion {
     // Crea una nueva distribución.
     void crearDistribucion(DtBeneficiario beneficiario,
                            DTDonacion donacion,
@@ -39,5 +34,15 @@ public interface IAltaDistribucion {
 
     // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
     public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+
+    DtDistribucion buscarDistribucion(int idUsuario, int idDonacion);
+
+    void modificarDistribucion(DtDistribucion dtDistribucion);
+
+    DtBeneficiario[] obtenerBeneficiarios();
+
+    DTDonacion[] obtenerDonaciones();
+
+    List<DtDistribucion> obtenerDistribuciones(); // Nuevo metodo para obtener distribuciones
 
 }

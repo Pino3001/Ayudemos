@@ -6,10 +6,7 @@ import excepciones.CamposIncompletosExeption;
 import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
-import interfaces.Fabrica;
-import interfaces.IAltaDistribucion;
-import interfaces.IAltaDonacion;
-import interfaces.IControladorUsuario;
+import interfaces.*;
 import types.EstadoDistribucion;
 
 import javax.swing.*;
@@ -19,9 +16,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class AltaDistribucionGUI extends JFrame {
-    private final IAltaDonacion altaDonacion;
+    private final IControladorDonacion altaDonacion;
     private final IControladorUsuario controladorUsuario;
-    private final IAltaDistribucion altaDistribucion;
+    private final IControladorDistribucion iControladorDistribucion;
     private JPanel background;
     private JTextField textFechaPrep;
     private JButton buttonAceptarBenef;
@@ -35,10 +32,10 @@ public class AltaDistribucionGUI extends JFrame {
     private JTextField textFechaPrepara;
 
 
-    public AltaDistribucionGUI(IControladorUsuario altaUsuario, IAltaDonacion altaDonacion, IAltaDistribucion altaDistribucion) {
+    public AltaDistribucionGUI(IControladorUsuario altaUsuario, IControladorDonacion altaDonacion, IControladorDistribucion iControladorDistribucion) {
         this.altaDonacion = altaDonacion;
         this.controladorUsuario = altaUsuario;
-        this.altaDistribucion = altaDistribucion;
+        this.iControladorDistribucion = iControladorDistribucion;
         aplicarEstilosComponentes();
         cargarComboBox();
         actionButtonCalendario();
@@ -102,7 +99,7 @@ public class AltaDistribucionGUI extends JFrame {
                     } else {
                         //!!!!!!!!!CAMBIAR
                         LocalDateTime fechaEntrega = LocalDateTime.now();
-                        altaDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaEntrega, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                        iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaEntrega, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption ex) {
@@ -158,9 +155,9 @@ public class AltaDistribucionGUI extends JFrame {
 
     public static void main(String[] args) {
         Fabrica fabrica = Fabrica.getInstancia();
-        IControladorUsuario usuarios = fabrica.getControladorUsuario();
-        IAltaDonacion donacion = fabrica.getAltaDonacion();
-        IAltaDistribucion distribucion = fabrica.getIAltaDistribucion();
+        IControladorUsuario usuarios = fabrica.getIControladorUsuario();
+        IControladorDonacion donacion = fabrica.getAltaDonacion();
+        IControladorDistribucion distribucion = fabrica.getIControladorDistribucion();
         JFrame frame = new JFrame("AltaDistribucionGUI");
         frame.setContentPane(new AltaDistribucionGUI(usuarios, donacion, distribucion).background);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
