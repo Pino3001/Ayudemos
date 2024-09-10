@@ -134,4 +134,12 @@ public class AltaUsuario implements IAltaUsuario {
         int anio = Integer.parseInt(partes[2]);
         return LocalDate.of(anio, mes, dia);
     }
+
+    @Override
+    public void existeUsuario(String email) throws EmailIncorrectoExeption{
+        ManejadorUsuario mu= ManejadorUsuario.getInstance();
+        if(mu.existeUsuario(email)){
+            throw new EmailIncorrectoExeption("Mail ya utilizado");
+        }
+    }
 }

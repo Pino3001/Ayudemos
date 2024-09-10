@@ -15,4 +15,6 @@ public class ZonasMayorDistribucionGUI extends JFrame {
     public ZonasMayorDistribucionGUI(IAltaDistribucion iAltaDistribucion) {
         this.iAltaDistribucion = iAltaDistribucion;
     }
+    private void createUIComponents() {
+    }
 }

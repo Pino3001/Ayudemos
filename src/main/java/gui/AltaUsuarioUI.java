@@ -116,7 +116,7 @@ public class AltaUsuarioUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     altaUsuario.validarEmail(texteMailReparti.getText());
-
+                    altaUsuario.existeUsuario(texteMailReparti.getText());
                     if (textNombreReparti.getText().equals("Ingrese el Nombre...") || textNombreReparti.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (texteMailReparti.getText().equals("Ingrese el eMail...") || texteMailReparti.getText().length() <= 0) {
@@ -128,6 +128,7 @@ public class AltaUsuarioUI extends JFrame {
                         altaUsuario.agregarUsuario(dt);
                         JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
+
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption | IngresoIncorrectoExeption ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }

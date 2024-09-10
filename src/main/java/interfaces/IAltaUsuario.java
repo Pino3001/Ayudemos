@@ -46,4 +46,6 @@ public interface IAltaUsuario {
 
     List<DtRepartidor> listarRepartidores();
 
+    // Devuelve true si existe el usuario
+    void existeUsuario(String email) throws EmailIncorrectoExeption;
 }

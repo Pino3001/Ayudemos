@@ -174,6 +174,22 @@ public class ManejadorUsuario {
         }
     }
 
+    public boolean existeUsuario(String email){
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try{
+            Usuario u=em.find(Usuario.class, email);
+            return u != null;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
+        }
+
+    }
+
 
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
