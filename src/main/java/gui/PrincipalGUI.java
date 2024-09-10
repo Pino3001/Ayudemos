@@ -104,6 +104,15 @@ public class PrincipalGUI extends JFrame {
             }
         });
 
+        // Agregar el ActionListener para mayoresDistribuciones
+        mayoresDistribuciones.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ZonasMayorDistribucionGUI zonasMayorDistribucionGUI = new ZonasMayorDistribucionGUI(iAltaDistribucion);
+                zonasMayorDistribucionGUI.setVisible(true);
+            }
+        });
+
         // Añadir WindowListener para cerrar conexiones al cerrar la ventana
         addWindowListener(new WindowAdapter() {
             @Override
