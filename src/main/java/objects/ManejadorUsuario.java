@@ -5,6 +5,7 @@ import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import persistencia.Conexion;
 import types.EstadoBeneficiario;
 import types.Barrio;
@@ -175,6 +176,23 @@ public class ManejadorUsuario {
         }
     }
 
+    public boolean existeUsuario(String email) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            // Crear una consulta para buscar al usuario por email.
+            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.mail = :email");
+            query.setParameter("email", email);
+            // Retorna ture si el resultado no está vacío.
+            return !query.getResultList().isEmpty();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
 
     // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {

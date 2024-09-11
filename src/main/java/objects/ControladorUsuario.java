@@ -132,4 +132,10 @@ public class ControladorUsuario implements IControladorUsuario {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         return mu.obtenerBeneficiariosPorZona(barrio);
     }
+
+    @Override
+    public boolean existeUsuario(String email) {
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        return mu.existeUsuario(email);
+    }
 }

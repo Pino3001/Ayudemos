@@ -51,4 +51,7 @@ public interface IControladorUsuario {
      */
     List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio);
 
+    // Retorna true si existe el usuario, false en caso contrario.
+    boolean existeUsuario(String email);
+
 }

@@ -123,6 +123,8 @@ public class AltaUsuarioUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (textNumeroLicencia.getText().equals("Ingrese la Licencia...") || textNumeroLicencia.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (controladorUsuario.existeUsuario(texteMailReparti.getText())) {
+                        throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailReparti.getText() + " ya existe");
                     } else {
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         controladorUsuario.agregarUsuario(dt);
@@ -152,6 +154,8 @@ public class AltaUsuarioUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (barrio == null) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (controladorUsuario.existeUsuario(texteMailBenef.getText())) {
+                        throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailBenef.getText() + " ya existe");
                     } else {
                         fecha = controladorUsuario.parseFecha(textFechaNaci.getText());
                         controladorUsuario.validarEmail(texteMailBenef.getText());
