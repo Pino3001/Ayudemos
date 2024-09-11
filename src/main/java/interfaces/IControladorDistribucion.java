@@ -6,6 +6,7 @@ import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public interface IControladorDistribucion {
     List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado);
 
     // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
-    public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+    public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDate fechaInicial, LocalDate fechaFinal);
 
     DtDistribucion buscarDistribucion(int idUsuario, int idDonacion);
 

@@ -6,6 +6,7 @@ import persistencia.Conexion;
 import types.Barrio;
 import types.EstadoDistribucion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,12 +176,12 @@ public class ManejadorDistribucion {
         }
     }
 
-    public Map<Barrio, List<DtDistribucion>> obtenerReporteZonas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+    public Map<Barrio, List<DtDistribucion>> obtenerReporteZonas(LocalDate fechaInicial, LocalDate fechaFinal) {
         // Filtramos las distribuciones por fecha.
         List<Distribucion> distribuciones = obtenerListaDistribucionesClase();
         List<Distribucion> distribucionesFiltradas = new ArrayList<Distribucion>();
         for (Distribucion d : distribuciones) {
-            if (d.getFechaEntrega().isAfter(fechaInicial) && d.getFechaEntrega().isBefore(fechaFinal)) {
+            if (d.getFechaEntrega().isAfter(fechaInicial.atStartOfDay()) && d.getFechaEntrega().isBefore(fechaFinal.atStartOfDay())) {
                 distribucionesFiltradas.add(d);
             }
         }

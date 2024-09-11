@@ -32,14 +32,12 @@ public class Main {
                 System.out.println("Al parecer fue creado!");
             }
         }
-    
 
         for (DTDonacion d : dt) {
             if (iControladorDonacion.crearDonacion(d)) {
                 System.out.println("Al parecer fue creado!");
             }
         }
-
 
         // Obtener la instancia del ManejadorUsuario
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();

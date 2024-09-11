@@ -139,7 +139,8 @@ public class PrincipalGUI extends JFrame {
         mayoresDistribuciones.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ZonasMayorDistribucionGUI zonasMayorDistribucionGUI = new ZonasMayorDistribucionGUI(iControladorDistribucion);
+                zonasMayorDistribucionGUI.setVisible(true);
             }
         });
 
