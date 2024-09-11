@@ -279,9 +279,9 @@
               <font name="Roboto Light" size="14" style="0"/>
               <foreground color="-1537"/>
               <horizontalAlignment value="2"/>
-              <label value="- Listar por Estado"/>
+              <label value="- Listar por Zona"/>
               <opaque value="true"/>
-              <text value="- Listar por Estado"/>
+              <text value="- Listar por Zona"/>
             </properties>
           </component>
           <vspacer id="1683e">

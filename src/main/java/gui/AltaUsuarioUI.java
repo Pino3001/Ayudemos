@@ -7,6 +7,7 @@ import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
+import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorUsuario;
@@ -39,6 +40,7 @@ public class AltaUsuarioUI extends JFrame {
     private JTextField textNumeroLicencia;
     private JButton buttonAceptarReparti;
     private JButton buttonCancelarReparti;
+    private JButton buttonCalendar;
     private CardLayout cardLayout;
     private Barrio barrio = null;
 
@@ -50,10 +52,10 @@ public class AltaUsuarioUI extends JFrame {
         cardRepartidorBeneficiario.add(panelBeneficiario, "beneficiario");
         cardRepartidorBeneficiario.add(panelRepartidor, "repartidor");
         aplicarEstilosComponentes();
-        cargarComboBarrio();
         cambiarTipoUsuario();
+        actionButtonCalendario();
         botonesAceptarCancelar();
-
+        cargarComboBarrio();
         comboBarrio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,12 +87,12 @@ public class AltaUsuarioUI extends JFrame {
 
     // Agregar items al combo
     private void cargarComboBarrio() {
-        comboBarrio.setSelectedItem(Barrio.values()[0]);
+
         for (Barrio barrio : Barrio.values()) {
             comboBarrio.addItem(barrio);
         }
-
-        comboBarrio.setSelectedIndex(0);
+        comboBarrio.setSelectedItem(Barrio.CIUDAD_VIEJA);
+        barrio = (Barrio) comboBarrio.getSelectedItem();
     }
 
     //Maneja el CardLayaut para mostrar los imputs segun el tipo de usuario a ingresar
@@ -173,6 +175,31 @@ public class AltaUsuarioUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+            }
+        });
+    }
+
+    // Comportamiento de los botones del calendario
+    private void actionButtonCalendario() {
+
+        buttonCalendar.addActionListener(e -> {
+            if (textFechaNaci == null) {
+                System.out.println("textFechaPrepara es null");
+                return;
+            }
+            // Crear una instancia del componente de calendario
+            ComponenteCalendario calendario = new ComponenteCalendario();
+            // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
+            int x = textFechaNaci.getLocationOnScreen().x;
+            int y = textFechaNaci.getLocationOnScreen().y + buttonCalendar.getHeight();
+
+            // Mostrar el calendario y obtener la fecha seleccionada
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+
+            // Verificar si se seleccionó una fecha o si se canceló la selección
+            if (fechaSeleccionada != null) {
+                // Actualizar un campo de texto con la fecha seleccionada
+                textFechaNaci.setText(fechaSeleccionada);
             }
         });
     }

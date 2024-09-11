@@ -291,14 +291,15 @@
                       </grid>
                     </constraints>
                   </hspacer>
-                  <component id="4c28c" class="javax.swing.JLabel">
+                  <component id="6cdc3" class="javax.swing.JButton" binding="buttonCalendar">
                     <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Roboto Light" size="13" style="0"/>
-                      <foreground color="-16178384"/>
-                      <text value="[DD/MM/YYYY]"/>
+                      <background color="-330502"/>
+                      <borderPainted value="false"/>
+                      <icon value="images/calendario.png"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>
@@ -366,7 +367,7 @@
                 <children>
                   <component id="dd49b" class="javax.swing.JComboBox" binding="comboEstadoBenef">
                     <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                         <minimum-size width="250" height="30"/>
                         <preferred-size width="250" height="30"/>
                       </grid>
@@ -412,7 +413,7 @@
                 <children>
                   <component id="572b0" class="javax.swing.JComboBox" binding="comboBarrioBenef">
                     <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                         <minimum-size width="250" height="30"/>
                         <preferred-size width="250" height="30"/>
                       </grid>

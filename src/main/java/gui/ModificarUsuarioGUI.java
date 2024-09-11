@@ -4,6 +4,7 @@ import datatypes.*;
 import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
+import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
 import interfaces.Fabrica;
@@ -45,6 +46,7 @@ public class ModificarUsuarioGUI extends JFrame {
     private JTextField textNumeroLicenciaRep;
     private JButton buttonAceptarReparti;
     private JButton buttonCancelarReparti;
+    private JButton buttonCalendar;
     private CardLayout cardLayout;
     private DtRepartidor aEditarRepartidor;
     private DtBeneficiario aEditarBeneficiario;
@@ -61,11 +63,11 @@ public class ModificarUsuarioGUI extends JFrame {
 
         aplicarEstiloscomponentes();
         cambiarTipoRepartidorBeneficiario();
-        cargarComboBox();
         actionListenerComboBox();
-        obtenerDatosCombo();
+        actionButtonCalendario();
         actionAceptarCancelar();
-
+        obtenerDatosCombo();
+        cargarComboBox();
 
     }
 
@@ -204,6 +206,31 @@ public class ModificarUsuarioGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Obtener el ítem seleccionado
                 estadoBeneficiario = (EstadoBeneficiario) comboEstadoBenef.getSelectedItem();
+            }
+        });
+    }
+
+    // Comportamiento de los botones del calendario
+    private void actionButtonCalendario() {
+
+        buttonCalendar.addActionListener(e -> {
+            if (textFechaNaciBenef == null) {
+                System.out.println("textFechaPrepara es null");
+                return;
+            }
+            // Crear una instancia del componente de calendario
+            ComponenteCalendario calendario = new ComponenteCalendario(textFechaNaciBenef.getText());
+            // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
+            int x = textFechaNaciBenef.getLocationOnScreen().x;
+            int y = textFechaNaciBenef.getLocationOnScreen().y + buttonCalendar.getHeight();
+
+            // Mostrar el calendario y obtener la fecha seleccionada
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+
+            // Verificar si se seleccionó una fecha o si se canceló la selección
+            if (fechaSeleccionada != null) {
+                // Actualizar un campo de texto con la fecha seleccionada
+                textFechaNaciBenef.setText(fechaSeleccionada);
             }
         });
     }

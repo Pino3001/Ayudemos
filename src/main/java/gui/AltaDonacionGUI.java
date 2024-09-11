@@ -3,7 +3,6 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
-import gui.AlertasGUI.AlertaIngresoGUI;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDonacion;
@@ -33,7 +32,6 @@ public class AltaDonacionGUI extends JFrame {
     private final String textoPorDefectoDescAlimento = "Ingrese la descripcion del Alimento...";
     private final String textoPorDefectoDescArticulo = "Ingrese la descripcion Articulo...";
     private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones del Articulo...";
-    private AlertaIngresoGUI alerta;
 
     public AltaDonacionGUI(IControladorDonacion altaDonacion) {
         cardLayout = new CardLayout();
@@ -152,6 +150,6 @@ public class AltaDonacionGUI extends JFrame {
         // TODO: place custom component creation code here
         this.background = new JPanel();
         setContentPane(background);
-        setSize(600, 400);
+        setSize(400, 400);
     }
 }
