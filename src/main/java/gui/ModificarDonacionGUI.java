@@ -3,6 +3,7 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
+import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
@@ -37,6 +38,19 @@ public class ModificarDonacionGUI extends JFrame {
     private JLabel textoAlimentoSeleccionado;
     private JSpinner spinnerCantidadAlimento;
     private JTextField textDescripAlimento;
+    private JPanel paneltitulo;
+    private JPanel panelArtiAli;
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JPanel panel5;
+    private JPanel panel6;
+    private JPanel panel7;
+    private JPanel panel11;
+    private JPanel panel12;
+    private JPanel panel13;
+    private JPanel panel14;
+    private JPanel panel15;
     private CardLayout cardLayout;
     private DTAlimento aEditarAlimento;
     private DTArticulo aEditarArticulo;
@@ -60,7 +74,7 @@ public class ModificarDonacionGUI extends JFrame {
     private void createUIComponents() {
         this.background = new JPanel();
         setContentPane(background);
-        setSize(450, 600);
+        setSize(450, 500);
     }
 
     // Aplica estilos personalizados que no están en él .form
@@ -71,6 +85,26 @@ public class ModificarDonacionGUI extends JFrame {
         // Configurar el formato del JSpinner para mostrar valores flotantes
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinnerPeso, "0.00");
         spinnerPeso.setEditor(editor);
+
+        paneltitulo.setBackground(ColorUtil.getColor("primaryColor"));
+        background.setBackground(ColorUtil.getColor("backgroundColor"));
+        panelArtiAli.setBackground(ColorUtil.getColor("backgroundColor"));
+        buttonModificarAlimento.setBackground(ColorUtil.getColor("backgroundColor"));
+        buttonModificarArticulo.setBackground(ColorUtil.getColor("backgroundColor"));
+        cardAlimentoArticulo.setBackground(ColorUtil.getColor("backgroundColor"));
+        panelAlimento.setBackground(ColorUtil.getColor("backgroundColor"));
+        panelArticulo.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel1.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel2.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel3.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel5.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel6.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel7.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel11.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel12.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel13.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel14.setBackground(ColorUtil.getColor("backgroundColor"));
+        panel15.setBackground(ColorUtil.getColor("backgroundColor"));
 
         //Los componentes creados en el .Form los edito con estas clases.
         new ComponenteTextField(textDescripAlimento, "");

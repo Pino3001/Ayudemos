@@ -3,7 +3,7 @@ package gui;
 import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import excepciones.CamposIncompletosExeption;
-import gui.componentes.ComponenteCalendario;
+import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
 import interfaces.*;
@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class AltaDistribucionGUI extends JFrame {
@@ -21,8 +23,8 @@ public class AltaDistribucionGUI extends JFrame {
     private final IControladorDistribucion iControladorDistribucion;
     private JPanel background;
     private JTextField textFechaPrep;
-    private JButton buttonAceptarBenef;
-    private JButton buttonCancelarBenef;
+    private JButton buttonAceptar;
+    private JButton buttonCancelar;
     private JButton buttonCalendarioEntrega;
     private JComboBox<DTDonacion> comboDonacion;
     private JComboBox<EstadoDistribucion> comboEstado;
@@ -30,6 +32,7 @@ public class AltaDistribucionGUI extends JFrame {
     private JTextField textFechaEntrega;
     private JButton buttonCalendarioPrepara;
     private JTextField textFechaPrepara;
+    private String predFecha = "--/--/---- hh:mm";
 
 
     public AltaDistribucionGUI(IControladorUsuario altaUsuario, IControladorDonacion altaDonacion, IControladorDistribucion iControladorDistribucion) {
@@ -54,8 +57,8 @@ public class AltaDistribucionGUI extends JFrame {
         new ComponenteComboBox(comboDonacion);
         new ComponenteComboBox(comboEstado);
         new ComponenteComboBox(comboBeneficiario);
-        new ComponenteTextField(textFechaEntrega, "--/--/----");
-        new ComponenteTextField(textFechaPrepara, "--/--/----");
+        new ComponenteTextField(textFechaEntrega, predFecha);
+        new ComponenteTextField(textFechaPrepara, predFecha);
     }
 
     // Cargar comboBox
@@ -82,7 +85,7 @@ public class AltaDistribucionGUI extends JFrame {
 
     // Comportamiento Boton Aceptar-Cancelar
     private void actionAceptarCancelar() {
-        buttonAceptarBenef.addActionListener(new ActionListener() {
+        buttonAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -92,22 +95,24 @@ public class AltaDistribucionGUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (comboEstado.getSelectedItem() == null) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textFechaPrepara.getText().equals("--/--/----") && textFechaPrepara.getText().isEmpty()) {
+                    } else if (textFechaPrepara.getText().equals(predFecha) || textFechaPrepara.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textFechaEntrega.getText().equals("--/--/----") && textFechaEntrega.getText().isEmpty()) {
+                    } else if (textFechaEntrega.getText().equals(predFecha) || textFechaEntrega.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        //!!!!!!!!!CAMBIAR
-                        LocalDateTime fechaEntrega = LocalDateTime.now();
-                        iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaEntrega, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+                        // Parsear la cadena a un objeto LocalDateTime
+                        LocalDateTime fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
+                        LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
+                        iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } catch (CamposIncompletosExeption ex) {
+                } catch (CamposIncompletosExeption | DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-        buttonCancelarBenef.addActionListener(new ActionListener() {
+        buttonCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
@@ -120,13 +125,13 @@ public class AltaDistribucionGUI extends JFrame {
 
         buttonCalendarioPrepara.addActionListener(e -> {
             // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario();
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
             int x = textFechaPrepara.getLocationOnScreen().x - 130;
             int y = textFechaPrepara.getLocationOnScreen().y + buttonCalendarioPrepara.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
 
             // Verificar si se seleccionó una fecha o si se canceló la selección
             if (fechaSeleccionada != null) {
@@ -137,13 +142,13 @@ public class AltaDistribucionGUI extends JFrame {
 
         buttonCalendarioEntrega.addActionListener(e -> {
             // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario();
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
             int x = textFechaEntrega.getLocationOnScreen().x - 130;
             int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
 
             // Verificar si se seleccionó una fecha o si se canceló la selección
             if (fechaSeleccionada != null) {

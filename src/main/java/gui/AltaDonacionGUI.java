@@ -3,16 +3,18 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
+import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteSpinner;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDonacion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AltaDonacionGUI extends JFrame {
-    private IControladorDonacion altaDonacion;
+    private IControladorDonacion controladorDonacion;
     private JPanel background;
     private JButton buttonNuevoAlimento;
     private JButton buttonNuevoArticulo;
@@ -29,17 +31,20 @@ public class AltaDonacionGUI extends JFrame {
     private JPanel panelAlimento;
     private JPanel panelArticulo;
     private CardLayout cardLayout;
-    private final String textoPorDefectoDescAlimento = "Ingrese la descripcion del Alimento...";
-    private final String textoPorDefectoDescArticulo = "Ingrese la descripcion Articulo...";
-    private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones del Articulo...";
+    private final String textoPorDefectoDescAlimento = "Ingrese la descripcion...";
+    private final String textoPorDefectoDescArticulo = "Ingrese la descripcion...";
+    private final String textoPorDefectoDimensiArticulos = "Ingrese las dimensiones...";
 
-    public AltaDonacionGUI(IControladorDonacion altaDonacion) {
+
+    public AltaDonacionGUI(IControladorDonacion controladorDonacion) {
         cardLayout = new CardLayout();
-        this.altaDonacion = altaDonacion;
+        this.controladorDonacion = controladorDonacion;
         cardAlimentoArticulo.setLayout(cardLayout);
         cardAlimentoArticulo.add(panelAlimento, "alimento");
         cardAlimentoArticulo.add(panelArticulo, "articulo");
         aplicarEstilos();
+        actionBotonesNavDonaciones();
+        actionBotonesAceptarCancelar();
     }
 
     // Aplica estilos personalizados que no están en él .form
@@ -56,8 +61,7 @@ public class AltaDonacionGUI extends JFrame {
         new ComponenteTextField(textDimensiones, textoPorDefectoDimensiArticulos);
         new ComponenteSpinner(spinnerCantidad);
         new ComponenteSpinner(spinnerPeso);
-        actionBotonesNavDonaciones();
-        actionBotonesAceptarCancelar();
+
     }
 
     // Comportamiento de navegacion de los botones: Nuevo Artículo y Nuevo Alimento
@@ -94,14 +98,14 @@ public class AltaDonacionGUI extends JFrame {
                         throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
                     } else {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
-                        if (altaDonacion.crearDonacion(dtArticulo)) {
-                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        if (controladorDonacion.crearDonacion(dtArticulo)) {
+                            new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -125,14 +129,14 @@ public class AltaDonacionGUI extends JFrame {
                         throw new CamposIncompletosExeption("Por favor, complete todos los campos!");
                     } else {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripcionAlimento.getText(), cantidad);
-                        if (altaDonacion.crearDonacion(dtAlimento)) {
-                            JOptionPane.showMessageDialog(null, "Ingreso Realizado exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        if (controladorDonacion.crearDonacion(dtAlimento)) {
+                            new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
