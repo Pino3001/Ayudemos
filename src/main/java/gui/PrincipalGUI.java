@@ -96,7 +96,7 @@ public class PrincipalGUI extends JFrame {
         modificarDistribucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iControladorDistribucion);
+                ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iControladorDistribucion, iControladorUsuario, iControladorDonacion);
                 modificarDistribucionGUI.setVisible(true);
             }
         });

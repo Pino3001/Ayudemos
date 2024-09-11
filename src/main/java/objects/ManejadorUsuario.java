@@ -53,7 +53,6 @@ public class ManejadorUsuario {
         try {
             tx.begin();
             usuario.setNombre(dtUsuario.getNombre());
-            usuario.setMail(dtUsuario.getMail());
             if (usuario instanceof Beneficiario beneficiario && dtUsuario instanceof DtBeneficiario) {
                 beneficiario.setDireccion(((DtBeneficiario) dtUsuario).getDireccion());
                 beneficiario.setFechaNacimiento(((DtBeneficiario) dtUsuario).getFechaNacimiento());

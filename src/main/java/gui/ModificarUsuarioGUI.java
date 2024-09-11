@@ -241,17 +241,15 @@ public class ModificarUsuarioGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (textNombreReparti.getText().equals("") || textNombreReparti.getText().length() <= 0) {
+                    if (textNombreReparti.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (texteMailReparti.getText().equals("") || texteMailReparti.getText().length() <= 0) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textNumeroLicenciaRep.getText().equals("") || textNumeroLicenciaRep.getText().length() <= 0) {
+                    } else if (textNumeroLicenciaRep.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (aEditarRepartidor == null) {
                         throw new CamposIncompletosExeption("Seleccione un Usuario!");
                     } else {
                         iAltaUsuario.validarEmail(texteMailReparti.getText());
-                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailBenef.getText(), textNumeroLicenciaRep.getText());
+                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), null, textNumeroLicenciaRep.getText());
                         iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getId());
                         JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -271,11 +269,9 @@ public class ModificarUsuarioGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 LocalDate fecha = null;
                 try {
-                    if (textNombreBenef.getText().equals("") || textNombreBenef.getText().length() <= 0) {
+                    if (textNombreBenef.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (texteMailBenef.getText().equals("") || texteMailBenef.getText().length() <= 0) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textdireccionBenef.getText().equals("") || textdireccionBenef.getText().length() <= 0) {
+                    } else if (textdireccionBenef.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (barrio == null) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
@@ -286,7 +282,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     } else {
                         fecha = iAltaUsuario.parseFecha(textFechaNaciBenef.getText());
                         iAltaUsuario.validarEmail(texteMailBenef.getText());
-                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
+                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), null, textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
                         iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getId());
                         JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }

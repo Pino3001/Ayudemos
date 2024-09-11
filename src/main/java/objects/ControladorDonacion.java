@@ -32,9 +32,9 @@ public class ControladorDonacion implements IControladorDonacion {
     }
 
     @Override
-    public DTDonacion buscarDonacionID(DTDonacion dtDonacion) {
+    public DTDonacion buscarDonacionID(Integer id) {
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
-        return manejadorDonacion.buscarDonacionID(dtDonacion.getId());
+        return manejadorDonacion.buscarDonacionID(id);
     }
 
     @Override

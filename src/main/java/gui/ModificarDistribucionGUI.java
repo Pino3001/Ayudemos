@@ -1,13 +1,17 @@
 package gui;
 
 import com.toedter.calendar.JDateChooser;
-import datatypes.DtBeneficiario;
-import datatypes.DTDonacion;
+import datatypes.*;
+import gui.componentes.ColorUtil;
+import gui.componentes.ComponenteComboBox;
+import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
+import interfaces.IControladorDonacion;
+import interfaces.IControladorUsuario;
 import types.EstadoDistribucion;
-import datatypes.DtDistribucion;
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -16,16 +20,16 @@ import java.util.Date;
 public class ModificarDistribucionGUI extends JFrame {
 
     private IControladorDistribucion controladorDistribucion;
+    private IControladorUsuario controladorUsuario;
+    private IControladorDonacion controladorDonacion;
 
     // Componentes generados desde el archivo .form
     private JPanel background;
     private JComboBox<DtDistribucion> comboDistribuciones;
-    private JLabel textSeleccionadoDistribu;
-    private JButton buttonCalendarioPrepara;
     private JButton buttonCalendarioEntrega;
-    private JComboBox<DtBeneficiario> comboBeneficiario;
-    private JComboBox<DTDonacion> comboDonacion;
-    private JTextField textFechaPrepara;
+    private JLabel labelBeneficiario;
+    private JLabel labelDonacion;
+    private JLabel labelFechaPrepara;
     private JTextField textFechaEntrega;
     private JComboBox<EstadoDistribucion> comboEstado;
     private JButton buttonAceptarDistribucion;
@@ -37,35 +41,18 @@ public class ModificarDistribucionGUI extends JFrame {
 
     private DtDistribucion distribucionOriginal;  // Para guardar la distribución original
 
-    public ModificarDistribucionGUI(IControladorDistribucion controladorDistribucion) {
+    public ModificarDistribucionGUI(IControladorDistribucion controladorDistribucion, IControladorUsuario controladorUsuario, IControladorDonacion controladorDonacion) {
         this.controladorDistribucion = controladorDistribucion;
+        this.controladorUsuario = controladorUsuario;
+        this.controladorDonacion = controladorDonacion;
 
         // Vincula el formulario al contenido de la ventana
         setContentPane(background);
         setTitle("Modificar Distribución");
-        setSize(600, 700);
+        setSize(450, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Deshabilitar campos no editables
-        comboBeneficiario.setEnabled(false);
-        comboDonacion.setEnabled(false);
-        textFechaPrepara.setEnabled(false);
 
-        // Población de combo boxes con datos
-        for (DtBeneficiario beneficiario : controladorDistribucion.obtenerBeneficiarios()) {
-            comboBeneficiario.addItem(beneficiario);
-        }
-        for (DTDonacion donacion : controladorDistribucion.obtenerDonaciones()) {
-            comboDonacion.addItem(donacion);
-        }
-        for (DtDistribucion distribucion : controladorDistribucion.obtenerDistribuciones()) {
-            comboDistribuciones.addItem(distribucion);
-        }
-
-        // Poblar comboEstado con los valores del enum EstadoDistribucion
-        for (EstadoDistribucion estado : EstadoDistribucion.values()) {
-            comboEstado.addItem(estado);
-        }
 
         // Cargar los datos (incluyendo estado y fechas) cuando se seleccione una distribución del comboDistribuciones
         comboDistribuciones.addActionListener(e -> {
@@ -74,8 +61,11 @@ public class ModificarDistribucionGUI extends JFrame {
                 distribucionOriginal = distribucionSeleccionada; // Guardar la distribución original para referencia
                 cargarFechasDistribucion(distribucionSeleccionada.getFechaPreparacion(), distribucionSeleccionada.getFechaEntrega());
                 comboEstado.setSelectedItem(distribucionSeleccionada.getEstado()); // Cargar el estado actual
-                comboBeneficiario.setSelectedItem(distribucionSeleccionada.getIdUsuario()); // Mostrar beneficiario
-                comboDonacion.setSelectedItem(distribucionSeleccionada.getIdDonacion()); // Mostrar donación
+                DtUsuario dtUsuario = controladorUsuario.obtenerUsuarioPorId(distribucionSeleccionada.getIdUsuario());// Busco el usuario para mostrar su nombre
+                labelBeneficiario.setText(dtUsuario.getMail()); // Mostrar beneficiario
+                DTDonacion dtDonacion = controladorDonacion.buscarDonacionID(distribucionSeleccionada.getIdDonacion());
+                if (dtDonacion instanceof DTAlimento) labelDonacion.setText(((DTAlimento) dtDonacion).getCantElementos() + "  " + ((DTAlimento) dtDonacion).getDescripcionProductos());
+                else if (dtDonacion instanceof  DTArticulo) labelDonacion.setText(((DTArticulo) dtDonacion).getDescripcion());
             }
         });
 
@@ -104,6 +94,8 @@ public class ModificarDistribucionGUI extends JFrame {
                 }
             }
         });
+        aplicarEstilos();
+        cargarComboBox();
     }
 
     private DtDistribucion getDistribucionFromFields() {
@@ -116,7 +108,34 @@ public class ModificarDistribucionGUI extends JFrame {
 
     public void cargarFechasDistribucion(LocalDateTime fechaPreparacion, LocalDateTime fechaEntrega) {
         // Método para cargar fechas existentes en los JTextFields
-        textFechaPrepara.setText(fechaPreparacion.format(formatter));
+        labelFechaPrepara.setText(fechaPreparacion.format(formatter));
         textFechaEntrega.setText(fechaEntrega.format(formatter));
+    }
+
+    private void cargarComboBox(){
+        comboDistribuciones.removeAllItems();
+        comboDistribuciones.removeAllItems();
+        // Población de combo boxes con datos
+        for (DtDistribucion distribucion : controladorDistribucion.obtenerDistribuciones()) {
+            comboDistribuciones.addItem(distribucion);
+        }
+        comboDistribuciones.setSelectedItem(controladorDistribucion.obtenerDistribuciones().get(0));
+        // Poblar comboEstado con los valores del enum EstadoDistribucion
+        for (EstadoDistribucion estado : EstadoDistribucion.values()) {
+            comboEstado.addItem(estado);
+        }
+    }
+
+    private void aplicarEstilos(){
+        new ComponenteComboBox(comboEstado);
+        new ComponenteComboBox(comboDistribuciones);
+        new ComponenteTextField(textFechaEntrega,"");
+        labelBeneficiario.setFont(new Font("Roboto light", Font.PLAIN, 16));
+        labelBeneficiario.setForeground(ColorUtil.getColor("primaryColor"));
+        labelDonacion.setFont(new Font("Roboto light", Font.PLAIN, 16));
+        labelDonacion.setForeground(ColorUtil.getColor("primaryColor"));
+        labelFechaPrepara.setFont(new Font("Roboto light", Font.PLAIN, 16));
+        labelFechaPrepara.setForeground(ColorUtil.getColor("primaryColor"));
+
     }
 }
