@@ -89,7 +89,7 @@ public class ListarBeneficiariosGUI extends JFrame {
         jTable.setForeground(ColorUtil.getColor("primaryColor"));
         jTable.setPreferredScrollableViewportSize(new Dimension(450, 80));
         jTable.setFillsViewportHeight(true);
-        jTable.getColumnModel().getColumn(1).setCellRenderer(new EstadoCellRenderer());
+        jTable.getColumnModel().getColumn(1).setCellRenderer(new EstadoCellRenderer());//Pintar El estado con colores
 
         return jTable;
     }
@@ -156,5 +156,9 @@ public class ListarBeneficiariosGUI extends JFrame {
 
             return c;
         }
+    }
+
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
     }
 }

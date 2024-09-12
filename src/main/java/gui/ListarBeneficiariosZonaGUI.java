@@ -61,4 +61,8 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
             barrioComboBox.addItem(barrio);
         }
     }
+
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
+    }
 }

@@ -204,6 +204,10 @@ public class AltaUsuarioUI extends JFrame {
         });
     }
 
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
+    }
+
 /*    public static void main(String[] args) {
         JFrame frame = new JFrame("AltaUsuarioUI");
         frame.setContentPane(new AltaUsuarioUI().background);

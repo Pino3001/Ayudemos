@@ -261,4 +261,8 @@ public class ModificarDonacionGUI extends JFrame {
             }
         });
     }
+
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
+    }
 }

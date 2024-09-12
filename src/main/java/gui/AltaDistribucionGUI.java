@@ -2,6 +2,7 @@ package gui;
 
 import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
+import datatypes.DtDistribucion;
 import excepciones.CamposIncompletosExeption;
 import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
@@ -104,8 +105,12 @@ public class AltaDistribucionGUI extends JFrame {
                         // Parsear la cadena a un objeto LocalDateTime
                         LocalDateTime fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
                         LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
-                        iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
-                        JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        if (fechaEntrega.isAfter(fechaHoraPrep)) {
+                            iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                            JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            throw new CamposIncompletosExeption("La fecha de entrega no puede ser anterior a la de preparacion!");
+                        }
                     }
                 } catch (CamposIncompletosExeption | DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -156,6 +161,10 @@ public class AltaDistribucionGUI extends JFrame {
                 textFechaEntrega.setText(fechaSeleccionada);
             }
         });
+    }
+
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
     }
 
     public static void main(String[] args) {

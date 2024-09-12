@@ -116,5 +116,9 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         setContentPane(background);
     }
 
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
+    }
+
 
 }

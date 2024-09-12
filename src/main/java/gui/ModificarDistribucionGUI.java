@@ -2,6 +2,8 @@ package gui;
 
 import com.toedter.calendar.JDateChooser;
 import datatypes.*;
+import excepciones.CamposIncompletosExeption;
+import excepciones.FormatoFechaIExeption;
 import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
@@ -73,9 +75,19 @@ public class ModificarDistribucionGUI extends JFrame {
         // Acción del botón "Aceptar"
         buttonAceptarDistribucion.addActionListener(e -> {
             DtDistribucion nuevaDistribucion = getDistribucionFromFields();
-            if (!nuevaDistribucion.equals(distribucionOriginal)) {
-                controladorDistribucion.modificarDistribucion(nuevaDistribucion);
-                JOptionPane.showMessageDialog(null, "Distribución modificada correctamente.");
+            try {
+                if (nuevaDistribucion == null) {
+                    throw new FormatoFechaIExeption("La fecha de entrega no puede ser anterior a la de la preparacion!");
+                } else if (nuevaDistribucion.equals(distribucionOriginal)) {
+                    throw new CamposIncompletosExeption("No se ha modificado ningun campo!");
+                } else if (comboEstado.getSelectedItem() == null) {
+                    throw new CamposIncompletosExeption("No se ha seleccionado ningun estado para la Distribucion!");
+                } else {
+                    controladorDistribucion.modificarDistribucion(nuevaDistribucion);
+                    JOptionPane.showMessageDialog(null, "Distribución modificada correctamente.");
+                }
+            } catch (FormatoFechaIExeption | CamposIncompletosExeption ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
             }
             dispose();  // Cerrar la ventana después de aceptar los cambios
         });
@@ -83,18 +95,6 @@ public class ModificarDistribucionGUI extends JFrame {
         // Acción del botón "Cancelar"
         buttonCancelarDistribucion.addActionListener(e -> dispose());
 
-       /* // Acción del botón para el calendario para seleccionar la fecha de entrega
-        buttonCalendarioEntrega.addActionListener(e -> {
-            JDateChooser dateChooser = new JDateChooser();
-            int result = JOptionPane.showConfirmDialog(null, dateChooser, "Seleccione la Fecha de Entrega", JOptionPane.OK_CANCEL_OPTION);
-            if (result == JOptionPane.OK_OPTION) {
-                Date selectedDate = dateChooser.getDate();
-                if (selectedDate != null) {
-                    LocalDateTime ldt = LocalDateTime.ofInstant(selectedDate.toInstant(), ZoneId.systemDefault());
-                    textFechaEntrega.setText(ldt.format(formatter));
-                }
-            }
-        });*/
         buttonCalendarioEntrega.addActionListener(e -> {
             // Crear una instancia del componente de calendario
             ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
@@ -119,8 +119,13 @@ public class ModificarDistribucionGUI extends JFrame {
         // Convertir las fechas de los campos de texto
         LocalDateTime fechaPreparacion = distribucionOriginal.getFechaPreparacion();  // Mantener la fecha de preparación original
         LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
-        EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();
-        return new DtDistribucion(fechaPreparacion, fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
+        // Comprobar si la fecha de entrega es posterior a la fecha de preparación
+        if (fechaEntrega.isAfter(fechaPreparacion)) {
+            EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();
+            return new DtDistribucion(fechaPreparacion, fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
+        } else {
+            return null;
+        }
     }
 
     public void cargarFechasDistribucion(LocalDateTime fechaPreparacion, LocalDateTime fechaEntrega) {
@@ -154,5 +159,9 @@ public class ModificarDistribucionGUI extends JFrame {
         labelFechaPrepara.setFont(new Font("Roboto light", Font.PLAIN, 16));
         labelFechaPrepara.setForeground(ColorUtil.getColor("primaryColor"));
 
+    }
+
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
     }
 }

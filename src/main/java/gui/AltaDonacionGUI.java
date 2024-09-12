@@ -149,6 +149,10 @@ public class AltaDonacionGUI extends JFrame {
         });
     }
 
+    public void setPosicion(int x, int y){
+        this.setLocation(x, y);
+    }
+
     // Infla el panel principal.
     private void createUIComponents() {
         // TODO: place custom component creation code here

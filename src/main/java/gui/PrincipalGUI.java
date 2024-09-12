@@ -1,5 +1,6 @@
 package gui;
 
+import gui.componentes.ColorUtil;
 import interfaces.*;
 import persistencia.Conexion;
 
@@ -37,12 +38,17 @@ public class PrincipalGUI extends JFrame {
     public PrincipalGUI(IControladorUsuario altaUsuario, IControladorDonacion iControladorDonacion, IControladorDistribucion iControladorDistribucion) {
         this.iControladorUsuario = altaUsuario;
         this.iControladorDonacion = iControladorDonacion;
+        setLocationRelativeTo(null);
+
 
         altaUsuarioB.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         altaUsuarioB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AltaUsuarioUI altaUsuarioUI = new AltaUsuarioUI(iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                altaUsuarioUI.setPosicion(x, y);
                 altaUsuarioUI.setVisible(true);
             }
         });
@@ -52,6 +58,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ModificarUsuarioGUI modificarUsuarioGUI = new ModificarUsuarioGUI(iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                modificarUsuarioGUI.setPosicion(x, y);
                 modificarUsuarioGUI.setVisible(true);
             }
         });
@@ -61,6 +70,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ListarBeneficiariosGUI listarBeneficiariosGUI = new ListarBeneficiariosGUI(iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 147;
+                int y = titulo.getLocationOnScreen().y - 50;
+                listarBeneficiariosGUI.setPosicion(x, y);
                 listarBeneficiariosGUI.setVisible(true);
             }
         });
@@ -79,6 +91,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ListarBeneficiariosZonaGUI listarBeneficiariosZonaGUI = new ListarBeneficiariosZonaGUI(iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                listarBeneficiariosZonaGUI.setPosicion(x, y);
                 listarBeneficiariosZonaGUI.setVisible(true);
             }
         });
@@ -88,6 +103,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AltaDistribucionGUI altaDistribucionGUI = new AltaDistribucionGUI(iControladorUsuario, iControladorDonacion, iControladorDistribucion);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight() + 20;
+                altaDistribucionGUI.setPosicion(x, y);
                 altaDistribucionGUI.setVisible(true);
             }
         });
@@ -97,6 +115,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iControladorDistribucion, iControladorUsuario, iControladorDonacion);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                modificarDistribucionGUI.setPosicion(x, y);
                 modificarDistribucionGUI.setVisible(true);
             }
         });
@@ -113,7 +134,11 @@ public class PrincipalGUI extends JFrame {
         listarDistriXZona.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ListarPorZonaGUI listarPorZonaGUI = new ListarPorZonaGUI(iControladorDistribucion, iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y - 45;
+                listarPorZonaGUI.setPosicion(x, y);
+                listarPorZonaGUI.setVisible(true);
             }
         });
 
@@ -122,6 +147,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AltaDonacionGUI altaDonacionGUI = new AltaDonacionGUI(iControladorDonacion);
+                int x = titulo.getLocationOnScreen().x - 30;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight() + 60;
+                altaDonacionGUI.setPosicion(x, y);
                 altaDonacionGUI.setVisible(true);
             }
         });
@@ -131,6 +159,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ModificarDonacionGUI modificarDonacionGUI = new ModificarDonacionGUI(iControladorDonacion);
+                int x = titulo.getLocationOnScreen().x - 30;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight() + 50;
+                modificarDonacionGUI.setPosicion(x, y);
                 modificarDonacionGUI.setVisible(true);
             }
         });
@@ -140,6 +171,9 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ZonasMayorDistribucionGUI zonasMayorDistribucionGUI = new ZonasMayorDistribucionGUI(iControladorDistribucion);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y - 45;
+                zonasMayorDistribucionGUI.setPosicion(x, y);
                 zonasMayorDistribucionGUI.setVisible(true);
             }
         });
@@ -152,12 +186,13 @@ public class PrincipalGUI extends JFrame {
                 System.exit(0);  // Asegura la terminación del programa
             }
         });
-
+        principalPanel.setBackground(ColorUtil.getColor("backgroundPrincipal"));
     }
 
     private void createUIComponents() {
         this.principalPanel = new JPanel();
         setContentPane(principalPanel);
         setSize(1100, 700);
+
     }
 }
