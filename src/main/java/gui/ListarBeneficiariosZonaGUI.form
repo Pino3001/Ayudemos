@@ -29,7 +29,7 @@
             <properties>
               <font name="Roboto Light" size="28" style="1"/>
               <foreground color="-1537"/>
-              <text value="Listar Beneficiarios por zona"/>
+              <text value="Listar beneficiarios por zona"/>
             </properties>
           </component>
         </children>
