@@ -43,12 +43,7 @@ public interface IControladorUsuario {
 
     List<DtRepartidor> listarRepartidores();
 
-    /**
-     * Lista los beneficiarios que pertenecen a una zona específica.
-     *
-     * @param barrio La zona o barrio por el cual se filtrarán los beneficiarios.
-     * @return Una lista de `DtBeneficiario` que pertenecen al barrio especificado.
-     */
+    // Operación para listar todos los usuarios segun su zona: Barrio.
     List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio);
 
     // Retorna true si existe el usuario, false en caso contrario.

@@ -81,7 +81,11 @@ public class PrincipalGUI extends JFrame {
         listarBenefiEstado.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ListarBeneficiariosEstadoGUI listarBeneficiariosEstadoGUI = new ListarBeneficiariosEstadoGUI(iControladorUsuario);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                listarBeneficiariosEstadoGUI.setPosicion(x, y);
+                listarBeneficiariosEstadoGUI.setVisible(true);
             }
         });
 
