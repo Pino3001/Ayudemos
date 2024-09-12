@@ -2,15 +2,14 @@ package gui.componentes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class AlertaGUI extends JDialog {
     private JPanel contentPane;
     private JButton buttonOk;
     private JTextArea textoMensaje;
     private JLabel textoAlerta;
+    private Point initialClick;
 
     public AlertaGUI(boolean error, String alertaData) {
         setContentPane(contentPane);
@@ -36,6 +35,26 @@ public class AlertaGUI extends JDialog {
 
         // Acción al presionar el botón OK
         buttonOk.addActionListener(e -> onCancel());
+
+        // Hacer que el diálogo se pueda mover arrastrándolo
+        contentPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                initialClick = e.getPoint();
+            }
+        });
+
+        contentPane.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                // Obtener la nueva ubicación del diálogo
+                int x = e.getXOnScreen() - initialClick.x;
+                int y = e.getYOnScreen() - initialClick.y;
+
+                // Mover el diálogo a la nueva ubicación
+                setLocation(x, y);
+            }
+        });
     }
 
     private void onCancel() {

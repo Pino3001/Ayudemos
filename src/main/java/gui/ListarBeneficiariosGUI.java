@@ -79,6 +79,7 @@ public class ListarBeneficiariosGUI extends JFrame {
                 {"Fecha de Nacimiento", beneficiario.getFechaNacimiento()},
                 {"eMail", beneficiario.getMail()},
                 {"Direccion", beneficiario.getDireccion()},
+                {"Barrio", beneficiario.getBarrio()},
                 {"Estado", beneficiario.getEstado()}
         };
 

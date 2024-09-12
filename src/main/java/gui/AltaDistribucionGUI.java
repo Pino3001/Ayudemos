@@ -98,19 +98,24 @@ public class AltaDistribucionGUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (textFechaPrepara.getText().equals(predFecha) || textFechaPrepara.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
-                    } else if (textFechaEntrega.getText().equals(predFecha) || textFechaEntrega.getText().isEmpty()) {
-                        throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
+                        LocalDateTime fechaEntrega = null;
+                        LocalDateTime fechaHoraPrep = null;
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-                        // Parsear la cadena a un objeto LocalDateTime
-                        LocalDateTime fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
-                        LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
-                        if (fechaEntrega.isAfter(fechaHoraPrep)) {
-                            iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
-                            JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        if (textFechaEntrega.getText().equals(predFecha) || textFechaEntrega.getText().isEmpty()) {
+                            // Parsear la cadena a un objeto LocalDateTime
+                            fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
                         } else {
-                            throw new CamposIncompletosExeption("La fecha de entrega no puede ser anterior a la de preparacion!");
+                            // Parsear la cadena a un objeto LocalDateTime
+                            fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
+                            fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
+                            if (!fechaEntrega.isAfter(fechaHoraPrep)) {
+                                throw new CamposIncompletosExeption("La fecha de entrega no puede ser anterior a la de preparacion!");
+                            }
                         }
+                        iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
+                        JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos();
                     }
                 } catch (CamposIncompletosExeption | DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -163,7 +168,18 @@ public class AltaDistribucionGUI extends JFrame {
         });
     }
 
-    public void setPosicion(int x, int y){
+    private  void limpiarCampos(){
+        new ComponenteComboBox(comboDonacion);
+        new ComponenteComboBox(comboEstado);
+        new ComponenteComboBox(comboBeneficiario);
+        textFechaEntrega.setText(predFecha);
+        textFechaPrepara.setText(predFecha);
+        comboDonacion.setSelectedIndex(0);
+        comboEstado.setSelectedIndex(0);
+        comboBeneficiario.setSelectedIndex(0);
+    }
+
+    public void setPosicion(int x, int y) {
         this.setLocation(x, y);
     }
 

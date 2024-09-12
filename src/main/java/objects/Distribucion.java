@@ -16,6 +16,7 @@ public class Distribucion {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)  // Estrategia de generación de ID automático
     private Integer id;
 
+    @Column(nullable = false)
     private LocalDateTime fechaPreparacion;
 
     private LocalDateTime fechaEntrega;

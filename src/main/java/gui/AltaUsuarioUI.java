@@ -128,8 +128,10 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (controladorUsuario.existeUsuario(texteMailReparti.getText())) {
                         throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailReparti.getText() + " ya existe");
                     } else {
+                        controladorUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         controladorUsuario.agregarUsuario(dt);
+                        limpiarCampos();
                         JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption | IngresoIncorrectoExeption ex) {
@@ -163,6 +165,7 @@ public class AltaUsuarioUI extends JFrame {
                         controladorUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
                         controladorUsuario.agregarUsuario(dt);
+                        limpiarCampos();
                         JOptionPane.showMessageDialog(null, "Se ha creado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption |
@@ -177,6 +180,17 @@ public class AltaUsuarioUI extends JFrame {
                 setVisible(false);
             }
         });
+    }
+
+    private  void limpiarCampos(){
+        textNombreBenef.setText("Ingrese el Nombre...");
+        texteMailBenef.setText("Ingrese el eMail...");
+        textFechaNaci.setText("Ingrese la Fecha...");
+        textDireccion.setText("Ingrese la Direccion...");
+        textNombreReparti.setText("Ingrese el Nombre...");
+        texteMailReparti.setText("Ingrese el Email...");
+        textNumeroLicencia.setText("Ingrese la Licencia...");
+        cargarComboBarrio();
     }
 
     // Comportamiento de los botones del calendario

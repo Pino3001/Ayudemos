@@ -51,6 +51,7 @@ public class AltaDonacionGUI extends JFrame {
     private void aplicarEstilos() {
         // Crear un modelo de SpinnerNumberModel con valores flotantes -- Ver de mejorar -
         SpinnerNumberModel modelFloat = new SpinnerNumberModel(0.0f, 0.0f, 100.0f, 0.1f);
+        spinnerPeso.setModel(modelFloat);
         // Configurar el formato del JSpinner para mostrar valores flotantes
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinnerPeso, "0.00");
         spinnerPeso.setEditor(editor);
@@ -100,6 +101,7 @@ public class AltaDonacionGUI extends JFrame {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
                         if (controladorDonacion.crearDonacion(dtArticulo)) {
                             new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
+                            limpiarCampos();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
@@ -131,6 +133,7 @@ public class AltaDonacionGUI extends JFrame {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripcionAlimento.getText(), cantidad);
                         if (controladorDonacion.crearDonacion(dtAlimento)) {
                             new AlertaGUI(false, "Ingreso Realizado exitosamente!!!").mostrarAlerta();
+                            limpiarCampos();
                         } else {
                             throw new CamposIncompletosExeption("Ocurrio un problema!");
                         }
@@ -147,6 +150,14 @@ public class AltaDonacionGUI extends JFrame {
                 setVisible(false);
             }
         });
+    }
+
+    private void limpiarCampos(){
+        textDescripcionAlimento.setText(textoPorDefectoDescAlimento);
+        textDescripcionArticulo.setText(textoPorDefectoDescArticulo);
+        textDimensiones.setText(textoPorDefectoDimensiArticulos);
+        spinnerCantidad.setValue(0);
+        spinnerPeso.setValue(0.00);
     }
 
     public void setPosicion(int x, int y){
