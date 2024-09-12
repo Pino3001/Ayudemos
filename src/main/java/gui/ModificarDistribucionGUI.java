@@ -3,6 +3,7 @@ package gui;
 import com.toedter.calendar.JDateChooser;
 import datatypes.*;
 import gui.componentes.ColorUtil;
+import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
@@ -37,7 +38,7 @@ public class ModificarDistribucionGUI extends JFrame {
     private JLabel textSeleccionadoDistribucion;
 
     // Formato de fecha
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private DtDistribucion distribucionOriginal;  // Para guardar la distribución original
 
@@ -82,7 +83,7 @@ public class ModificarDistribucionGUI extends JFrame {
         // Acción del botón "Cancelar"
         buttonCancelarDistribucion.addActionListener(e -> dispose());
 
-        // Acción del botón para el calendario para seleccionar la fecha de entrega
+       /* // Acción del botón para el calendario para seleccionar la fecha de entrega
         buttonCalendarioEntrega.addActionListener(e -> {
             JDateChooser dateChooser = new JDateChooser();
             int result = JOptionPane.showConfirmDialog(null, dateChooser, "Seleccione la Fecha de Entrega", JOptionPane.OK_CANCEL_OPTION);
@@ -92,6 +93,22 @@ public class ModificarDistribucionGUI extends JFrame {
                     LocalDateTime ldt = LocalDateTime.ofInstant(selectedDate.toInstant(), ZoneId.systemDefault());
                     textFechaEntrega.setText(ldt.format(formatter));
                 }
+            }
+        });*/
+        buttonCalendarioEntrega.addActionListener(e -> {
+            // Crear una instancia del componente de calendario
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
+            // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
+            int x = textFechaEntrega.getLocationOnScreen().x - 130;
+            int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
+
+            // Mostrar el calendario y obtener la fecha seleccionada
+            String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
+
+            // Verificar si se seleccionó una fecha o si se canceló la selección
+            if (fechaSeleccionada != null) {
+                // Actualizar un campo de texto con la fecha seleccionada
+                textFechaEntrega.setText(fechaSeleccionada);
             }
         });
         aplicarEstilos();
