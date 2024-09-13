@@ -175,8 +175,8 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ZonasMayorDistribucionGUI zonasMayorDistribucionGUI = new ZonasMayorDistribucionGUI(iControladorDistribucion);
-                int x = titulo.getLocationOnScreen().x - 100;
-                int y = titulo.getLocationOnScreen().y - 45;
+                int x = titulo.getLocationOnScreen().x - 50;
+                int y = titulo.getLocationOnScreen().y ;
                 zonasMayorDistribucionGUI.setPosicion(x, y);
                 zonasMayorDistribucionGUI.setVisible(true);
             }

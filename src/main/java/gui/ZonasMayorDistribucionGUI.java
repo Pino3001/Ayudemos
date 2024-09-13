@@ -4,6 +4,7 @@ import com.toedter.calendar.JDateChooser;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import gui.componentes.ComponenteCalendario;
+import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
 
@@ -33,6 +34,8 @@ public class ZonasMayorDistribucionGUI extends JFrame {
 
     public ZonasMayorDistribucionGUI(IControladorDistribucion iControladorDistribucion) {
         this.iControladorDistribucion = iControladorDistribucion;
+        new ComponenteTextField(textCalendarioInicio,"");
+        new ComponenteTextField(textCalendarioFin,"");
         buttonGenerarReporte.addActionListener(e -> {
             // Parsear la cadena a un objeto LocalDateTime
             LocalDate fechaInicio = LocalDate.parse(textCalendarioInicio.getText(), formatter);
