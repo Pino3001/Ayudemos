@@ -76,8 +76,7 @@ public class ControladorDistribucion implements IControladorDistribucion {
     // Retorna una lista de DtDistribución filtrada por el estado pasado por parámetro.
     public List<DtDistribucion> listarDistribucionesPorEstado(EstadoDistribucion estado) {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        List<DtDistribucion> lista = md.buscarDistribucionesPorEstado(estado);
-        return lista;
+        return md.buscarDistribucionesPorEstado(estado);
     }
 
 

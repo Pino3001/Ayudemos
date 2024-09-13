@@ -25,9 +25,7 @@ public class Articulo extends Donacion {
         this.dimensiones = dimensiones;
     }
 
-    public Articulo() {
-
-    }
+    public Articulo() {}
 
     //Getters Y Setters
     public String getDescripcion() {

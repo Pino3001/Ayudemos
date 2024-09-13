@@ -39,10 +39,6 @@ public abstract class Usuario {
         return mail;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public Integer getId() {
         return id;
     }

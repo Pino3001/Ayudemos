@@ -22,8 +22,7 @@ public class Alimento extends Donacion {
         this.cantElementos = cantElementos;
     }
 
-    protected Alimento() {
-    }
+    protected Alimento() {}
 
     //Getters Y Setters
     public String getDescripcionProductos() {

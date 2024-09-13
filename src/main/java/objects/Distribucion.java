@@ -5,11 +5,13 @@ import datatypes.DtDistribucion;
 import jakarta.persistence.*;
 import objects.Beneficiario;
 import objects.Donacion;
+import persistencia.DistribucionID;
 import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
 
 @Entity
+@IdClass(DistribucionID.class)
 public class Distribucion {
 
     @Id
@@ -19,6 +21,7 @@ public class Distribucion {
     @Column(nullable = false)
     private LocalDateTime fechaPreparacion;
 
+    //Puede ser null
     private LocalDateTime fechaEntrega;
 
     @Enumerated(EnumType.STRING)

@@ -9,6 +9,7 @@ public class AlertaGUI extends JDialog {
     private JButton buttonOk;
     private JTextArea textoMensaje;
     private JLabel textoAlerta;
+    private JPanel panelTitulo;
     private Point initialClick;
 
     public AlertaGUI(boolean error, String alertaData) {
@@ -20,9 +21,12 @@ public class AlertaGUI extends JDialog {
         // Configurar la alerta según el tipo de mensaje (error o éxito)
         if (error) {
             textoAlerta.setText("¡ERROR!");
-            textoAlerta.setForeground(Color.RED);
+            textoAlerta.setForeground(Color.WHITE);
             textoMensaje.setText(alertaData);
-            textoMensaje.setForeground(Color.RED);
+            textoMensaje.setForeground(ColorUtil.getColor("errorColor"));
+            panelTitulo.setBackground(ColorUtil.getColor("errorColor"));
+            buttonOk.setBackground(ColorUtil.getColor("errorColor"));
+            buttonOk.setForeground(Color.WHITE);
         } else {
             textoAlerta.setText("¡LISTO!");
             textoMensaje.setText(alertaData);
