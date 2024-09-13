@@ -11,7 +11,6 @@ import types.EstadoDistribucion;
 import java.time.LocalDateTime;
 
 @Entity
-@IdClass(DistribucionID.class)
 public class Distribucion {
 
     @Id
