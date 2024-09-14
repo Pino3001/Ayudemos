@@ -254,7 +254,7 @@ public class ComponenteCalendario extends JDialog {
                         String dia = boton.getText();
                         String mes = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
                         String anio = String.valueOf(calendar.get(Calendar.YEAR));
-                        fechaSeleccionada = dia + "/" + mes + "/" + anio;
+                        fechaSeleccionada = String.format("%02d/%02d/%04d", Integer.parseInt(dia), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
                         dispose();  // Cerrar el diálogo cuando se selecciona una fecha
                     }
                 }
@@ -290,6 +290,7 @@ public class ComponenteCalendario extends JDialog {
             int month = calendar.get(Calendar.MONTH) + 1;  // Los meses en Calendar comienzan desde 0
             int year = calendar.get(Calendar.YEAR);
             fechaSeleccionada = String.format("%02d/%02d/%04d", day, month, year);
+
 
             // Cerrar el diálogo
             dispose();

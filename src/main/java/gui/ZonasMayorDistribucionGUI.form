@@ -94,8 +94,8 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="true"/>
-                      <enabled value="false"/>
+                      <editable value="false"/>
+                      <enabled value="true"/>
                     </properties>
                   </component>
                 </children>
@@ -141,8 +141,8 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="true"/>
-                      <enabled value="false"/>
+                      <editable value="false"/>
+                      <enabled value="true"/>
                     </properties>
                   </component>
                 </children>
