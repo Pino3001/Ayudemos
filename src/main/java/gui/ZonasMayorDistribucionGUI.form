@@ -94,8 +94,8 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="true"/>
-                      <enabled value="false"/>
+                      <editable value="false"/>
+                      <enabled value="true"/>
                     </properties>
                   </component>
                   <component id="d3a11" class="javax.swing.JButton" binding="buttonCalendarioInicio">
@@ -152,8 +152,8 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="true"/>
-                      <enabled value="false"/>
+                      <editable value="false"/>
+                      <enabled value="true"/>
                     </properties>
                   </component>
                   <component id="5f9c6" class="javax.swing.JButton" binding="buttonCalendarioFin">

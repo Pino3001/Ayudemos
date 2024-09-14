@@ -168,7 +168,7 @@ public class ComponenteCalendarioTupla extends JDialog {
                         String dia = boton.getText();
                         String mes = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
                         String anio = String.valueOf(calendar.get(Calendar.YEAR));
-                        String fechaSeleccionada = dia + "/" + mes + "/" + anio;
+                        String fechaSeleccionada = String.format("%02d/%02d/%04d", Integer.parseInt(dia), calendar.get(Calendar.MONTH) + 1, Integer.parseInt(anio));
 
                         Calendar fechaSeleccionadaCal = new GregorianCalendar(
                                 Integer.parseInt(anio),
