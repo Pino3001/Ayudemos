@@ -208,16 +208,16 @@ public class ManejadorDistribucion {
                 Long totalDistribuciones = (Long) result[1]; // The count of distribuciones
                 Long totalBeneficiarios = (Long) result[2]; // The count of distinct beneficiarios
 
-                // Create a new DtReporteZona and add it to the list
+                // Creamos un nuevo DtReporteZona y lo añadimos a la lista a retornar
                 DtReporteZona reporte = new DtReporteZona(barrio, totalDistribuciones.intValue(), totalBeneficiarios.intValue());
                 reporteZonas.add(reporte);
             }
 
-            // Return the list of reports
+            // Retornamos la lista.
             return reporteZonas;
 
         } finally {
-            em.close(); // Ensure the EntityManager is closed to avoid resource leaks
+            em.close();
         }
     }
 }
