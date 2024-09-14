@@ -1,7 +1,6 @@
 package gui;
 
 import datatypes.DtDistribucion;
-import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteCalendarioTupla;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
@@ -19,9 +18,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
     private JButton buttonCalendario;
     private JTextField textCalendarioFin;
     private JTextField textCalendarioInicio;
-
     private JList listaReporte;
-
     private JButton buttonGenerarReporte;
 
     // Formato de fecha
@@ -67,7 +64,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
             listaReporte.setListData(stringsZonas);
         });
 
-        // Acción del botón para los calendarios para seleccionar la fecha de entrega
+        // Acción del botón para el calendario, para seleccionar la fecha de entrega
         buttonCalendario.addActionListener(e -> {
             if (textCalendarioInicio == null) {
                 System.out.println("textCalendarioFin es null");
@@ -85,7 +82,8 @@ public class ZonasMayorDistribucionGUI extends JFrame {
             // Verificar si se seleccionó una fecha o si se canceló la selección
             if (fechasSeleccionadas != null && fechasSeleccionadas.length > 0) {
                 // Actualizar un campo de texto con la fecha seleccionada
-                textCalendarioInicio.setText(fechasSeleccionadas);
+                textCalendarioInicio.setText(fechasSeleccionadas[0]);
+                textCalendarioFin.setText(fechasSeleccionadas[1]);
             }
         });
 
