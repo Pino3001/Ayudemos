@@ -192,7 +192,7 @@ public class ComponenteCalendarioTupla extends JDialog {
                             );
 
                             if (fechaSeleccionadaCal.before(fechaInicioCal)) {
-                                new AlertaGUI(true,"La fecha seleccionada debe ser mayor\n o igual a la primera fecha.").mostrarAlerta();
+                                new AlertaGUI(true, "La fecha seleccionada debe ser mayor\n o igual a la primera fecha.").mostrarAlerta();
                             } else {
                                 fechaFin = fechaSeleccionada;
                                 fechasSeleccionadas.add(fechaSeleccionada);

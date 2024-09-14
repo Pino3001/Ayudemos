@@ -1,27 +1,22 @@
 package gui;
 
-import com.toedter.calendar.JDateChooser;
-import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import gui.componentes.ComponenteCalendario;
+import gui.componentes.ComponenteCalendarioTupla;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class ZonasMayorDistribucionGUI extends JFrame {
     private final IControladorDistribucion iControladorDistribucion;
     private JPanel background;
-    private JButton buttonCalendarioInicio;
-    private JButton buttonCalendarioFin;
+    private JButton buttonCalendario;
     private JTextField textCalendarioFin;
     private JTextField textCalendarioInicio;
 
@@ -30,16 +25,20 @@ public class ZonasMayorDistribucionGUI extends JFrame {
     private JButton buttonGenerarReporte;
 
     // Formato de fecha
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 
     public ZonasMayorDistribucionGUI(IControladorDistribucion iControladorDistribucion) {
         this.iControladorDistribucion = iControladorDistribucion;
-        new ComponenteTextField(textCalendarioInicio,"");
-        new ComponenteTextField(textCalendarioFin,"");
+
+        new ComponenteTextField(textCalendarioInicio, "");
+        new ComponenteTextField(textCalendarioFin, "");
+
         buttonGenerarReporte.addActionListener(e -> {
-            // Parsear la cadena a un objeto LocalDateTime
+            // Parsear la cadena a un objeto LocalDateTime.
             LocalDate fechaInicio = LocalDate.parse(textCalendarioInicio.getText(), formatter);
             LocalDate fechaFin = LocalDate.parse(textCalendarioFin.getText(), formatter);
+
+            // Generamos un mapa con los datos del reporte.
             Map<Barrio, List<DtDistribucion>> reporte = iControladorDistribucion.obtenerReporteZona(fechaInicio, fechaFin);
             int i = 0;
             // Convertir la lista de beneficiarios a un array de Strings para mostrar en el JList
@@ -69,47 +68,27 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         });
 
         // Acción del botón para los calendarios para seleccionar la fecha de entrega
-        buttonCalendarioInicio.addActionListener(e -> {
+        buttonCalendario.addActionListener(e -> {
             if (textCalendarioInicio == null) {
                 System.out.println("textCalendarioFin es null");
                 return;
             }
             // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario(textCalendarioInicio.getText());
+            ComponenteCalendarioTupla calendario = new ComponenteCalendarioTupla();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
             int x = textCalendarioInicio.getLocationOnScreen().x;
-            int y = textCalendarioInicio.getLocationOnScreen().y + buttonCalendarioInicio.getHeight();
+            int y = textCalendarioInicio.getLocationOnScreen().y + buttonCalendario.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
+            String[] fechasSeleccionadas = calendario.mostrarYObtenerFechasSeleccionadas(x, y);
 
             // Verificar si se seleccionó una fecha o si se canceló la selección
-            if (fechaSeleccionada != null) {
+            if (fechasSeleccionadas != null && fechasSeleccionadas.length > 0) {
                 // Actualizar un campo de texto con la fecha seleccionada
-                textCalendarioInicio.setText(fechaSeleccionada);
+                textCalendarioInicio.setText(fechasSeleccionadas);
             }
         });
 
-        buttonCalendarioFin.addActionListener(e -> {
-            if (textCalendarioFin == null) {
-                System.out.println("textCalendarioFin es null");
-                return;
-            }
-            // Crear una instancia del componente de calendario
-            ComponenteCalendario calendario = new ComponenteCalendario(textCalendarioFin.getText());
-            // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
-            int x = textCalendarioFin.getLocationOnScreen().x;
-            int y = textCalendarioFin.getLocationOnScreen().y + buttonCalendarioFin.getHeight();
-
-            // Mostrar el calendario y obtener la fecha seleccionada
-            String fechaSeleccionada = calendario.mostrarYObtenerFechaSeleccionada(x, y);
-
-            // Verificar si se seleccionó una fecha o si se canceló la selección
-            if (fechaSeleccionada != null) {
-                // Actualizar un campo de texto con la fecha seleccionada
-                textCalendarioFin.setText(fechaSeleccionada);
-            }
-        });
     }
 
     private void createUIComponents() {
@@ -119,7 +98,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         setContentPane(background);
     }
 
-    public void setPosicion(int x, int y){
+    public void setPosicion(int x, int y) {
         this.setLocation(x, y);
     }
 
