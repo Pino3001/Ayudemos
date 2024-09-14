@@ -57,10 +57,13 @@ public class ListarPorZonaGUI extends JFrame{
         if (distribucions.isEmpty()) {// Si no existe ninguna distribucion creo un mensaje
             agregarTablaConMensaje("No hay distribuciones en la zona");
         } else {
+            int cont = 0;
             for (DtDistribucion distri : distribucions) {// Recorre la lista de distribuciones y crea una tabla para cada distribucion
                 JTable jTable = crearTablaDistribucion(distri);
+                cont ++;
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
             }
+            System.out.println(" tengo un total de : ---- " + cont);
         }
     }
 
@@ -78,9 +81,7 @@ public class ListarPorZonaGUI extends JFrame{
 
         JTable jTable = new JTable(data, columnNames);
         jTable.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
-        jTable.setFont(new Font("Roboto light", Font.PLAIN, 14));//Fuente de la tabla
         jTable.setForeground(ColorUtil.getColor("primaryColor"));
-        jTable.setPreferredScrollableViewportSize(new Dimension(450, 80));
         jTable.setFillsViewportHeight(true);
         jTable.getColumnModel().getColumn(1).setCellRenderer(new EstadoCellRenderer());
         return jTable;
@@ -131,11 +132,9 @@ public class ListarPorZonaGUI extends JFrame{
             if (table.getColumnCount() > 1) {  // Asegura que la tabla tenga la columna "Estado"
                 table.getColumnModel().getColumn(1).setCellRenderer(new EstadoCellRenderer());
             }
-
             // Redibujar el componente
             revalidate();
             repaint();
-
             return this;
         }
     }

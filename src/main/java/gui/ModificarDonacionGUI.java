@@ -3,10 +3,7 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
-import gui.componentes.ColorUtil;
-import gui.componentes.ComponenteComboBox;
-import gui.componentes.ComponenteSpinner;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import interfaces.IControladorDonacion;
 
 import javax.swing.*;
@@ -209,11 +206,11 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripAlimento.getText(), cantidad);
                         altaDonacion.editarDonacion(dtAlimento, aEditarAlimento.getId());
-                        JOptionPane.showMessageDialog(null, "Modificacion Realizada exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!");
                         cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -238,11 +235,11 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
                         altaDonacion.editarDonacion(dtArticulo, aEditarArticulo.getId());
-                        JOptionPane.showMessageDialog(null, "Modificacion Realizada exitosamente!!!", "¡Listo!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!");
                         cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });

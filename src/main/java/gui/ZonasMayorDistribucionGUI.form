@@ -5,12 +5,18 @@
     <constraints>
       <xy x="20" y="20" width="500" height="624"/>
     </constraints>
-    <properties/>
+    <properties>
+      <minimumSize width="500" height="604"/>
+      <preferredSize width="500" height="604"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="448f0" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="500" height="-1"/>
+            <preferred-size width="500" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-330502"/>

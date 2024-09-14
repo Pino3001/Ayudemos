@@ -65,10 +65,13 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
         if (beneficiarios.isEmpty()) {
             agregarTablaConMensaje("No hay beneficiarios en este estado.");
         } else {
+            int cont = 0;
             for (DtBeneficiario beneficiario : beneficiarios) {
                 JTable jTable = crearTablaBeneficiario(beneficiario);
+                cont ++;
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
             }
+            System.out.println(" tengo un total de : ---- " + cont);
         }
     }
 

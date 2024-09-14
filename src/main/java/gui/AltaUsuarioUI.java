@@ -7,6 +7,7 @@ import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
+import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
@@ -132,10 +133,10 @@ public class AltaUsuarioUI extends JFrame {
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         controladorUsuario.agregarUsuario(dt);
                         limpiarCampos();
-                        JOptionPane.showMessageDialog(null, "Se ha creado el Repartidor Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha creado el Repartidor Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption | IngresoIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -166,11 +167,11 @@ public class AltaUsuarioUI extends JFrame {
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
                         controladorUsuario.agregarUsuario(dt);
                         limpiarCampos();
-                        JOptionPane.showMessageDialog(null, "Se ha creado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha creado el Beneficiario Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption |
                          IngresoIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });

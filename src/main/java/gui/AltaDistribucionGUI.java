@@ -4,6 +4,7 @@ import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import excepciones.CamposIncompletosExeption;
+import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
@@ -115,11 +116,11 @@ public class AltaDistribucionGUI extends JFrame {
                             }
                         }
                         iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
-                        JOptionPane.showMessageDialog(null, "Se ha creado La Distribucion Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha creado La Distribucion Exitosamente").mostrarAlerta();
                         limpiarCampos();
                     }
                 } catch (CamposIncompletosExeption | DateTimeParseException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });

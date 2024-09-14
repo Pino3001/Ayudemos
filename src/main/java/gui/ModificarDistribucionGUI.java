@@ -4,10 +4,7 @@ import datatypes.*;
 import excepciones.CamposIncompletosExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
-import gui.componentes.ColorUtil;
-import gui.componentes.ComponenteCalFechaHora;
-import gui.componentes.ComponenteComboBox;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import interfaces.IControladorDistribucion;
 import interfaces.IControladorDonacion;
 import interfaces.IControladorUsuario;
@@ -79,10 +76,10 @@ public class ModificarDistribucionGUI extends JFrame {
                     throw new CamposIncompletosExeption("No se ha seleccionado ningun estado para la Distribucion!");
                 } else {
                     controladorDistribucion.modificarDistribucion(nuevaDistribucion);
-                    JOptionPane.showMessageDialog(null, "Distribución modificada correctamente.");
+                    new AlertaGUI(false, "Distribución modificada correctamente!");
                 }
             } catch (CamposIncompletosExeption | IngresoIncorrectoExeption ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
             }
         });
 
@@ -125,7 +122,7 @@ public class ModificarDistribucionGUI extends JFrame {
             return new DtDistribucion(distribucionOriginal.getFechaPreparacion(), fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
 
         } catch (FormatoFechaIExeption ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+            new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
             return null;
         }
     }
