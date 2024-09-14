@@ -190,7 +190,8 @@ public class ManejadorDistribucion {
                     "FROM distribucion d " +
                     "JOIN beneficiario b ON d.beneficiario_id = b.id " +
                     "WHERE d.fechaentrega BETWEEN :fechaInicial AND :fechaFinal AND d.fechaentrega IS NOT NULL " +
-                    "GROUP BY b.barrio");
+                    "GROUP BY b.barrio " +
+                    "ORDER BY COUNT(d.id) DESC");
 
             // Seteamos los parámetros.
             query.setParameter("fechaInicial", fechaInicial);
