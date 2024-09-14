@@ -16,6 +16,7 @@ import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -73,4 +74,6 @@ public class Main {
         PrincipalGUI principalGUI = new PrincipalGUI(controladorUsuario, iControladorDonacion, iControladorDistribucion);
         principalGUI.setVisible(true);
     }
+
+
 }
