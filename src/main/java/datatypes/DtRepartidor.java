@@ -11,4 +11,10 @@ public class DtRepartidor extends DtUsuario{
     public String getNumeroLicencia() {
         return numeroLicencia;
     }
+
+    // Para poder mostrarlo en pantalla
+    @Override
+    public String toString() {
+        return getMail();
+    }
 }

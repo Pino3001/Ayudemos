@@ -183,7 +183,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     DtRepartidor seleccionado = (DtRepartidor) e.getItem();
                     aEditarRepartidor = seleccionado;
                     textNombreReparti.setText(seleccionado.getNombre());
-                    texteMailBenef.setText(seleccionado.getMail());
+                    texteMailReparti.setText(seleccionado.getMail());
                     textNumeroLicenciaRep.setText(seleccionado.getNumeroLicencia());
                 }
             }
