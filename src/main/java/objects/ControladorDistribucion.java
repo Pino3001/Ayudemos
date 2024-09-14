@@ -2,6 +2,7 @@ package objects;
 
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
+import datatypes.DtReporteZona;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
 import datatypes.DtBeneficiario;
@@ -81,7 +82,7 @@ public class ControladorDistribucion implements IControladorDistribucion {
 
 
     // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
-    public Map<Barrio, List<DtDistribucion>> obtenerReporteZona(LocalDate fechaInicial, LocalDate fechaFinal) {
+    public List<DtReporteZona> obtenerReporteZona(LocalDate fechaInicial, LocalDate fechaFinal) {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         return md.obtenerReporteZonas(fechaInicial, fechaFinal);
     }

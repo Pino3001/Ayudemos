@@ -1,7 +1,9 @@
 package objects;
 
 import datatypes.DtDistribucion;
+import datatypes.DtReporteZona;
 import jakarta.persistence.EntityManager;
+import org.hibernate.query.NativeQuery;
 import persistencia.Conexion;
 import types.Barrio;
 import types.EstadoDistribucion;
@@ -176,35 +178,47 @@ public class ManejadorDistribucion {
         }
     }
 
-    public Map<Barrio, List<DtDistribucion>> obtenerReporteZonas(LocalDate fechaInicial, LocalDate fechaFinal) {
-        // Filtramos las distribuciones por fecha.
-        List<Distribucion> distribuciones = obtenerListaDistribucionesClase();
-        List<Distribucion> distribucionesFiltradas = new ArrayList<Distribucion>();
-        for (Distribucion d : distribuciones) {
-            if (d.getFechaEntrega().isAfter(fechaInicial.atStartOfDay()) && d.getFechaEntrega().isBefore(fechaFinal.atStartOfDay())) {
-                distribucionesFiltradas.add(d);
+    public List<DtReporteZona> obtenerReporteZonas(LocalDate fechaInicial, LocalDate fechaFinal) {
+
+        // Conexion y Entity Manager
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            // Usamos createNativeQuery para poder ejecutar una consulta 'pelada'.
+            NativeQuery<Object[]> query = (NativeQuery<Object[]>) em.createNativeQuery("SELECT b.barrio, COUNT(d.id), COUNT(DISTINCT b.id) " +
+                    "FROM distribucion d " +
+                    "JOIN beneficiario b ON d.beneficiario_id = b.id " +
+                    "WHERE d.fechaentrega BETWEEN :fechaInicial AND :fechaFinal AND d.fechaentrega IS NOT NULL " +
+                    "GROUP BY b.barrio");
+
+            // Seteamos los parámetros.
+            query.setParameter("fechaInicial", fechaInicial);
+            query.setParameter("fechaFinal", fechaFinal);
+
+            // Ejecutamos la consulta.
+            List<Object[]> resultList = query.getResultList();
+
+            // Vamos a guardar los datos en una List<>.
+            List<DtReporteZona> reporteZonas = new ArrayList<>();
+
+            // Para cada item del resultado
+            for (Object[] result : resultList) {
+                String barrio = (String) result[0]; // Assuming the barrio is a String
+                Long totalDistribuciones = (Long) result[1]; // The count of distribuciones
+                Long totalBeneficiarios = (Long) result[2]; // The count of distinct beneficiarios
+
+                // Create a new DtReporteZona and add it to the list
+                DtReporteZona reporte = new DtReporteZona(barrio, totalDistribuciones.intValue(), totalBeneficiarios.intValue());
+                reporteZonas.add(reporte);
             }
+
+            // Return the list of reports
+            return reporteZonas;
+
+        } finally {
+            em.close(); // Ensure the EntityManager is closed to avoid resource leaks
         }
-
-        // Mapa para agrupar distribuciones por barrio (zona).
-        Map<Barrio, List<DtDistribucion>> distribucionesPorZona = new HashMap<>();
-
-        // Agrupamos  según el barrio las distribuciones que filtramos por fecha.
-        for (Distribucion d : distribucionesFiltradas) {
-            Barrio zona = d.getBeneficiario().getBarrio();
-            DtDistribucion dt = new DtDistribucion(d.getFechaPreparacion(), d.getFechaEntrega(), d.getEstado(), d.getDonacion().getId(), d.getBeneficiario().getId());
-
-            distribucionesPorZona.computeIfAbsent(zona, k -> new ArrayList<>()).add(dt);
-        }
-
-//        // Creamos la lista de DtReporteZona a partir del mapa agrupado.
-//        Map<Barrio, DtReporteZona> reporteZonas = new HashMap<>();
-//
-//        for (Map.Entry<Barrio, List<DtDistribucion>> entry : distribucionesPorZona.entrySet()) {
-//            DtReporteZona reporteZona = new DtReporteZona(entry.getValue(), entry.getKey());
-//            reporteZonas.compute(reporteZona.getZona(), reporteZona);
-//        }
-        return distribucionesPorZona;
     }
 }
 

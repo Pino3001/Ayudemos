@@ -1,6 +1,7 @@
 package gui;
 
 import datatypes.DtDistribucion;
+import datatypes.DtReporteZona;
 import gui.componentes.ComponenteCalendarioTupla;
 import gui.componentes.ComponenteTextField;
 import interfaces.IControladorDistribucion;
@@ -36,32 +37,14 @@ public class ZonasMayorDistribucionGUI extends JFrame {
             LocalDate fechaFin = LocalDate.parse(textCalendarioFin.getText(), formatter);
 
             // Generamos un mapa con los datos del reporte.
-            Map<Barrio, List<DtDistribucion>> reporte = iControladorDistribucion.obtenerReporteZona(fechaInicio, fechaFin);
-            int i = 0;
-            // Convertir la lista de beneficiarios a un array de Strings para mostrar en el JList
-            String[] stringsZonas = new String[reporte.size()];
-            for (Map.Entry<Barrio, List<DtDistribucion>> entry : reporte.entrySet()) {
-                Barrio barrio = entry.getKey();
-                List<DtDistribucion> distribuciones = entry.getValue();
-                int cantDistribuciones = distribuciones.size();
-                // "Escribimos" el nombre de la zona de la iteración en la posicion "i" del array.
-                // Luego le concatenaremos mas.
-                stringsZonas[i] = reporte.keySet().toArray()[i].toString();
-
-                int cantBeneficiarios = 0;
-                int lastIdUsuario = 0;
-
-                for (DtDistribucion distribucion : distribuciones) {
-                    if (distribucion.getIdUsuario() != lastIdUsuario) {
-                        cantBeneficiarios++;
-                    }
-                    lastIdUsuario = distribucion.getIdUsuario();
-                }
-                stringsZonas[i] = stringsZonas[i] + ", " + cantDistribuciones + " distribuciones, " + cantBeneficiarios + " beneficiarios";
-                i++;
-            }
-
-            listaReporte.setListData(stringsZonas);
+            List<DtReporteZona> reporte = iControladorDistribucion.obtenerReporteZona(fechaInicio, fechaFin);
+            // Convertimos cada DtReporteZona a su output de toString y lo guardamos en un array.
+            String[] stringsZona = reporte.stream()
+                    .map(DtReporteZona::toString)
+                    .toArray(String[]::new);
+            
+            // Rellenamos la lista con el resultado.
+            listaReporte.setListData(stringsZona);
         });
 
         // Acción del botón para el calendario, para seleccionar la fecha de entrega
