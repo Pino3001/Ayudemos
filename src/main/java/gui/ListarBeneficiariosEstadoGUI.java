@@ -1,6 +1,8 @@
 package gui;
 
 import datatypes.DtBeneficiario;
+import gui.componentes.ColorUtil;
+import gui.componentes.ComponenteComboBox;
 import interfaces.IControladorUsuario;
 import types.EstadoBeneficiario;
 
@@ -24,12 +26,16 @@ public class ListarBeneficiariosEstadoGUI extends JFrame {
         modeloLista = new DefaultListModel<>();
         listaBeneficiarios.setModel(modeloLista);
         listaBeneficiarios.setCellRenderer(new TableListCellRenderer());
+        listaBeneficiarios.setBackground(ColorUtil.getColor("backgroundColor"));
+        panelLista.setBackground(ColorUtil.getColor("backgroundColor"));
+        new ComponenteComboBox(estadoComboBox);
+
 
         // Configuración de la ventana usando el .form
         setContentPane(background);
         setTitle("Listar Beneficiarios por Estado");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(500, 500);
+        setSize(500, 700);
         setLocationRelativeTo(null);
 
         // Configurar el JScrollPane para que el scroll funcione cuando sea necesario
@@ -115,6 +121,8 @@ public class ListarBeneficiariosEstadoGUI extends JFrame {
             panel.setBackground(isSelected ? list.getSelectionBackground() : list.getBackground());
 
             table.setModel(value.getModel());
+            table.setShowGrid(false);
+            table.setBackground(ColorUtil.getColor("backgroundColor"));
             table.setShowGrid(false);
             table.setFont(new Font("Roboto light", Font.PLAIN, 14));
             table.setForeground(Color.BLACK);

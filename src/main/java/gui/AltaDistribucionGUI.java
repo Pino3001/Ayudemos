@@ -99,12 +99,13 @@ public class AltaDistribucionGUI extends JFrame {
                     } else if (textFechaPrepara.getText().equals(predFecha) || textFechaPrepara.getText().isEmpty()) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else {
-                        LocalDateTime fechaEntrega = null;
-                        LocalDateTime fechaHoraPrep = null;
+                        LocalDateTime fechaEntrega;
+                        LocalDateTime fechaHoraPrep;
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
                         if (textFechaEntrega.getText().equals(predFecha) || textFechaEntrega.getText().isEmpty()) {
                             // Parsear la cadena a un objeto LocalDateTime
                             fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
+                            fechaEntrega = null;
                         } else {
                             // Parsear la cadena a un objeto LocalDateTime
                             fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);

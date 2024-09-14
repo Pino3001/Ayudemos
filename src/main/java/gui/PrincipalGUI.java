@@ -82,7 +82,7 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ListarBeneficiariosEstadoGUI listarBeneficiariosEstadoGUI = new ListarBeneficiariosEstadoGUI(iControladorUsuario);
-                int x = titulo.getLocationOnScreen().x - 100;
+                int x = titulo.getLocationOnScreen().x;
                 int y = titulo.getLocationOnScreen().y + titulo.getHeight();
                 listarBeneficiariosEstadoGUI.setPosicion(x, y);
                 listarBeneficiariosEstadoGUI.setVisible(true);
@@ -95,7 +95,7 @@ public class PrincipalGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ListarBeneficiariosZonaGUI listarBeneficiariosZonaGUI = new ListarBeneficiariosZonaGUI(iControladorUsuario);
-                int x = titulo.getLocationOnScreen().x - 100;
+                int x = titulo.getLocationOnScreen().x;
                 int y = titulo.getLocationOnScreen().y + titulo.getHeight();
                 listarBeneficiariosZonaGUI.setPosicion(x, y);
                 listarBeneficiariosZonaGUI.setVisible(true);
@@ -130,7 +130,11 @@ public class PrincipalGUI extends JFrame {
         listarDistriXEstado.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ListarPorEstadoGUI listarPorEstadoGUI = new ListarPorEstadoGUI(iControladorDistribucion, iControladorUsuario, iControladorDonacion);
+                int x = titulo.getLocationOnScreen().x - 100;
+                int y = titulo.getLocationOnScreen().y - 45;
+                listarPorEstadoGUI.setPosicion(x, y);
+                listarPorEstadoGUI.setVisible(true);
             }
         });
 
@@ -176,7 +180,7 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ZonasMayorDistribucionGUI zonasMayorDistribucionGUI = new ZonasMayorDistribucionGUI(iControladorDistribucion);
                 int x = titulo.getLocationOnScreen().x - 50;
-                int y = titulo.getLocationOnScreen().y ;
+                int y = titulo.getLocationOnScreen().y + 20;
                 zonasMayorDistribucionGUI.setPosicion(x, y);
                 zonasMayorDistribucionGUI.setVisible(true);
             }

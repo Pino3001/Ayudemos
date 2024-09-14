@@ -1,9 +1,9 @@
 package gui;
 
-import com.toedter.calendar.JDateChooser;
 import datatypes.*;
 import excepciones.CamposIncompletosExeption;
 import excepciones.FormatoFechaIExeption;
+import excepciones.IngresoIncorrectoExeption;
 import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
@@ -16,15 +16,11 @@ import types.EstadoDistribucion;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class ModificarDistribucionGUI extends JFrame {
 
     private IControladorDistribucion controladorDistribucion;
-    private IControladorUsuario controladorUsuario;
-    private IControladorDonacion controladorDonacion;
 
     // Componentes generados desde el archivo .form
     private JPanel background;
@@ -46,15 +42,12 @@ public class ModificarDistribucionGUI extends JFrame {
 
     public ModificarDistribucionGUI(IControladorDistribucion controladorDistribucion, IControladorUsuario controladorUsuario, IControladorDonacion controladorDonacion) {
         this.controladorDistribucion = controladorDistribucion;
-        this.controladorUsuario = controladorUsuario;
-        this.controladorDonacion = controladorDonacion;
 
         // Vincula el formulario al contenido de la ventana
         setContentPane(background);
         setTitle("Modificar Distribución");
         setSize(450, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
 
 
         // Cargar los datos (incluyendo estado y fechas) cuando se seleccione una distribución del comboDistribuciones
@@ -67,8 +60,10 @@ public class ModificarDistribucionGUI extends JFrame {
                 DtUsuario dtUsuario = controladorUsuario.obtenerUsuarioPorId(distribucionSeleccionada.getIdUsuario());// Busco el usuario para mostrar su nombre
                 labelBeneficiario.setText(dtUsuario.getMail()); // Mostrar beneficiario
                 DTDonacion dtDonacion = controladorDonacion.buscarDonacionID(distribucionSeleccionada.getIdDonacion());
-                if (dtDonacion instanceof DTAlimento) labelDonacion.setText(((DTAlimento) dtDonacion).getCantElementos() + "  " + ((DTAlimento) dtDonacion).getDescripcionProductos());
-                else if (dtDonacion instanceof  DTArticulo) labelDonacion.setText(((DTArticulo) dtDonacion).getDescripcion());
+                if (dtDonacion instanceof DTAlimento)
+                    labelDonacion.setText(((DTAlimento) dtDonacion).getCantElementos() + "  " + ((DTAlimento) dtDonacion).getDescripcionProductos());
+                else if (dtDonacion instanceof DTArticulo)
+                    labelDonacion.setText(((DTArticulo) dtDonacion).getDescripcion());
             }
         });
 
@@ -77,7 +72,7 @@ public class ModificarDistribucionGUI extends JFrame {
             DtDistribucion nuevaDistribucion = getDistribucionFromFields();
             try {
                 if (nuevaDistribucion == null) {
-                    throw new FormatoFechaIExeption("La fecha de entrega no puede ser anterior a la de la preparacion!");
+                    throw new IngresoIncorrectoExeption("Ocurrio un problema al modificar!");
                 } else if (nuevaDistribucion.equals(distribucionOriginal)) {
                     throw new CamposIncompletosExeption("No se ha modificado ningun campo!");
                 } else if (comboEstado.getSelectedItem() == null) {
@@ -86,10 +81,9 @@ public class ModificarDistribucionGUI extends JFrame {
                     controladorDistribucion.modificarDistribucion(nuevaDistribucion);
                     JOptionPane.showMessageDialog(null, "Distribución modificada correctamente.");
                 }
-            } catch (FormatoFechaIExeption | CamposIncompletosExeption ex){
+            } catch (CamposIncompletosExeption | IngresoIncorrectoExeption ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
             }
-            dispose();  // Cerrar la ventana después de aceptar los cambios
         });
 
         // Acción del botón "Cancelar"
@@ -116,25 +110,38 @@ public class ModificarDistribucionGUI extends JFrame {
     }
 
     private DtDistribucion getDistribucionFromFields() {
-        // Convertir las fechas de los campos de texto
-        LocalDateTime fechaPreparacion = distribucionOriginal.getFechaPreparacion();  // Mantener la fecha de preparación original
-        LocalDateTime fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
-        // Comprobar si la fecha de entrega es posterior a la fecha de preparación
-        if (fechaEntrega.isAfter(fechaPreparacion)) {
+        try {
+            // Convertir las fechas de los campos de texto
+            LocalDateTime fechaEntrega;
+            if (textFechaEntrega.getText() == null || textFechaEntrega.getText().isEmpty()) {
+                fechaEntrega = null;
+            } else {
+                fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
+                if (!fechaEntrega.isAfter(distribucionOriginal.getFechaPreparacion())) {
+                    throw new FormatoFechaIExeption("La fecha de entrega no puede ser anterior a la de la preparacion!");
+                }
+            }
             EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();
-            return new DtDistribucion(fechaPreparacion, fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
-        } else {
+            return new DtDistribucion(distribucionOriginal.getFechaPreparacion(), fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
+
+        } catch (FormatoFechaIExeption ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
 
     public void cargarFechasDistribucion(LocalDateTime fechaPreparacion, LocalDateTime fechaEntrega) {
         // Método para cargar fechas existentes en los JTextFields
-        labelFechaPrepara.setText(fechaPreparacion.format(formatter));
-        textFechaEntrega.setText(fechaEntrega.format(formatter));
+        if (fechaEntrega == null) {
+            labelFechaPrepara.setText(fechaPreparacion.format(formatter));
+            textFechaEntrega.setText("");
+        } else {
+            labelFechaPrepara.setText(fechaPreparacion.format(formatter));
+            textFechaEntrega.setText(fechaEntrega.format(formatter));
+        }
     }
 
-    private void cargarComboBox(){
+    private void cargarComboBox() {
         comboDistribuciones.removeAllItems();
         comboDistribuciones.removeAllItems();
         // Población de combo boxes con datos
@@ -148,10 +155,10 @@ public class ModificarDistribucionGUI extends JFrame {
         }
     }
 
-    private void aplicarEstilos(){
+    private void aplicarEstilos() {
         new ComponenteComboBox(comboEstado);
         new ComponenteComboBox(comboDistribuciones);
-        new ComponenteTextField(textFechaEntrega,"");
+        new ComponenteTextField(textFechaEntrega, "");
         labelBeneficiario.setFont(new Font("Roboto light", Font.PLAIN, 16));
         labelBeneficiario.setForeground(ColorUtil.getColor("primaryColor"));
         labelDonacion.setFont(new Font("Roboto light", Font.PLAIN, 16));
@@ -161,7 +168,7 @@ public class ModificarDistribucionGUI extends JFrame {
 
     }
 
-    public void setPosicion(int x, int y){
+    public void setPosicion(int x, int y) {
         this.setLocation(x, y);
     }
 }
