@@ -1,6 +1,7 @@
 package gui;
 
 import datatypes.*;
+import gui.componentes.CellRendererFactory;
 import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteComboBox;
 import interfaces.Fabrica;
@@ -11,6 +12,7 @@ import types.EstadoDistribucion;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -36,7 +38,8 @@ public class ListarPorEstadoGUI extends JFrame {
         this.controladorDonacion = controladorDonacion;
         modeloLista = new DefaultListModel<>();
         JListaEstados.setModel(modeloLista);
-        JListaEstados.setCellRenderer(new ListarPorEstadoGUI.TableListCellRenderer());//Renderiza la lista con las tablas en su interior
+        TableCellRenderer factory = new CellRendererFactory().getEstadoDistribucionRenderer();
+        JListaEstados.setCellRenderer(new gui.componentes.TableListCellRenderer(factory));//Renderiza la lista con las tablas en su interior
         initComponents();
         comboBoxEstados.addItemListener(new ItemListener() {
             @Override
@@ -141,11 +144,6 @@ public class ListarPorEstadoGUI extends JFrame {
 
         JTable jTable = new JTable(data, columnNames);
         jTable.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
-        jTable.setFont(new Font("Roboto light", Font.PLAIN, 14));//Fuente de la tabla
-        jTable.setForeground(ColorUtil.getColor("primaryColor"));
-        jTable.setPreferredScrollableViewportSize(new Dimension(450, 80));
-        jTable.setFillsViewportHeight(true);
-        jTable.getColumnModel().getColumn(1).setCellRenderer(new ListarPorEstadoGUI.EstadoCellRenderer());
         return jTable;
     }
 
@@ -155,71 +153,6 @@ public class ListarPorEstadoGUI extends JFrame {
         Object[][] data = {{mensaje}};
         JTable jTable = new JTable(data, columnNames);
         modeloLista.addElement(jTable);
-    }
-
-    // Renderer personalizado para JTable dentro de JList
-    private static class TableListCellRenderer extends JPanel implements ListCellRenderer<JTable> {
-        private final JPanel panel;
-        private final JTable table;
-
-        public TableListCellRenderer() {
-            this.panel = new JPanel(new BorderLayout());
-            this.table = new JTable(); // Crear un JTable reutilizable
-
-            // Configuración inicial del panel
-            setLayout(new BorderLayout());
-            panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7)); // Margen entre tablas
-            add(panel, BorderLayout.CENTER);
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends JTable> list, JTable value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
-            // Configurar selección y fondo
-            setBackground(isSelected ? ColorUtil.getColor("backgroundColor") : list.getBackground()); // No se muestra ningun borde al seleccionar
-            panel.setBackground(isSelected ? list.getSelectionBackground() : list.getBackground());
-
-            // Actualizar contenido del JTable
-            table.setModel(value.getModel()); // Actualizar solo el modelo de datos
-            table.setShowGrid(false);
-            table.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
-            table.setFont(new Font("Roboto light", Font.PLAIN, 14));
-            table.setForeground(ColorUtil.getColor("primaryColor"));
-            table.setPreferredScrollableViewportSize(new Dimension(450, 90));
-            table.setFillsViewportHeight(true);
-
-            // Configurar el renderer de la columna "Estado"
-            if (table.getColumnCount() > 1) {  // Asegura que la tabla tenga la columna "Estado"
-                table.getColumnModel().getColumn(1).setCellRenderer(new ListarPorEstadoGUI.EstadoCellRenderer());
-            }
-            // Redibujar el componente
-            revalidate();
-            repaint();
-
-            return this;
-        }
-    }
-
-    // Renderer personalizado para la columna "Estado" --Pinta el fondo de la fila estado si esta existe en la tabla
-    private static class EstadoCellRenderer extends DefaultTableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                                                       boolean hasFocus, int row, int column) {
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            if (EstadoDistribucion.ENTREGADO.equals(value)) {
-                c.setBackground(new Color(0x62FF65));
-            } else if (EstadoDistribucion.PENDIENTE.equals(value)) {
-                c.setBackground(new Color(0xFFF65A5A, true));
-            } else if (EstadoDistribucion.EN_CAMINO.equals(value)) {
-                c.setBackground(new Color(0x6868EC));
-            } else {
-                c.setBackground(ColorUtil.getColor("backgroundColor"));
-            }
-
-            return c;
-        }
     }
 
     // Inicia estilos a los componentes

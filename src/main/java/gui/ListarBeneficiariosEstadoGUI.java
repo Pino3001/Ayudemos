@@ -1,12 +1,15 @@
 package gui;
 
 import datatypes.DtBeneficiario;
+import gui.componentes.CellRendererFactory;
 import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteComboBox;
+import gui.componentes.TableListCellRenderer;
 import interfaces.IControladorUsuario;
 import types.EstadoBeneficiario;
 
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.List;
 
@@ -25,7 +28,7 @@ public class ListarBeneficiariosEstadoGUI extends JFrame {
         this.controladorUsuario = controladorUsuarioService;
         modeloLista = new DefaultListModel<>();
         listaBeneficiarios.setModel(modeloLista);
-        listaBeneficiarios.setCellRenderer(new TableListCellRenderer());
+        listaBeneficiarios.setCellRenderer(new gui.componentes.TableListCellRenderer(null));//Renderiza la lista con las tablas en su interior
         listaBeneficiarios.setBackground(ColorUtil.getColor("backgroundColor"));
         panelLista.setBackground(ColorUtil.getColor("backgroundColor"));
         new ComponenteComboBox(estadoComboBox);
@@ -106,37 +109,4 @@ public class ListarBeneficiariosEstadoGUI extends JFrame {
     public void setPosicion(int x, int y) {
     }
 
-    private static class TableListCellRenderer extends JPanel implements ListCellRenderer<JTable> {
-        private final JPanel panel;
-        private final JTable table;
-
-        public TableListCellRenderer() {
-            this.panel = new JPanel(new BorderLayout());
-            this.table = new JTable(); // Crear un JTable reutilizable
-            setLayout(new BorderLayout());
-            panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(2, 7, 3, 7)); // Margen entre tablas
-            add(panel, BorderLayout.CENTER);
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends JTable> list, JTable value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
-            setBackground(isSelected ? Color.GRAY : list.getBackground());
-            panel.setBackground(isSelected ? list.getSelectionBackground() : list.getBackground());
-
-            table.setModel(value.getModel());
-            table.setShowGrid(false);
-            table.setBackground(ColorUtil.getColor("backgroundColor"));
-            table.setShowGrid(false);
-            table.setFont(new Font("Roboto light", Font.PLAIN, 14));
-            table.setForeground(Color.BLACK);
-            table.setPreferredScrollableViewportSize(new Dimension(450, 80));
-            table.setFillsViewportHeight(true);
-
-            revalidate();
-            repaint();
-            return this;
-        }
-    }
 }

@@ -4,14 +4,12 @@ import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
 import datatypes.DtUsuario;
 import excepciones.FormatoFechaIExeption;
-import gui.componentes.AlertaGUI;
-import gui.componentes.ColorUtil;
-import gui.componentes.ComponenteCalendarioTupla;
-import gui.componentes.ComponenteTextField;
+import gui.componentes.*;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
 
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -35,8 +33,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         this.iControladorDistribucion = iControladorDistribucion;
         modeloLista = new DefaultListModel<>();
         listaReporte.setModel(modeloLista);
-        listaReporte.setCellRenderer(new ZonasMayorDistribucionGUI.TableListCellRenderer());//Renderiza la lista con las tablas en su interior
-
+        listaReporte.setCellRenderer(new gui.componentes.TableListCellRenderer(null));//Renderiza la lista con las tablas en su interior
         new ComponenteTextField(textCalendarioInicio, "");
         new ComponenteTextField(textCalendarioFin, "");
         listaReporte.setBackground(ColorUtil.getColor("backgroundColor"));
@@ -124,47 +121,6 @@ public class ZonasMayorDistribucionGUI extends JFrame {
         Object[][] data = {{mensaje}};
         JTable jTable = new JTable(data, columnNames);
         modeloLista.addElement(jTable);
-    }
-
-
-    // Renderer personalizado para JTable dentro de JList
-    private static class TableListCellRenderer extends JPanel implements ListCellRenderer<JTable> {
-        private final JPanel panel;
-        private final JTable table;
-
-        public TableListCellRenderer() {
-            this.panel = new JPanel(new BorderLayout());
-            this.table = new JTable(); // Crear un JTable reutilizable
-
-            // Configuración inicial del panel
-            setLayout(new BorderLayout());
-            panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(5, 50, 7, 7)); // Margen entre tablas
-            add(panel, BorderLayout.CENTER);
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends JTable> list, JTable value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
-            // Configurar selección y fondo
-            setBackground(isSelected ? ColorUtil.getColor("backgroundColor") : list.getBackground()); // No se muestra ningun borde al seleccionar
-            panel.setBackground(isSelected ? list.getSelectionBackground() : list.getBackground());
-
-            // Actualizar contenido del JTable
-            table.setModel(value.getModel()); // Actualizar solo el modelo de datos
-            table.setRowHeight(20);
-            table.setShowGrid(false);
-            table.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
-            table.setFont(new Font("Roboto light", Font.PLAIN, 15));
-            table.setForeground(ColorUtil.getColor("primaryColor"));
-            table.setFillsViewportHeight(true);
-
-            // Redibujar el componente
-            revalidate();
-            repaint();
-
-            return this;
-        }
     }
 
     private void createUIComponents() {

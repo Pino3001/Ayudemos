@@ -1,12 +1,15 @@
 package gui;
 
 import datatypes.DtBeneficiario;
+import gui.componentes.CellRendererFactory;
 import gui.componentes.ColorUtil;
 import gui.componentes.ComponenteComboBox;
+import gui.componentes.TableListCellRenderer;
 import interfaces.IControladorUsuario;
 import types.Barrio;
 
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.List;
 
@@ -25,7 +28,8 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
         this.controladorUsuario = controladorUsuarioService;
         modeloLista = new DefaultListModel<>();
         listaBeneficiarios.setModel(modeloLista);
-        listaBeneficiarios.setCellRenderer(new TableListCellRenderer());
+        TableCellRenderer factory = new CellRendererFactory().getEstadoBeneficiarioRenderer();
+        listaBeneficiarios.setCellRenderer(new gui.componentes.TableListCellRenderer(factory));//Renderiza la lista con las tablas en su interior
         listaBeneficiarios.setBackground(ColorUtil.getColor("backgroundColor"));
         panelLista.setBackground(ColorUtil.getColor("backgroundColor"));
         new ComponenteComboBox(barrioComboBox);
