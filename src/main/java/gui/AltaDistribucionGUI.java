@@ -4,6 +4,7 @@ import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import excepciones.CamposIncompletosExeption;
+import excepciones.IngresoIncorrectoExeption;
 import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteCalFechaHora;
 import gui.componentes.ComponenteComboBox;
@@ -111,15 +112,15 @@ public class AltaDistribucionGUI extends JFrame {
                             // Parsear la cadena a un objeto LocalDateTime
                             fechaHoraPrep = LocalDateTime.parse(textFechaPrepara.getText(), formatter);
                             fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
-                            if (!fechaEntrega.isAfter(fechaHoraPrep)) {
-                                throw new CamposIncompletosExeption("La fecha de entrega no puede ser anterior a la de preparacion!");
+                            if (!fechaEntrega.isAfter(fechaHoraPrep) && !fechaEntrega.equals(fechaHoraPrep)) {
+                                throw new CamposIncompletosExeption("La fecha de entrega no puede\n ser anterior a la de preparacion!");
                             }
                         }
                         iControladorDistribucion.crearDistribucion((DtBeneficiario) comboBeneficiario.getSelectedItem(), (DTDonacion) comboDonacion.getSelectedItem(), fechaHoraPrep, fechaEntrega, (EstadoDistribucion) comboEstado.getSelectedItem());
                         new AlertaGUI(false, "Se ha creado La Distribucion Exitosamente").mostrarAlerta();
                         limpiarCampos();
                     }
-                } catch (CamposIncompletosExeption | DateTimeParseException ex) {
+                } catch (CamposIncompletosExeption | IngresoIncorrectoExeption | DateTimeParseException ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
@@ -139,7 +140,7 @@ public class AltaDistribucionGUI extends JFrame {
             // Crear una instancia del componente de calendario
             ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textField
-            int x = textFechaPrepara.getLocationOnScreen().x - 130;
+            int x = textFechaPrepara.getLocationOnScreen().x - 50;
             int y = textFechaPrepara.getLocationOnScreen().y + buttonCalendarioPrepara.getHeight();
 
             // Mostrar el calendario y obtener la fecha seleccionada
@@ -156,8 +157,8 @@ public class AltaDistribucionGUI extends JFrame {
             // Crear una instancia del componente de calendario
             ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
-            int x = textFechaEntrega.getLocationOnScreen().x - 130;
-            int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
+            int x = textFechaEntrega.getLocationOnScreen().x - 50;
+            int y = textFechaEntrega.getLocationOnScreen().y;
 
             // Mostrar el calendario y obtener la fecha seleccionada
             String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);

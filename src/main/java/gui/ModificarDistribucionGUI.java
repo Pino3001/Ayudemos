@@ -73,10 +73,10 @@ public class ModificarDistribucionGUI extends JFrame {
                 } else if (nuevaDistribucion.equals(distribucionOriginal)) {
                     throw new CamposIncompletosExeption("No se ha modificado ningun campo!");
                 } else if (comboEstado.getSelectedItem() == null) {
-                    throw new CamposIncompletosExeption("No se ha seleccionado ningun estado para la Distribucion!");
+                    throw new CamposIncompletosExeption("No se ha seleccionado ningun estado\n para la Distribucion!");
                 } else {
                     controladorDistribucion.modificarDistribucion(nuevaDistribucion);
-                    new AlertaGUI(false, "Distribución modificada correctamente!");
+                    new AlertaGUI(false, "Distribución modificada correctamente!").mostrarAlerta();
                 }
             } catch (CamposIncompletosExeption | IngresoIncorrectoExeption ex) {
                 new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
@@ -88,10 +88,10 @@ public class ModificarDistribucionGUI extends JFrame {
 
         buttonCalendarioEntrega.addActionListener(e -> {
             // Crear una instancia del componente de calendario
-            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora();
+            ComponenteCalFechaHora calendario = new ComponenteCalFechaHora(textFechaEntrega.getText());
             // Calcular la posición del calendario para que aparezca justo debajo del botón y el textfield
-            int x = textFechaEntrega.getLocationOnScreen().x - 130;
-            int y = textFechaEntrega.getLocationOnScreen().y + buttonCalendarioEntrega.getHeight();
+            int x = textFechaEntrega.getLocationOnScreen().x - 50;
+            int y = textFechaEntrega.getLocationOnScreen().y;
 
             // Mostrar el calendario y obtener la fecha seleccionada
             String fechaSeleccionada = calendario.mostrarYObtenerFechaHora(x, y);
@@ -115,7 +115,7 @@ public class ModificarDistribucionGUI extends JFrame {
             } else {
                 fechaEntrega = LocalDateTime.parse(textFechaEntrega.getText(), formatter);
                 if (!fechaEntrega.isAfter(distribucionOriginal.getFechaPreparacion())) {
-                    throw new FormatoFechaIExeption("La fecha de entrega no puede ser anterior a la de la preparacion!");
+                    throw new FormatoFechaIExeption("La fecha de entrega no puede ser anterior\n a la de la preparacion!");
                 }
             }
             EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();

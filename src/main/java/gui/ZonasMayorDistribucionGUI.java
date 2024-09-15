@@ -94,6 +94,10 @@ public class ZonasMayorDistribucionGUI extends JFrame {
             for (DtReporteZona reporteZona: reporte) {// Recorre la lista de distribuciones y crea una tabla para cada distribucion
                 JTable jTable = crearTablaDistribucion(reporteZona);
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-------------------" +
+                        "--------------------------------" +
+                        "--------------------------------" +
+                        "--"}}, new Object[]{"--"}));
             }
         }
     }
@@ -135,7 +139,7 @@ public class ZonasMayorDistribucionGUI extends JFrame {
             // Configuración inicial del panel
             setLayout(new BorderLayout());
             panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(10, 60, 7, 7)); // Margen entre tablas
+            setBorder(BorderFactory.createEmptyBorder(5, 50, 7, 7)); // Margen entre tablas
             add(panel, BorderLayout.CENTER);
         }
 

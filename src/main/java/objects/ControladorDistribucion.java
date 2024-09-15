@@ -1,17 +1,17 @@
 package objects;
 
 import datatypes.DTDonacion;
+import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import excepciones.IngresoIncorrectoExeption;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
-import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 // Controlador Alta Distribución.
 public class ControladorDistribucion implements IControladorDistribucion {
@@ -25,19 +25,31 @@ public class ControladorDistribucion implements IControladorDistribucion {
                                   DTDonacion donacion,
                                   LocalDateTime fechaPreparacion,
                                   LocalDateTime fechaEntrega,
-                                  EstadoDistribucion estado) {
+                                  EstadoDistribucion estado) throws IngresoIncorrectoExeption {
         // Manejadores.
+        System.out.println("Viene como fecha de entrega: "+ fechaEntrega +"y el estado es" + estado);
         ManejadorUsuario manejadorUsuario = ManejadorUsuario.getInstance();
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         ManejadorDistribucion manejadorDistribucion = ManejadorDistribucion.getInstance();
-        // Buscamos las instanacias de clase la donacion y beneficiario para mandarlas por parámetro al manejador de distribuciones.
-        Beneficiario beneficarioEncontrado = (Beneficiario) manejadorUsuario.buscarUsuario(beneficiario.getId());
-        Donacion donacionEncontrada = manejadorDonacion.buscarDonacion(donacion.getId());
-
-        // Creamos la instancia de la nueva distribución.
-        Distribucion nuevaDistribucion = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacionEncontrada, beneficarioEncontrado);
-        // Llamamos al manejador de distribuciones para agregar la distribución con los datos recibidos.
-        manejadorDistribucion.agregarDistribucion(nuevaDistribucion);
+        if (estado.equals(EstadoDistribucion.PENDIENTE) && fechaEntrega != null) {
+            throw new IngresoIncorrectoExeption("Estado de distribucion y fecha\n de entrega no compatibles");
+        } else if (!estado.equals(EstadoDistribucion.PENDIENTE) && fechaEntrega == null) {
+            throw new IngresoIncorrectoExeption("Estado de distribucion y fecha\n de entrega no compatibles");
+        }else {
+            // Buscamos las instanacias de clase la donacion y beneficiario para mandarlas por parámetro al manejador de distribuciones.
+            Beneficiario beneficarioEncontrado = (Beneficiario) manejadorUsuario.buscarUsuario(beneficiario.getId());
+            Donacion donacionEncontrada = manejadorDonacion.buscarDonacion(donacion.getId());
+            if (beneficarioEncontrado == null) {
+                throw new IngresoIncorrectoExeption("No existe el Beneficiario!");
+            }else if (donacionEncontrada == null) {
+                throw new IngresoIncorrectoExeption("No existe la Donacion!");
+            }else {
+                // Creamos la instancia de la nueva distribución.
+                Distribucion nuevaDistribucion = new Distribucion(fechaPreparacion, fechaEntrega, estado, donacionEncontrada, beneficarioEncontrado);
+                // Llamamos al manejador de distribuciones para agregar la distribución con los datos recibidos.
+                manejadorDistribucion.agregarDistribucion(nuevaDistribucion);
+            }
+        }
     }
 
     // Retornar lista de todos los beneficiarios del sistema para cargar el combobox.
@@ -95,16 +107,15 @@ public class ControladorDistribucion implements IControladorDistribucion {
     }
 
     @Override
-    public void modificarDistribucion(DtDistribucion dtDistribucion) {
+    public void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         DtDistribucion distribucionExistente = md.buscarDistribucion(
                 dtDistribucion.getIdUsuario(), dtDistribucion.getIdDonacion()
         );
-
         if (distribucionExistente != null) {
             md.modificarDistribucion(dtDistribucion);
         } else {
-            throw new IllegalArgumentException("La distribución no existe en el sistema");
+            throw new IngresoIncorrectoExeption("La distribución no existe en el sistema");
         }
     }
 

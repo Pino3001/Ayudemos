@@ -3,6 +3,7 @@ package interfaces;
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import excepciones.IngresoIncorrectoExeption;
 import types.Barrio;
 import datatypes.DtBeneficiario;
 import types.EstadoDistribucion;
@@ -18,7 +19,7 @@ public interface IControladorDistribucion {
                            DTDonacion donacion,
                            LocalDateTime fechaPreparacion,
                            LocalDateTime fechaEntrega,
-                           EstadoDistribucion estado);
+                           EstadoDistribucion estado) throws IngresoIncorrectoExeption;
 
     // Retornar lista de beneficiarios para cargar el combobox.
     public List<DtBeneficiario> obtenerListaDtBeneficiarios();
@@ -39,7 +40,7 @@ public interface IControladorDistribucion {
 
     DtDistribucion buscarDistribucion(int idUsuario, int idDonacion);
 
-    void modificarDistribucion(DtDistribucion dtDistribucion);
+    void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption;
 
     DtBeneficiario[] obtenerBeneficiarios();
 

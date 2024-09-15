@@ -80,6 +80,7 @@ public class ModificarDonacionGUI extends JFrame {
         // Crear un modelo de SpinnerNumberModel con valores flotantes-- Ver de mejorar --
         SpinnerNumberModel modelFloat = new SpinnerNumberModel(0.0f, 0.0f, 100.0f, 0.1f);
         // Configurar el formato del JSpinner para mostrar valores flotantes
+        spinnerPeso.setModel(modelFloat);
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinnerPeso, "0.00");
         spinnerPeso.setEditor(editor);
 

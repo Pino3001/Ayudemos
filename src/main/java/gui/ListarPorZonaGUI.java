@@ -57,13 +57,14 @@ public class ListarPorZonaGUI extends JFrame{
         if (distribucions.isEmpty()) {// Si no existe ninguna distribucion creo un mensaje
             agregarTablaConMensaje("No hay distribuciones en la zona");
         } else {
-            int cont = 0;
             for (DtDistribucion distri : distribucions) {// Recorre la lista de distribuciones y crea una tabla para cada distribucion
                 JTable jTable = crearTablaDistribucion(distri);
-                cont ++;
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-----------------------" +
+                        "------------------------------------" +
+                        "------------------------------------" +
+                        "--------------"}}, new Object[]{"--"}));
             }
-            System.out.println(" tengo un total de : ---- " + cont);
         }
     }
 
@@ -75,7 +76,7 @@ public class ListarPorZonaGUI extends JFrame{
                 {"Nombre", dtUsu.getNombre()},
                 {"eMail", dtUsu.getMail()},
                 {"Fecha de Preparacion", distribucion.getFechaPreparacion()},
-                {"Fecha de Entraga", distribucion.getFechaEntrega()},
+                {"Fecha de Entraga", (distribucion.getFechaEntrega() == null) ? "No ha sido entregado" : distribucion.getFechaEntrega()},
                 {"Estado", distribucion.getEstado()},
         };
 
@@ -108,7 +109,7 @@ public class ListarPorZonaGUI extends JFrame{
             // Configuración inicial del panel
             setLayout(new BorderLayout());
             panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7)); // Margen entre tablas
+            setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7)); // Margen entre tablas
             add(panel, BorderLayout.CENTER);
         }
 

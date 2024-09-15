@@ -120,7 +120,7 @@ public class PrincipalGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ModificarDistribucionGUI modificarDistribucionGUI = new ModificarDistribucionGUI(iControladorDistribucion, iControladorUsuario, iControladorDonacion);
                 int x = titulo.getLocationOnScreen().x - 100;
-                int y = titulo.getLocationOnScreen().y + titulo.getHeight();
+                int y = titulo.getLocationOnScreen().y ;
                 modificarDistribucionGUI.setPosicion(x, y);
                 modificarDistribucionGUI.setVisible(true);
             }

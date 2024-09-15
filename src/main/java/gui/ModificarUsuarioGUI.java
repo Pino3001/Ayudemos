@@ -4,6 +4,7 @@ import datatypes.*;
 import excepciones.CamposIncompletosExeption;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
+import gui.componentes.AlertaGUI;
 import gui.componentes.ComponenteCalendario;
 import gui.componentes.ComponenteComboBox;
 import gui.componentes.ComponenteTextField;
@@ -172,6 +173,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     texteMailBenef.setText(seleccionado.getMail());
                     textdireccionBenef.setText(seleccionado.getDireccion());
                     textFechaNaciBenef.setText(seleccionado.getFechaNacimiento().getDayOfMonth() + "/" + seleccionado.getFechaNacimiento().getMonth().getValue() + "/" + seleccionado.getFechaNacimiento().getYear());
+                    textSeleccionadoBenefi.setText(seleccionado.getNombre());
                 }
             }
         });
@@ -185,6 +187,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     textNombreReparti.setText(seleccionado.getNombre());
                     texteMailReparti.setText(seleccionado.getMail());
                     textNumeroLicenciaRep.setText(seleccionado.getNumeroLicencia());
+                    textSeleccionadoReparti.setText(seleccionado.getNombre());
                 }
             }
         });
@@ -251,10 +254,10 @@ public class ModificarUsuarioGUI extends JFrame {
                         iAltaUsuario.validarEmail(texteMailReparti.getText());
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), null, textNumeroLicenciaRep.getText());
                         iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getId());
-                        JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha modificado el Repartidor\n Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
@@ -284,10 +287,10 @@ public class ModificarUsuarioGUI extends JFrame {
                         iAltaUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), null, textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
                         iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getId());
-                        JOptionPane.showMessageDialog(null, "Se ha modificado el Beneficiario Exitosamente", "LISTO!", JOptionPane.INFORMATION_MESSAGE);
+                        new AlertaGUI(false, "Se ha modificado el Beneficiario\n Exitosamente").mostrarAlerta();
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });

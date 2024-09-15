@@ -6,6 +6,7 @@ import interfaces.IControladorUsuario;
 import types.EstadoBeneficiario;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.util.List;
@@ -34,6 +35,7 @@ public class ListarBeneficiariosGUI extends JFrame {
         panelLista.setBackground(ColorUtil.getColor("backgroundColor"));
         paneltitulo.setBackground(ColorUtil.getColor("primaryColor"));
         scroll.setBackground(ColorUtil.getColor("backgroundColor"));
+
         listBeneficiarios.setBackground(ColorUtil.getColor("backgroundColor"));
     }
 
@@ -53,6 +55,10 @@ public class ListarBeneficiariosGUI extends JFrame {
             for (DtBeneficiario beneficiario : beneficiarios) {
                 JTable jTable = crearTablaParaBeneficiario(beneficiario);
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-----------------------" +
+                        "------------------------------------" +
+                        "------------------------------------" +
+                        "--------------"}}, new Object[]{"--"}));
             }
         }
     }
@@ -84,7 +90,6 @@ public class ListarBeneficiariosGUI extends JFrame {
         };
 
         JTable jTable = new JTable(data, columnNames);
-        jTable.setShowGrid(false);
         jTable.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
         jTable.setFont(new Font("Roboto light", Font.PLAIN, 14));
         jTable.setForeground(ColorUtil.getColor("primaryColor"));
@@ -107,7 +112,7 @@ public class ListarBeneficiariosGUI extends JFrame {
             // Configuración inicial del panel
             setLayout(new BorderLayout());
             panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margen entre tablas
+            setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 10)); // Margen entre tablas
             add(panel, BorderLayout.CENTER);
         }
 
@@ -121,6 +126,7 @@ public class ListarBeneficiariosGUI extends JFrame {
             // Actualizar contenido del JTable
             table.setModel(value.getModel()); // Actualizar solo el modelo de datos
             table.setShowGrid(false);
+            table.setRowHeight(18);
             table.setBackground(ColorUtil.getColor("backgroundColor")); // Color de fondo de toda la tabla
             table.setFont(new Font("Roboto light", Font.PLAIN, 14));
             table.setForeground(ColorUtil.getColor("primaryColor"));
@@ -148,9 +154,9 @@ public class ListarBeneficiariosGUI extends JFrame {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             if (EstadoBeneficiario.ACTIVO.equals(value)) {
-                c.setBackground(Color.GREEN);
+                c.setBackground(new Color(0x62FF65));
             } else if (EstadoBeneficiario.SUSPENDIDO.equals(value)) {
-                c.setBackground(Color.RED);
+                c.setBackground(new Color(0xFFF65A5A, true));
             } else {
                 c.setBackground(ColorUtil.getColor("backgroundColor"));
             }

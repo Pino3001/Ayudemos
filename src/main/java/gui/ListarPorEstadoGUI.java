@@ -69,6 +69,10 @@ public class ListarPorEstadoGUI extends JFrame {
             for (DtDistribucion distri : distribucions) {// Recorre la lista de distribuciones y crea una tabla para cada distribucion
                 JTable jTable = crearTablaTodasDistribuciones(distri);
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-----------------------" +
+                        "------------------------------------" +
+                        "------------------------------------" +
+                        "--------------"}}, new Object[]{"--"}));
             }
         }
     }
@@ -83,6 +87,10 @@ public class ListarPorEstadoGUI extends JFrame {
             for (DtDistribucion distri : distribucions) {// Recorre la lista de distribuciones y crea una tabla para cada distribucion
                 JTable jTable = crearTablaDistribucion(distri);
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-----------------------" +
+                        "------------------------------------" +
+                        "------------------------------------" +
+                        "--------------"}}, new Object[]{"--"}));
             }
         }
     }
@@ -98,7 +106,7 @@ public class ListarPorEstadoGUI extends JFrame {
                 {"Nombre", dtBeneficiario.getNombre()},
                 {"eMail", dtBeneficiario.getMail()},
                 {"Fecha de Preparacion", distribucion.getFechaPreparacion()},
-                {"Fecha de Entraga", distribucion.getFechaEntrega()},
+                {"Fecha de Entraga", (distribucion.getFechaEntrega() == null) ? "No ha sido entregado" : distribucion.getFechaEntrega()},
                 {"Zona", dtBeneficiario.getBarrio()},
         };
 
@@ -126,7 +134,7 @@ public class ListarPorEstadoGUI extends JFrame {
                         ? ((DTArticulo) donacion).getDescripcion()  // Llamar a getDescripcion() si es DTArticulo
                         : ((DTAlimento) donacion).getDescripcionProductos()},// llamar a getgetDescripcionProductos si es DTALimento
                 {"Fecha de Preparacion", distribucion.getFechaPreparacion()},
-                {"Fecha de Entraga", distribucion.getFechaEntrega()},
+                {"Fecha de Entraga", (distribucion.getFechaEntrega() == null) ? "No ha sido entregado" : distribucion.getFechaEntrega()},
                 {"Zona", dtBeneficiario.getBarrio()},
                 {"Estado", distribucion.getEstado()},
         };
@@ -161,7 +169,7 @@ public class ListarPorEstadoGUI extends JFrame {
             // Configuración inicial del panel
             setLayout(new BorderLayout());
             panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7)); // Margen entre tablas
+            setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7)); // Margen entre tablas
             add(panel, BorderLayout.CENTER);
         }
 

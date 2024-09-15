@@ -34,7 +34,7 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
         setContentPane(background);
         setTitle("Listar Beneficiarios por Estado");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(500, 700);
+        setSize(550, 700);
         setLocationRelativeTo(null);
 
         // Configurar el JScrollPane para que el scroll funcione cuando sea necesario
@@ -65,13 +65,14 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
         if (beneficiarios.isEmpty()) {
             agregarTablaConMensaje("No hay beneficiarios en este estado.");
         } else {
-            int cont = 0;
             for (DtBeneficiario beneficiario : beneficiarios) {
                 JTable jTable = crearTablaBeneficiario(beneficiario);
-                cont ++;
                 modeloLista.addElement(jTable); // Agregar la tabla al modelo de lista
+                modeloLista.addElement(new JTable(new Object[][] {{"-------------------" +
+                        "--------------------------------" +
+                        "--------------------------------" +
+                        "----------------"}}, new Object[]{"--"}));
             }
-            System.out.println(" tengo un total de : ---- " + cont);
         }
     }
 
@@ -80,6 +81,7 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
         String[] columnNames = {"Campo", "Valor"};
         Object[][] data = {
                 {"Nombre", beneficiario.getNombre()},
+                {"Email", beneficiario.getMail()},
                 {"Dirección", beneficiario.getDireccion()},
                 {"Estado", beneficiario.getEstado()}
         };
@@ -112,7 +114,7 @@ public class ListarBeneficiariosZonaGUI extends JFrame {
             this.table = new JTable(); // Crear un JTable reutilizable
             setLayout(new BorderLayout());
             panel.add(table, BorderLayout.CENTER); // Añadir JTable al panel
-            setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7)); // Margen entre tablas
+            setBorder(BorderFactory.createEmptyBorder(2, 7, 3, 7)); // Margen entre tablas
             add(panel, BorderLayout.CENTER);
         }
 

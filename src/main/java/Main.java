@@ -27,7 +27,7 @@ public class Main {
         IControladorDonacion iControladorDonacion = fabrica.getAltaDonacion();
         IControladorDistribucion iControladorDistribucion = fabrica.getIControladorDistribucion();
 
-        // Cargar beneficiarios de prueba
+/*        // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 
         // Crear donaciones de prueba
@@ -69,7 +69,7 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
         // GUI
         PrincipalGUI principalGUI = new PrincipalGUI(controladorUsuario, iControladorDonacion, iControladorDistribucion);
         principalGUI.setVisible(true);

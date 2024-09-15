@@ -2,6 +2,7 @@ package objects;
 
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import excepciones.IngresoIncorrectoExeption;
 import jakarta.persistence.EntityManager;
 import org.hibernate.query.NativeQuery;
 import persistencia.Conexion;
@@ -126,7 +127,7 @@ public class ManejadorDistribucion {
     }
 
     // Modifica una distribución existente en la base de datos
-    public void modificarDistribucion(DtDistribucion dtDistribucion) {
+    public void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
 
@@ -143,16 +144,22 @@ public class ManejadorDistribucion {
             if (distribuciones.size() == 1) {
                 // Solo modificar si existe exactamente una distribución
                 Distribucion distribucionExistente = distribuciones.get(0);
-                distribucionExistente.setFechaEntrega(dtDistribucion.getFechaEntrega());
-                distribucionExistente.setEstado(dtDistribucion.getEstado());
+                if (dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() != null){
+                    throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
+                } else if (!dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() == null) {
+                    throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
+                }else {
+                    distribucionExistente.setFechaEntrega(dtDistribucion.getFechaEntrega());
+                    distribucionExistente.setEstado(dtDistribucion.getEstado());
 
-                em.getTransaction().begin();
-                em.merge(distribucionExistente);
-                em.getTransaction().commit();
+                    em.getTransaction().begin();
+                    em.merge(distribucionExistente);
+                    em.getTransaction().commit();
+                }
             } else if (distribuciones.isEmpty()) {
-                throw new IllegalArgumentException("No se encontró ninguna distribución con los criterios especificados.");
+                throw new IngresoIncorrectoExeption("No se encontró ninguna distribución con los criterios especificados.");
             } else {
-                throw new IllegalArgumentException("Se encontraron múltiples distribuciones con los mismos criterios. Verifique los datos.");
+                throw new IngresoIncorrectoExeption("Se encontraron múltiples distribuciones con los mismos criterios. Verifique los datos.");
             }
 
         } catch (Exception e) {

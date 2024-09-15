@@ -119,7 +119,6 @@ public class AltaUsuarioUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     controladorUsuario.validarEmail(texteMailReparti.getText());
-
                     if (textNombreReparti.getText().equals("Ingrese el Nombre...") || textNombreReparti.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (texteMailReparti.getText().equals("Ingrese el eMail...") || texteMailReparti.getText().length() <= 0) {
@@ -129,7 +128,6 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (controladorUsuario.existeUsuario(texteMailReparti.getText())) {
                         throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailReparti.getText() + " ya existe");
                     } else {
-                        controladorUsuario.validarEmail(texteMailBenef.getText());
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
                         controladorUsuario.agregarUsuario(dt);
                         limpiarCampos();
