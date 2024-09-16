@@ -2,6 +2,7 @@ package gui.componentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
@@ -13,21 +14,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ComponenteCalFechaHora extends JDialog {
-    private JPanel contentPane;
     private JLabel textAnio;
     private JButton prevAnio;
     private JButton nextAnio;
     private JButton prevMes;
     private JLabel textMes;
     private JButton nextMes;
-    private JPanel panelBotondias;
-    private JLabel textDiaDomingo;
-    private JLabel textDiaLunes;
-    private JLabel textDiaMartes;
-    private JLabel textDiaMiercoles;
-    private JLabel textdiaJueves;
-    private JLabel textDiaViernes;
-    private JLabel textdiaSabado;
     private JLabel dia1;
     private JLabel dia8;
     private JLabel dia15;
@@ -120,6 +112,10 @@ public class ComponenteCalFechaHora extends JDialog {
             spinner2.setValue(calendar.get(Calendar.MINUTE));
             updateCalendar();
         }
+        // Acción al presionar ESCAPE
+        background.registerKeyboardAction(e -> dispose(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         addControlButtonListeners();
     }
 
@@ -212,8 +208,8 @@ public class ComponenteCalFechaHora extends JDialog {
             botonesDias[i].setEnabled(false);
         }
 
-        panelBotondias.revalidate();
-        panelBotondias.repaint();
+        background.revalidate();
+        background.repaint();
     }
 
     private void addDayButtonListeners() {

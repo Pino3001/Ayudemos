@@ -2,6 +2,7 @@ package gui.componentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
@@ -19,7 +20,6 @@ public class ComponenteCalendarioTupla extends JDialog {
     private JLabel textMes;
     private JButton hoyButton;
     private JButton cancelarButton;
-    private JPanel panelBotondias;
     private JLabel dia1;
     private JLabel dia2;
     private JLabel dia3;
@@ -92,6 +92,11 @@ public class ComponenteCalendarioTupla extends JDialog {
         nextMes.addActionListener(e -> changeMonth(1));
         prevAnio.addActionListener(e -> changeYear(-1));
         nextAnio.addActionListener(e -> changeYear(1));
+
+        // Acción al presionar ESCAPE
+        contentPane.registerKeyboardAction(e -> dispose(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         addDayButtonListeners();
         updateCalendar();

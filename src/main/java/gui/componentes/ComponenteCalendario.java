@@ -2,6 +2,7 @@ package gui.componentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
@@ -17,56 +18,6 @@ public class ComponenteCalendario extends JDialog {
     private JButton nextMes;
     private JLabel textAnio;
     private JLabel textMes;
-    private JButton boton1;
-    private JButton boton2;
-    private JButton boton3;
-    private JButton boton4;
-    private JButton boton5;
-    private JButton boton6;
-    private JButton boton7;
-    private JButton boton8;
-    private JButton boton9;
-    private JButton boton10;
-    private JButton boton11;
-    private JButton boton12;
-    private JButton boton13;
-    private JButton boton14;
-    private JButton boton15;
-    private JButton boton16;
-    private JButton boton17;
-    private JButton boton18;
-    private JButton boton19;
-    private JButton boton20;
-    private JButton boton21;
-    private JButton boton22;
-    private JButton boton23;
-    private JButton boton24;
-    private JButton boton25;
-    private JButton boton26;
-    private JButton boton27;
-    private JButton boton28;
-    private JButton boton29;
-    private JButton boton30;
-    private JButton boton31;
-    private JButton boton32;
-    private JButton boton33;
-    private JButton boton34;
-    private JButton boton35;
-    private JButton boton36;
-    private JButton boton37;
-    private JButton boton38;
-    private JPanel panelBotondias;
-    private JButton boton39;
-    private JButton boton40;
-    private JButton boton41;
-    private JButton boton42;
-    private JLabel textDiaDomingo;
-    private JLabel textDiaLunes;
-    private JLabel textDiaMartes;
-    private JLabel textDiaMiercoles;
-    private JLabel textdiaJueves;
-    private JLabel textDiaViernes;
-    private JLabel textdiaSabado;
     private JButton hoyButton;
     private JButton cancelarButton;
     private JLabel dia1;
@@ -156,6 +107,10 @@ public class ComponenteCalendario extends JDialog {
         if (fechaInicial != null) {
             setFechaSeleccionada(fechaInicial);
         }
+        // Acción al presionar ESCAPE
+        contentPane.registerKeyboardAction(e -> dispose(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void setFechaSeleccionada(String fecha) {

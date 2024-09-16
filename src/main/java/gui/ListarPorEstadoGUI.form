@@ -29,7 +29,7 @@
             <properties>
               <font name="Roboto Light" size="24" style="1"/>
               <foreground color="-1"/>
-              <text value="Listar Distribuciones por Zona"/>
+              <text value="Listar Distribuciones por Estado"/>
             </properties>
           </component>
         </children>

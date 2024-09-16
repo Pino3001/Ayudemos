@@ -25,7 +25,6 @@ public class AltaDistribucionGUI extends JFrame {
     private final IControladorUsuario controladorUsuario;
     private final IControladorDistribucion iControladorDistribucion;
     private JPanel background;
-    private JTextField textFechaPrep;
     private JButton buttonAceptar;
     private JButton buttonCancelar;
     private JButton buttonCalendarioEntrega;
