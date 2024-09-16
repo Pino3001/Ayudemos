@@ -255,18 +255,23 @@ public class ModificarUsuarioGUI extends JFrame {
                         DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), null, textNumeroLicenciaRep.getText());
                         iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getId());
                         new AlertaGUI(false, "Se ha modificado el Repartidor\n Exitosamente").mostrarAlerta();
+
+                        // Actualizar los ComboBox después de la modificación
+                        cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption | EmailIncorrectoExeption ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
+
         buttonCancelarReparti.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
             }
         });
+
         buttonAceptarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -288,12 +293,16 @@ public class ModificarUsuarioGUI extends JFrame {
                         DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), null, textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
                         iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getId());
                         new AlertaGUI(false, "Se ha modificado el Beneficiario\n Exitosamente").mostrarAlerta();
+
+                        // Actualizar los ComboBox después de la modificación
+                        cargarComboBox();
                     }
                 } catch (CamposIncompletosExeption | FormatoFechaIExeption | EmailIncorrectoExeption ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
         });
+
         buttonCancelarBenef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

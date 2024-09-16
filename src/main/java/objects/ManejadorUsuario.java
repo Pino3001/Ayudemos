@@ -52,19 +52,22 @@ public class ManejadorUsuario {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            usuario.setNombre(dtUsuario.getNombre());
-            if (usuario instanceof Beneficiario beneficiario && dtUsuario instanceof DtBeneficiario) {
+            Usuario usuarioActualizado = em.find(Usuario.class, usuario.getId());
+            usuarioActualizado.setNombre(dtUsuario.getNombre());
+            if (usuarioActualizado instanceof Beneficiario beneficiario && dtUsuario instanceof DtBeneficiario) {
                 beneficiario.setDireccion(((DtBeneficiario) dtUsuario).getDireccion());
                 beneficiario.setFechaNacimiento(((DtBeneficiario) dtUsuario).getFechaNacimiento());
                 beneficiario.setEstado(((DtBeneficiario) dtUsuario).getEstado());
                 beneficiario.setBarrio(((DtBeneficiario) dtUsuario).getBarrio());
-            } else if (usuario instanceof Repartidor repartidor && dtUsuario instanceof DtRepartidor) {
+            } else if (usuarioActualizado instanceof Repartidor repartidor && dtUsuario instanceof DtRepartidor) {
                 repartidor.setNumeroLicencia(((DtRepartidor) dtUsuario).getNumeroLicencia());
             }
+            tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) {
                 tx.rollback();
             }
+            throw new RuntimeException("Error al actualizar el usuario", e);
         } finally {
             em.close();
         }
