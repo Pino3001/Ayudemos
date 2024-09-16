@@ -682,7 +682,9 @@
                         <preferred-size width="250" height="30"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <editable value="false"/>
+                    </properties>
                   </component>
                   <component id="e899d" class="javax.swing.JLabel">
                     <constraints>
