@@ -1,5 +1,7 @@
 package objects;
 
+import excepciones.IngresoIncorrectoExeption;
+import excepciones.NoEncontradoExeption;
 import interfaces.IControladorDonacion;
 import datatypes.DTDonacion;
 import datatypes.DTArticulo;
@@ -32,13 +34,13 @@ public class ControladorDonacion implements IControladorDonacion {
     }
 
     @Override
-    public DTDonacion buscarDonacionID(Integer id) {
+    public DTDonacion buscarDonacionID(Integer id) throws NoEncontradoExeption {
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         return manejadorDonacion.buscarDonacionID(id);
     }
 
     @Override
-    public void editarDonacion(DTDonacion dtDonacion, Integer id) {
+    public void editarDonacion(DTDonacion dtDonacion, Integer id) throws IngresoIncorrectoExeption {
         ManejadorDonacion manejadorDonacion = ManejadorDonacion.getInstance();
         manejadorDonacion.modificarDonacion(dtDonacion, id);
     }

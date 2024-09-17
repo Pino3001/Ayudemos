@@ -3,6 +3,7 @@ package objects;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import datatypes.DTDonacion;
+import excepciones.NoEncontradoExeption;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import persistencia.Conexion;
@@ -67,7 +68,7 @@ public class ManejadorDonacion {
 
         try {
             Donacion donacion = em.find(Donacion.class, id);
-            if (donacion == null) throw new IllegalArgumentException("La Donación no existe");
+            if (donacion == null) throw new NoEncontradoExeption("La Donación no existe");
             else if (donacion instanceof Alimento) {
                 return new DTAlimento(donacion.getId(),
                         donacion.getFechaIngresada(),
@@ -111,9 +112,6 @@ public class ManejadorDonacion {
             if (d == null) {
                 throw new IllegalArgumentException("La Donacion no existe");
             }
-
-            // Actualiza los atributos de la donación
-            d.setFechaIngresada(dtDonacion.getFechaIngresada());
 
             // Verifica y actualiza las subclases de donación
             if (d instanceof Alimento alimento && dtDonacion instanceof DTAlimento) {

@@ -90,6 +90,7 @@ public class DatosPorDefecto {
             DTDonacion donacion = donacionesDT.get(i);
 
             distribucionesDT.add(new DtDistribucion(
+                    null,
                     LocalDateTime.now().minusDays(i + 3),
                     LocalDateTime.now().minusDays(i + 1),
                     EstadoDistribucion.ENTREGADO,
@@ -104,6 +105,7 @@ public class DatosPorDefecto {
             DTDonacion donacion = donacionesDT.get(i % donacionesDT.size());
 
             distribucionesDT.add(new DtDistribucion(
+                    null,
                     LocalDateTime.now().minusDays(i),
                     LocalDateTime.now().minusDays(i - 1),
                     EstadoDistribucion.EN_CAMINO,

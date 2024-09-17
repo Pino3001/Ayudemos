@@ -3,6 +3,8 @@ package gui;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import excepciones.CamposIncompletosExeption;
+import excepciones.IngresoIncorrectoExeption;
+import excepciones.NoEncontradoExeption;
 import gui.componentes.*;
 import interfaces.IControladorDonacion;
 
@@ -61,9 +63,9 @@ public class ModificarDonacionGUI extends JFrame {
         cardAlimentoArticulo.add(panelArticulo, "articulo");
         aplicarEstilos();
         cambiarTipoDonacion(cardLayout);
-        cargarComboBox();
         actionListenerComboBox();
         actionListenerbotonesConfirmacion();
+        cargarComboBox();
 
     }
 
@@ -151,6 +153,8 @@ public class ModificarDonacionGUI extends JFrame {
         for (DTArticulo dtArticulo : dtArticulosList) {
             comboBuscarArticulo.addItem(dtArticulo);
         }
+        comboBuscarAlimento.setSelectedIndex(0);
+        comboBuscarArticulo.setSelectedIndex(0);
     }
 
     // Maneja las interacciones de los ComboBox
@@ -207,10 +211,10 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTAlimento dtAlimento = new DTAlimento(-1, null, textDescripAlimento.getText(), cantidad);
                         altaDonacion.editarDonacion(dtAlimento, aEditarAlimento.getId());
-                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!");
+                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!").mostrarAlerta();
                         cargarComboBox();
                     }
-                } catch (CamposIncompletosExeption ex) {
+                } catch (CamposIncompletosExeption | NoEncontradoExeption | IngresoIncorrectoExeption ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }
@@ -236,10 +240,10 @@ public class ModificarDonacionGUI extends JFrame {
                     } else {
                         DTArticulo dtArticulo = new DTArticulo(-1, null, textDescripcionArticulo.getText(), peso, textDimensiones.getText());
                         altaDonacion.editarDonacion(dtArticulo, aEditarArticulo.getId());
-                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!");
+                        new AlertaGUI(false, "Modificacion Realizada exitosamente!!!").mostrarAlerta();
                         cargarComboBox();
                     }
-                } catch (CamposIncompletosExeption ex) {
+                } catch (CamposIncompletosExeption | NoEncontradoExeption | IngresoIncorrectoExeption ex) {
                     new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
                 }
             }

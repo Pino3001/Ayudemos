@@ -101,22 +101,15 @@ public class ControladorDistribucion implements IControladorDistribucion {
 
 
     @Override
-    public DtDistribucion buscarDistribucion(int idUsuario, int idDonacion) {
+    public DtDistribucion buscarDistribucion(Integer idDistribucion) {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        return md.buscarDistribucion(idUsuario, idDonacion);
+        return md.buscarDistribucion(idDistribucion);
     }
 
     @Override
     public void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
-        DtDistribucion distribucionExistente = md.buscarDistribucion(
-                dtDistribucion.getIdUsuario(), dtDistribucion.getIdDonacion()
-        );
-        if (distribucionExistente != null) {
-            md.modificarDistribucion(dtDistribucion);
-        } else {
-            throw new IngresoIncorrectoExeption("La distribución no existe en el sistema");
-        }
+        md.modificarDistribucion(dtDistribucion);
     }
 
     @Override

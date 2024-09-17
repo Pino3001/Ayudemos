@@ -10,12 +10,8 @@ import types.Barrio;
 import types.EstadoDistribucion;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -61,7 +57,7 @@ public class ManejadorDistribucion {
         EntityManager em = conexion.getEntityManager();
 
         try {
-            return em.createQuery("SELECT d from Distribucion d", Distribucion.class)
+            return em.createQuery("SELECT d from Distribucion d ORDER BY d.id", Distribucion.class)
                     .getResultList()
                     .stream()
                     .map(Distribucion::getDtDistribucion)
@@ -109,59 +105,32 @@ public class ManejadorDistribucion {
     }
 
     // Busca una distribución por emailBeneficiario e idDonacion en la base de datos
-    public DtDistribucion buscarDistribucion(int idUsuario, int idDonacion) {
+    public DtDistribucion buscarDistribucion(Integer idDistribucion) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        try {
-            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario.id = :idUsuario AND d.donacion.id = :idDonacion", Distribucion.class)
-                    .setParameter("idUsuario", idUsuario)
-                    .setParameter("idDonacion", idDonacion)
-                    .getResultList()
-                    .stream()
-                    .map(Distribucion::getDtDistribucion)
-                    .findFirst()
-                    .orElse(null);
-        } finally {
-            em.close();
-        }
+        return em.find(Distribucion.class, idDistribucion).getDtDistribucion();
     }
 
     // Modifica una distribución existente en la base de datos
     public void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-
+        Distribucion distribucionExistente = em.find(Distribucion.class, dtDistribucion.getId());
         try {
-            // Búsqueda utilizando idDonacion, emailBeneficiario y fechaPreparacion para asegurarse de que es único
-            List<Distribucion> distribuciones = em.createQuery(
-                            "SELECT d FROM Distribucion d WHERE d.donacion.id = :idDonacion AND d.beneficiario.id = :idUsuario AND d.fechaPreparacion = :fechaPreparacion",
-                            Distribucion.class)
-                    .setParameter("idDonacion", dtDistribucion.getIdDonacion())
-                    .setParameter("idUsuario", dtDistribucion.getIdUsuario())
-                    .setParameter("fechaPreparacion", dtDistribucion.getFechaPreparacion())
-                    .getResultList();
-
-            if (distribuciones.size() == 1) {
-                // Solo modificar si existe exactamente una distribución
-                Distribucion distribucionExistente = distribuciones.get(0);
-                if (dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() != null){
-                    throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
-                } else if (!dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() == null) {
-                    throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
-                }else {
-                    distribucionExistente.setFechaEntrega(dtDistribucion.getFechaEntrega());
-                    distribucionExistente.setEstado(dtDistribucion.getEstado());
-
-                    em.getTransaction().begin();
-                    em.merge(distribucionExistente);
-                    em.getTransaction().commit();
-                }
-            } else if (distribuciones.isEmpty()) {
-                throw new IngresoIncorrectoExeption("No se encontró ninguna distribución con los criterios especificados.");
+            if (distribucionExistente == null) {
+                throw new IngresoIncorrectoExeption("No existe la distribucion!");
+            } else if (dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() != null) {
+                throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
+            } else if (!dtDistribucion.getEstado().equals(EstadoDistribucion.PENDIENTE) && dtDistribucion.getFechaEntrega() == null) {
+                throw new IngresoIncorrectoExeption("Estado de distribucion y \n fecha de entrega no compatibles");
             } else {
-                throw new IngresoIncorrectoExeption("Se encontraron múltiples distribuciones con los mismos criterios. Verifique los datos.");
-            }
+                distribucionExistente.setFechaEntrega(dtDistribucion.getFechaEntrega());
+                distribucionExistente.setEstado(dtDistribucion.getEstado());
 
+                em.getTransaction().begin();
+                em.merge(distribucionExistente);
+                em.getTransaction().commit();
+            }
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();

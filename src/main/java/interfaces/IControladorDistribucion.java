@@ -38,7 +38,7 @@ public interface IControladorDistribucion {
     // Retorna una lista de DTReporteZona filtrada por un rango de fechas.
     List<DtReporteZona> obtenerReporteZona(LocalDate fechaInicial, LocalDate fechaFinal);
 
-    DtDistribucion buscarDistribucion(int idUsuario, int idDonacion);
+    DtDistribucion buscarDistribucion(Integer idDistribucion);
 
     void modificarDistribucion(DtDistribucion dtDistribucion) throws IngresoIncorrectoExeption;
 

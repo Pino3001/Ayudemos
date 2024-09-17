@@ -8,10 +8,13 @@ import gui.componentes.*;
 import interfaces.IControladorDistribucion;
 import interfaces.IControladorDonacion;
 import interfaces.IControladorUsuario;
+import types.Barrio;
 import types.EstadoDistribucion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -48,21 +51,40 @@ public class ModificarDistribucionGUI extends JFrame {
 
 
         // Cargar los datos (incluyendo estado y fechas) cuando se seleccione una distribución del comboDistribuciones
-        comboDistribuciones.addActionListener(e -> {
-            DtDistribucion distribucionSeleccionada = (DtDistribucion) comboDistribuciones.getSelectedItem();
-            if (distribucionSeleccionada != null) {
-                distribucionOriginal = distribucionSeleccionada; // Guardar la distribución original para referencia
-                cargarFechasDistribucion(distribucionSeleccionada.getFechaPreparacion(), distribucionSeleccionada.getFechaEntrega());
-                comboEstado.setSelectedItem(distribucionSeleccionada.getEstado()); // Cargar el estado actual
-                DtUsuario dtUsuario = controladorUsuario.obtenerUsuarioPorId(distribucionSeleccionada.getIdUsuario());// Busco el usuario para mostrar su nombre
-                labelBeneficiario.setText(dtUsuario.getMail()); // Mostrar beneficiario
-                DTDonacion dtDonacion = controladorDonacion.buscarDonacionID(distribucionSeleccionada.getIdDonacion());
-                if (dtDonacion instanceof DTAlimento)
-                    labelDonacion.setText(((DTAlimento) dtDonacion).getCantElementos() + "  " + ((DTAlimento) dtDonacion).getDescripcionProductos());
-                else if (dtDonacion instanceof DTArticulo)
-                    labelDonacion.setText(((DTArticulo) dtDonacion).getDescripcion());
+        comboDistribuciones.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    DtDistribucion distribucionSeleccionada = (DtDistribucion) comboDistribuciones.getSelectedItem();
+                    distribucionOriginal = distribucionSeleccionada; // Guardar la distribución original para referencia
+                    if (distribucionSeleccionada != null) {
+                        comboEstado.removeAllItems();
+                        // Agregar el barrio del beneficiario en primera instancia para mostrarse
+                        if (distribucionSeleccionada.getEstado() != null) {
+                            comboEstado.addItem(distribucionSeleccionada.getEstado());
+                            comboEstado.setSelectedItem(distribucionSeleccionada.getEstado());
+                        }
+
+                        // Agregar el resto de los ítems del enum Barrio
+                        for (EstadoDistribucion estadoDistribucion : EstadoDistribucion.values()) {
+                            // Evitar duplicar el ítem si ya fue agregado
+                            if (!estadoDistribucion.equals(distribucionSeleccionada.getEstado())) {
+                                comboEstado.addItem(estadoDistribucion);
+                            }
+                        }
+                        cargarFechasDistribucion(distribucionSeleccionada.getFechaPreparacion(), distribucionSeleccionada.getFechaEntrega());
+                        DtUsuario dtUsuario = controladorUsuario.obtenerUsuarioPorId(distribucionSeleccionada.getIdUsuario());// Busco el usuario para mostrar su nombre
+                        labelBeneficiario.setText(dtUsuario.getMail()); // Mostrar beneficiario
+                        DTDonacion dtDonacion = controladorDonacion.buscarDonacionID(distribucionSeleccionada.getIdDonacion());
+                        if (dtDonacion instanceof DTAlimento)
+                            labelDonacion.setText(((DTAlimento) dtDonacion).getCantElementos() + "  " + ((DTAlimento) dtDonacion).getDescripcionProductos());
+                        else if (dtDonacion instanceof DTArticulo)
+                            labelDonacion.setText(((DTArticulo) dtDonacion).getDescripcion());
+                    }
+                }
             }
         });
+
 
         // Acción del botón "Aceptar"
         buttonAceptarDistribucion.addActionListener(e -> {
@@ -119,7 +141,7 @@ public class ModificarDistribucionGUI extends JFrame {
                 }
             }
             EstadoDistribucion estado = (EstadoDistribucion) comboEstado.getSelectedItem();
-            return new DtDistribucion(distribucionOriginal.getFechaPreparacion(), fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
+            return new DtDistribucion(distribucionOriginal.getId(), distribucionOriginal.getFechaPreparacion(), fechaEntrega, estado, distribucionOriginal.getIdDonacion(), distribucionOriginal.getIdUsuario());
 
         } catch (FormatoFechaIExeption ex) {
             new AlertaGUI(true, ex.getMessage()).mostrarAlerta();
@@ -140,16 +162,11 @@ public class ModificarDistribucionGUI extends JFrame {
 
     private void cargarComboBox() {
         comboDistribuciones.removeAllItems();
-        comboDistribuciones.removeAllItems();
         // Población de combo boxes con datos
         for (DtDistribucion distribucion : controladorDistribucion.obtenerDistribuciones()) {
             comboDistribuciones.addItem(distribucion);
         }
-        comboDistribuciones.setSelectedItem(controladorDistribucion.obtenerDistribuciones().get(0));
-        // Poblar comboEstado con los valores del enum EstadoDistribucion
-        for (EstadoDistribucion estado : EstadoDistribucion.values()) {
-            comboEstado.addItem(estado);
-        }
+        comboDistribuciones.setSelectedIndex(0);
     }
 
     private void aplicarEstilos() {

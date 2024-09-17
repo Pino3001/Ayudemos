@@ -263,7 +263,6 @@ public class ComponenteCalFechaHora extends JDialog {
             fechaSeleccionada = String.format("%02d/%02d/%04d", day, month, year);
             fechaSeleccionada = agregarHoraAFecha(fechaSeleccionada);
             dispose();
-            System.out.println("Fecha de hoy: " + fechaSeleccionada);
         });
 
         cancelarButton.addActionListener(e -> {

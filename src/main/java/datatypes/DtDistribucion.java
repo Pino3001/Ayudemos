@@ -3,10 +3,10 @@ package datatypes;
 import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 public class DtDistribucion {
+    private Integer id;
     private LocalDateTime fechaPreparacion;
     private LocalDateTime fechaEntrega;
     private EstadoDistribucion estado;
@@ -14,11 +14,13 @@ public class DtDistribucion {
     private int idUsuario;
 
     // Constructor
-    public DtDistribucion(LocalDateTime fechaPreparacion,
+    public DtDistribucion(Integer id,
+                          LocalDateTime fechaPreparacion,
                           LocalDateTime fechaEntrega,
                           EstadoDistribucion estado,
                           int idDonacion,
                           int idUsuario) {
+        this.id = id;
         this.fechaPreparacion = fechaPreparacion;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
@@ -27,6 +29,10 @@ public class DtDistribucion {
     }
 
     // Getters
+    public Integer getId() {
+        return id;
+    }
+
     public LocalDateTime getFechaPreparacion() {
         return fechaPreparacion;
     }
@@ -55,7 +61,7 @@ public class DtDistribucion {
 
     @Override
     public int hashCode() {
-        return Objects.hash(fechaPreparacion, fechaEntrega, estado, idDonacion, idUsuario);
+        return Objects.hash(id, fechaPreparacion, fechaEntrega, estado, idDonacion, idUsuario);
     }
 
     @Override
@@ -70,7 +76,8 @@ public class DtDistribucion {
         DtDistribucion that = (DtDistribucion) obj;
 
         // Comparar idDonacion, idUsuario, fechaPreparacion, fechaEntrega y estado
-        return idDonacion == that.idDonacion &&
+        return  id.equals(that.id) &&
+                idDonacion == that.idDonacion &&
                 idUsuario == that.idUsuario &&
                 Objects.equals(fechaPreparacion, that.fechaPreparacion) &&
                 Objects.equals(fechaEntrega, that.fechaEntrega) &&
