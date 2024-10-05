@@ -36,7 +36,7 @@
             <version>6.3.2.Final</version>
         </dependency>
 
-        <!-- Hibernate JPA Support (entity manager is part of hibernate-core in 5.2+) -->
+        <!-- Hibernate JPA Support -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
@@ -53,6 +53,27 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.7</version>
+        </dependency>
+
+        <!-- JAX-WS API for SOAP Web Services -->
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- JWS API -->
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- JAX-WS Reference Implementation (optional) -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-ri</artifactId>
+            <version>2.3.3</version>
         </dependency>
     </dependencies>
 
