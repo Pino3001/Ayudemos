@@ -1,10 +1,10 @@
 package datatypes;
 
-public class DtRepartidor extends DtUsuario{
+public class DtRepartidor extends DtUsuario {
     private final String numeroLicencia;
 
-    public DtRepartidor(Integer id, String nombre, String mail, String numeroLicencia) {
-        super(id,nombre, mail);//
+    public DtRepartidor(Integer id, String nombre, String mail, String numeroLicencia, String contrasenia) {
+        super(id, nombre, mail, contrasenia);//
         this.numeroLicencia = numeroLicencia;
     }
 

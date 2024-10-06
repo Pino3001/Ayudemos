@@ -53,7 +53,10 @@ public class ManejadorUsuario {
         try {
             tx.begin();
             Usuario usuarioActualizado = em.find(Usuario.class, usuario.getId());
+            // Setea Nombre y contraseña.
             usuarioActualizado.setNombre(dtUsuario.getNombre());
+            usuarioActualizado.setContrasenia(dtUsuario.getContrasenia());
+            // Setea el resto de atributos dependiendo el tipo de usuario.
             if (usuarioActualizado instanceof Beneficiario beneficiario && dtUsuario instanceof DtBeneficiario) {
                 beneficiario.setDireccion(((DtBeneficiario) dtUsuario).getDireccion());
                 beneficiario.setFechaNacimiento(((DtBeneficiario) dtUsuario).getFechaNacimiento());

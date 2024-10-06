@@ -48,6 +48,8 @@ public class ModificarUsuarioGUI extends JFrame {
     private JButton buttonAceptarReparti;
     private JButton buttonCancelarReparti;
     private JButton buttonCalendar;
+    private JTextField textContraseniaBenef;
+    private JTextField textContraseniaReparti;
     private CardLayout cardLayout;
     private DtRepartidor aEditarRepartidor;
     private DtBeneficiario aEditarBeneficiario;
@@ -83,10 +85,12 @@ public class ModificarUsuarioGUI extends JFrame {
     private void aplicarEstiloscomponentes() {
         new ComponenteTextField(textNombreBenef, "");
         new ComponenteTextField(texteMailBenef, "");
+        new ComponenteTextField(textContraseniaBenef, "");
         new ComponenteTextField(textFechaNaciBenef, "");
         new ComponenteTextField(textdireccionBenef, "");
         new ComponenteTextField(textNombreReparti, "");
         new ComponenteTextField(texteMailReparti, "");
+        new ComponenteTextField(textContraseniaReparti, "");
         new ComponenteTextField(textNumeroLicenciaRep, "");
         new ComponenteComboBox(comboBarrioBenef);
         new ComponenteComboBox(comboEstadoBenef);
@@ -252,7 +256,7 @@ public class ModificarUsuarioGUI extends JFrame {
                         throw new CamposIncompletosExeption("Seleccione un Usuario!");
                     } else {
                         iAltaUsuario.validarEmail(texteMailReparti.getText());
-                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), null, textNumeroLicenciaRep.getText());
+                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), null, textNumeroLicenciaRep.getText(), textContraseniaReparti.getText());
                         iAltaUsuario.modificarUsuario(dt, aEditarRepartidor.getId());
                         new AlertaGUI(false, "Se ha modificado el Repartidor\n Exitosamente").mostrarAlerta();
 
@@ -290,7 +294,7 @@ public class ModificarUsuarioGUI extends JFrame {
                     } else {
                         fecha = iAltaUsuario.parseFecha(textFechaNaciBenef.getText());
                         iAltaUsuario.validarEmail(texteMailBenef.getText());
-                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), null, textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio);
+                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), null, textdireccionBenef.getText(), fecha, estadoBeneficiario, barrio, textContraseniaBenef.getText());
                         iAltaUsuario.modificarUsuario(dt, aEditarBeneficiario.getId());
                         new AlertaGUI(false, "Se ha modificado el Beneficiario\n Exitosamente").mostrarAlerta();
 
@@ -311,7 +315,7 @@ public class ModificarUsuarioGUI extends JFrame {
         });
     }
 
-    public void setPosicion(int x, int y){
+    public void setPosicion(int x, int y) {
         this.setLocation(x, y);
     }
 

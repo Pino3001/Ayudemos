@@ -31,8 +31,8 @@ public class Beneficiario extends Usuario {
     private List<Distribucion> distribuciones = new ArrayList<>();
 
     // Constructor principal
-    public Beneficiario(String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        super(nombre, mail);
+    public Beneficiario(String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio, String contrasenia) {
+        super(nombre, mail, contrasenia);
         setDireccion(direccion);  // Usar setter para validación
         setFechaNacimiento(fechaNacimiento);  // Usar setter para validación
         this.estado = estado;
@@ -114,7 +114,8 @@ public class Beneficiario extends Usuario {
                 this.getDireccion(),
                 this.getFechaNacimiento(),
                 this.getEstado(),
-                this.getBarrio()
+                this.getBarrio(),
+                this.getContrasenia()
         );
     }
 }

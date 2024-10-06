@@ -42,6 +42,8 @@ public class AltaUsuarioUI extends JFrame {
     private JButton buttonAceptarReparti;
     private JButton buttonCancelarReparti;
     private JButton buttonCalendar;
+    private JTextField textContraseniaBenef;
+    private JTextField textContraseniaReparti;
     private CardLayout cardLayout;
     private Barrio barrio = null;
 
@@ -77,11 +79,13 @@ public class AltaUsuarioUI extends JFrame {
     //Aplica Estilos a los componentes
     private void aplicarEstilosComponentes() {
         new ComponenteTextField(textNombreBenef, "Ingrese el Nombre...");
-        new ComponenteTextField(texteMailBenef, "Ingrese el eMail...");
+        new ComponenteTextField(texteMailBenef, "Ingrese el Email...");
+        new ComponenteTextField(textContraseniaBenef, "Ingrese la contraseña...");
         new ComponenteTextField(textFechaNaci, "Ingrese la Fecha...");
         new ComponenteTextField(textDireccion, "Ingrese la Direccion...");
         new ComponenteTextField(textNombreReparti, "Ingrese el Nombre...");
         new ComponenteTextField(texteMailReparti, "Ingrese el Email...");
+        new ComponenteTextField(textContraseniaReparti, "Ingrese la contraseña...");
         new ComponenteTextField(textNumeroLicencia, "Ingrese la Licencia...");
         new ComponenteComboBox(comboBarrio);
     }
@@ -128,7 +132,7 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (controladorUsuario.existeUsuario(texteMailReparti.getText())) {
                         throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailReparti.getText() + " ya existe");
                     } else {
-                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText());
+                        DtUsuario dt = new DtRepartidor(null, textNombreReparti.getText(), texteMailReparti.getText(), textNumeroLicencia.getText(), textContraseniaReparti.getText());
                         controladorUsuario.agregarUsuario(dt);
                         limpiarCampos();
                         new AlertaGUI(false, "Se ha creado el Repartidor Exitosamente").mostrarAlerta();
@@ -162,7 +166,7 @@ public class AltaUsuarioUI extends JFrame {
                     } else {
                         fecha = controladorUsuario.parseFecha(textFechaNaci.getText());
                         controladorUsuario.validarEmail(texteMailBenef.getText());
-                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio);
+                        DtUsuario dt = new DtBeneficiario(null, textNombreBenef.getText(), texteMailBenef.getText(), textDireccion.getText(), fecha, EstadoBeneficiario.ACTIVO, barrio, textContraseniaBenef.getText());
                         controladorUsuario.agregarUsuario(dt);
                         limpiarCampos();
                         new AlertaGUI(false, "Se ha creado el Beneficiario Exitosamente").mostrarAlerta();
@@ -181,7 +185,7 @@ public class AltaUsuarioUI extends JFrame {
         });
     }
 
-    private  void limpiarCampos(){
+    private void limpiarCampos() {
         textNombreBenef.setText("Ingrese el Nombre...");
         texteMailBenef.setText("Ingrese el eMail...");
         textFechaNaci.setText("Ingrese la Fecha...");
@@ -217,7 +221,7 @@ public class AltaUsuarioUI extends JFrame {
         });
     }
 
-    public void setPosicion(int x, int y){
+    public void setPosicion(int x, int y) {
         this.setLocation(x, y);
     }
 

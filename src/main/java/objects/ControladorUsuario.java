@@ -37,12 +37,14 @@ public class ControladorUsuario implements IControladorUsuario {
                         ((DtBeneficiario) dtUsuario).getDireccion(),
                         ((DtBeneficiario) dtUsuario).getFechaNacimiento(),
                         ((DtBeneficiario) dtUsuario).getEstado(),
-                        ((DtBeneficiario) dtUsuario).getBarrio()
+                        ((DtBeneficiario) dtUsuario).getBarrio(),
+                        ((DtBeneficiario) dtUsuario).getContrasenia()
                 );
             } else if (dtUsuario instanceof DtRepartidor) {
                 usuario = new Repartidor(dtUsuario.getNombre(),
                         dtUsuario.getMail(),
-                        ((DtRepartidor) dtUsuario).getNumeroLicencia()
+                        ((DtRepartidor) dtUsuario).getNumeroLicencia(),
+                        ((DtRepartidor) dtUsuario).getContrasenia()
                 );
             }
             if (usuario != null) {

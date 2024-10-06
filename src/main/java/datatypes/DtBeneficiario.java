@@ -14,8 +14,8 @@ public class DtBeneficiario extends DtUsuario {
     private final Barrio barrio;
 
     // Constructor.
-    public DtBeneficiario(Integer id, String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio) {
-        super(id, nombre, mail);
+    public DtBeneficiario(Integer id, String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio, String contrasenia) {
+        super(id, nombre, mail, contrasenia);
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;

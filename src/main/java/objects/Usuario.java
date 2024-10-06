@@ -16,10 +16,14 @@ public abstract class Usuario {
     @Column(nullable = false, unique = true)
     private String mail;
 
+    @Column(nullable = false)
+    private String contrasenia;
+
     // Constructor con parámetros
-    public Usuario(String nombre, String mail) {
+    public Usuario(String nombre, String mail, String contrasenia) {
         this.nombre = nombre;
         this.mail = mail;
+        this.contrasenia = contrasenia;
     }
 
     // Constructor sin argumentos
@@ -42,6 +46,15 @@ public abstract class Usuario {
     public Integer getId() {
         return id;
     }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
 
     // Metodo abtracto para pasarse como datatype
     public abstract DtUsuario getDtUsuario();

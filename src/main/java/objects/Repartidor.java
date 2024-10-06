@@ -12,8 +12,8 @@ public class Repartidor extends Usuario {
     private String numeroLicencia;
 
     // Constructor completo
-    public Repartidor(String nombre, String mail, String numeroLicencia) {
-        super(nombre, mail);
+    public Repartidor(String nombre, String mail, String numeroLicencia, String contrasenia) {
+        super(nombre, mail, contrasenia);
         this.numeroLicencia = numeroLicencia;
     }
 
@@ -38,7 +38,8 @@ public class Repartidor extends Usuario {
                 this.getId(),
                 this.getNombre(),
                 this.getMail(),
-                this.getNumeroLicencia()
+                this.getNumeroLicencia(),
+                this.getContrasenia()
         );
     }
 }
