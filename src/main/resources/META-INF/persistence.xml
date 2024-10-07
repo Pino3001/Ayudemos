@@ -24,7 +24,6 @@
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
 
-
             <!-- Configuración de Hibernate -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 

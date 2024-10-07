@@ -72,12 +72,12 @@ public class DatosPorDefecto {
                 String direccion = "Calle Falsa " + (100 + i);
                 LocalDate fechaNacimiento = LocalDate.of(1990 + i % 10, i % 12 + 1, i % 28 + 1);
                 EstadoBeneficiario estado = i % 2 == 0 ? EstadoBeneficiario.ACTIVO : EstadoBeneficiario.SUSPENDIDO;
-
+                String contrasenia = "123";
                 // ID ficticio
                 Integer id = i + (barrio.ordinal() * 100);
 
                 // Crear y agregar DtBeneficiario a la lista
-                DtBeneficiario dtBeneficiario = new DtBeneficiario(id, nombre, email, direccion, fechaNacimiento, estado, barrio);
+                DtBeneficiario dtBeneficiario = new DtBeneficiario(id, nombre, email, direccion, fechaNacimiento, estado, barrio, contrasenia);
                 beneficiariosDT.add(dtBeneficiario);
             }
         }
