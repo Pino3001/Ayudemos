@@ -10,7 +10,7 @@ public class DtUsuario {
         this.id = id;
         this.nombre = nombre;//
         this.mail = mail;
-        this.contrasenia = null;
+        this.contrasenia = contrasenia;
     }
 
     public String getNombre() {

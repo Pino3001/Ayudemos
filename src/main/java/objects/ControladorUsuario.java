@@ -27,24 +27,27 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void agregarUsuario(DtUsuario dtUsuario) throws IngresoIncorrectoExeption {
         try {
+            System.out.println("password: " + dtUsuario.getContrasenia()); // da null
             // Verificar formato de email
             validarEmail(dtUsuario.getMail());
             // Creo el Usuario
             Usuario usuario = null;
             if (dtUsuario instanceof DtBeneficiario) {
-                usuario = new Beneficiario(dtUsuario.getNombre(),
+                usuario = new Beneficiario(
+                        dtUsuario.getNombre(),
                         dtUsuario.getMail(),
                         ((DtBeneficiario) dtUsuario).getDireccion(),
                         ((DtBeneficiario) dtUsuario).getFechaNacimiento(),
                         ((DtBeneficiario) dtUsuario).getEstado(),
                         ((DtBeneficiario) dtUsuario).getBarrio(),
-                        ((DtBeneficiario) dtUsuario).getContrasenia()
+                        dtUsuario.getContrasenia()
                 );
             } else if (dtUsuario instanceof DtRepartidor) {
-                usuario = new Repartidor(dtUsuario.getNombre(),
+                usuario = new Repartidor(
+                        dtUsuario.getNombre(),
                         dtUsuario.getMail(),
                         ((DtRepartidor) dtUsuario).getNumeroLicencia(),
-                        ((DtRepartidor) dtUsuario).getContrasenia()
+                        dtUsuario.getContrasenia()
                 );
             }
             if (usuario != null) {

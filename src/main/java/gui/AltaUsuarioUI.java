@@ -129,6 +129,8 @@ public class AltaUsuarioUI extends JFrame {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (textNumeroLicencia.getText().equals("Ingrese la Licencia...") || textNumeroLicencia.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (textContraseniaReparti.getText().equals("Ingrese la contraseña...") || textContraseniaReparti.getText().length() <= 0) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (controladorUsuario.existeUsuario(texteMailReparti.getText())) {
                         throw new CamposIncompletosExeption("Un Usuario con el email " + texteMailReparti.getText() + " ya existe");
                     } else {
@@ -158,6 +160,8 @@ public class AltaUsuarioUI extends JFrame {
                     } else if (texteMailBenef.getText().equals("Ingrese el eMail...") || texteMailBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (textDireccion.getText().equals("Ingrese la Direccion...") || textDireccion.getText().length() <= 0) {
+                        throw new CamposIncompletosExeption("Complete todos los campos!");
+                    } else if (textContraseniaBenef.getText().equals("Ingrese la contraseña...") || textContraseniaBenef.getText().length() <= 0) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
                     } else if (barrio == null) {
                         throw new CamposIncompletosExeption("Complete todos los campos!");
@@ -193,6 +197,8 @@ public class AltaUsuarioUI extends JFrame {
         textNombreReparti.setText("Ingrese el Nombre...");
         texteMailReparti.setText("Ingrese el Email...");
         textNumeroLicencia.setText("Ingrese la Licencia...");
+        textContraseniaReparti.setText("Ingrese la contraseña...");
+        textContraseniaBenef.setText("Ingrese la contraseña...");
         cargarComboBarrio();
     }
 

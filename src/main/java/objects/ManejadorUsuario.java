@@ -40,6 +40,7 @@ public class ManejadorUsuario {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
+            throw e;
         } finally {
             em.close();
         }

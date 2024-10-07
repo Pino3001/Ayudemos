@@ -767,7 +767,7 @@
                       <font name="Roboto Light" size="16" style="0"/>
                       <foreground color="-16178384"/>
                       <horizontalAlignment value="4"/>
-                      <text value="Contrasenia :"/>
+                      <text value="Contraseña :"/>
                     </properties>
                   </component>
                   <hspacer id="b6f1a">
