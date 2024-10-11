@@ -6,6 +6,7 @@ public class DtUsuario {
     private final String mail;
     private final String contrasenia;
 
+
     public DtUsuario(Integer id, String nombre, String mail, String contrasenia) {
         this.id = id;
         this.nombre = nombre;//

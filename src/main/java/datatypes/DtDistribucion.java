@@ -1,6 +1,8 @@
 package datatypes;
 
+import datatypes.soap.DtDistribucionSOAP;
 import types.EstadoDistribucion;
+import utils.DateConverterSOAP;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -26,6 +28,16 @@ public class DtDistribucion {
         this.estado = estado;
         this.idDonacion = idDonacion;
         this.idUsuario = idUsuario;
+    }
+
+    // Constructor para instanciar un DtDistribucion a partir de un DtDistribucionSOAP.
+    public DtDistribucion(DtDistribucionSOAP dt) {
+        this.id = dt.getId();
+        this.fechaPreparacion = DateConverterSOAP.toLocalDateTime(dt.getFechaPreparacion());
+        this.fechaEntrega = DateConverterSOAP.toLocalDateTime(dt.getFechaEntrega());
+        this.estado = dt.getEstado();
+        this.idDonacion = dt.getIdDonacion();
+        this.idUsuario = dt.getIdUsuario();
     }
 
     // Getters

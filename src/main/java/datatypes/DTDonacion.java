@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class DTDonacion {
-
     private final Integer id;
     private final LocalDateTime fechaIngresada;
 
