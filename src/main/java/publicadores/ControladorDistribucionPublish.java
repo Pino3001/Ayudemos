@@ -15,7 +15,9 @@ import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import datatypes.soap.DtBeneficiarioSOAP;
 import datatypes.soap.DtDistribucionSOAP;
+import datatypes.soap.DtDonacionSOAP;
 import excepciones.IngresoIncorrectoExeption;
 import interfaces.Fabrica;
 import interfaces.IControladorDistribucion;
@@ -95,13 +97,29 @@ public class ControladorDistribucionPublish {
     }
 
     @WebMethod
-    public DtBeneficiario[] obtenerBeneficiarios(){
-        return icon.obtenerBeneficiarios(); // Esta devuelve DTBeneficiario[], hay que retornar un array de DtBeneficiarioSOAP.
+    public DtBeneficiarioSOAP[] obtenerBeneficiarios() {
+        DtBeneficiario[] dtBeneficiarios = icon.obtenerBeneficiarios();
+        DtBeneficiarioSOAP[] ret = new DtBeneficiarioSOAP[dtBeneficiarios.length];
+
+        int i = 0;
+        for(DtBeneficiario b : dtBeneficiarios) {
+            ret[i]= new DtBeneficiarioSOAP(b);
+            i++;
+        }
+        return ret;
     }
 
     @WebMethod
-    public DTDonacion[] obtenerDonaciones(){
-        return icon.obtenerDonaciones();
+    public DtDonacionSOAP[] obtenerDonaciones(){
+        DTDonacion[] dtDonaciones = icon.obtenerDonaciones();
+        DtDonacionSOAP[] ret = new DtDonacionSOAP[dtDonaciones.length];
+
+        int i = 0;
+        for(DTDonacion b : dtDonaciones) {
+            ret[i]= new DtDonacionSOAP(b);
+            i++;
+        }
+        return ret;
     }
 
     @WebMethod

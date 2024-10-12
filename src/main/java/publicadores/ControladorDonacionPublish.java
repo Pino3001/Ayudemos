@@ -13,6 +13,7 @@ import configuraciones.WebServiceConfiguracion;
 import datatypes.DTAlimento;
 import datatypes.DTArticulo;
 import datatypes.DTDonacion;
+import datatypes.soap.DtDonacionSOAP;
 import excepciones.IngresoIncorrectoExeption;
 import excepciones.NoEncontradoExeption;
 import interfaces.Fabrica;
@@ -48,18 +49,18 @@ public class ControladorDonacionPublish {
     }
 
     @WebMethod
-    public boolean crearDonacion(DTDonacion dtDonacion){
-        return icon.crearDonacion(dtDonacion);
+    public boolean crearDonacion(DtDonacionSOAP dtSOAP){
+        return icon.crearDonacion(new DTDonacion(dtSOAP));
     }
 
     @WebMethod
-    public DTDonacion buscarDonacionID(Integer id)throws NoEncontradoExeption{
-        return icon.buscarDonacionID(id);
+    public DtDonacionSOAP buscarDonacionID(Integer id) throws NoEncontradoExeption{
+        return new DtDonacionSOAP(icon.buscarDonacionID(id));
     }
 
     @WebMethod
-    public void editarDonacion(DTDonacion dtDonacion, Integer id)throws IngresoIncorrectoExeption{
-        icon.editarDonacion(dtDonacion, id);
+    public void editarDonacion(DtDonacionSOAP dtSOAP, Integer id) throws IngresoIncorrectoExeption{
+        icon.editarDonacion(new DTDonacion(dtSOAP), id);
     }
 
     @WebMethod

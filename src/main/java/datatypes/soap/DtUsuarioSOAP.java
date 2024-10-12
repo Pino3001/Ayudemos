@@ -1,22 +1,23 @@
-package datatypes;
+package datatypes.soap;
 
-import datatypes.soap.DtUsuarioSOAP;
+import datatypes.DtUsuario;
 
-public class DtUsuario {
-    private final Integer id;
-    private final String nombre;
-    private final String mail;
-    private final String contrasenia;
+public class DtUsuarioSOAP {
+    private Integer id;
+    private String nombre;
+    private String mail;
+    private String contrasenia;
 
+    public DtUsuarioSOAP() {}
 
-    public DtUsuario(Integer id, String nombre, String mail, String contrasenia) {
+    public DtUsuarioSOAP(Integer id, String nombre, String mail, String contrasenia) {
         this.id = id;
         this.nombre = nombre;//
         this.mail = mail;
         this.contrasenia = contrasenia;
     }
 
-    public DtUsuario(DtUsuarioSOAP dt) {
+    public DtUsuarioSOAP(DtUsuario dt) {
         this.id = dt.getId();
         this.nombre = dt.getNombre();//
         this.mail = dt.getMail();
