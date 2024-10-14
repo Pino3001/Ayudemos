@@ -7,6 +7,12 @@ public class DTAlimento extends DTDonacion{
     private final String descripcionProductos;
     private final int cantElementos;
 
+    public DTAlimento() {
+        super();
+        this.descripcionProductos = null;
+        this.cantElementos = 0;
+    }
+
     public DTAlimento(int id, LocalDateTime fechaIngresada, String descripcionProductos, int cantElementos) {
         super(id, fechaIngresada);
         this.descripcionProductos = descripcionProductos;

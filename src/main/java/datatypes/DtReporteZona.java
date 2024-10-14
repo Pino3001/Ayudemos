@@ -6,6 +6,11 @@ public class DtReporteZona {
     private final Integer totalDistribuciones;
     private final Integer totalBeneficiarios;
 
+    public DtReporteZona(){
+        this.barrio = "";
+        this.totalDistribuciones = 0;
+        this.totalBeneficiarios = 0;
+    }
     public DtReporteZona(String barrio, Integer totalDistribuciones, Integer totalBeneficiarios) {
         this.barrio = barrio;
         this.totalDistribuciones = totalDistribuciones;

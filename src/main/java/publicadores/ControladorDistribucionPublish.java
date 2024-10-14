@@ -30,14 +30,14 @@ public class ControladorDistribucionPublish {
 
     private Fabrica fabrica;
     private IControladorDistribucion icon;
-    private WebServiceConfiguracion configuracion;
+   // private WebServiceConfiguracion configuracion;
     private Endpoint endpoint;
 
     public ControladorDistribucionPublish() {
         fabrica = Fabrica.getInstancia();
         icon = fabrica.getIControladorDistribucion();
         try {
-            configuracion = new WebServiceConfiguracion();
+           // configuracion = new WebServiceConfiguracion();
         } catch (Exception ex) {
 
         }
@@ -45,8 +45,8 @@ public class ControladorDistribucionPublish {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorDistribucion", this);
-        System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorDistribucion");
+            endpoint = Endpoint.publish("http://localhost:9128/ControladorDistribucionPublish", this);
+       // System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorDistribucion");
     }
 
     @WebMethod(exclude = true)

@@ -16,6 +16,14 @@ public class DtDistribucion {
     private int idUsuario;
 
     // Constructor
+    public DtDistribucion(){
+        this.idDonacion = 0;
+        this.idUsuario = 0;
+        this.fechaPreparacion = LocalDateTime.now();
+        this.fechaEntrega = LocalDateTime.now();
+        this.estado=EstadoDistribucion.PENDIENTE;
+        this.id = 0;
+    }
     public DtDistribucion(Integer id,
                           LocalDateTime fechaPreparacion,
                           LocalDateTime fechaEntrega,
