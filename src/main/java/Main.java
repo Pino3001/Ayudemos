@@ -35,6 +35,16 @@ public class Main {
 
         cDistribucionPublish.publicar();
 
+
+        // Publicaciones
+        ControladorDistribucionPublish cDistribucionPublish = new ControladorDistribucionPublish();
+        ControladorDonacionPublish cDonacionPublish = new ControladorDonacionPublish();
+        ControladorUsuarioPublish cUsuarioPublish = new ControladorUsuarioPublish();
+
+        cDistribucionPublish.publicar();
+        cDonacionPublish.publicar();
+        cUsuarioPublish.publicar();
+
 /*        // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 

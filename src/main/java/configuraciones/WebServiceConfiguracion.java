@@ -1,31 +1,20 @@
 package configuraciones;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.HashMap;
 
 public class WebServiceConfiguracion {
-    private String path = System.getProperty("user.home") + "/.Gimnasio/.properties";
     private HashMap<String, String> configs;
 
-    public WebServiceConfiguracion() throws Exception {
+    // Constructor con configuraciones hardcodeadas
+    public WebServiceConfiguracion() {
         configs = new HashMap<>();
-        System.out.println(path);
-        @SuppressWarnings("resource")
-        BufferedReader reader = new BufferedReader(new FileReader(path));
-        String properties;
-        try {
-            while((properties = reader.readLine()) != null){
-                if(properties.startsWith("#")) {
-                    String[] div = properties.split("=");
-                    configs.put(div[0], div[1]);
-                }
-            }
-        } catch(Exception e) {
-            //throw new ErrorEnFileException();
-        }
+
+        // Aquí defines directamente las configuraciones
+        configs.put("#WS_IP", "localhost");  // Dirección IP hardcodeada como localhost
+        configs.put("#WS_PORT", "3000");      // Puerto hardcodeado
     }
 
+    // Método para obtener la configuración deseada
     public String getConfigOf(String nombre) {
         return configs.get(nombre);
     }
