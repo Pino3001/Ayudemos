@@ -12,6 +12,9 @@ import persistencia.Conexion;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import publicadores.ControladorDistribucionPublish;
+import publicadores.ControladorDonacionPublish;
+import publicadores.ControladorUsuarioPublish;
 import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
@@ -27,6 +30,15 @@ public class Main {
         IControladorDonacion iControladorDonacion = fabrica.getAltaDonacion();
         IControladorDistribucion iControladorDistribucion = fabrica.getIControladorDistribucion();
 
+        ControladorDistribucionPublish cDistribucionPublish = new ControladorDistribucionPublish();
+//        ControladorDonacionPublish cDonacionPublish = new ControladorDonacionPublish();
+//        ControladorUsuarioPublish cUsuarioPublish = new ControladorUsuarioPublish();
+//
+//
+        cDistribucionPublish.publicar();
+//        cDonacionPublish.publicar();
+//        cUsuarioPublish.publicar();
+//
 /*        // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 

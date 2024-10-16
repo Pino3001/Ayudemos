@@ -2,12 +2,6 @@ package publicadores;
 
 import java.util.List;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
 import datatypes.DTAlimento;
@@ -18,9 +12,13 @@ import excepciones.IngresoIncorrectoExeption;
 import excepciones.NoEncontradoExeption;
 import interfaces.Fabrica;
 import interfaces.IControladorDonacion;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.soap.SOAPBinding;
+import jakarta.xml.ws.Endpoint;
 
 @WebService
-@SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.RPC, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class ControladorDonacionPublish {
     private Fabrica fabrica;
     private IControladorDonacion icon;

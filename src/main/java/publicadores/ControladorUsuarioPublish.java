@@ -2,12 +2,6 @@ package publicadores;
 
 import java.util.List;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
 
@@ -19,11 +13,15 @@ import excepciones.EmailIncorrectoExeption;
 import excepciones.IngresoIncorrectoExeption;
 import interfaces.Fabrica;
 import interfaces.IControladorUsuario;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.soap.SOAPBinding;
+import jakarta.xml.ws.Endpoint;
 import types.Barrio;
 import types.EstadoBeneficiario;
 
 @WebService
-@SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.RPC, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class ControladorUsuarioPublish {
     private Fabrica fabrica;
     private IControladorUsuario icon;
