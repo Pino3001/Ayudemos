@@ -37,8 +37,14 @@ public class ControladorDonacionPublish {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorDonacion", this);
-        System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorDonacion");
+        // Publica el servicio utilizando la configuración
+        String wsIp = configuracion.getConfigOf("#WS_IP");
+        String wsPort = configuracion.getConfigOf("#WS_PORT");
+
+        // Formamos la URL del endpoint
+        String url = "http://" + wsIp + ":" + wsPort + "/ControladorDonacionPublish";
+        endpoint = Endpoint.publish(url, this);
+        System.out.println(url); // Muestra la URL del servicio
     }
 
     @WebMethod(exclude = true)
@@ -61,18 +67,18 @@ public class ControladorDonacionPublish {
         icon.editarDonacion(new DTDonacion(dtSOAP), id);
     }
 
-    @WebMethod
-    public List<DTAlimento> listarAlimentos(){
-        return icon.listarAlimentos();
-    }
-
-    @WebMethod
-    public List<DTArticulo> listarArticulos(){
-        return icon.listarArticulos();
-    }
-
-    @WebMethod
-    public List<DTDonacion> listarDonaciones(){
-        return icon.listarDonaciones();
-    }
+//    @WebMethod
+//    public List<DTAlimento> listarAlimentos(){
+//        return icon.listarAlimentos();
+//    }
+//
+//    @WebMethod
+//    public List<DTArticulo> listarArticulos(){
+//        return icon.listarArticulos();
+//    }
+//
+//    @WebMethod
+//    public List<DTDonacion> listarDonaciones(){
+//        return icon.listarDonaciones();
+//    }
 }

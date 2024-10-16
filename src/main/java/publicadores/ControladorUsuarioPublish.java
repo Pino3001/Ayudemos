@@ -40,8 +40,14 @@ public class ControladorUsuarioPublish {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorUsuario", this);
-        System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorUsuario");
+        // Publica el servicio utilizando la configuración
+        String wsIp = configuracion.getConfigOf("#WS_IP");
+        String wsPort = configuracion.getConfigOf("#WS_PORT");
+
+        // Formamos la URL del endpoint
+        String url = "http://" + wsIp + ":" + wsPort + "/ControladorUsuarioPublish";
+        endpoint = Endpoint.publish(url, this);
+        System.out.println(url); // Muestra la URL del servicio
     }
 
     @WebMethod(exclude = true)
@@ -63,36 +69,36 @@ public class ControladorUsuarioPublish {
     public DtUsuarioSOAP obtenerUsuarioPorId(Integer id) {
         return new DtUsuarioSOAP(icon.obtenerUsuarioPorId(id));
     }
-
-    @WebMethod
-    public List<DtUsuario> listarUsuarios(){
-        return icon.listarUsuarios();
-    }
-
-    @WebMethod
-    public List<DtBeneficiario> listarBeneficiarios(){
-        return icon.listarBeneficiarios();
-    }
-
-    @WebMethod
-    public List<DtBeneficiario> listarBeneficiariosPorEstado(EstadoBeneficiario estado){
-        return icon.listarBeneficiariosPorEstado(estado);
-    }
-
-    @WebMethod
-    public List<DtRepartidor> listarRepartidores(){
-        return icon.listarRepartidores();
-    }
+//
+//    @WebMethod
+//    public List<DtUsuario> listarUsuarios(){
+//        return icon.listarUsuarios();
+//    }
+//
+//    @WebMethod
+//    public List<DtBeneficiario> listarBeneficiarios(){
+//        return icon.listarBeneficiarios();
+//    }
+//
+//    @WebMethod
+//    public List<DtBeneficiario> listarBeneficiariosPorEstado(EstadoBeneficiario estado){
+//        return icon.listarBeneficiariosPorEstado(estado);
+//    }
+//
+//    @WebMethod
+//    public List<DtRepartidor> listarRepartidores(){
+//        return icon.listarRepartidores();
+//    }
 
     @WebMethod
     public void validarEmail(String email) throws EmailIncorrectoExeption {
         icon.validarEmail(email);
     }
 
-    @WebMethod
-    public List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio) {
-        return icon.listarBeneficiariosPorZona(barrio);
-    }
+//    @WebMethod
+//    public List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio) {
+//        return icon.listarBeneficiariosPorZona(barrio);
+//    }
 
     @WebMethod
     public boolean existeUsuario(String email) {

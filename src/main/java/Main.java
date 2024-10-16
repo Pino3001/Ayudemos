@@ -30,15 +30,16 @@ public class Main {
         IControladorDonacion iControladorDonacion = fabrica.getAltaDonacion();
         IControladorDistribucion iControladorDistribucion = fabrica.getIControladorDistribucion();
 
+
+        // Publicaciones
         ControladorDistribucionPublish cDistribucionPublish = new ControladorDistribucionPublish();
-//        ControladorDonacionPublish cDonacionPublish = new ControladorDonacionPublish();
-//        ControladorUsuarioPublish cUsuarioPublish = new ControladorUsuarioPublish();
-//
-//
+        ControladorDonacionPublish cDonacionPublish = new ControladorDonacionPublish();
+        ControladorUsuarioPublish cUsuarioPublish = new ControladorUsuarioPublish();
+
         cDistribucionPublish.publicar();
-//        cDonacionPublish.publicar();
-//        cUsuarioPublish.publicar();
-//
+        cDonacionPublish.publicar();
+        cUsuarioPublish.publicar();
+
 /*        // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 

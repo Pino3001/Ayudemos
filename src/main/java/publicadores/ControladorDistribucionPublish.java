@@ -48,10 +48,11 @@ public class ControladorDistribucionPublish {
         String wsPort = configuracion.getConfigOf("#WS_PORT");
 
         // Formamos la URL del endpoint
-        String url = "http://" + wsIp + ":" + wsPort + "/ControladorPublish";
+        String url = "http://" + wsIp + ":" + wsPort + "/ControladorDistribucionPublish";
         endpoint = Endpoint.publish(url, this);
         System.out.println(url); // Muestra la URL del servicio
     }
+
     @WebMethod(exclude = true)
     public Endpoint getEndpoint() {
         return endpoint;
