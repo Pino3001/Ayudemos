@@ -2,6 +2,7 @@ package objects;
 
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import datatypes.soap.DtDistribucionSOAP;
 import excepciones.IngresoIncorrectoExeption;
 import jakarta.persistence.EntityManager;
 import org.hibernate.query.NativeQuery;
@@ -193,6 +194,31 @@ public class ManejadorDistribucion {
             // Retornamos la lista.
             return reporteZonas;
 
+        } finally {
+            em.close();
+        }
+    }
+
+    public DtDistribucionSOAP[] listaDistribucionesPendientesSOAP() {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        EstadoDistribucion estadoDistribucion = EstadoDistribucion.PENDIENTE;
+
+        try {
+            // Realizamos la consulta para obtener la lista de Distribuciones con estado pendiente
+            List<Distribucion> distribuciones = em.createQuery(
+                            "SELECT d FROM Distribucion d WHERE d.estado = 'PENDIENTE'", Distribucion.class)
+                    .getResultList();
+
+            // Convertimos la lista de Distribucion a un array de DtDistribucionSOAP
+            return distribuciones.stream()
+                    .map(distribucion -> {
+                        // Convertimos de Distribucion a DtDistribucion
+                        DtDistribucion dtDistribucion = distribucion.getDtDistribucionWeb();
+                        // Luego convertimos de DtDistribucion a DtDistribucionSOAP
+                        return new DtDistribucionSOAP(dtDistribucion);
+                    })
+                    .toArray(DtDistribucionSOAP[]::new);
         } finally {
             em.close();
         }

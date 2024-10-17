@@ -53,8 +53,8 @@ public class ControladorDonacionPublish {
     }
 
     @WebMethod
-    public boolean crearDonacion(DtDonacionSOAP dtSOAP){
-        return icon.crearDonacion(new DTDonacion(dtSOAP));
+    public boolean crearDonacion(DTAlimento dtSOAP){
+        return icon.crearDonacion(dtSOAP);
     }
 
     @WebMethod

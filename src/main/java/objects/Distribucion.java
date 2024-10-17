@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import objects.Beneficiario;
 import objects.Donacion;
 import persistencia.DistribucionID;
+import types.Barrio;
 import types.EstadoDistribucion;
 
 import java.time.LocalDateTime;
@@ -98,6 +99,16 @@ public class Distribucion {
 
     public DtDistribucion getDtDistribucion() {
         return new DtDistribucion(this.id, this.getFechaPreparacion(), this.getFechaEntrega(), this.getEstado(), this.getDonacion().getId(), this.getBeneficiario().getId());
+    }
+
+    public DtDistribucion getDtDistribucionWeb() {
+        String descripcion;
+        if (this.getDonacion() instanceof Alimento)
+            descripcion = ((Alimento) this.getDonacion()).getDescripcionProductos();
+        else descripcion = ((Articulo) this.getDonacion()).getDescripcion();
+        return new DtDistribucion(this.id, this.getFechaPreparacion(), this.getFechaEntrega(), this.getEstado(),
+                this.getDonacion().getId(), descripcion, this.getBeneficiario().getId(), this.getBeneficiario().getNombre(),
+                this.getBeneficiario().getMail(), this.getBeneficiario().getDireccion(),this.getBeneficiario().getBarrio());
     }
 
     public void setBeneficiario(Beneficiario beneficiario) {

@@ -1,11 +1,15 @@
 package datatypes;
 
 import datatypes.soap.DtDistribucionSOAP;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import types.Barrio;
 import types.EstadoDistribucion;
 import utils.DateConverterSOAP;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DtDistribucion {
     private Integer id;
@@ -13,7 +17,52 @@ public class DtDistribucion {
     private LocalDateTime fechaEntrega;
     private EstadoDistribucion estado;
     private int idDonacion;
+    private String descripcionDonacion;
     private int idUsuario;
+    private String nombreUsuario;
+    private String emailUsuario;
+    private String direccionUsuario;
+    private Barrio barrio;
+
+    public Barrio getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(Barrio barrio) {
+        this.barrio = barrio;
+    }
+
+    public String getDireccionUsuario() {
+        return direccionUsuario;
+    }
+
+    public void setDireccionUsuario(String direccionUsuario) {
+        this.direccionUsuario = direccionUsuario;
+    }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getDescripcionDonacion() {
+        return descripcionDonacion;
+    }
+
+    public void setDescripcionDonacion(String descripcionDonacion) {
+        this.descripcionDonacion = descripcionDonacion;
+    }
 
     // Constructor
     public DtDistribucion(){
@@ -45,7 +94,26 @@ public class DtDistribucion {
         this.fechaEntrega = DateConverterSOAP.toLocalDateTime(dt.getFechaEntrega());
         this.estado = dt.getEstado();
         this.idDonacion = dt.getIdDonacion();
+        this.descripcionDonacion = dt.getDescripcionDonacion();
         this.idUsuario = dt.getIdUsuario();
+        this.nombreUsuario = dt.getNombreUsuario();
+        this.emailUsuario = dt.getEmailUsuario();
+        this.direccionUsuario = dt.getDireccionUsuario();
+        this.barrio = dt.getBarrio();
+    }
+
+    public DtDistribucion(Integer id, LocalDateTime fechaPreparacion, LocalDateTime fechaEntrega, EstadoDistribucion estado, int idDonacion, String descripcionDonacion, int idUsuario, String nombreUsuario, String emailUsuario, String direccionUsuario, Barrio barrio) {
+        this.id = id;
+        this.fechaPreparacion = fechaPreparacion;
+        this.fechaEntrega = fechaEntrega;
+        this.estado = estado;
+        this.idDonacion = idDonacion;
+        this.descripcionDonacion = descripcionDonacion;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.emailUsuario = emailUsuario;
+        this.direccionUsuario = direccionUsuario;
+        this.barrio = barrio;
     }
 
     // Getters
@@ -76,7 +144,7 @@ public class DtDistribucion {
     // Sobrescribir el método toString para mostrar los datos correctos en el JComboBox
     @Override
     public String toString() {
-        return "ID Donación: " + idDonacion + ", Beneficiario: " + idUsuario + ", Estado: " + estado;
+        return "ID Donación: " + idDonacion + ", Beneficiario: " + idUsuario + ", Estado: " + estado + ", Nombreuser, " + nombreUsuario;
     }
 
     @Override

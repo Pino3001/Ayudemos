@@ -1,7 +1,12 @@
 package datatypes.soap;
 
 import datatypes.DtUsuario;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "dtUsuarioSOAP")
 public class DtUsuarioSOAP {
     private Integer id;
     private String nombre;

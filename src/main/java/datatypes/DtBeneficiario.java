@@ -1,11 +1,14 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import types.Barrio;
 import types.DTFecha;
 import types.EstadoBeneficiario;
 
 import java.time.LocalDate;
 import java.util.Date;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DtBeneficiario extends DtUsuario {
     private final String direccion;

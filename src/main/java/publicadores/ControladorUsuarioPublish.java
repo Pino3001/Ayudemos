@@ -8,6 +8,7 @@ import configuraciones.WebServiceConfiguracion;
 import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
+import datatypes.soap.DtBeneficiarioSOAP;
 import datatypes.soap.DtUsuarioSOAP;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.IngresoIncorrectoExeption;
@@ -56,7 +57,7 @@ public class ControladorUsuarioPublish {
     }
 
     @WebMethod
-    public void agregarUsuario(DtUsuarioSOAP dtSOAP) throws IngresoIncorrectoExeption {
+    public void agregarUsuario(DtBeneficiarioSOAP dtSOAP) throws IngresoIncorrectoExeption {
         icon.agregarUsuario(new DtUsuario(dtSOAP));
     }
 

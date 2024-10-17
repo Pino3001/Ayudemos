@@ -3,6 +3,7 @@ package interfaces;
 import datatypes.DTDonacion;
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import datatypes.soap.DtDistribucionSOAP;
 import excepciones.IngresoIncorrectoExeption;
 import types.Barrio;
 import datatypes.DtBeneficiario;
@@ -48,4 +49,6 @@ public interface IControladorDistribucion {
 
     List<DtDistribucion> obtenerDistribuciones(); // Nuevo metodo para obtener distribuciones
 
+    // Funciones para SOAP
+    DtDistribucionSOAP[] listaDistribucionesPendientesSOAP();
 }

@@ -1,6 +1,10 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
 import java.time.LocalDateTime;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DTArticulo extends DTDonacion{
     private final String descripcion;

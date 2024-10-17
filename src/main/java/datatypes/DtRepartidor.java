@@ -1,5 +1,10 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class DtRepartidor extends DtUsuario {
     private final String numeroLicencia;
 

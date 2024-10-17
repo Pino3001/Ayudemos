@@ -1,6 +1,10 @@
 package datatypes;
 
 import datatypes.soap.DtUsuarioSOAP;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DtUsuario {
     private final Integer id;

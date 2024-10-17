@@ -83,4 +83,8 @@ public class AlertaGUI extends JDialog {
         dialog.mostrarAlerta();
         System.exit(0);
     }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
