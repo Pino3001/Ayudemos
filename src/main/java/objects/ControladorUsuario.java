@@ -3,6 +3,7 @@ package objects;
 import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
+import datatypes.soap.DtUsuarioSOAP;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
 import excepciones.IngresoIncorrectoExeption;
@@ -146,18 +147,32 @@ public class ControladorUsuario implements IControladorUsuario {
 
     @Override
     // Autentica un usuario.
-    public boolean autenticar(String email,String password){
+    public boolean autenticar(String email, String password) {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         boolean correcto = false;
         // Si existe un usuario con el correo recibido, pasamos a comprobar la contraseña.
-        if(mu.existeUsuario(email)) {
+        if (mu.existeUsuario(email)) {
             Usuario usuario = mu.obtenerUsuarioPorEmail(email);
-                if(usuario != null && usuario.getContrasenia().equals(password)) {
-                    // Se retornará true si la contraseña es la correcta.
-                    correcto = true;
-                }
+            if (usuario != null && usuario.getContrasenia().equals(password)) {
+                // Se retornará true si la contraseña es la correcta.
+                correcto = true;
+            }
         }
         return correcto;
+    }
+
+    @Override
+    public DtUsuarioSOAP obtenerUsuarioPorMail(String email) {
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+
+        // Si existe un usuario con el correo recibido retornamos un construimos y retornamos DtUsuarioSOAP.
+        if (mu.existeUsuario(email)) {
+            Usuario usuario = mu.obtenerUsuarioPorEmail(email);
+            DtUsuarioSOAP dtUsuarioSOAP = new DtUsuarioSOAP(usuario.getId(), usuario.getNombre(), usuario.getMail(), usuario.getContrasenia());
+            return dtUsuarioSOAP;
+        }
+
+        return null;
     }
 
 }

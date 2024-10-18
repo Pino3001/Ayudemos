@@ -96,6 +96,7 @@ public class ControladorUsuarioPublish {
         icon.validarEmail(email);
     }
 
+
 //    @WebMethod
 //    public List<DtBeneficiario> listarBeneficiariosPorZona(Barrio barrio) {
 //        return icon.listarBeneficiariosPorZona(barrio);
@@ -109,5 +110,10 @@ public class ControladorUsuarioPublish {
     @WebMethod
     public boolean autenticar(String email, String password) {
         return icon.autenticar(email, password);
+    }
+
+    @WebMethod
+    public DtUsuarioSOAP obtenerUsuarioPorMail(String email) {
+        return icon.obtenerUsuarioPorMail(email);
     }
 }
