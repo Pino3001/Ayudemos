@@ -143,4 +143,21 @@ public class ControladorUsuario implements IControladorUsuario {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         return mu.existeUsuario(email);
     }
+
+    @Override
+    // Autentica un usuario.
+    public boolean autenticar(String email,String password){
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        boolean correcto = false;
+        // Si existe un usuario con el correo recibido, pasamos a comprobar la contraseña.
+        if(mu.existeUsuario(email)) {
+            Usuario usuario = mu.obtenerUsuarioPorEmail(email);
+                if(usuario != null && usuario.getContrasenia().equals(password)) {
+                    // Se retornará true si la contraseña es la correcta.
+                    correcto = true;
+                }
+        }
+        return correcto;
+    }
+
 }

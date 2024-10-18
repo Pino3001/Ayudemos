@@ -104,4 +104,9 @@ public class ControladorUsuarioPublish {
     public boolean existeUsuario(String email) {
         return icon.existeUsuario(email);
     }
+
+    @WebMethod
+    public boolean autenticar(String email, String password) {
+        return icon.autenticar(email, password);
+    }
 }

@@ -5,6 +5,7 @@ import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import persistencia.Conexion;
 import types.EstadoBeneficiario;
@@ -96,13 +97,6 @@ public class ManejadorUsuario {
         }
         return existe;
     }*/
-
-//    // Devuelve el usuario con el eMail pasado
-//    public DtUsuario obtenerUsuarioEmail(Integer id) {
-//        Conexion conexion = Conexion.getInstancia();
-//        EntityManager em = conexion.getEntityManager();
-//        return em.find(Usuario.class, id).getDtUsuario();
-//    }
 
     // Devuelve el usuario con el ID pasado
     public DtUsuario obtenerUsuarioID(Integer id) {
@@ -200,7 +194,28 @@ public class ManejadorUsuario {
         }
     }
 
-    // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
+    public Usuario obtenerUsuarioPorEmail(String email) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            // Crear una consulta para buscar al usuario por email.
+            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.mail = :email");
+            query.setParameter("email", email);
+
+            // Retorna el primer resultado si existe, de lo contrario, null.
+            return (Usuario) query.getSingleResult();
+        } catch (NoResultException e) {
+            // Si no se encuentra ningún resultado, se puede retornar null o manejar la excepción de otra manera.
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
+        // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
 //        DtBeneficiario dt = null;
 //        Beneficiario beneficiario = null;
@@ -257,5 +272,5 @@ public class ManejadorUsuario {
 //            }
 //        }
 //    }
-
+    }
 }

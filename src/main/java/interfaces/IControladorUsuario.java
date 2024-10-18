@@ -49,4 +49,7 @@ public interface IControladorUsuario {
     // Retorna true si existe el usuario, false en caso contrario.
     boolean existeUsuario(String email);
 
+    // Autentica un usuario.
+    boolean autenticar(String email,String password);
+
 }
