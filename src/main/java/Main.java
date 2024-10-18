@@ -1,7 +1,5 @@
-import datatypes.DTDonacion;
-import datatypes.DtBeneficiario;
-import datatypes.DtDistribucion;
-import datatypes.DtUsuario;
+import datatypes.*;
+import excepciones.IngresoIncorrectoExeption;
 import gui.PrincipalGUI;
 import interfaces.*;
 import objects.Beneficiario;
@@ -15,8 +13,12 @@ import jakarta.persistence.EntityTransaction;
 import publicadores.ControladorDistribucionPublish;
 import publicadores.ControladorDonacionPublish;
 import publicadores.ControladorUsuarioPublish;
+import types.Barrio;
+import types.EstadoBeneficiario;
 import types.EstadoDistribucion;
 
+import javax.xml.stream.events.DTD;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +32,6 @@ public class Main {
         IControladorDonacion iControladorDonacion = fabrica.getAltaDonacion();
         IControladorDistribucion iControladorDistribucion = fabrica.getIControladorDistribucion();
 
-
         // Publicaciones
         ControladorDistribucionPublish cDistribucionPublish = new ControladorDistribucionPublish();
         ControladorDonacionPublish cDonacionPublish = new ControladorDonacionPublish();
@@ -39,24 +40,18 @@ public class Main {
         cDistribucionPublish.publicar();
         cDonacionPublish.publicar();
         cUsuarioPublish.publicar();
-
-/*        // Cargar beneficiarios de prueba
+        /*        // Cargar beneficiarios de prueba
         DatosPorDefecto dpf = new DatosPorDefecto();
 
         // Crear donaciones de prueba
         List<DTDonacion> dt = dpf.getDonacionesDT(); // Cambio aquí de getAlimentosDT a getDonacionesDT
-        for (DTDonacion d : dt) {
-            if (iControladorDonacion.crearDonacion(d)) {
-                System.out.println("Al parecer fue creado!");
-            }
-        }
 
         for (DTDonacion d : dt) {
             if (iControladorDonacion.crearDonacion(d)) {
                 System.out.println("Al parecer fue creado!");
             }
         }
-        // Cargar Usuarios Beneficiarios de prueba en la base de datos
+*//*        // Cargar Usuarios Beneficiarios de prueba en la base de datos
         try {
             for (DtUsuario dtUsuario : dpf.getBeneficiariosDT()) {
                 // Buscar los beneficiarios y donaciones para asociarlos con la distribución
@@ -64,7 +59,8 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*//*
+
 
         // Cargar distribuciones de prueba en la base de datos
         try {
@@ -78,6 +74,7 @@ public class Main {
                             dtDistribucion.getFechaPreparacion(),
                             dtDistribucion.getFechaEntrega(),
                             dtDistribucion.getEstado());
+                            break;
                 }
             }
         } catch (Exception e) {

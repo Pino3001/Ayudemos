@@ -58,6 +58,11 @@ public class ControladorDistribucionPublish {
         return endpoint;
     }
 
+    // Obtener la lista de distribuciones PENDIENTE
+    @WebMethod
+        public DtDistribucionSOAP[] listaDistribucionesPendientesSOAP(){
+        return icon.listaDistribucionesPendientesSOAP();
+    }
 //    @WebMethod
 //    public List<DtBeneficiario> obtenerListaDtBeneficiarios(){
 //        return icon.obtenerListaDtBeneficiarios();

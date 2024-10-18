@@ -1,11 +1,14 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import types.Barrio;
 import types.DTFecha;
 import types.EstadoBeneficiario;
 
 import java.time.LocalDate;
 import java.util.Date;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DtBeneficiario extends DtUsuario {
     private final String direccion;
@@ -14,6 +17,12 @@ public class DtBeneficiario extends DtUsuario {
     private final Barrio barrio;
 
     // Constructor.
+    public DtBeneficiario(){
+        this.direccion = "";
+        this.fechaNacimiento = LocalDate.now();
+        this.estado = null;
+        this.barrio = null;
+    }
     public DtBeneficiario(Integer id, String nombre, String mail, String direccion, LocalDate fechaNacimiento, EstadoBeneficiario estado, Barrio barrio, String contrasenia) {
         super(id, nombre, mail, contrasenia);
         this.direccion = direccion;

@@ -63,7 +63,6 @@ public class ModificarUsuarioGUI extends JFrame {
         // Cargo los paneles opcionales.
         cardBeneficiarioRepartidor.add(panelBeneficiario, "beneficiario");
         cardBeneficiarioRepartidor.add(panelRepartidor, "repartidor");
-
         aplicarEstiloscomponentes();
         cambiarTipoRepartidorBeneficiario();
         actionListenerComboBox();

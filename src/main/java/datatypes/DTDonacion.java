@@ -12,6 +12,10 @@ public class DTDonacion {
     private final LocalDateTime fechaIngresada;
 
     //Consutructor
+    public DTDonacion(){
+        id = null;
+        fechaIngresada = null;
+    }
     public DTDonacion(Integer id, LocalDateTime fechaIngresada) {
         this.id = id;//
         this.fechaIngresada = fechaIngresada;

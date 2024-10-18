@@ -1,11 +1,21 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
 import java.time.LocalDateTime;
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DTAlimento extends DTDonacion{
 
     private final String descripcionProductos;
     private final int cantElementos;
+
+    public DTAlimento() {
+        super();
+        this.descripcionProductos = null;
+        this.cantElementos = 0;
+    }
 
     public DTAlimento(int id, LocalDateTime fechaIngresada, String descripcionProductos, int cantElementos) {
         super(id, fechaIngresada);

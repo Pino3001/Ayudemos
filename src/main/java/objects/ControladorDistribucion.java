@@ -4,6 +4,7 @@ import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
 import datatypes.DtReporteZona;
+import datatypes.soap.DtDistribucionSOAP;
 import excepciones.IngresoIncorrectoExeption;
 import interfaces.IControladorDistribucion;
 import types.Barrio;
@@ -131,5 +132,12 @@ public class ControladorDistribucion implements IControladorDistribucion {
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         return md.obtenerListaDistribuciones();  // Ya es una lista, no necesitas convertir
     }
+
+    // Funciones para SOAP
+    public DtDistribucionSOAP[] listaDistribucionesPendientesSOAP(){
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        return md.listaDistribucionesPendientesSOAP();
+    }
+
 
 }

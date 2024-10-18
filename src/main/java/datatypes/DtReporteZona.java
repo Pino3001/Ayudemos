@@ -1,11 +1,21 @@
 package datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class DtReporteZona {
 
     private final String barrio;
     private final Integer totalDistribuciones;
     private final Integer totalBeneficiarios;
 
+    public DtReporteZona(){
+        this.barrio = "";
+        this.totalDistribuciones = 0;
+        this.totalBeneficiarios = 0;
+    }
     public DtReporteZona(String barrio, Integer totalDistribuciones, Integer totalBeneficiarios) {
         this.barrio = barrio;
         this.totalDistribuciones = totalDistribuciones;
