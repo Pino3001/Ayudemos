@@ -109,54 +109,32 @@ public class ManejadorUsuario {
     public List<DtUsuario> obtenerUsuarios() {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.createQuery("SELECT u FROM Usuario u", Usuario.class)
-                .getResultList()
-                .stream()
-                .map(Usuario::getDtUsuario)
-                .collect(Collectors.toList());
+        return em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList().stream().map(Usuario::getDtUsuario).collect(Collectors.toList());
     }
 
     public List<DtBeneficiario> obtenerBeneficiarios() {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.createQuery("SELECT b FROM Beneficiario b", Beneficiario.class)
-                .getResultList()
-                .stream()
-                .map(Beneficiario::getDtUsuario)
-                .collect(Collectors.toList());
+        return em.createQuery("SELECT b FROM Beneficiario b", Beneficiario.class).getResultList().stream().map(Beneficiario::getDtUsuario).collect(Collectors.toList());
     }
 
     // Devuelve una lista de DtBeneficiario filtrada por el estado.
     public List<DtBeneficiario> obtenerBeneficiariosEstado(EstadoBeneficiario estado) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.estado = :estado", Beneficiario.class)
-                .setParameter("estado", estado)
-                .getResultList()
-                .stream()
-                .map(Beneficiario::getDtUsuario)
-                .collect(Collectors.toList());
+        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.estado = :estado", Beneficiario.class).setParameter("estado", estado).getResultList().stream().map(Beneficiario::getDtUsuario).collect(Collectors.toList());
     }
 
     public List<DtBeneficiario> obtenerBeneficiariosPorZona(Barrio barrio) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.barrio = :barrio", Beneficiario.class)
-                .setParameter("barrio", barrio)
-                .getResultList()
-                .stream()
-                .map(Beneficiario::getDtUsuario)
-                .collect(Collectors.toList());
+        return em.createQuery("SELECT b FROM Beneficiario b WHERE b.barrio = :barrio", Beneficiario.class).setParameter("barrio", barrio).getResultList().stream().map(Beneficiario::getDtUsuario).collect(Collectors.toList());
     }
 
     public List<DtRepartidor> obtenerRepartidores() {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-        return em.createQuery("SELECT r FROM Repartidor r", Repartidor.class)
-                .getResultList()
-                .stream()
-                .map(Repartidor::getDtUsuario)
-                .collect(Collectors.toList());
+        return em.createQuery("SELECT r FROM Repartidor r", Repartidor.class).getResultList().stream().map(Repartidor::getDtUsuario).collect(Collectors.toList());
     }
 
     public Beneficiario obtenerBeneficiarioEmail(int id) {
@@ -194,17 +172,37 @@ public class ManejadorUsuario {
         }
     }
 
-    public Usuario obtenerUsuarioPorEmail(String email) {
+    public DtUsuario obtenerUsuarioPorEmail(String email) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
 
         try {
-            // Crear una consulta para buscar al usuario por email.
-            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.mail = :email");
-            query.setParameter("email", email);
+            DtUsuario dt = new DtUsuario();
+            // Empezamos buscando un beneficiario.
+            Query query1 = em.createQuery("SELECT b FROM Beneficiario b WHERE b.mail = :email");
+            query1.setParameter("email", email);
 
-            // Retorna el primer resultado si existe, de lo contrario, null.
-            return (Usuario) query.getSingleResult();
+            List<Beneficiario> result = query1.getResultList();
+            Beneficiario b = result.isEmpty() ? null : result.get(0);
+
+            // Verificamos si no se obtuvo un beneficiario en la búsqueda.
+            // Si se da el caso, buscaremos un repartidor.
+            if (b == null) {
+                Query query2 = em.createQuery("SELECT r FROM Repartidor r WHERE r.mail = :email");
+                query2.setParameter("email", email);
+
+                List<Repartidor> result2 = query2.getResultList();
+                // Verificar si hay algún resultado y retornar el Beneficiario o null.
+                Repartidor r = result2.isEmpty() ? null : result2.get(0);
+                // Se retornará el Repartidor no nulo.
+                dt = r.getDtUsuario();
+            } else {
+                // Se retornará el Beneficiario no nulo.
+                dt = b.getDtUsuario();
+            }
+
+            return dt;
+
         } catch (NoResultException e) {
             // Si no se encuentra ningún resultado, se puede retornar null o manejar la excepción de otra manera.
             return null;
@@ -214,8 +212,10 @@ public class ManejadorUsuario {
         } finally {
             em.close();
         }
+    }
 
-        // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
+
+    // Busca una donación por ID en la lista de usuarios y retorna la información en un dt.
 //    public DTDonacion buscarBeneficiarioID(Integer id) {
 //        DtBeneficiario dt = null;
 //        Beneficiario beneficiario = null;
@@ -272,5 +272,5 @@ public class ManejadorUsuario {
 //            }
 //        }
 //    }
-    }
+
 }

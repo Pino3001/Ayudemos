@@ -3,6 +3,8 @@ package objects;
 import datatypes.DtBeneficiario;
 import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
+import datatypes.soap.DtBeneficiarioSOAP;
+import datatypes.soap.DtRepartidorSOAP;
 import datatypes.soap.DtUsuarioSOAP;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.FormatoFechaIExeption;
@@ -152,7 +154,7 @@ public class ControladorUsuario implements IControladorUsuario {
         boolean correcto = false;
         // Si existe un usuario con el correo recibido, pasamos a comprobar la contraseña.
         if (mu.existeUsuario(email)) {
-            Usuario usuario = mu.obtenerUsuarioPorEmail(email);
+            DtUsuario usuario = mu.obtenerUsuarioPorEmail(email);
             if (usuario != null && usuario.getContrasenia().equals(password)) {
                 // Se retornará true si la contraseña es la correcta.
                 correcto = true;
@@ -164,15 +166,43 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public DtUsuarioSOAP obtenerUsuarioPorMail(String email) {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
-
+        DtUsuarioSOAP dtSOAP = new DtUsuarioSOAP();
         // Si existe un usuario con el correo recibido retornamos un construimos y retornamos DtUsuarioSOAP.
         if (mu.existeUsuario(email)) {
-            Usuario usuario = mu.obtenerUsuarioPorEmail(email);
-            DtUsuarioSOAP dtUsuarioSOAP = new DtUsuarioSOAP(usuario.getId(), usuario.getNombre(), usuario.getMail(), usuario.getContrasenia());
-            return dtUsuarioSOAP;
-        }
+            DtUsuario usuario = mu.obtenerUsuarioPorEmail(email);
 
-        return null;
+            // Verificamos si el usuario es un Beneficiario.
+            if (usuario instanceof DtBeneficiario) {
+                DtBeneficiario beneficiario = (DtBeneficiario) usuario;
+                // Construimos y retornamos un DtBeneficiarioSOAP con los atributos específicos del beneficiario.
+
+                dtSOAP =  new DtBeneficiarioSOAP(
+                        beneficiario.getId(),
+                        beneficiario.getNombre(),
+                        beneficiario.getMail(),
+                        beneficiario.getDireccion(),
+                        beneficiario.getFechaNacimiento(),
+                        beneficiario.getEstado(),
+                        beneficiario.getBarrio(),
+                        beneficiario.getContrasenia()
+                );
+            }
+
+            // Verificamos si el usuario es un Repartidor.
+            if (usuario instanceof DtRepartidor) {
+                DtRepartidor repartidor = (DtRepartidor) usuario;
+                // Construimos y retornamos un DtRepartidorSOAP con los atributos específicos del repartidor.
+                dtSOAP = new DtRepartidorSOAP(
+                        repartidor.getId(),
+                        repartidor.getNombre(),
+                        repartidor.getMail(),
+                        repartidor.getNumeroLicencia(),
+                        repartidor.getContrasenia()
+                );
+            }
+        }
+        // Retornamos el dt, sea repartidor, o beneficiario.
+        return dtSOAP;
     }
 
 }
