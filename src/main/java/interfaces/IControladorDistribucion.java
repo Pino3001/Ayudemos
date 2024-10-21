@@ -51,4 +51,6 @@ public interface IControladorDistribucion {
 
     // Funciones para SOAP
     DtDistribucionSOAP[] listaDistribucionesPendientesSOAP();
+
+    void cambiarEstadoDistri(DtDistribucionSOAP dtDistribucionSOAP);
 }

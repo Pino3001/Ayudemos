@@ -223,6 +223,28 @@ public class ManejadorDistribucion {
             em.close();
         }
     }
+
+    // Cambia el estado de una distribucion
+    public void modificarEstadoDistribucion(DtDistribucionSOAP dtDistribucion) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        Distribucion distribucionExistente = em.find(Distribucion.class, dtDistribucion.getId());
+        try {
+            distribucionExistente.setEstado(dtDistribucion.getEstado());
+
+            em.getTransaction().begin();
+            em.merge(distribucionExistente);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;  // Re-lanzar la excepción para manejarla en niveles superiores si es necesario
+        } finally {
+            em.close();
+        }
+    }
 }
 
 

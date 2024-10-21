@@ -1,14 +1,9 @@
 package publicadores;
 
-import java.time.LocalDate;
-import java.util.List;
-
-
 import configuraciones.WebServiceConfiguracion;
 import datatypes.DTDonacion;
 import datatypes.DtBeneficiario;
 import datatypes.DtDistribucion;
-import datatypes.DtReporteZona;
 import datatypes.soap.DtBeneficiarioSOAP;
 import datatypes.soap.DtDistribucionSOAP;
 import datatypes.soap.DtDonacionSOAP;
@@ -19,7 +14,6 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.Endpoint;
-import types.Barrio;
 import types.EstadoDistribucion;
 
 @WebService
@@ -96,6 +90,10 @@ public class ControladorDistribucionPublish {
 //public List<DtDistribucion> obtenerDistribuciones(){
 //    return icon.obtenerDistribuciones();
 //}
+    @WebMethod
+    public void cambiarEstado(DtDistribucionSOAP dtDistribucionSOAP) {
+        icon.cambiarEstadoDistri(dtDistribucionSOAP);
+    }
 
     @WebMethod
     public DtDistribucionSOAP buscarDistribucion(int idDistribucion) {

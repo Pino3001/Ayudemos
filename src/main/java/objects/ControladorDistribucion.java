@@ -139,5 +139,9 @@ public class ControladorDistribucion implements IControladorDistribucion {
         return md.listaDistribucionesPendientesSOAP();
     }
 
+    public void cambiarEstadoDistri(DtDistribucionSOAP dtDistribucionSOAP ){
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        md.modificarEstadoDistribucion(dtDistribucionSOAP);
+    }
 
 }

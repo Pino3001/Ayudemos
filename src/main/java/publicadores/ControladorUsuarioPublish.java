@@ -4,11 +4,9 @@ import java.util.List;
 
 
 import configuraciones.WebServiceConfiguracion;
-
-import datatypes.DtBeneficiario;
-import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
 import datatypes.soap.DtBeneficiarioSOAP;
+import datatypes.soap.DtRepartidorSOAP;
 import datatypes.soap.DtUsuarioSOAP;
 import excepciones.EmailIncorrectoExeption;
 import excepciones.IngresoIncorrectoExeption;
@@ -18,8 +16,6 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.Endpoint;
-import types.Barrio;
-import types.EstadoBeneficiario;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
@@ -58,6 +54,10 @@ public class ControladorUsuarioPublish {
 
     @WebMethod
     public void agregarUsuario(DtBeneficiarioSOAP dtSOAP) throws IngresoIncorrectoExeption {
+        icon.agregarUsuario(new DtUsuario(dtSOAP));
+    }
+    @WebMethod
+    public void agregarUsuarioRepartidor(DtRepartidorSOAP dtSOAP) throws IngresoIncorrectoExeption {
         icon.agregarUsuario(new DtUsuario(dtSOAP));
     }
 
@@ -115,5 +115,6 @@ public class ControladorUsuarioPublish {
     @WebMethod
     public DtUsuarioSOAP obtenerUsuarioPorMail(String email) {
         return icon.obtenerUsuarioPorMail(email);
+
     }
 }

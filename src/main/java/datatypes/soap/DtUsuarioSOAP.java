@@ -6,7 +6,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dtUsuarioSOAP")
+@XmlType(name = "DtUsuarioSOAP")
 public class DtUsuarioSOAP {
     private Integer id;
     private String nombre;
