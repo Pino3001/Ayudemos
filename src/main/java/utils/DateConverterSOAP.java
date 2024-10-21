@@ -18,6 +18,17 @@ public class DateConverterSOAP {
         }
     }
 
+    // Convierte un LocalDateTime en XML
+    public static XMLGregorianCalendar toXMLGregorianCalendarTime(LocalDateTime dateTime) {
+        try {
+            GregorianCalendar gCal = GregorianCalendar.from(dateTime.atZone(ZoneId.systemDefault()));
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // Convertir XMLGregorianCalendar a LocalDate
     public static LocalDate toLocalDate(XMLGregorianCalendar xmlCal) {
         try {

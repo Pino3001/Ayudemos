@@ -10,6 +10,7 @@ import utils.DateConverterSOAP;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtDistribucionSOAP {
@@ -24,30 +25,17 @@ public class DtDistribucionSOAP {
     private String emailUsuario;
     private String direccionUsuario;
     private Barrio barrio;
+    private String fechaEntregaString;
+    private String fechaPreparacionString;
     // Constructor
     public DtDistribucionSOAP() {}
-
-
-//    public DtDistribucionSOAP(Integer id,
-//                          LocalDateTime fechaPreparacion,
-//                          LocalDateTime fechaEntrega,
-//                          EstadoDistribucion estado,
-//                          int idDonacion,
-//                          int idUsuario) {
-//        this.id = id;
-//        this.fechaPreparacionXML = DateConverterSOAP.toXMLGregorianCalendar(fechaPreparacion.toLocalDate());
-//        this.fechaEntregaXML = DateConverterSOAP.toXMLGregorianCalendar(fechaEntrega.toLocalDate());
-//        this.estado = estado;
-//        this.idDonacion = idDonacion;
-//        this.idUsuario = idUsuario;
-//    }
 
     // Constructor para instanciar un DtDistribucionSOAP a partir de un DtDistribucion.
     public DtDistribucionSOAP(DtDistribucion dt) {
         this.id = dt.getId();
-        this.fechaPreparacionXML = DateConverterSOAP.toXMLGregorianCalendar(dt.getFechaPreparacion().toLocalDate());
+        this.fechaPreparacionXML = DateConverterSOAP.toXMLGregorianCalendarTime(dt.getFechaPreparacion());
         if (dt.getFechaEntrega() != null)
-            this.fechaEntregaXML = DateConverterSOAP.toXMLGregorianCalendar(dt.getFechaEntrega().toLocalDate());
+            this.fechaEntregaXML = DateConverterSOAP.toXMLGregorianCalendarTime(dt.getFechaEntrega());
         this.estado = dt.getEstado();
         this.idDonacion = dt.getIdDonacion();
         this.idUsuario = dt.getIdUsuario();
@@ -59,10 +47,28 @@ public class DtDistribucionSOAP {
         this.emailUsuario = dt.getEmailUsuario();
         this.direccionUsuario = dt.getDireccionUsuario();
         this.barrio = dt.getBarrio();
+        this.fechaEntregaString = getFechaEntregaStr();
+        this.fechaPreparacionString = getFechaPreparacionStr();
     }
 
     public Barrio getBarrio() {
         return barrio;
+    }
+
+    public String getFechaPreparacionString() {
+        return fechaPreparacionString;
+    }
+
+    public void setFechaPreparacionString(String fechaPreparacionString) {
+        this.fechaPreparacionString = fechaPreparacionString;
+    }
+
+    public String getFechaEntregaString() {
+        return fechaEntregaString;
+    }
+
+    public void setFechaEntregaString(String fechaEntregaString) {
+        this.fechaEntregaString = fechaEntregaString;
     }
 
     public void setBarrio(Barrio barrio) {
@@ -113,4 +119,21 @@ public class DtDistribucionSOAP {
         return idUsuario;
     }
 
+    public String getFechaPreparacionStr() {
+        if (fechaPreparacionXML != null) {
+            LocalDateTime fechaPreparacion = fechaPreparacionXML.toGregorianCalendar().toZonedDateTime().toLocalDateTime();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+            return fechaPreparacion.format(formatter);
+        }
+        return "-";
+    }
+
+    public String getFechaEntregaStr() {
+        if (fechaEntregaXML != null) {
+            LocalDateTime fechaEntrega = fechaEntregaXML.toGregorianCalendar().toZonedDateTime().toLocalDateTime();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+            return fechaEntrega.format(formatter);
+        }
+        return "-";
+    }
 }
