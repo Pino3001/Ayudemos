@@ -1,5 +1,6 @@
 package datatypes;
 
+import datatypes.soap.DtRepartidorSOAP;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 
@@ -12,9 +13,15 @@ public class DtRepartidor extends DtUsuario {
         super();
         this.numeroLicencia = "";
     }
+
     public DtRepartidor(Integer id, String nombre, String mail, String numeroLicencia, String contrasenia) {
         super(id, nombre, mail, contrasenia);//
         this.numeroLicencia = numeroLicencia;
+    }
+
+    public DtRepartidor(DtRepartidorSOAP dt) {
+        super(dt.getId(), dt.getNombre(), dt.getMail(), dt.getContrasenia());//
+        this.numeroLicencia = dt.getNumeroLicencia();
     }
 
     public String getNumeroLicencia() {

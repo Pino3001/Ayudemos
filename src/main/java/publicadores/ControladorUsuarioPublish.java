@@ -1,9 +1,12 @@
 package publicadores;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtBeneficiario;
+import datatypes.DtRepartidor;
 import datatypes.DtUsuario;
 import datatypes.soap.DtBeneficiarioSOAP;
 import datatypes.soap.DtRepartidorSOAP;
@@ -16,6 +19,10 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.Endpoint;
+import objects.Beneficiario;
+import utils.DateConverterSOAP;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
@@ -54,8 +61,26 @@ public class ControladorUsuarioPublish {
 
     @WebMethod
     public void agregarUsuario(DtBeneficiarioSOAP dtSOAP) throws IngresoIncorrectoExeption {
-        icon.agregarUsuario(new DtUsuario(dtSOAP));
+        // Convertir XMLGregorianCalendar a LocalDate usando DateConverterSOAP
+        LocalDate fechaNacimiento = DateConverterSOAP.toLocalDate(dtSOAP.getFechaNacimiento());
+
+        // Crear el objeto DtBeneficiario con todos los campos convertidos
+        DtBeneficiario beneficiario = new DtBeneficiario(
+                dtSOAP.getId(),
+                dtSOAP.getNombre(),
+                dtSOAP.getMail(),
+                dtSOAP.getDireccion(),
+                fechaNacimiento,               // Fecha convertida a LocalDate
+                dtSOAP.getEstado(),             // Estado del beneficiario
+                dtSOAP.getBarrio(),             // Barrio
+                dtSOAP.getContrasenia()         // Contraseña
+        );
+
+        // Llamar a la lógica de negocio con el objeto beneficiario
+        icon.agregarUsuario(beneficiario);
     }
+
+
     @WebMethod
     public void agregarUsuarioRepartidor(DtRepartidorSOAP dtSOAP) throws IngresoIncorrectoExeption {
         icon.agregarUsuario(new DtUsuario(dtSOAP));
@@ -63,7 +88,12 @@ public class ControladorUsuarioPublish {
 
     @WebMethod
     public void modificarUsuario(DtUsuarioSOAP dtSOAP, Integer id) {
-        icon.modificarUsuario(new DtUsuario(dtSOAP), id);
+        //icon.modificarUsuario (dtSOAP, id);
+        if (dtSOAP instanceof DtBeneficiarioSOAP) {
+            icon.modificarUsuario(new DtBeneficiario((DtBeneficiarioSOAP) dtSOAP), id);
+        }else if(dtSOAP instanceof DtRepartidorSOAP){
+            icon.modificarUsuario(new DtRepartidor((DtRepartidorSOAP) dtSOAP), id);
+        }
     }
 
     @WebMethod
@@ -115,6 +145,10 @@ public class ControladorUsuarioPublish {
     @WebMethod
     public DtUsuarioSOAP obtenerUsuarioPorMail(String email) {
         return icon.obtenerUsuarioPorMail(email);
+    }
 
+    @WebMethod
+    public XMLGregorianCalendar convertirFecha(LocalDate fecha) {
+        return DateConverterSOAP.toXMLGregorianCalendar(fecha);
     }
 }

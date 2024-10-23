@@ -1,10 +1,12 @@
 package datatypes;
 
+import datatypes.soap.DtBeneficiarioSOAP;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import types.Barrio;
 import types.DTFecha;
 import types.EstadoBeneficiario;
+import utils.DateConverterSOAP;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -29,6 +31,14 @@ public class DtBeneficiario extends DtUsuario {
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
         this.barrio = barrio;
+    }
+
+    public DtBeneficiario(DtBeneficiarioSOAP dt) {
+        super(dt.getId(), dt.getNombre(), dt.getMail(), dt.getContrasenia());
+        this.direccion = dt.getDireccion();
+        this.fechaNacimiento = DateConverterSOAP.toLocalDate(dt.getFechaNacimiento());
+        this.estado = dt.getEstado();
+        this.barrio = dt.getBarrio();
     }
 
     // Getters y Setters.
