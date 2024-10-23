@@ -14,7 +14,10 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.Endpoint;
+import types.Barrio;
 import types.EstadoDistribucion;
+
+import java.util.List;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
@@ -133,5 +136,14 @@ public class ControladorDistribucionPublish {
         return ret;
     }
 
-
+    // Obtener la lista de distribuciones PENDIENTE
+    @WebMethod
+    public DtDistribucionSOAP[] pendientesPorZona(Barrio barrio){
+        List<DtDistribucion> dtDistribucions = icon.listaDistribucionesZonaPendiente(barrio);
+        DtDistribucionSOAP[] ret = new DtDistribucionSOAP[dtDistribucions.size()];
+        for (int i = 0; i < dtDistribucions.size(); i++){
+            ret[i] = new DtDistribucionSOAP(dtDistribucions.get(i));
+        }
+        return ret;
+    }
 }

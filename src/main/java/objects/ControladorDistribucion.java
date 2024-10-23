@@ -144,4 +144,10 @@ public class ControladorDistribucion implements IControladorDistribucion {
         md.modificarEstadoDistribucion(dtDistribucionSOAP);
     }
 
+    public List<DtDistribucion> listaDistribucionesZonaPendiente(Barrio barrio){
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        return md.listaDistribucionesZonaPendiente(barrio);
+    }
+
+
 }

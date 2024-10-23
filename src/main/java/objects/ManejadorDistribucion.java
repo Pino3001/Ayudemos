@@ -245,6 +245,24 @@ public class ManejadorDistribucion {
             em.close();
         }
     }
+
+    // Retorna una lista de datatypes de todas las distribuciones del sistema filtradas por zona.
+    public List<DtDistribucion> listaDistribucionesZonaPendiente(Barrio barrio) {
+        // Conexion y Entity Manager
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        try {
+            return em.createQuery("SELECT d from Distribucion d JOIN Beneficiario b ON d.beneficiario.id = b.id WHERE b.barrio = :barrio AND d.estado = :estado", Distribucion.class)
+                    .setParameter("barrio", barrio)
+                    .setParameter("estado", EstadoDistribucion.PENDIENTE)
+                    .getResultList()
+                    .stream()
+                    .map(Distribucion::getDtDistribucionWeb)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
+        }
+    }
 }
 
 
