@@ -263,6 +263,25 @@ public class ManejadorDistribucion {
             em.close();
         }
     }
+
+    // Retorna una lista de datatypes de todas las distribuciones del sistema filtradas por beneficiario y estado.
+    public List<DtDistribucion> listaDistribucionesPorEstado(Integer id, EstadoDistribucion estadoDistribucion) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+        // Conexion y Entity Manager
+        try {
+            // Realizamos la consulta para obtener la lista de Distribuciones con estado pendiente
+            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario = :id AND d.estado = :estadoDistribucion", Distribucion.class)
+                    .setParameter("id", id)
+                    .setParameter("estadoDistribucion", estadoDistribucion)
+                    .getResultList()
+                    .stream()
+                    .map(Distribucion::getDtDistribucionWeb)
+                    .collect(Collectors.toList());
+        } finally {
+            em.close();
+        }
+    }
 }
 
 

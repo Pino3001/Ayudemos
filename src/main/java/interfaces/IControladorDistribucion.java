@@ -55,4 +55,6 @@ public interface IControladorDistribucion {
     void cambiarEstadoDistri(DtDistribucionSOAP dtDistribucionSOAP);
 
     List<DtDistribucion> listaDistribucionesZonaPendiente(Barrio barrio);
+
+    List<DtDistribucion> listaDistribucionesPorEstado(Integer id, EstadoDistribucion estadoDistribucion);
 }
