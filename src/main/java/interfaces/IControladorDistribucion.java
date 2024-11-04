@@ -56,5 +56,7 @@ public interface IControladorDistribucion {
 
     List<DtDistribucion> listaDistribucionesZonaPendiente(Barrio barrio);
 
+    DtDistribucionSOAP[] listaDistribucionesBeneficiarioSOAP(Integer id);
+
     List<DtDistribucion> listaDistribucionesPorEstado(Integer id, EstadoDistribucion estadoDistribucion);
 }

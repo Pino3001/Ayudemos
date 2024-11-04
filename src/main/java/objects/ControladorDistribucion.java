@@ -149,6 +149,11 @@ public class ControladorDistribucion implements IControladorDistribucion {
         return md.listaDistribucionesZonaPendiente(barrio);
     }
 
+    public DtDistribucionSOAP[] listaDistribucionesBeneficiarioSOAP(Integer id){
+        ManejadorDistribucion md = ManejadorDistribucion.getInstance();
+        return md.listaDistribucionesBeneficiarioSOAP(id);
+    }
+
     public List<DtDistribucion> listaDistribucionesPorEstado(Integer id, EstadoDistribucion estadoDistribucion){
         ManejadorDistribucion md = ManejadorDistribucion.getInstance();
         return md.listaDistribucionesPorEstado(id, estadoDistribucion);

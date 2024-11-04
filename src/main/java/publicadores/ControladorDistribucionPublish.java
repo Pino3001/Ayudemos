@@ -146,6 +146,12 @@ public class ControladorDistribucionPublish {
         }
         return ret;
     }
+
+    @WebMethod
+    public DtDistribucionSOAP[] listaDistribucionesBeneficiarioSOAP(Integer id){
+        return icon.listaDistribucionesBeneficiarioSOAP(id);
+    }
+
     // Obtener la lista de distribuciones por BENEFICIARIO y ESTADO
     @WebMethod
     public DtDistribucionSOAP[] listaDistribucionesPorEstado(Integer id, EstadoDistribucion estado){

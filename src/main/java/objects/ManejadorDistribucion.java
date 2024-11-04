@@ -264,6 +264,31 @@ public class ManejadorDistribucion {
         }
     }
 
+    public DtDistribucionSOAP[] listaDistribucionesBeneficiarioSOAP(Integer id) {
+        Conexion conexion = Conexion.getInstancia();
+        EntityManager em = conexion.getEntityManager();
+
+        try {
+            // Realizamos la consulta para obtener la lista de Distribuciones con estado pendiente
+            List<Distribucion> distribuciones = em.createQuery(
+                            "SELECT d FROM Distribucion d WHERE d.beneficiario.id = :idBeneficiario", Distribucion.class)
+                    .setParameter("idBeneficiario", id)
+                    .getResultList();
+
+            // Convertimos la lista de Distribucion a un array de DtDistribucionSOAP
+            return distribuciones.stream()
+                    .map(distribucion -> {
+                        // Convertimos de Distribucion a DtDistribucion
+                        DtDistribucion dtDistribucion = distribucion.getDtDistribucionWeb();
+                        // Luego convertimos de DtDistribucion a DtDistribucionSOAP
+                        return new DtDistribucionSOAP(dtDistribucion);
+                    })
+                    .toArray(DtDistribucionSOAP[]::new);
+        } finally {
+            em.close();
+        }
+    }
+
     // Retorna una lista de datatypes de todas las distribuciones del sistema filtradas por beneficiario y estado.
     public List<DtDistribucion> listaDistribucionesPorEstado(Integer id, EstadoDistribucion estadoDistribucion) {
         Conexion conexion = Conexion.getInstancia();
