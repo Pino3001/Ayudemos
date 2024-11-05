@@ -267,14 +267,12 @@ public class ManejadorDistribucion {
     public DtDistribucionSOAP[] listaDistribucionesBeneficiarioSOAP(Integer id) {
         Conexion conexion = Conexion.getInstancia();
         EntityManager em = conexion.getEntityManager();
-
         try {
             // Realizamos la consulta para obtener la lista de Distribuciones con estado pendiente
             List<Distribucion> distribuciones = em.createQuery(
                             "SELECT d FROM Distribucion d WHERE d.beneficiario.id = :idBeneficiario", Distribucion.class)
                     .setParameter("idBeneficiario", id)
                     .getResultList();
-
             // Convertimos la lista de Distribucion a un array de DtDistribucionSOAP
             return distribuciones.stream()
                     .map(distribucion -> {
@@ -296,8 +294,8 @@ public class ManejadorDistribucion {
         // Conexion y Entity Manager
         try {
             // Realizamos la consulta para obtener la lista de Distribuciones con estado pendiente
-            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario = :id AND d.estado = :estadoDistribucion", Distribucion.class)
-                    .setParameter("id", id)
+            return em.createQuery("SELECT d FROM Distribucion d WHERE d.beneficiario.id = :idBeneficiario AND d.estado = :estadoDistribucion", Distribucion.class)
+                    .setParameter("idBeneficiario", id)
                     .setParameter("estadoDistribucion", estadoDistribucion)
                     .getResultList()
                     .stream()
