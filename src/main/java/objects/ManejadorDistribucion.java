@@ -11,6 +11,7 @@ import types.Barrio;
 import types.EstadoDistribucion;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -231,6 +232,7 @@ public class ManejadorDistribucion {
         Distribucion distribucionExistente = em.find(Distribucion.class, dtDistribucion.getId());
         try {
             distribucionExistente.setEstado(dtDistribucion.getEstado());
+            distribucionExistente.setFechaEntrega(LocalDateTime.now());//Seteo la fecha de hoy como fecha de entrega/en camino
 
             em.getTransaction().begin();
             em.merge(distribucionExistente);

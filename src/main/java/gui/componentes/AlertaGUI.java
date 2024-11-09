@@ -14,7 +14,6 @@ public class AlertaGUI extends JDialog {
     private Point initialClick;
 
     public AlertaGUI(boolean error, String alertaData) {
-        setContentPane(contentPane);
         setModal(true);
         setUndecorated(true);
         pack();
@@ -86,5 +85,8 @@ public class AlertaGUI extends JDialog {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        contentPane = new JPanel();
+        setContentPane(contentPane);
+        setSize(600, 700);
     }
 }
