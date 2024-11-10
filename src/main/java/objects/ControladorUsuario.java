@@ -149,7 +149,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
     @Override
     // Autentica un usuario.
-    public boolean autenticar(String email, String password) {
+    public boolean  autenticar(String email, String password) {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         boolean correcto = false;
         // Si existe un usuario con el correo recibido, pasamos a comprobar la contraseña.
